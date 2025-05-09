@@ -28,8 +28,8 @@ function changeSeason(season) {
             {
                 title: 'El Amo De Los Clones',
                 description: 'Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/damianc/100Lucha%20El%20Amo%20de%20los%20Clones.m3u8', // Ruta del video para la temporada 2
-                image: 'https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png', // Imagen para la temporada 2
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/damianc/100Lucha%20El%20Amo%20de%20los%20Clones.m3u8',
+                image: 'https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png',
                 duration: '1 h 25 min' // Duración para el episodio de la temporada 2
             }
         ]
