@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>100%Lucha - Las Peliculas</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css">
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
+        <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
+        <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
+              <ul>
+                <li><a href="../index">Inicio</a></li>
+                <li><a href="../proximamente">Próximamente</a></li>
+                <li><a href="../acercade">Acerca De</a></li>
+              </ul>
+            </nav>
+          </header>
+<main>
+    <!-- Contenedor de los datos de la serie -->
+    <section class="serie-info">
+        <h2>Acerca de 100% Lucha - Las Peliculas</h2>
+        <ul>
+            <li><strong>Año:</strong> 2008 y 2009</li>
+            <li><strong>Duración:</strong> 80-85 mins por pelicula</li>
+            <li><strong>Creado por:</strong> Eduardo Husni</li>
+            <li><strong>Elenco:</strong> Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Carlos Kaspar, Julio Mario Sibara 'Turco Naím', Roberto Carnaghi, Daniel Casablanca, Delfina Gerez Bosco, Pablo Rago, Juan Pablo Varsky, Berta Muñiz, Natalia Kim, Rocío Rodríguez Presedo, Esteban Rojas, Gonzalo Nennal, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini (están incluidos los repartos de ambas películas)</li>
+            <li><strong>Guión:</strong> CineAR</li>
+            <li><strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas, apuestas, secuestros, traiciones</li>
+            <li><strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido</li>
+            <li><strong>Clasificación por edad:</strong> 12+ lenguaje inapropiado, daños físicos, humor absurdo</li>
+            <li><strong>Curiosidad:</strong> En el 2011 iba a salir una tercera película, pero debido a la cancelación del programa, se canceló por ende también la tercera pelicula</li>
+        </ul>
+    </section>
+    <!-- Contenedor del reproductor -->
+    <div id="player-container" style="margin: 0 auto;">
+        <video id="videoPlayer" width="100%" height="auto" controls>
+            <!-- Video inicial -->
+            <source src="https://codeberg.org/skb10x/mediatest/raw/branch/main/assets/media/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="season-dropdown">
+        <button class="dropdown-button open">Temporada 1</button>
+        <div class="dropdown-content" style="display: block;">
+            <button class="texto" onclick="changeSeason(1)">
+                <span class="textotemp">Pelicula 1</span>
+                <span class="episode-count">(1 episodio)</span>
+            </button>
+            <button class="texto texto2" onclick="changeSeason(2)">
+                <span class="textotemp">Pelicula 2</span>
+                <span class="episode-count">(1 episodio)</span>
+            </button>
+        </div>
+    </div>
+    <div class="episodios">
+        <h2>Lista de Episodios</h2>
+        <ul id="episode-list">
+            <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
+        </ul>
+    </div>
+    
+</main>
+
+<footer>
+    <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Plyr Script -->
+<script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
+<script src="cienporcientolucha/dropdown.js"></script>
+<script>
+  // Inicializar Plyr
+  const player = new Plyr('#videoPlayer');
+  
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      const video = document.querySelector('#videoPlayer');
+      video.src = videoPath;
+
+      // Asegurarse de que autoplay esté habilitado en el video
+      video.autoplay = true;  // Activamos el autoplay en el elemento de video
+      video.load(); // Recargamos el video para aplicar autoplay
+
+      // Reproducir el video con Plyr
+      player.play();  
+  }
+</script>
+</body>
+</html>

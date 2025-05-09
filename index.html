@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SATV Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="/assets/css/captcha.css">
+
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Lucide icons -->
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo"></div>
+    <h1 class="satvsec">SATV Security 2025</h1>
+  </header>
+
+  <main class="box">
+    <h2>Bienvenido</h2>
+    <p>Por favor completá ambos captchas para acceder al sitio.</p>
+
+    <div class="captcha-container">
+      <!-- reCAPTCHA -->
+      <div class="g-recaptcha" 
+           data-sitekey="6LcLHyYrAAAAAPR8omDIapLgUgTO3iTwP8AXz_U8" 
+           data-callback="checkCaptcha">
+      </div>
+
+      <!-- Turnstile -->
+      <div class="cf-turnstile" 
+           data-sitekey="0x4AAAAAABU4zoWCagVPZDcN" 
+           data-callback="checkCaptcha">
+      </div>
+    </div>
+
+<!-- Botón de ayuda -->
+<button class="help-btn" onclick="alert('Si tenés problemas con los captchas, actualizá la página o contactá soporte.')">
+  <i class="icon" data-lucide="help-circle"></i>
+  ¿Necesitás ayuda?
+</button>
+
+<div class="container1">
+<!-- Botón de ingreso (desactivado hasta completar los captchas) -->
+<button id="access-btn" class="access-btn" disabled>
+  Ingresar al sitio
+</button>
+</div>
+  </main>
+  <script src="/assets/js/captcha.js"></script>
+</body>
+</html>

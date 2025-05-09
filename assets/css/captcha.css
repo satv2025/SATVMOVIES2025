@@ -1,0 +1,144 @@
+@import url('https://fuentes.solargentinotv.com.ar/netflixsans.css');
+
+:root {
+  --font-main: 'Netflix Sans', sans-serif;
+  --bg-color: rgba(0, 0, 0);
+  --box-bg: rgba(36, 36, 36);
+  --text-color: rgba(255, 255, 255);
+  --accent: rgba(229, 9, 20);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+}
+
+.g-recaptcha {
+    margin-left: 2.56em;
+}
+
+body, html {
+  font-family: 'Netflix Sans', sans-serif;
+  color: #fff;
+  font-size: 1rem; /* Base font size = 16px */
+  height: 100%; /* Asegura que ocupe todo el alto de la pantalla */
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+  display: flex;
+  flex-direction: column;
+  background: #141414;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lock_font_awesome.svg/1200px-Lock_font_awesome.svg.png') no-repeat center;
+  background-size: contain;
+  margin: 0 auto 0.5rem;
+}
+
+.satvsec {
+  font-size: 2em;
+}
+
+.box {
+  background-color: var(--box-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0000004d;
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  margin-left: 38%;
+  border: 0.1em solid rgba(77, 77, 77);
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.captcha-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.captcha-container > div {
+  flex: 1 1 48%;
+  min-width: 140px;
+}
+
+.help-btn {
+  margin-top: 7rem;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Netflix Sans';
+  font-weight: 700;
+  font-size: 1.5em;
+  position: absolute;
+  margin-left: -5em;
+  background: #333;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.58em;
+}
+
+.help-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.access-btn {
+    margin-top: 1rem;
+    background: #22222257;
+    color: #ff000057;
+    border: 1px solid #ff000057;
+    padding: 0.6em 1.2em;
+    border-radius: 8px;
+    font-family: 'Netflix Sans';
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: not-allowed;
+    transition: background 0.3s, color 0.3s;
+  }
+
+.access-btn:hover {background: #ff000057;color: #ffffff57;}
+  
+  .access-btn.enabled {
+    background: #222;
+    color: #f00;
+    border-color: #f00;
+    cursor: pointer;
+  }
+  
+  .access-btn.enabled:hover {
+    background: #f00;
+    color: #fff;
+  }
