@@ -79,29 +79,5 @@
 <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="app/dropdown.js"></script>
-
-<script>
-  // Inicializar Plyr solo una vez
-  let videoPlayer = document.querySelector('#videoPlayer');
-  
-  // Asegurarse de que el elemento existe antes de inicializar
-  if (videoPlayer) {
-      const player = new Plyr(videoPlayer);
-      
-      // Función para cargar un episodio con autoplay
-      function loadEpisode(videoPath) {
-          videoPlayer.src = videoPath;
-
-          // Asegurarse de que autoplay esté habilitado en el video
-          videoPlayer.autoplay = true;  // Activamos el autoplay en el elemento de video
-          videoPlayer.load(); // Recargamos el video para aplicar autoplay
-
-          // Reproducir el video con Plyr
-          player.play();  
-      }
-  } else {
-      console.error('El reproductor de video no se encontró en el DOM.');
-  }
-</script>
 </body>
 </html>

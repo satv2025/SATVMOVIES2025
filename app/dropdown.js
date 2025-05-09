@@ -11,40 +11,40 @@ function loadEpisode(videoPath) {
         window.hls = null;
     }
 
+    // Verificar si el archivo es .m3u8
     if (videoPath.endsWith('.m3u8')) {
         if (Hls.isSupported()) {
+            // Usar HLS.js si el navegador no soporta HLS de manera nativa
             const hls = new Hls();
             hls.loadSource(videoPath);
             hls.attachMedia(video);
             window.hls = hls;
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
+                player.play();  // Reproducir el video con Plyr
             });
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Si el navegador es Safari, usar soporte nativo
             video.src = videoPath;
             video.addEventListener('loadedmetadata', () => video.play());
         } else {
             alert('Este navegador no soporta video HLS.');
         }
     } else {
+        // Si no es un archivo .m3u8, cargar normalmente
         video.src = videoPath;
         video.load();
-        video.play();
+        player.play();  // Reproducir el video con Plyr
     }
 }
 
 // Función para cargar los episodios según la temporada seleccionada
 function changeSeason(season) {
     const episodeList = document.getElementById('episode-list');
-    const dropdownButton = document.querySelector('.dropdown-button'); // Obtener el botón del dropdown
-    const dropdownContent = document.querySelector('.dropdown-content'); // Obtener el contenido del dropdown
+    const dropdownButton = document.querySelector('.dropdown-button');
+    const dropdownContent = document.querySelector('.dropdown-content');
 
     // Cambiar el texto del botón a la temporada seleccionada
-    if (season === 1) {
-        dropdownButton.textContent = "Temporada 1";
-    } else if (season === 2) {
-        dropdownButton.textContent = "Temporada 2";
-    }
+    dropdownButton.textContent = `Temporada ${season}`;
 
     // Limpiar los episodios actuales
     episodeList.innerHTML = '';
