@@ -20,7 +20,7 @@ function changeSeason(season) {
                 title: 'Koshe Plostenko',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
-                image: 'https://www.mediafire.com/convkey/4a6d/478xmus1d6v68eh9g.jpg?size_id=6',
+                image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '1 h 20 min' // Duración actualizada
             },
         ],

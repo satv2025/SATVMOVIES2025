@@ -16,7 +16,7 @@ function changeSeason(season) {
                 title: 'Matias Ponce, La Película',
                 description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de youtube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpp/mp/MATIAS%20PONCE%20%20LA%20PEL%C3%8DCULA.m3u8',
-                image: 'https://movies.solargentinotv.com.ar/assets/media/images/maxresdefault.jpg',
+                image: 'https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg',
                 duration: '60 min'
             },
         ],
