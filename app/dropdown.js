@@ -69,7 +69,7 @@ function changeSeason(season) {
             {
                 title: 'Episodio 3',
                 description: 'Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3Asesinato-Para-Principiantes-T1-E3.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8',
                 image: 'https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg',
                 duration: '43 min'
             },
