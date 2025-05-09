@@ -75,24 +75,24 @@
 
 <!-- Plyr Script -->
 <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="matiponcepeli/dropdown.js"></script>
 <script>
-    // Inicializar Plyr
-    const player = new Plyr('#videoPlayer');
-    
-    // Función para cargar un episodio con autoplay
-    function loadEpisode(videoPath) {
-        const video = document.querySelector('#videoPlayer');
-        video.src = videoPath;
+  // Inicializar Plyr
+  const player = new Plyr('#videoPlayer');
+  
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      const video = document.querySelector('#videoPlayer');
+      video.src = videoPath;
 
-        // Asegurarse de que autoplay esté habilitado en el video
-        video.autoplay = true;  // Activamos el autoplay en el elemento de video
-        video.load(); // Recargamos el video para aplicar autoplay
+      // Asegurarse de que autoplay esté habilitado en el video
+      video.autoplay = true;  // Activamos el autoplay en el elemento de video
+      video.load(); // Recargamos el video para aplicar autoplay
 
-        // Reproducir el video con Plyr
-        player.play();  
-    }
+      // Reproducir el video con Plyr
+      player.play();  
+  }
 </script>
-<script src="slidebar.js"></script>
 </body>
 </html>
