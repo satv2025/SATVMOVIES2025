@@ -43,10 +43,10 @@
     </section>
     <!-- Contenedor del reproductor -->
     <div id="player-container" style="margin: 0 auto;">
-<video id="videoPlayer" width="100%" height="auto" controls>
-    <!-- Fuente HLS -->
-    <source id="videoSource" src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8" type="application/x-mpegURL">
-</video>
+        <video id="videoPlayer" width="100%" height="auto" controls>
+            <!-- Video inicial -->
+            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8" type="video/mp4">
+        </video>
     </div>
 
     <div class="season-dropdown">
@@ -79,5 +79,23 @@
 <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="app/dropdown.js"></script>
+<script src="slidebar.js"></script>
+<script>
+  // Inicializar Plyr
+  const player = new Plyr('#videoPlayer');
+  
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      const video = document.querySelector('#videoPlayer');
+      video.src = videoPath;
+
+      // Asegurarse de que autoplay esté habilitado en el video
+      video.autoplay = true;  // Activamos el autoplay en el elemento de video
+      video.load(); // Recargamos el video para aplicar autoplay
+
+      // Reproducir el video con Plyr
+      player.play();  
+  }
+</script>
 </body>
 </html>

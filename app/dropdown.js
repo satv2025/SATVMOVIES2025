@@ -1,50 +1,18 @@
 // Inicializar Plyr
 const player = new Plyr('#videoPlayer');
 
-// Función para cargar un episodio con soporte para .m3u8 y Plyr
-function loadEpisode(videoPath) {
-    const video = document.querySelector('#videoPlayer');
-
-    // Detener cualquier reproducción y limpiar fuente anterior
-    if (window.hls) {
-        window.hls.destroy();
-        window.hls = null;
-    }
-
-    // Verificar si el archivo es .m3u8
-    if (videoPath.endsWith('.m3u8')) {
-        if (Hls.isSupported()) {
-            // Usar HLS.js si el navegador no soporta HLS de manera nativa
-            const hls = new Hls();
-            hls.loadSource(videoPath);
-            hls.attachMedia(video);
-            window.hls = hls;
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                player.play();  // Reproducir el video con Plyr
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            // Si el navegador es Safari, usar soporte nativo
-            video.src = videoPath;
-            video.addEventListener('loadedmetadata', () => video.play());
-        } else {
-            alert('Este navegador no soporta video HLS.');
-        }
-    } else {
-        // Si no es un archivo .m3u8, cargar normalmente
-        video.src = videoPath;
-        video.load();
-        player.play();  // Reproducir el video con Plyr
-    }
-}
-
 // Función para cargar los episodios según la temporada seleccionada
 function changeSeason(season) {
     const episodeList = document.getElementById('episode-list');
-    const dropdownButton = document.querySelector('.dropdown-button');
-    const dropdownContent = document.querySelector('.dropdown-content');
+    const dropdownButton = document.querySelector('.dropdown-button'); // Obtener el botón del dropdown
+    const dropdownContent = document.querySelector('.dropdown-content'); // Obtener el contenido del dropdown
 
     // Cambiar el texto del botón a la temporada seleccionada
-    dropdownButton.textContent = `Temporada ${season}`;
+    if (season === 1) {
+        dropdownButton.textContent = "Temporada 1";
+    } else if (season === 2) {
+        dropdownButton.textContent = "Temporada 2";
+    }
 
     // Limpiar los episodios actuales
     episodeList.innerHTML = '';
@@ -174,6 +142,38 @@ function changeSeason(season) {
 
     dropdownContent.style.display = 'none';
     dropdownButton.classList.remove('open');
+}
+
+// ✅ Función para cargar un episodio con soporte para .m3u8 y Plyr
+function loadEpisode(videoPath) {
+    const video = document.querySelector('#videoPlayer');
+
+    // Detener cualquier reproducción y limpiar fuente anterior
+    if (window.hls) {
+        window.hls.destroy();
+        window.hls = null;
+    }
+
+    if (videoPath.endsWith('.m3u8')) {
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoPath);
+            hls.attachMedia(video);
+            window.hls = hls;
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoPath;
+            video.addEventListener('loadedmetadata', () => video.play());
+        } else {
+            alert('Este navegador no soporta video HLS.');
+        }
+    } else {
+        video.src = videoPath;
+        video.load();
+        video.play();
+    }
 }
 
 // Inicializar el texto del botón como "Seleccionar Temporada"
