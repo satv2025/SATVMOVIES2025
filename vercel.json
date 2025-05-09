@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/:folder",
+      "destination": "/:folder/:folder.html"
+    },
+    {
       "source": "/watch/title/:id",
       "destination": "/watch/title/:id/:id.html"
     }
