@@ -1,8 +1,8 @@
 {
-    "rewrites": [
-      {
-        "source": "/:folder",
-        "destination": "/:folder/:folder.html"
-      }
-    ]
-  }  
+  "rewrites": [
+    {
+      "source": "/watch/title/:id",
+      "destination": "/watch/title/:id/:id.html"
+    }
+  ]
+}
