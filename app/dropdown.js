@@ -1,6 +1,38 @@
 // Inicializar Plyr
 const player = new Plyr('#videoPlayer');
 
+// Función para cargar un episodio con soporte para .m3u8 y Plyr
+function loadEpisode(videoPath) {
+    const video = document.querySelector('#videoPlayer');
+
+    // Detener cualquier reproducción y limpiar fuente anterior
+    if (window.hls) {
+        window.hls.destroy();
+        window.hls = null;
+    }
+
+    if (videoPath.endsWith('.m3u8')) {
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoPath);
+            hls.attachMedia(video);
+            window.hls = hls;
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoPath;
+            video.addEventListener('loadedmetadata', () => video.play());
+        } else {
+            alert('Este navegador no soporta video HLS.');
+        }
+    } else {
+        video.src = videoPath;
+        video.load();
+        video.play();
+    }
+}
+
 // Función para cargar los episodios según la temporada seleccionada
 function changeSeason(season) {
     const episodeList = document.getElementById('episode-list');
@@ -142,38 +174,6 @@ function changeSeason(season) {
 
     dropdownContent.style.display = 'none';
     dropdownButton.classList.remove('open');
-}
-
-// ✅ Función para cargar un episodio con soporte para .m3u8 y Plyr
-function loadEpisode(videoPath) {
-    const video = document.querySelector('#videoPlayer');
-
-    // Detener cualquier reproducción y limpiar fuente anterior
-    if (window.hls) {
-        window.hls.destroy();
-        window.hls = null;
-    }
-
-    if (videoPath.endsWith('.m3u8')) {
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(videoPath);
-            hls.attachMedia(video);
-            window.hls = hls;
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoPath;
-            video.addEventListener('loadedmetadata', () => video.play());
-        } else {
-            alert('Este navegador no soporta video HLS.');
-        }
-    } else {
-        video.src = videoPath;
-        video.load();
-        video.play();
-    }
 }
 
 // Inicializar el texto del botón como "Seleccionar Temporada"
