@@ -81,7 +81,28 @@ const peliculas = {
                 <ul id="episode-list"></ul>
             </div>
         `
-    }
+    },
+    reite666: {
+    year: "2018",
+    duration: "2 temporadas",
+    description: "CILIO, en España, recibe un mensaje que lo obliga a regresar a Argentina para un juego macabro. Un error inesperado desata una serie de eventos perturbadores, llevándolo de vuelta a España de forma extraña.",
+    cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, <a href='#about'>más</a>",
+    title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
+    genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano",
+    titleType: "<strong>Este título es:</strong> Misterioso, Paranormal, Terror, Inquietante",
+    ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
+    background: "https://movies.solargentinotv.com.ar/assets/media/images/Logo Reite666 2.png",
+    link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>▶ Reproducir</a>",
+    createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
+    fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
+    fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
+    fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal</span></div>",
+    fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Paranormal, Terror, Inquietante</span></div>",
+    fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
+    seasons: "2 temporadas",
+    s1eps: "20 episodios",
+    s2eps: "25 episodios"
+  }
 };
 
 // Datos de episodios por temporada
