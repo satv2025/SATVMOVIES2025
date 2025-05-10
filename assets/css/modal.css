@@ -83,8 +83,8 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
     content: "";
     position: absolute;
     top: 0em;
-    left: -1.2em;
-    width: 104.7%;
+    left: -1.25em;
+    width: 104.77%;
     height: 100%;
     background: linear-gradient(0deg, #181818, transparent 50%);
     z-index: 1;
@@ -93,7 +93,7 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
 .modal-header img {
     position: relative;
     margin-top: -2.5em;
-    margin-left: -1.2em;
+    margin-left: -1.25em;
     border-top-left-radius: 11.2px;!i;!;
     border-top-right-radius: 11.2px;
 }
@@ -3425,7 +3425,7 @@ span.fcprefix {color: #bcbcbc;}
     position: absolute;
     padding-left: 2em;
     padding-right: 24em;
-    text-align: justify;
+    text-align: left;
 }
 
 .modal-ageRating {top: 33.3em;left: 1.5em;z-index: 1000;font-size: 0.91em;}
@@ -3653,7 +3653,7 @@ span.about {
     }
 
     .modal-header img {
-        width: 54.6em;
+        width: 54.8em;
         border-top-left-radius: 11.2px;
         border-top-right-radius: 11.2px;
     }
