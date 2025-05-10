@@ -19,140 +19,140 @@ function changeSeason(season) {
             {
                 title: 'Episodio 1 - Cilio debe regresar',
                 description: 'Luego de recibir un misterioso mensaje, cilio debe volver a Argentina y descubrir quién lo envió.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E1/REITE666%20T1%20E1.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '12 min' // Duración actualizada
             },
             {
                 title: 'Episodio 2 - Bienvenido A Casa',
                 description: 'Luego del viaje, Cilio llega a su casa solo para encontrarse con mas enigmas. Un cartel y unas coordenadas lo esperan.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E12/REITE666%20T1%20E2.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 3 - El Reencuentro',
                 description: 'Cilio es citado en un parque cercano junto a dos desconocidos, al llegar se reencuentra con dos viejos amigos',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E3/REITE666%20T1%20E3.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '14 min' // Duración actualizada
             },
             {
                 title: 'Episodio 4 - La Casa De Juli',
                 description: 'Al día siguiente en la casa de Julián, alguien toca el timbre y se encuentran con un sobre.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E4/REITE666%20T1%20E4.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 5 - El Código QR',
                 description: 'El sobre que les dejaron, contenia un código QR, el mismo, los llevó a una isla.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E5/REITE666%20T1%20E5.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '13 min' // Duración actualizada
             },
             {
                 title: 'Episodio 6 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E6/REITE666%20T1%20E6.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '13 min' // Duración actualizada
             },
             {
                 title: 'Episodio 7 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E7/REITE666%20T1%20E7.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 8 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'hhttps://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E8/REITE666%20T1%20E8.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '15 min' // Duración actualizada
             },
             {
                 title: 'Episodio 9 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E9/REITE666%20T1%20E9.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 10 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E10/REITE666%20T1%20E10.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '10 min' // Duración actualizada
             },
             {
                 title: 'Episodio 11 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E11/REITE666%20T1%20E11.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '9 min' // Duración actualizada
             },
             {
                 title: 'Episodio 12 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E12/REITE666%20T1%20E12.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 13 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E13/REITE666%20T1%20E13.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 14 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E14/REITE666%20T1%20E14.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '10 min' // Duración actualizada
             },
             {
                 title: 'Episodio 15 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E15/REITE666%20T1%20E15.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 16 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E16/REITE666%20T1%20E16.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 17 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E17/REITE666%20T1%20E17.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '12 min' // Duración actualizada
             },
             {
                 title: 'Episodio 18 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E18/REITE666%20T1%20E18.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '13 min' // Duración actualizada
             },
             {
                 title: 'Episodio 19 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E19/REITE666%20T1%20E19.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '10 min' // Duración actualizada
             },
             {
                 title: 'Episodio 20 -',
                 description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E20/REITE666%20T1%20E20.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '14 min' // Duración actualizada
             }
