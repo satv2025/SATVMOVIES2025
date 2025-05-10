@@ -5,9 +5,9 @@ function changeSeason(season) {
 
     // Cambiar el texto del botón a la temporada seleccionada
     if (season === 1) {
-        dropdownButton.textContent = "Película 1";
+        dropdownButton.textContent = "Temporada 1";
     } else if (season === 2) {
-        dropdownButton.textContent = "Película 2";
+        dropdownButton.textContent = "Temporada 2";
     }
 
     // Limpiar los episodios actuales
