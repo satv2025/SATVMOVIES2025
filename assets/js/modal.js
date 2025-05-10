@@ -188,7 +188,7 @@ function openModal(movieKey) {
     document.getElementById("modal-titleType").innerHTML = movie.titleType;
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
-    document.getElementById("modal-duration").innerText = movie.duration;
+    document.getElementById("modal-duration").innerHTML = movie.duration;
     document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
     document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
     document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
