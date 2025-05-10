@@ -86,7 +86,7 @@ const peliculas = {
     year: "2018",
     duration: "2 temporadas",
     description: "CILIO, en España, recibe un mensaje que lo obliga a regresar a Argentina para un juego macabro. Un error inesperado desata una serie de eventos perturbadores, llevándolo de vuelta a España de forma extraña.",
-    cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, <a href='#about'>más</a>",
+    cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <a href='#about'>más</a>",
     title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
     genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano",
     titleType: "<strong>Este título es:</strong> Misterioso, Paranormal, Terror, Inquietante",
@@ -99,9 +99,6 @@ const peliculas = {
     fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal</span></div>",
     fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Paranormal, Terror, Inquietante</span></div>",
     fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
-    seasons: "2 temporadas",
-    s1eps: "20 episodios",
-    s2eps: "25 episodios"
   }
 };
 
