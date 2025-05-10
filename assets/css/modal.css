@@ -26,17 +26,28 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
 
 /* Contenido del modal */
 .modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: #181818;
     color: white;
     margin: 5% auto;
-    margin-bottom: -41px !important;
     padding: 1.25em;
     width: 43%;
-    top: -2.6em;
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    height: calc(39.4em + 62em); /* o sumás lo que ocupa el resto de contenido */
+    height: auto; /* Deja que el contenido determine la altura */
+    gap: 1.5em; /* Espacio entre los elementos, ajustable */
+}
+
+/* Cada bloque dentro del modal */
+.modal-cast,
+.modal-genres,
+.modal-titleType {
+    font-size: 0.875em;
+    padding-left: 36.6em;
+    padding-right: 4em;
+    line-height: 1.4; /* Ajusta esto para obtener el espaciado adecuado entre las líneas */
 }
 
 /* Ajuste de la clase .modal */
