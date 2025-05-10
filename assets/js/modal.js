@@ -20,7 +20,7 @@ const peliculas = {
     },
     cienporcientolucha: {
         year: "2008-09",
-        duration: "<span style='margin-left. 1.3em;'>1h 20m (por película)</span>",
+        duration: "<span style='margin-left: 1.3em;'>1h 20m (por película)</span>",
         description: "Los productores detrás del famoso programa 100% Lucha decidieron hacerle películas.",
         curiosity: "<strong class='curiosidad'>Último día para ver esto: 10 de marzo</strong>",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <a href='#about'>más</a>",
