@@ -42,7 +42,7 @@ function changeSeason(season) {
                 description: 'Al día siguiente en la casa de Julián, alguien toca el timbre y se encuentran con un sobre.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
-                duration: '111 min' // Duración actualizada
+                duration: '11 min' // Duración actualizada
             },
             {
                 title: 'Episodio 5 - El Código QR',
