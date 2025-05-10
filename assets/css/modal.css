@@ -39,24 +39,31 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
     height: calc(39.4em + 62em); /* o sumás lo que ocupa el resto de contenido */
 }
 
+/* .modal-cast (Elenco) */
 .modal-cast {
-    top: 32.6em;
     font-size: 0.875em;
     padding-left: 36.6em;
     padding-right: 4em;
+    position: relative;
+    margin-top: 0;  /* Sin top fijo, el margen se ajusta dinámicamente */
 }
 
+/* .modal-genres (Géneros) */
 .modal-genres {
-    top: 35.5em;
     font-size: 0.875em;
     padding-left: 36.6em;
     padding-right: 4em;
+    position: relative;
+    margin-top: 1.5em;  /* Ajusta dinámicamente con un margen */
 }
+
+/* .modal-titleType (Título) */
 .modal-titleType {
-    top: 38.4em;
     font-size: 0.875em;
     padding-left: 36.6em;
     padding-right: 4em;
+    position: relative;
+    margin-top: 1.5em;  /* Ajusta dinámicamente con un margen */
 }
 
 /* Ajuste de la clase .modal */
