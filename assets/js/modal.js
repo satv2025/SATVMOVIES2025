@@ -96,7 +96,7 @@ const peliculas = {
     createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
     fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
     fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
-    fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal</span></div>",
+    fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal, De España</span></div>",
     fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
     fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
   }
@@ -280,3 +280,42 @@ document.addEventListener('DOMContentLoaded', () => {
         arrow.classList.toggle('rotate');
     });
 });
+
+function ajustarModalTop() {
+  const cast = document.querySelector('.modal-cast');
+  const genres = document.querySelector('.modal-genres');
+  const titleType = document.querySelector('.modal-titleType');
+
+  const getLineCount = (el) => {
+    const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+    const height = el.getBoundingClientRect().height;
+    return Math.round(height / lineHeight);
+  };
+
+  const castLines = getLineCount(cast);
+  const genresLines = getLineCount(genres);
+
+  // Valores base según tu CSS
+  let genresTop = 35.5;      // en em
+  let titleTypeTop = 38.4;   // en em
+
+  // Ajuste por línea faltante (aproximado)
+  const lineOffset = 1.2; // em
+
+  // Si el cast tiene menos de 2 líneas, subir genres y titleType
+  if (castLines < 2) {
+    genresTop -= lineOffset;
+    titleTypeTop -= lineOffset;
+  }
+
+  // Si genres tiene menos de 2 líneas, subir titleType
+  if (genresLines < 2) {
+    titleTypeTop -= lineOffset;
+  }
+
+  genres.style.top = `${genresTop}em`;
+  titleType.style.top = `${titleTypeTop}em`;
+}
+
+window.addEventListener('load', ajustarModalTop);
+window.addEventListener('resize', ajustarModalTop);
