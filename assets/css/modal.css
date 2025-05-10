@@ -876,11 +876,6 @@ position: absolute;
 
 .modal-fullcreatedBy {
     top: 47em; }
-.modal-cast {
-    top: 32.6em;
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;}
 
 .createdBy {
     position: absolute;
@@ -898,16 +893,6 @@ position: absolute;
 .modal-script {
     top: 2em;
     left: -30.67em;}
-.modal-genres {
-    top: 35.5em;
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;}
-.modal-titleType {
-    top: 38.4em;
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;}
 
 .modal-ageRating,
 .modal-description,
@@ -1216,20 +1201,25 @@ position: absolute;
 }
 
 
-/* Contenido del modal */
 .modal-content {
-    background-color: #181818;
-    color: white;
-    margin: 5% auto;
-    padding: 1.25em;
-    width: 43%;
-    top: -2.6em;
-    border-radius: 0.7em;
-    position: relative;
-    height: 268vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  background-color: #181818;
+  color: white;
+  margin: 5% auto;
+  padding: 1.25em;
+  width: 43%;
+  border-radius: 0.7em;
+  position: relative;
+  height: auto; /* dinámico si querés */
 }
-
-.modal-info {
+.modal-cast,
+.modal-genres,
+.modal-titleType {
+  font-size: 0.875em;
+  padding-left: 36.6em;
+  padding-right: 4em;
 }
 
 .close-button
