@@ -39,33 +39,6 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
     height: calc(39.4em + 62em); /* o sumás lo que ocupa el resto de contenido */
 }
 
-/* .modal-cast (Elenco) */
-.modal-cast {
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;
-    position: relative;
-    margin-top: 0;  /* Sin top fijo, el margen se ajusta dinámicamente */
-}
-
-/* .modal-genres (Géneros) */
-.modal-genres {
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;
-    position: relative;
-    margin-top: 1.5em;  /* Ajusta dinámicamente con un margen */
-}
-
-/* .modal-titleType (Título) */
-.modal-titleType {
-    font-size: 0.875em;
-    padding-left: 36.6em;
-    padding-right: 4em;
-    position: relative;
-    margin-top: 1.5em;  /* Ajusta dinámicamente con un margen */
-}
-
 /* Ajuste de la clase .modal */
 .modal {
     display: none;
@@ -526,6 +499,23 @@ button.text:hover {
     align-items: center;
 }
 
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #181818;
+    color: white;
+    margin: 5% auto;
+    padding: 1.25em;
+    width: 43%;
+    top: -2.6em;
+    border-radius: 0.7em;
+    position: relative;
+    height: 268vh;
+}
+
+.modal-info {
+}
+
 .close-button
     svg {
     position: absolute;
@@ -886,6 +876,11 @@ position: absolute;
 
 .modal-fullcreatedBy {
     top: 47em; }
+.modal-cast {
+    top: 32.6em;
+    font-size: 0.875em;
+    padding-left: 36.6em;
+    padding-right: 4em;}
 
 .createdBy {
     position: absolute;
@@ -903,6 +898,16 @@ position: absolute;
 .modal-script {
     top: 2em;
     left: -30.67em;}
+.modal-genres {
+    top: 35.5em;
+    font-size: 0.875em;
+    padding-left: 36.6em;
+    padding-right: 4em;}
+.modal-titleType {
+    top: 38.4em;
+    font-size: 0.875em;
+    padding-left: 36.6em;
+    padding-right: 4em;}
 
 .modal-ageRating,
 .modal-description,
@@ -1210,6 +1215,23 @@ position: absolute;
     align-items: center;
 }
 
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #181818;
+    color: white;
+    margin: 5% auto;
+    padding: 1.25em;
+    width: 43%;
+    top: -2.6em;
+    border-radius: 0.7em;
+    position: relative;
+    height: 268vh;
+}
+
+.modal-info {
+}
+
 .close-button
     svg {
     position: absolute;
@@ -1909,6 +1931,23 @@ position: absolute;
     align-items: center;
 }
 
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #181818;
+    color: white;
+    margin: 5% auto;
+    padding: 1.25em;
+    width: 43%;
+    top: -2.6em;
+    border-radius: 0.7em;
+    position: relative;
+    height: 268vh;
+}
+
+.modal-info {
+}
+
 .close-button
     svg {
     position: absolute;
@@ -2607,6 +2646,20 @@ position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
+}
+
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #181818;
+    color: white;
+    margin: 5% auto;
+    padding: 1.25em;
+    width: 43%;
+    top: -2.6em;
+    border-radius: 0.7em;
+    position: relative;
+    height: 268vh;
 }
 
 .modal-info {
@@ -3346,6 +3399,7 @@ a.eplink {
 }
 
 .modal-fullcreatedBy { top: 47em; }
+.modal-cast {top: 32.6em;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
 
 .createdBy {
     position: absolute;
@@ -3362,6 +3416,8 @@ a.eplink {
 
 span.fcprefix {color: #bcbcbc;}
 .modal-script {top: 2em;left: -30.67em;}
+.modal-genres {top: 35.5em;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
+.modal-titleType {top: 38.4em;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
 
 .modal-ageRating,
 .modal-description,
