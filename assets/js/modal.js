@@ -85,7 +85,7 @@ const peliculas = {
     reite666: {
     year: "2018",
     duration: "2 temporadas",
-    description: "CILIO, en España, recibe un mensaje que lo obliga a regresar a Argentina para un juego macabro. Un error inesperado desata una serie de eventos perturbadores, llevándolo de vuelta a España de forma extraña.",
+    description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
     cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <a href='#about'>más</a>",
     title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
     genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
