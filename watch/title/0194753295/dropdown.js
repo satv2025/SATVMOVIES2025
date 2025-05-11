@@ -52,22 +52,22 @@ function changeSeason(season) {
                 duration: '13 min' // Duración actualizada
             },
             {
-                title: 'Episodio 6 -',
-                description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
+                title: 'Episodio 6 - La Isla',
+                description: 'Los chicos van a la locación del código e investigan como entrar.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E6/REITE666%20T1%20E6.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '13 min' // Duración actualizada
             },
             {
-                title: 'Episodio 7 -',
-                description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
+                title: 'Episodio 7 - La Isla 2',
+                description: 'Al investigar la isla, los chicos encuentran un cd.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E7/REITE666%20T1%20E7.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '11 min' // Duración actualizada
             },
             {
-                title: 'Episodio 8 -',
-                description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
+                title: 'Episodio 8 - El CD',
+                description: 'Al investigar el cd, encuentran una grabación, que, extrañamente solo uno de los tres la puede ver, porque... los otros dos... la ven... en blanco.',
                 videoPath: 'hhttps://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E8/REITE666%20T1%20E8.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '15 min' // Duración actualizada
