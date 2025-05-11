@@ -7,6 +7,19 @@
     box-sizing: border-box;
 }
 
+.pronto {
+    background: #FFF !important;
+    color: #000000;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    padding-bottom: 0.32em;
+    padding-top: 0.3em;
+    font-size: 0.86em;
+    font-weight: 700;
+    border-top-left-radius: 0.3em;
+    margin-left: -0.8em;
+}
+
 .gdivimg {
 }
 
@@ -24,6 +37,10 @@
     background: #f00;
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
+}
+
+#nttext {
+    margin-left: 0.5em;
 }
 
 #cirsvp {
