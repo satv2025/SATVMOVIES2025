@@ -68,7 +68,7 @@ function changeSeason(season) {
             {
                 title: 'Episodio 8 - El CD',
                 description: 'Al investigar el cd, encuentran una grabación, que, extrañamente solo uno de los tres la puede ver, porque... los otros dos... la ven... en blanco.',
-                videoPath: 'hhttps://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E8/REITE666%20T1%20E8.m3u8',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E8/REITE666%20T1%20E8.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
                 duration: '15 min' // Duración actualizada
             },
