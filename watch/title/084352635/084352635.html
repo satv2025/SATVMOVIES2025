@@ -79,36 +79,57 @@
         <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
         <script src="https://movies.solargentinotv.com.ar/watch/title/084352635/dropdown.js"></script>
         <script src="https://movies.solargentinotv.com.ar/assets/js/plyr/locale/es.js"></script>
-        <script>
-          // Inicializar Plyr
-          const player = new Plyr('#videoPlayer');
+<script>
+  // Inicializar Plyr con las traducciones personalizadas
+  const player = new Plyr('#videoPlayer', {
+    i18n: {
+      'play': 'Reproducir',
+      'pause': 'Pausa',
+      'rewind': 'Rebobinar',
+      'fast_forward': 'Avanzar rápido',
+      'current_time': 'Tiempo actual',
+      'duration': 'Duración',
+      'mute': 'Silenciar',
+      'unmute': 'Activar sonido',
+      'volume': 'Volumen',
+      'fullscreen': 'Pantalla completa',
+      'exit_fullscreen': 'Salir de pantalla completa',
+      'captions': 'Subtítulos',
+      'settings': 'Configuración',
+      'download': 'Descargar',
+      'quality': 'Calidad',
+      'speed': 'Velocidad',
+      'reset': 'Restablecer',
+      'subtitles': 'Subtítulos',
+    }
+  });
 
-          // Función para cargar un episodio con autoplay
-          function loadEpisode(videoPath) {
-              const video = document.querySelector('#videoPlayer');
-              video.src = videoPath;
-              video.autoplay = true;  // Activamos el autoplay en el elemento de video
-              video.load(); // Recargamos el video para aplicar autoplay
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      const video = document.querySelector('#videoPlayer');
+      video.src = videoPath;
+      video.autoplay = true;  // Activamos el autoplay en el elemento de video
+      video.load(); // Recargamos el video para aplicar autoplay
 
-              // Si el video es un .m3u8, usamos HLS.js
-              if (Hls.isSupported()) {
-                  const hls = new Hls();
-                  hls.loadSource(videoPath);
-                  hls.attachMedia(video);
-                  hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                      video.play();
-                  });
-              } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  video.src = videoPath;
-                  video.addEventListener('loadedmetadata', function () {
-                      video.play();
-                  });
-              } else {
-                  alert("Tu navegador no soporta la reproducción de este video.");
-              }
+      // Si el video es un .m3u8, usamos HLS.js
+      if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(videoPath);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              video.play();
+          });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoPath;
+          video.addEventListener('loadedmetadata', function () {
+              video.play();
+          });
+      } else {
+          alert("Tu navegador no soporta la reproducción de este video.");
+      }
 
-              player.play();  
-          }
-        </script>
-    </body>
+      player.play();  
+  }
+</script>
+</body>
 </html>
