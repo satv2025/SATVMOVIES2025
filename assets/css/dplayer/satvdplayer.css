@@ -934,3 +934,9 @@
     width: 30px;
     background: #ff00008a;
 }
+
+.dplayer-time {
+    color: #f00;
+    font-size: 16px;
+    font-weight: 700;
+}
