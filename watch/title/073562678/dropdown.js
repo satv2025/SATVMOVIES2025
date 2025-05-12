@@ -1,5 +1,5 @@
 // Inicializar Plyr
-const player = new Plyr('#videoPlayer');
+const player = new DPlayer('#videoPlayer');
 
 // Función para cargar los episodios según la temporada seleccionada
 function changeSeason(season) {
