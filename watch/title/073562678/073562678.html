@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asesinato Para Principiantes</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css">
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
     <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
@@ -42,7 +43,10 @@
     </section>
     <!-- Contenedor del reproductor -->
     <div id="player-container" style="margin: 0 auto;">
-        <div id="dplayer"></div>
+        <video id="videoPlayer" width="100%" height="auto" controls>
+            <!-- Video inicial -->
+            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8" type="video/mp4">
+        </video>
     </div>
 
     <div class="season-dropdown">
@@ -71,27 +75,61 @@
     <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
 </footer>
 
-<!-- DPlayer Script -->
-<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+<!-- Plyr Script -->
+<script src="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://movies.solargentinotv.com.ar/watch/title/073562678/dropdown.js"></script>
+<script src="https://movies.solargentinotv.com.ar/assets/js/plyr/locale/es.js"></script>
 <script>
-  // Crear un nuevo reproductor DPlayer
-  const dp = new DPlayer({
-      container: document.getElementById('dplayer'),
-      video: {
-          url: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
-          type: 'hls',
-      },
-      lang: 'es',
+  // Inicializar Plyr con las traducciones personalizadas
+  const player = new Plyr('#videoPlayer', {
+    i18n: {
+      'play': 'Reproducir',
+      'pause': 'Pausa',
+      'rewind': 'Rebobinar',
+      'fast_forward': 'Avanzar rápido',
+      'current_time': 'Tiempo actual',
+      'duration': 'Duración',
+      'mute': 'Silenciar',
+      'unmute': 'Activar sonido',
+      'volume': 'Volumen',
+      'fullscreen': 'Pantalla completa',
+      'exit_fullscreen': 'Salir de pantalla completa',
+      'captions': 'Subtítulos',
+      'settings': 'Configuración',
+      'download': 'Descargar',
+      'quality': 'Calidad',
+      'speed': 'Velocidad',
+      'reset': 'Restablecer',
+      'subtitles': 'Subtítulos',
+    }
   });
 
   // Función para cargar un episodio con autoplay
   function loadEpisode(videoPath) {
-      dp.switchVideo({
-          url: videoPath,
-          type: 'hls',
-      });
+      const video = document.querySelector('#videoPlayer');
+      video.src = videoPath;
+      video.autoplay = true;  // Activamos el autoplay en el elemento de video
+      video.load(); // Recargamos el video para aplicar autoplay
+
+      // Si el video es un .m3u8, usamos HLS.js
+      if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(videoPath);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              video.play();
+          });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoPath;
+          video.addEventListener('loadedmetadata', function () {
+              video.play();
+          });
+      } else {
+          alert("Tu navegador no soporta la reproducción de este video.");
+      }
+
+      player.play();  
   }
 </script>
 </body>
