@@ -892,3 +892,45 @@
     margin: 0;
     padding: 0;
 }
+
+.dplayer-thumb {
+    background: #f00;
+}
+
+.dplayer-volume-bar-inner {
+    background: #f00;
+}
+
+.dplayer-played {
+    background: #f00;
+}
+
+.dplayer svg path, .dplayer svg circle {
+    fill: #f00 !important;
+}
+
+.dplayer-controller .dplayer-icons .dplayer-label {
+    color: #f00;
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.dplayer-controller .dplayer-icons .dplayer-toggle input + label {
+    display: inline-block;
+    position: relative;
+    box-shadow: #dfdfdf 0 0 0 0 inset;
+    border: 1px solid #f00;
+    height: 20px;
+    width: 32px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.dplayer-controller .dplayer-icons .dplayer-toggle input:checked + label:before {
+    width: 30px;
+    background: #ff00008a;
+}
