@@ -1,25 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Reproductor con Clappr</title>
-  <!-- Incluye Clappr -->
-  <script src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
-  <!-- Incluye el plugin HLS.js para Clappr -->
-  <script src="https://cdn.jsdelivr.net/npm/@clappr/hlsjs-playback@latest/dist/hlsjs-playback.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesinato Para Principiantes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
+    <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
+    <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
 </head>
 <body>
-  <div id="player"></div>
-  <script>
-    var player = new Clappr.Player({
-      source: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
-      parentId: "#player",
-      plugins: [HlsjsPlayback],
-      autoPlay: true,
-      mute: true,
-      width: "100%",
-      height: "auto"
-    });
-  </script>
+  <header>
+    <nav>
+        <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
+      <ul>
+        <li><a href="../index">Inicio</a></li>
+        <li><a href="../proximamente">Próximamente</a></li>
+        <li><a href="../acercade">Acerca De</a></li>
+      </ul>
+    </nav>
+  </header>
+<main>
+    <!-- Contenedor de los datos de la serie -->
+    <section class="serie-info">
+        <h2>Acerca de Asesinato Para Principiantes</h2>
+        <ul>
+            <li><strong>Año:</strong> 2024</li>
+            <li><strong>Temporadas:</strong> 1</li>
+            <li><strong>Episodios:</strong> 6</li>
+            <li><strong>Sinopsis:</strong> En este thriller atrapante, una estudiante investiga, para un proyecto escolar, un caso ocurrido hace cinco años.</li>
+            <li><strong>Creado por:</strong> Poppy Cogan</li>
+            <li><strong>Elenco:</strong> Emma Myers Zain Iqbal, Asha Banks, Raiko Gohara, Jude Morgan-Collie, Yali Topol Margalith, Yasmin Al-Khudhairi, Henry Ashton, Carla Woodcock, Mathew Baynton, Gary Beadle, Anna Maxwell Martin</li>
+            <li><strong>Guión:</strong> Poppy Cogan, Ruby Thomas, Zia Ahmed, Ajoke Ibironke</li>
+            <li><strong>Géneros:</strong> Series dramáticas, De Gran Bretaña, Series basadas en libros</li>
+            <li><strong>Este título es:</strong> Íntimo, Sombrío, De suspenso</li>
+            <li><strong>Clasificación por edad:</strong> 16+ lenguaje inapropiado, drogas, violencia sexual | Apta para mayores de 16 años</li>
+            <li><Strong>ES OFICIAL:</Strong> Una nueva temporada se acerca</li>
+        </ul>
+    </section>
+    <!-- Contenedor del reproductor -->
+    <div id="player-container" style="margin: 0 auto;">
+        <div id="dplayer"></div>
+    </div>
+
+    <div class="season-dropdown">
+        <button class="dropdown-button open">Temporada 1</button>
+        <div class="dropdown-content" style="display: block;">
+            <button class="texto" onclick="changeSeason(1)">
+                <span class="textotemp">Temporada 1</span>
+                <span class="episode-count">(6 episodios)</span>
+            </button>
+            <button class="texto texto2" onclick="changeSeason(2)">
+                <span class="textotemp">Temporada 2</span>
+                <span class="episode-count">(1 episodio)</span>
+            </button>
+        </div>
+    </div>
+    <div class="episodios">
+        <h2>Lista de Episodios</h2>
+        <ul id="episode-list">
+            <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
+        </ul>
+    </div>
+    
+</main>
+
+<footer>
+    <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
+</footer>
+
+<!-- DPlayer Script -->
+<script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://movies.solargentinotv.com.ar/watch/title/073562678/dropdown.js"></script>
+<script>
+  // Crear un nuevo reproductor DPlayer
+  const dp = new DPlayer({
+      container: document.getElementById('dplayer'),
+      video: {
+          url: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
+          type: 'hls',
+      },
+      lang: 'es',
+  });
+
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      dp.switchVideo({
+          url: videoPath,
+          type: 'hls',
+      });
+  }
+</script>
 </body>
 </html>

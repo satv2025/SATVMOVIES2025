@@ -1,5 +1,13 @@
-// Inicializar Plyr
-const player = new Clappr.Player('#videoPlayer');
+// Inicializar DPlayer
+const dp = new DPlayer({
+    container: document.getElementById('videoPlayer'),
+    video: {
+        url: '',  // La URL del video se actualizará cuando se cargue un episodio
+        type: 'hls'  // Tipo de video
+    },
+    preload: 'auto',
+    loop: false
+});
 
 // Función para cargar los episodios según la temporada seleccionada
 function changeSeason(season) {
@@ -144,36 +152,13 @@ function changeSeason(season) {
     dropdownButton.classList.remove('open');
 }
 
-// ✅ Función para cargar un episodio con soporte para .m3u8 y Plyr
+// ✅ Función para cargar un episodio con soporte para .m3u8 y DPlayer
 function loadEpisode(videoPath) {
-    const video = document.querySelector('#videoPlayer');
-
-    // Detener cualquier reproducción y limpiar fuente anterior
-    if (window.hls) {
-        window.hls.destroy();
-        window.hls = null;
-    }
-
-    if (videoPath.endsWith('.m3u8')) {
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(videoPath);
-            hls.attachMedia(video);
-            window.hls = hls;
-            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                video.play();
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoPath;
-            video.addEventListener('loadedmetadata', () => video.play());
-        } else {
-            alert('Este navegador no soporta video HLS.');
-        }
-    } else {
-        video.src = videoPath;
-        video.load();
-        video.play();
-    }
+    dp.switchVideo({
+        url: videoPath,
+        type: 'hls'
+    });
+    dp.play();
 }
 
 // Inicializar el texto del botón como "Seleccionar Temporada"
