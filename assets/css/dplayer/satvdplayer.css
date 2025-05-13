@@ -47,10 +47,12 @@
     font-weight: 700 !important;
 }
 
-/* Mantener el estilo cuando está visible */
+/* Posicionamiento relativo y responsivo */
 .dplayer-controller {
     bottom: 2em !important;
+    position: relative !important;  /* Cambiado a relativo */
     transition: transform 0.3s ease-in-out !important;
+    margin-bottom: 2em !important; /* Ajuste con margin */
 }
 
 /* Cuando se oculta */
@@ -59,7 +61,8 @@
 }
 
 .dplayer-controller .dplayer-icons {
-    bottom: -17px !important;
+    position: relative !important;
+    margin-bottom: -17px !important;  /* Cambiado a margen negativo */
 }
 
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar {
@@ -129,7 +132,28 @@
     display: none;
 }
 
+/* Responsividad para el spinner */
+@media screen and (max-width: 768px) {
+    .dplayer .mi-spinner {
+        width: 40px;
+        height: 40px;
+        margin: -20px 0 0 -20px;
+    }
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#player-container {
+    border-radius: 10px !important;
+}
+
+/* Responsividad para el control */
+@media screen and (max-width: 600px) {
+    .dplayer-controller {
+        margin-bottom: 1.5em !important;
+        bottom: 1em !important;  /* Ajuste para pantallas más pequeñas */
+    }
 }
