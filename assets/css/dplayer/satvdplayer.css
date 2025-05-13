@@ -92,6 +92,9 @@
 
 .dplayer-notice-list {
     color: #fff !important;
-    background: #f00 !important;
     font-weight: 700 !important;
+}
+
+.dplayer-notice-list .dplayer-notice {
+    background: #f00 !important;
 }
