@@ -57,3 +57,7 @@
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar {
     height: 6px !important;
 }
+
+.dplayer-played {
+    height: 6px !important;
+}
