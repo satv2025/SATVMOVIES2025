@@ -4,10 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Reite666</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css">
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
         <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
         <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
@@ -40,12 +39,11 @@
                 </ul>
             </section>
 
-            <!-- Contenedor del reproductor -->
-            <div id="player-container" style="margin: 0 auto;">
-                <video id="videoPlayer" width="100%" height="auto" controls>
-                    <source src="https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E1/REITE666%20T1%20E1.m3u8" type="application/x-mpegURL">
-                </video>
-            </div>
+    <!-- Contenedor del reproductor -->
+    <div id="player-container" style="margin: 0 auto;">
+        <div id="dplayer"></div>
+    </div>
+
 
             <div class="season-dropdown">
                 <button class="dropdown-button open">Temporada 1</button>
@@ -79,56 +77,52 @@
         <script src="https://movies.solargentinotv.com.ar/watch/title/0194753295/dropdown.js"></script>
         <script src="https://movies.solargentinotv.com.ar/assets/js/plyr/locale/es.js"></script>
 <script>
-  // Inicializar Plyr con las traducciones personalizadas
-  const player = new Plyr('#videoPlayer', {
-    i18n: {
-      'play': 'Reproducir',
-      'pause': 'Pausa',
-      'rewind': 'Rebobinar',
-      'fast_forward': 'Avanzar rápido',
-      'current_time': 'Tiempo actual',
-      'duration': 'Duración',
-      'mute': 'Silenciar',
-      'unmute': 'Activar sonido',
-      'volume': 'Volumen',
-      'fullscreen': 'Pantalla completa',
-      'exit_fullscreen': 'Salir de pantalla completa',
-      'captions': 'Subtítulos',
-      'settings': 'Configuración',
-      'download': 'Descargar',
-      'quality': 'Calidad',
-      'speed': 'Velocidad',
-      'reset': 'Restablecer',
-      'subtitles': 'Subtítulos',
-    }
+  // Crear un nuevo reproductor DPlayer
+  const dp = new DPlayer({
+      container: document.getElementById('dplayer'),
+      video: {
+          url: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
+          type: 'hls',
+      }
   });
 
   // Función para cargar un episodio con autoplay
   function loadEpisode(videoPath) {
-      const video = document.querySelector('#videoPlayer');
-      video.src = videoPath;
-      video.autoplay = true;  // Activamos el autoplay en el elemento de video
-      video.load(); // Recargamos el video para aplicar autoplay
+      dp.switchVideo({
+          url: videoPath,
+          type: 'hls',
+      });
+      dp.play(); // iniciar reproducción automáticamente
+  }
+</script>
+<script>
+  // Traducciones de texto para el menú de configuración
+  const traducciones = {
+      '.dplayer-setting-title-speed': 'Velocidad',
+      '.dplayer-setting-title-loop': 'Repetir',
+  };
 
-      // Si el video es un .m3u8, usamos HLS.js
-      if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(videoPath);
-          hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, function () {
-              video.play();
-          });
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = videoPath;
-          video.addEventListener('loadedmetadata', function () {
-              video.play();
-          });
-      } else {
-          alert("Tu navegador no soporta la reproducción de este video.");
+  // Función para traducir elementos visibles
+  function traducirDPlayer() {
+      for (const [selector, texto] of Object.entries(traducciones)) {
+          const el = document.querySelector(selector);
+          if (el) el.textContent = texto;
       }
 
-      player.play();  
+      tooltips.forEach(({ selector, title }) => {
+          const el = document.querySelector(selector);
+          if (el) el.setAttribute('title', title);
+      });
   }
+
+  // Detectar apertura del menú de configuración (al hacer clic en el engranaje)
+  document.addEventListener('click', (e) => {
+      const iconoConfig = e.target.closest('.dplayer-setting-icon');
+      if (iconoConfig) {
+          // Esperar a que se abra el menú dinámico antes de traducir
+          setTimeout(traducirDPlayer, 50); // pequeño delay para asegurar que el DOM esté listo
+      }
+  });
 </script>
 </body>
 </html>
