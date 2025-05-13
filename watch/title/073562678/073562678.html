@@ -82,27 +82,6 @@
       video: {
           url: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
           type: 'hls',
-      },
-      lang: 'en', // usar 'en' para evitar errores (no hay 'es' oficial)
-  });
-
-  // Traducir interfaz al español cuando esté cargado
-  dp.on('loadedmetadata', () => {
-      const traducciones = {
-          '.dplayer-setting-title-quality': 'Calidad',
-          '.dplayer-setting-title-speed': 'Velocidad',
-          '.dplayer-setting-title-loop': 'Repetir',
-          '.dplayer-setting-title-lang': 'Idioma',
-          '.dplayer-live-badge': 'En vivo',
-          '.dplayer-controller .dplayer-icon.dplayer-play-icon': 'Reproducir',
-          '.dplayer-controller .dplayer-icon.dplayer-pause-icon': 'Pausar',
-          '.dplayer-full-icon': 'Pantalla completa',
-          '.dplayer-setting-icon': 'Configuración',
-      };
-
-      for (const [selector, texto] of Object.entries(traducciones)) {
-          const el = document.querySelector(selector);
-          if (el) el.textContent = texto;
       }
   });
 
@@ -112,8 +91,37 @@
           url: videoPath,
           type: 'hls',
       });
-      dp.play(); // autoplay tras el cambio
+      dp.play(); // iniciar reproducción automáticamente
   }
+</script>
+<script>
+  // Traducciones de texto para el menú de configuración
+  const traducciones = {
+      '.dplayer-setting-title-speed': 'Velocidad',
+      '.dplayer-setting-title-loop': 'Repetir',
+  };
+
+  // Función para traducir elementos visibles
+  function traducirDPlayer() {
+      for (const [selector, texto] of Object.entries(traducciones)) {
+          const el = document.querySelector(selector);
+          if (el) el.textContent = texto;
+      }
+
+      tooltips.forEach(({ selector, title }) => {
+          const el = document.querySelector(selector);
+          if (el) el.setAttribute('title', title);
+      });
+  }
+
+  // Detectar apertura del menú de configuración (al hacer clic en el engranaje)
+  document.addEventListener('click', (e) => {
+      const iconoConfig = e.target.closest('.dplayer-setting-icon');
+      if (iconoConfig) {
+          // Esperar a que se abra el menú dinámico antes de traducir
+          setTimeout(traducirDPlayer, 50); // pequeño delay para asegurar que el DOM esté listo
+      }
+  });
 </script>
 </body>
 </html>
