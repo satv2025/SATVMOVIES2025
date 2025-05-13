@@ -37,7 +37,7 @@
 }
 
 .dplayer-controller .dplayer-icons .dplayer-toggle input:checked + label:before {
-    width: 30px;
+    width: 30px !important;
     background: #ff00008a !important;
 }
 
@@ -97,4 +97,5 @@
 
 .dplayer-notice-list .dplayer-notice {
     background: #f00 !important;
+    border-radius: 0.3em !important;
 }
