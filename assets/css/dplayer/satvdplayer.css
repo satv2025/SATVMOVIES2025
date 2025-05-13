@@ -47,8 +47,15 @@
     font-weight: 700 !important;
 }
 
+/* Mantener el estilo cuando está visible */
 .dplayer-controller {
     bottom: 2em !important;
+    transition: transform 0.3s ease-in-out !important;
+}
+
+/* Cuando se oculta */
+.dplayer-controller.dplayer-controller-hide {
+    transform: translateY(100%) !important;
 }
 
 .dplayer-controller .dplayer-icons {
