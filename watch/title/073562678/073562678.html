@@ -83,7 +83,27 @@
           url: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
           type: 'hls',
       },
-      lang: 'es',
+      lang: 'en', // usar 'en' para evitar errores (no hay 'es' oficial)
+  });
+
+  // Traducir interfaz al español cuando esté cargado
+  dp.on('loadedmetadata', () => {
+      const traducciones = {
+          '.dplayer-setting-title-quality': 'Calidad',
+          '.dplayer-setting-title-speed': 'Velocidad',
+          '.dplayer-setting-title-loop': 'Repetir',
+          '.dplayer-setting-title-lang': 'Idioma',
+          '.dplayer-live-badge': 'En vivo',
+          '.dplayer-controller .dplayer-icon.dplayer-play-icon': 'Reproducir',
+          '.dplayer-controller .dplayer-icon.dplayer-pause-icon': 'Pausar',
+          '.dplayer-full-icon': 'Pantalla completa',
+          '.dplayer-setting-icon': 'Configuración',
+      };
+
+      for (const [selector, texto] of Object.entries(traducciones)) {
+          const el = document.querySelector(selector);
+          if (el) el.textContent = texto;
+      }
   });
 
   // Función para cargar un episodio con autoplay
@@ -92,6 +112,7 @@
           url: videoPath,
           type: 'hls',
       });
+      dp.play(); // autoplay tras el cambio
   }
 </script>
 </body>
