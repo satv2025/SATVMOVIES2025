@@ -107,3 +107,11 @@
     background: #f00 !important;
     border-radius: 0.3em !important;
 }
+
+#player-container {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    outline: 1px solid #fff;
+    border-radius: 10px !important;
+}
