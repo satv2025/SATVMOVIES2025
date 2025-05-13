@@ -51,7 +51,7 @@
 }
 
 .dplayer-controller .dplayer-icons {
-    bottom: -14px !important;
+    bottom: -17px !important;
 }
 
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar {
@@ -70,4 +70,8 @@
     margin-top: -0.2em !important;
     height: 13px !important;
     width: 13px !important;
+}
+
+.dplayer-controller .dplayer-icons .dplayer-toggle input + label:after {
+    background: #f00 !important;
 }
