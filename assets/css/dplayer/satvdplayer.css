@@ -76,3 +76,22 @@
 .dplayer-controller .dplayer-icons .dplayer-toggle input + label:after {
     background: #f00 !important;
 }
+
+.dplayer-controller .dplayer-bar-wrap .dplayer-bar-time {
+    font-weight: 700 !important;
+    background-color: #f00 !important;
+    color: #fff !important;
+    font-size: 17px !important;
+    margin-top: -0.4em !important;
+}
+
+.dplayer-menu {
+    background-color: #f00 !important;
+    color: #fff !important;
+}
+
+.dplayer-notice-list {
+    color: #fff !important;
+    background: #f00 !important;
+    font-weight: 700 !important;
+}
