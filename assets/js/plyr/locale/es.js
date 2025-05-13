@@ -1,24 +1,38 @@
-const player = new Plyr('#videoPlayer', {
-  i18n: {
-    // Traducciones personalizadas
-    'play': 'Reproducir',
-    'pause': 'Pausa',
-    'rewind': 'Rebobinar',
-    'fast_forward': 'Avanzar rápido',
-    'current_time': 'Tiempo actual',
-    'duration': 'Duración',
-    'mute': 'Silenciar',
-    'unmute': 'Activar sonido',
-    'volume': 'Volumen',
-    'fullscreen': 'Pantalla completa',
-    'exit_fullscreen': 'Salir de pantalla completa',
-    'captions': 'Subtítulos',
-    'settings': 'Configuración',
-    'download': 'Descargar',
-    'quality': 'Calidad',
-    'speed': 'Velocidad',
-    'reset': 'Restablecer',
-    'subtitles': 'Subtítulos',
-    'quality': 'Calidad',
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.dplayer');
+
+    containers.forEach(container => {
+        // Crear spinner dinámicamente
+        const spinner = document.createElement('div');
+        spinner.className = 'mi-spinner';
+        container.appendChild(spinner);
+    });
+
+    if (window.DPlayer) {
+        const players = [];
+
+        // Guardar referencia al constructor original
+        const OriginalDPlayer = DPlayer;
+
+        // Interceptar constructor para enganchar eventos
+        window.DPlayer = function(config) {
+            const dp = new OriginalDPlayer(config);
+            players.push(dp);
+
+            const spinner = dp.container.querySelector('.mi-spinner');
+
+            dp.on('waiting', () => {
+                if (spinner) spinner.style.display = 'block';
+            });
+
+            dp.on('playing', () => {
+                if (spinner) spinner.style.display = 'none';
+            });
+
+            return dp;
+        }
+
+        // Preservar métodos estáticos si los usás
+        Object.assign(window.DPlayer, OriginalDPlayer);
+    }
 });
