@@ -112,6 +112,6 @@
     width: 1280px;
     height: 720px;
     overflow: hidden;
-    outline: 1px solid #fff;
+    outline: 3px solid #f00;
     border-radius: 10px !important;
 }
