@@ -65,3 +65,8 @@
 .dplayer-loaded {
     height: 6px !important;
 }
+
+.dplayer-played .dplayer-thumb {
+  position: absolute;
+  top: -5px; /* o lo que necesites */
+}
