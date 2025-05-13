@@ -1,159 +1,145 @@
 .dplayer-thumb {
-    background: #f00 !important;
+	background: #f00 !important;
 }
 
 .dplayer-volume-bar-inner {
-    background: #f00 !important;
+	background: #f00 !important;
 }
 
 .dplayer-played {
-    background: #f00 !important;
+	background: #f00 !important;
 }
 
-.dplayer svg path, .dplayer svg circle {
-    fill: #f00 !important;
+.dplayer svg path,
+.dplayer svg circle {
+	fill: #f00 !important;
 }
 
 .dplayer-controller .dplayer-icons .dplayer-label {
-    color: #f00 !important;
-    font-size: 13px !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
-    white-space: nowrap !important;
-    font-weight: 700 !important;
+	color: #f00 !important;
+	font-size: 13px !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+	white-space: nowrap !important;
+	font-weight: 700 !important;
 }
 
-.dplayer-controller .dplayer-icons .dplayer-toggle input + label {
-    display: inline-block !important;
-    position: relative !important;
-    box-shadow: #dfdfdf 0 0 0 0 inset !important;
-    border: 1px solid #f00 !important;
-    height: 20px !important;
-    width: 32px !important;
-    border-radius: 10px !important;
-    box-sizing: border-box !important;
-    cursor: pointer !important;
-    transition: 0.2s ease-in-out !important;
+.dplayer-controller .dplayer-icons .dplayer-toggle input+label {
+	display: inline-block !important;
+	position: relative !important;
+	box-shadow: #dfdfdf 0 0 0 0 inset !important;
+	border: 1px solid #f00 !important;
+	height: 20px !important;
+	width: 32px !important;
+	border-radius: 10px !important;
+	box-sizing: border-box !important;
+	cursor: pointer !important;
+	transition: 0.2s ease-in-out !important;
 }
 
-.dplayer-controller .dplayer-icons .dplayer-toggle input:checked + label:before {
-    width: 30px !important;
-    background: #ff00008a !important;
+.dplayer-controller .dplayer-icons .dplayer-toggle input:checked+label:before {
+	width: 30px !important;
+	background: #ff00008a !important;
 }
 
 .dplayer-time {
-    color: #f00 !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
+	color: #f00 !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
 }
 
-/* Posicionamiento relativo y responsivo */
+/* Mantener el estilo cuando está visible */
 .dplayer-controller {
-    bottom: 2em !important;
-    position: relative !important;  /* Cambiado a relativo */
-    transition: transform 0.3s ease-in-out !important;
-    margin-bottom: 2em !important; /* Ajuste con margin */
+	bottom: 2em !important;
+	transition: transform 0.3s ease-in-out !important;
 }
 
 /* Cuando se oculta */
 .dplayer-controller.dplayer-controller-hide {
-    transform: translateY(100%) !important;
+	transform: translateY(100%) !important;
 }
 
 .dplayer-controller .dplayer-icons {
-    position: relative !important;
-    margin-bottom: -17px !important;  /* Cambiado a margen negativo */
+	bottom: -17px !important;
 }
 
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar {
-    height: 6px !important;
+	height: 6px !important;
 }
 
 .dplayer-played {
-    height: 6px !important;
+	height: 6px !important;
 }
 
 .dplayer-loaded {
-    height: 6px !important;
+	height: 6px !important;
 }
 
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar .dplayer-played .dplayer-thumb {
-    margin-top: -0.2em !important;
-    height: 13px !important;
-    width: 13px !important;
+	margin-top: -0.2em !important;
+	height: 13px !important;
+	width: 13px !important;
 }
 
-.dplayer-controller .dplayer-icons .dplayer-toggle input + label:after {
-    background: #f00 !important;
+.dplayer-controller .dplayer-icons .dplayer-toggle input+label:after {
+	background: #f00 !important;
 }
 
 .dplayer-controller .dplayer-bar-wrap .dplayer-bar-time {
-    font-weight: 700 !important;
-    background-color: #f00 !important;
-    color: #fff !important;
-    font-size: 15px !important;
-    margin-top: -0.4em !important;
+	font-weight: 700 !important;
+	background-color: #f00 !important;
+	color: #fff !important;
+	font-size: 15px !important;
+	margin-top: -0.4em !important;
 }
 
 .dplayer-menu {
-    background-color: #f00 !important;
-    color: #fff !important;
-    border-radius: 0.3em !important;
+	background-color: #f00 !important;
+	color: #fff !important;
+	border-radius: 0.3em !important;
 }
 
 .dplayer-notice-list {
-    color: #fff !important;
-    font-weight: 700 !important;
+	color: #fff !important;
+	font-weight: 700 !important;
 }
 
 .dplayer-notice-list .dplayer-notice {
-    background: #f00 !important;
-    border-radius: 0.3em !important;
+	background: #f00 !important;
+	border-radius: 0.3em !important;
 }
 
 /* Ocultar el loader original */
 .dplayer-loading-icon {
-    display: none !important;
+	display: none !important;
 }
 
 /* Spinner rojo personalizado */
 .dplayer .mi-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    margin: -25px 0 0 -25px;
-    border: 5px solid transparent;
-    border-top: 5px solid red;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    z-index: 1000;
-    display: none;
-}
-
-/* Responsividad para el spinner */
-@media screen and (max-width: 768px) {
-    .dplayer .mi-spinner {
-        width: 40px;
-        height: 40px;
-        margin: -20px 0 0 -20px;
-    }
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50px;
+	height: 50px;
+	margin: -25px 0 0 -25px;
+	border: 5px solid transparent;
+	border-top: 5px solid red;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	z-index: 1000;
+	display: none;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 #player-container {
-    border-radius: 10px !important;
-}
-
-/* Responsividad para el control */
-@media screen and (max-width: 600px) {
-    .dplayer-controller {
-        margin-bottom: 1.5em !important;
-        bottom: 1em !important;  /* Ajuste para pantallas más pequeñas */
-    }
+	border-radius: 10px !important;
 }
