@@ -1,0 +1,35 @@
+=== Español ===
+MPlayer es un reproductor multimedia desarrollado exclusivamente para ofrecer la mejor experiencia en Sol Argentino TV. 
+Además, se diseñó una versión especial para Sol Argentino TV MOVIES, la plataforma de streaming de películas y series del canal, 
+inspirada en servicios como Netflix. Esta versión adaptada refleja un enfoque moderno, intuitivo y centrado en el usuario, 
+pensado para disfrutar contenidos on demand con fluidez y estilo.
+
+=== English ===
+MPlayer is a media player developed exclusively to deliver the best experience on Sol Argentino TV. 
+A special version was also created for Sol Argentino TV MOVIES, the channel’s streaming platform for movies and series, 
+inspired by services like Netflix. This adapted version offers a modern, user-focused, and intuitive interface 
+designed for smooth and stylish on-demand content playback.
+
+=== Français ===
+MPlayer est un lecteur multimédia développé exclusivement pour offrir la meilleure expérience sur Sol Argentino TV. 
+Une version spéciale a également été créée pour Sol Argentino TV MOVIES, la plateforme de streaming de films et séries de la chaîne, 
+inspirée par des services comme Netflix. Cette version adaptée propose une interface moderne, intuitive et centrée sur l’utilisateur, 
+pour une lecture fluide et élégante des contenus à la demande.
+
+=== Deutsch ===
+MPlayer ist ein Multimedia-Player, der exklusiv entwickelt wurde, um das beste Erlebnis auf Sol Argentino TV zu bieten. 
+Zusätzlich wurde eine spezielle Version für Sol Argentino TV MOVIES erstellt – die Streaming-Plattform des Senders für Filme und Serien, 
+inspiriert von Diensten wie Netflix. Diese angepasste Version bietet eine moderne, benutzerfreundliche und intuitive Oberfläche 
+für ein stilvolles On-Demand-Erlebnis.
+
+=== Italiano ===
+MPlayer è un lettore multimediale sviluppato esclusivamente per offrire la migliore esperienza su Sol Argentino TV. 
+È stata inoltre creata una versione speciale per Sol Argentino TV MOVIES, la piattaforma di streaming di film e serie del canale, 
+ispirata a servizi come Netflix. Questa versione adattata offre un’interfaccia moderna, intuitiva e orientata all’utente, 
+pensata per una fruizione fluida ed elegante dei contenuti on demand.
+
+=== Português ===
+MPlayer é um reprodutor multimídia desenvolvido exclusivamente para oferecer a melhor experiência na Sol Argentino TV. 
+Também foi criada uma versão especial para a Sol Argentino TV MOVIES, a plataforma de streaming de filmes e séries do canal, 
+inspirada em serviços como a Netflix. Esta versão adaptada oferece uma interface moderna, intuitiva e centrada no usuário, 
+ideal para assistir conteúdos on demand com fluidez e estilo.
