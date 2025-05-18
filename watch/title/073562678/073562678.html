@@ -79,14 +79,11 @@
             file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
         });
 
-  // Función para cargar un episodio con autoplay
-  function loadEpisode(videoPath) {
-      dp.switchVideo({
-          url: videoPath,
-          type: 'hls',
-      });
-      dp.play(); // iniciar reproducción automáticamente
-  }
+    // Función para cargar un episodio con autoplay
+    function loadEpisode(videoPath) {
+        player.api("file", videoPath);
+        player.api("play");
+    }
 </script>
 <script>
   // Traducciones de texto para el menú de configuración
