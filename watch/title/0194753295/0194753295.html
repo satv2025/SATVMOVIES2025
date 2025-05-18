@@ -76,10 +76,18 @@
     <script>
         var player = new Playerjs({
             id: "MPlayer",
-            file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
+            file: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E1/REITE666%20T1%20E1.m3u8",
         });
 
-
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      dp.switchVideo({
+          url: videoPath,
+          type: 'hls',
+      });
+      dp.play(); // iniciar reproducción automáticamente
+  }
+</script>
 
   // Función para cargar un episodio con autoplay
   function loadEpisode(videoPath) {
