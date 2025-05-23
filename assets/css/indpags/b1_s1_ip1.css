@@ -362,3 +362,7 @@ footer p {
     position: relative;
     top: -0.7em;
 }
+
+pjsdiv {
+    font-family : 'Netflix Sans';
+}
