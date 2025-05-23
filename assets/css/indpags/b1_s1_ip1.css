@@ -364,5 +364,5 @@ footer p {
 }
 
 pjsdiv {
-    font-family : 'Netflix Sans';
+    font-family : 'Netflix Sans' !important;
 }
