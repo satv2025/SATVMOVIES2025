@@ -366,3 +366,7 @@ footer p {
 pjsdiv {
     font-family : 'Netflix Sans' !important;
 }
+
+pjsdiv:fullscreen {
+  all: unset !important;
+}
