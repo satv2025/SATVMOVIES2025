@@ -97,34 +97,5 @@
       dp.play(); // iniciar reproducción automáticamente
   }
 </script>
-<script>
-  // Traducciones de texto para el menú de configuración
-  const traducciones = {
-      '.dplayer-setting-title-speed': 'Velocidad',
-      '.dplayer-setting-title-loop': 'Repetir',
-  };
-
-  // Función para traducir elementos visibles
-  function traducirDPlayer() {
-      for (const [selector, texto] of Object.entries(traducciones)) {
-          const el = document.querySelector(selector);
-          if (el) el.textContent = texto;
-      }
-
-      tooltips.forEach(({ selector, title }) => {
-          const el = document.querySelector(selector);
-          if (el) el.setAttribute('title', title);
-      });
-  }
-
-  // Detectar apertura del menú de configuración (al hacer clic en el engranaje)
-  document.addEventListener('click', (e) => {
-      const iconoConfig = e.target.closest('.dplayer-setting-icon');
-      if (iconoConfig) {
-          // Esperar a que se abra el menú dinámico antes de traducir
-          setTimeout(traducirDPlayer, 50); // pequeño delay para asegurar que el DOM esté listo
-      }
-  });
-</script>
 </body>
 </html>
