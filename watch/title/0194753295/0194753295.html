@@ -78,18 +78,30 @@
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
 <script>
-    const video = document.getElementById('MPlayer');
-const dp = new Plyr(video);
-</script>
-<script>
-  // Función para cargar un episodio con autoplay
-  function loadEpisode(videoPath) {
-      dp.switchVideo({
-          url: videoPath,
-          type: 'hls',
-      });
-      dp.play(); // iniciar reproducción automáticamente
+const video = document.getElementById('MPlayer');
+const player = new Plyr(video);
+let hls;
+
+function loadEpisode(videoUrl) {
+  if (hls) {
+    hls.destroy();
   }
+  if (Hls.isSupported()) {
+    hls = new Hls();
+    hls.loadSource(videoUrl);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      player.play();
+    });
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoUrl;
+    video.addEventListener('loadedmetadata', () => {
+      player.play();
+    });
+  } else {
+    console.error('Este navegador no soporta HLS');
+  }
+}
 </script>
 <script>
   // Función para cargar un episodio con autoplay
