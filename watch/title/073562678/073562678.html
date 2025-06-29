@@ -4,26 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Asesinato Para Principiantes</title>
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css" />
+
+    <!-- CSS Plyr oficial -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
+    <!-- CSS personalizado Plyr versión -->
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/MPlayer/MPlayerPlyrVersion.css" />
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css" />
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css" />
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css" />
     <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css" />
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/MPlayer/MPlayerPlyrVersion.css" />
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon" />
 </head>
 <body>
-  <header>
+<header>
     <nav>
         <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
-      <ul>
-        <li><a href="../../inicio">Inicio</a></li>
-        <li><a href="../../proximamente">Próximamente</a></li>
-        <li><a href="../../acercade">Acerca De</a></li>
-      </ul>
+        <ul>
+            <li><a href="../../inicio">Inicio</a></li>
+            <li><a href="../../proximamente">Próximamente</a></li>
+            <li><a href="../../acercade">Acerca De</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
+
 <main>
+    <!-- Contenedor de los datos de la serie -->
     <section class="serie-info">
         <h2>Acerca de Asesinato Para Principiantes</h2>
         <ul>
@@ -32,7 +37,7 @@
             <li><strong>Episodios:</strong> 6</li>
             <li><strong>Sinopsis:</strong> En este thriller atrapante, una estudiante investiga, para un proyecto escolar, un caso ocurrido hace cinco años.</li>
             <li><strong>Creado por:</strong> Poppy Cogan</li>
-            <li><strong>Elenco:</strong> Emma Myers Zain Iqbal, Asha Banks, Raiko Gohara, Jude Morgan-Collie, Yali Topol Margalith, Yasmin Al-Khudhairi, Henry Ashton, Carla Woodcock, Mathew Baynton, Gary Beadle, Anna Maxwell Martin</li>
+            <li><strong>Elenco:</strong> Emma Myers, Zain Iqbal, Asha Banks, Raiko Gohara, Jude Morgan-Collie, Yali Topol Margalith, Yasmin Al-Khudhairi, Henry Ashton, Carla Woodcock, Mathew Baynton, Gary Beadle, Anna Maxwell Martin</li>
             <li><strong>Guión:</strong> Poppy Cogan, Ruby Thomas, Zia Ahmed, Ajoke Ibironke</li>
             <li><strong>Géneros:</strong> Series dramáticas, De Gran Bretaña, Series basadas en libros</li>
             <li><strong>Este título es:</strong> Íntimo, Sombrío, De suspenso</li>
@@ -40,12 +45,11 @@
             <li><strong>ES OFICIAL:</strong> Una nueva temporada se acerca</li>
         </ul>
     </section>
-    <div id="player-container" style="margin: 0 auto;">
-        <!-- Contenedor Plyr -->
-        <video id="player" playsinline controls crossorigin poster="">
+
+    <!-- Reproductor Plyr -->
+    <div id="player-container" style="margin: 0 auto; max-width: 900px;">
+        <video id="player" playsinline controls crossorigin poster="https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg" style="width: 100%; height: auto;">
             <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8" type="application/x-mpegURL" />
-            <!-- Fallback -->
-            Tu navegador no soporta este reproductor.
         </video>
     </div>
 
@@ -62,109 +66,128 @@
             </button>
         </div>
     </div>
+
     <div class="episodios">
         <h2>Lista de Episodios</h2>
         <ul id="episode-list">
-            <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
+            <!-- Episodios cargados dinámicamente -->
         </ul>
     </div>
-    
 </main>
 
 <footer>
     <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
 </footer>
 
+<!-- Scripts -->
+<script src="https://movies.solargentinotv.com.ar/watch/title/073562678/dropdown.js"></script>
 <script src="https://movies.solargentinotv.com.ar/assets/MPlayer/MPlayerPlyrVersion.js" type="text/javascript"></script>
+
+<!-- hls.js para soporte HLS en navegadores -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<!-- Plyr.js -->
+<script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.js"></script>
+
 <script>
-    // Datos de episodios por temporada
-    const seasons = [
-        {
-            title: "Temporada 1",
-            episodes: [
-                {
-                    title: "Episodio 1",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
-                    poster: "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
-                },
-                {
-                    title: "Episodio 2",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8",
-                    poster: "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg"
-                },
-                {
-                    title: "Episodio 3",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8",
-                    poster: "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg"
-                },
-                {
-                    title: "Episodio 4",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8",
-                    poster: "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg"
-                },
-                {
-                    title: "Episodio 5",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8",
-                    poster: "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5"
-                },
-                {
-                    title: "Episodio 6",
-                    file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8",
-                    poster: "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg"
-                }
-            ]
-        },
-        {
-            title: "Temporada 2",
-            episodes: [
-                {
-                    title: "Próxima temporada",
-                    file: "#",
-                    poster: ""
-                }
-            ]
+    const seasons = {
+        1: [
+            {
+                title: "Episodio 1",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
+                poster: "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
+            },
+            {
+                title: "Episodio 2",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8",
+                poster: "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg"
+            },
+            {
+                title: "Episodio 3",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8",
+                poster: "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg"
+            },
+            {
+                title: "Episodio 4",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8",
+                poster: "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg"
+            },
+            {
+                title: "Episodio 5",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8",
+                poster: "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5"
+            },
+            {
+                title: "Episodio 6",
+                file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8",
+                poster: "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg"
+            }
+        ],
+        2: [
+            {
+                title: "Próxima temporada",
+                file: "#",
+                poster: ""
+            }
+        ]
+    };
+
+    const video = document.getElementById('player');
+    let player;
+
+    function loadEpisode(episode) {
+        if (episode.file === "#") {
+            alert("Próxima temporada no disponible aún.");
+            return;
         }
-    ];
 
-    // Inicializar Plyr
-    const player = new Plyr('#player');
+        // Cambiar poster
+        video.setAttribute('poster', episode.poster);
 
-    // Función para cargar episodio en el reproductor Plyr
-    function loadEpisode(file, poster = '') {
-        const video = document.querySelector('#player');
-        // Cambiar el source y poster
-        video.src = file;
-        video.poster = poster;
-        player.restart();
-        player.play();
+        if (Hls.isSupported()) {
+            if (window.hls) {
+                window.hls.destroy();
+            }
+            window.hls = new Hls();
+            window.hls.loadSource(episode.file);
+            window.hls.attachMedia(video);
+            window.hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = episode.file;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        } else {
+            alert("Tu navegador no soporta reproducción de este formato.");
+        }
     }
 
-    // Función para renderizar la lista de episodios de una temporada
-    function renderEpisodes(seasonIndex) {
-        const episodeList = document.getElementById('episode-list');
-        episodeList.innerHTML = '';
-
-        const episodes = seasons[seasonIndex].episodes;
-
-        episodes.forEach((ep, index) => {
+    function renderEpisodeList(season) {
+        const list = document.getElementById('episode-list');
+        list.innerHTML = '';
+        seasons[season].forEach((ep, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<button onclick="loadEpisode('${ep.file}', '${ep.poster}')">${ep.title}</button>`;
-            episodeList.appendChild(li);
+            const btn = document.createElement('button');
+            btn.textContent = ep.title;
+            btn.style.cursor = "pointer";
+            btn.onclick = () => loadEpisode(ep);
+            li.appendChild(btn);
+            list.appendChild(li);
         });
-
-        // Cargar primer episodio automáticamente
-        if (episodes.length > 0 && episodes[0].file !== '#') {
-            loadEpisode(episodes[0].file, episodes[0].poster);
-        }
     }
 
-    // Función para cambiar temporada
-    function changeSeason(seasonIndex) {
-        renderEpisodes(seasonIndex - 1);
+    function changeSeason(season) {
+        renderEpisodeList(season);
+        // Carga el primer episodio de la temporada
+        loadEpisode(seasons[season][0]);
     }
 
-    // Carga inicial: temporada 1
-    renderEpisodes(0);
+    // Inicializar Plyr solo una vez
+    document.addEventListener('DOMContentLoaded', () => {
+        player = new Plyr(video);
+        changeSeason(1); // Cargar temporada 1 y episodio 1 al inicio
+    });
 </script>
 </body>
 </html>
