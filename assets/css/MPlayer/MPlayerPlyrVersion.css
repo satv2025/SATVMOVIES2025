@@ -48,7 +48,7 @@
     margin-top: 0.22em;
     font-size: 0.9em;
     position: relative;
-    left: -26.6em;
+    left: -64.6em;
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]:before {
@@ -100,14 +100,17 @@
 
 /* Solo en fullscreen */
 .plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
-  left: -122em;
+  left: 20em;
   font-size: 0.9em;
 }
 
 .plyr__time.plyr__dtime {
-  left: 6.6em;
+  left: 7.4em;
   position: absolute;
   top: 2.8em;
+}
+
+.plyr__dtime:fullscreen {
 }
 
 .plyr.is-fullscreen .plyr__time.plyr__dtime {
@@ -122,6 +125,11 @@
       font-size: 0.9em;
       white-space: pre;
     }
+
+.plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
+    left: 10em;
+    position: ;
+}
 
 .plyr__menu {
   position: relative; /* para referencia del absolute */
