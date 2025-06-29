@@ -78,8 +78,11 @@
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.3.5"></script>
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
-    <script>
-
+<script>
+    const video = document.getElementById('MPlayer');
+const dp = new Plyr(video);
+</script>
+<script>
   // Función para cargar un episodio con autoplay
   function loadEpisode(videoPath) {
       dp.switchVideo({
