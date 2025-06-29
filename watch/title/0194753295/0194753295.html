@@ -4,11 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Reite666</title>
+        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
         <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
         <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
         <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
     </head>
@@ -44,7 +43,7 @@
 
     <!-- Contenedor del reproductor -->
     <div id="player-container" style="margin: 0 auto;">
-        <video id="MPlayer" controls crossorigin playsinline></video>
+        <div id="MPlayer"></div>
     </div>
 
 
@@ -83,6 +82,16 @@
 const dp = new Plyr(video);
 </script>
 <script>
+  // Función para cargar un episodio con autoplay
+  function loadEpisode(videoPath) {
+      dp.switchVideo({
+          url: videoPath,
+          type: 'hls',
+      });
+      dp.play(); // iniciar reproducción automáticamente
+  }
+</script>
+
   // Función para cargar un episodio con autoplay
   function loadEpisode(videoPath) {
       dp.switchVideo({
