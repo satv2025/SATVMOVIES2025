@@ -1,0 +1,420 @@
+@import url(https://fuentes.solargentinotv.com.ar/netflixsans.css);
+
+* {
+    font-family: 'Netflix Sans';
+}
+
+.plyr__controls__item.plyr__progress__container {
+  margin-top: -3.23em;
+  margin-right: -17.7em;
+  margin-left: -1.89em;
+}
+
+.plyr__volume input[type="range"] {
+  color: #ff0000;
+}
+
+.plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+    background: #fff;
+    color: #f00;
+}
+
+/* Color y tamaño del thumb (bola) */
+.plyr__volume input[type="range"]::-webkit-slider-thumb {
+  background: #f00;
+}
+
+
+ .plyr--full-ui input[type=range] {
+  color: #f00;
+}
+
+/* Parte jugada (el "played" fill) */
+.plyr--full-ui .plyr__progress--played {
+  color: #f00 !important;
+}
+
+/* Thumb (bola) roja */
+.plyr--full-ui .plyr__progress input[type="range"]::-webkit-slider-thumb {
+  background: #f00;
+}
+
+.plyr__control--overlaid {
+    background: #f00;
+    color: #fff;
+}
+
+.plyr__controls__item.plyr__time--current.plyr__time {
+    margin-top: 0.22em;
+    font-size: 0.9em;
+    position: relative;
+    left: -26.6em;
+}
+
+.plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]:before {
+    background: #fff;
+}
+
+.plyr__menu__container .plyr__control[role="menuitemradio"]:hover::before {
+  background: #f00; /* rojo al hacer hover */
+}
+
+.plyr__menu__container {
+    background: #f00 !important;
+}
+
+.plyr__menu__container .plyr__control[role=menuitemradio]:after {
+    background: #f00;
+}
+
+.plyr__menu__container .plyr__control[role="menuitemradio"]:hover::after {
+  background: #fff;
+}
+
+.plyr__menu__container .plyr__control--back:after {
+    border-right-color: #fff !important;
+}
+
+.plyr__menu__container .plyr__control--forward:after {
+    border-left-color: #fff !important;
+}
+
+/* Hover del botón de retroceso */
+.plyr__menu__container .plyr__control--back:hover::after {
+  border-right-color: #f00 !important;
+}
+
+/* Hover del botón de avance */
+.plyr__menu__container .plyr__control--forward:hover::after {
+  border-left-color: #f00 !important;
+}
+
+.plyr__menu__container .plyr__control {
+    align-items: center;
+    color: #fff;
+}
+
+.plyr--video .plyr__controls {
+    color: #f00;
+}
+
+/* Solo en fullscreen */
+.plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
+  left: -122em;
+  font-size: 0.9em;
+}
+
+.plyr__time.plyr__dtime {
+  left: 6.6em;
+  position: absolute;
+  top: 2.8em;
+}
+
+.plyr.is-fullscreen .plyr__time.plyr__dtime {
+  left: -22em;
+  position: relative;
+}
+
+    .plyr__dtime {
+      color: #f00;
+      margin-left: auto;
+      padding-right: 1em;
+      font-size: 0.9em;
+      white-space: pre;
+    }
+
+.plyr__menu {
+  position: relative; /* para referencia del absolute */
+}
+
+.plyr__menu__container {
+  right: auto; /* elimina el right fijo */
+  left: 50%; /* mueve el borde izquierdo al 50% del padre */
+  transform: translateX(-50%); /* ajusta para centrar el contenedor */
+}
+
+@keyframes plyr-popup {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px); /* Mantiene el centrado desde el inicio */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Thumb (bola) roja - Firefox */
+.plyr__volume input[type="range"]::-moz-range-thumb {
+  background: #f00;
+  border: none; /* por defecto, quitar borde */
+  border-radius: 0; /* mantener sin borde redondeado */
+}
+
+/* Track del slider - Firefox */
+.plyr--full-ui input[type=range]::-moz-range-track {
+  background-color: transparent; /* si quieres que herede o transparente */
+}
+
+/* Parte jugada (el "played" fill) en Firefox */
+.plyr--full-ui .plyr__progress--played::-moz-range-progress {
+  background-color: #f00 !important;
+}
+
+/* Para el thumb rojo del progreso en Firefox */
+.plyr--full-ui .plyr__progress input[type="range"]::-moz-range-thumb {
+  background: #f00;
+  border: none;
+  border-radius: 0;
+}
+
+/* Input range general - Firefox */
+.plyr--full-ui input[type=range] {
+  color: #f00; /* Aunque Firefox no soporta color directo, lo dejamos */
+}
+
+/* Control focus/hover sigue igual */
+.plyr--video .plyr__control:focus-visible, 
+.plyr--video .plyr__control:hover, 
+.plyr--video .plyr__control[aria-expanded=true] {
+  background: #fff;
+  color: #f00;
+}
+
+/* Firefox exclusivo */
+/* Para aplicar solo en Firefox puedes usar @-moz-document */
+
+@-moz-document url-prefix() {
+  
+  /* Thumb (bola) roja */
+  .plyr__volume input[type="range"]::-moz-range-thumb,
+  .plyr--full-ui .plyr__progress input[type="range"]::-moz-range-thumb {
+    background: #f00;
+    border-radius: 26px !important;
+    /* No border-radius en thumb */
+  }
+
+  /* Track (barra) sin borde redondeado */
+  .plyr--full-ui input[type="range"]::-moz-range-track {
+    background-color: transparent; /* o color que necesites */
+  }
+  
+  /* Parte jugada (played fill) de la barra en Firefox */
+  .plyr--full-ui .plyr__progress--played::-moz-range-progress {
+    background-color: #f00 !important;
+    border: none !important;
+}
+
+  /* Corregir barra que sale del contenedor */
+  .plyr__controls__item.plyr__progress__container {
+    margin-top: -3.23em;
+    margin-right: -17.4em;
+    margin-left: -1.89em;
+  }
+  
+  /* Ajuste especial para time (current time) para que no se salga en FF */
+  .plyr__controls__item.plyr__time--current.plyr__time {
+    margin-top: 0.12em;
+    position: relative;
+    left: -28.8em; /* Ajusta este valor según veas necesario */
+    font-size: 0.9em;
+  }
+
+  /* En fullscreen corregir posición del tiempo */
+  .plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
+    left: -122em;
+  }
+
+  /* Corrección de posición para plyr__dtime */
+  .plyr__time.plyr__dtime {
+    left: 6.8em;
+    position: absolute;
+    top: 2.77em;
+    color: #f00;
+    margin-left: auto;
+    padding-right: 1em;
+    font-size: 0.9em;
+    white-space: pre;
+  }
+
+  .plyr.is-fullscreen .plyr__time.plyr__dtime {
+    left: -22em;
+    position: relative;
+  }
+
+  /* Corrección para menú centrado */
+  .plyr__menu__container {
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #f00 !important;
+  }
+
+  /* Menu items color y hover */
+  .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]:before {
+    background: #fff;
+  }
+
+  .plyr__menu__container .plyr__control[role="menuitemradio"]:hover::before {
+    background: #f00;
+  }
+
+  .plyr__menu__container .plyr__control[role=menuitemradio]:after {
+    background: #f00;
+  }
+
+  .plyr__menu__container .plyr__control[role="menuitemradio"]:hover::after {
+    background: #fff;
+  }
+
+  .plyr__menu__container .plyr__control--back:after {
+    border-right-color: #fff !important;
+  }
+
+  .plyr__menu__container .plyr__control--forward:after {
+    border-left-color: #fff !important;
+  }
+
+  .plyr__menu__container .plyr__control--back:hover::after {
+    border-right-color: #f00 !important;
+  }
+
+  .plyr__menu__container .plyr__control--forward:hover::after {
+    border-left-color: #f00 !important;
+  }
+
+  .plyr__menu__container .plyr__control {
+    align-items: center;
+    color: #fff;
+  }
+
+  /* Plyr controls color */
+  .plyr--video .plyr__controls {
+    color: #f00;
+  }
+
+  .plyr--full-ui input[type=range] {
+    width: 97.6% !important;
+  }
+}
+
+.plyr--full-ui.plyr--video input[type=range]::-webkit-slider-runnable-track {
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui.plyr--video input[type=range]::-moz-range-track {
+    border-radius: 0 !important;
+}
+
+.plyr__progress__buffer::-webkit-progress-bar {
+    color: #00000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr__progress__buffer::-moz-progress-bar {
+    color: #00000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--video .plyr__progress__buffer {
+    color: #00000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui.plyr--video input[type=range]::-webkit-slider-runnable-track {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui.plyr--video input[type=range]::-moz-range-track {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui.plyr--video input[type=range]::-ms-track {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui input[type=range] {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui.plyr--video input[type=range] {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Track */
+.plyr--full-ui.plyr--video input[type=range]::-moz-range-track {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Barra de progreso */
+.plyr__progress__buffer::-moz-progress-bar {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.plyr--full-ui input[type=range] {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
+}
+
+/* Evitar bordes redondeados reales en Firefox */
+.plyr__progress input[type="range"]::-moz-range-track {
+  background: transparent;
+  border: none;
+  border-radius: 0 !important;
+}
+
+.plyr__progress input[type="range"]::-moz-range-progress {
+  border: none;
+  border-radius: 0 !important;
+}
+
+/* -------- CHROME / EDGE / SAFARI (WebKit) -------- */
+.plyr input[type="range"]::-webkit-slider-runnable-track {
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* -------- FIREFOX -------- */
+.plyr input[type="range"]::-moz-range-track {
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.plyr input[type="range"]::-moz-range-progress {
+  border-radius: 0 !important;
+}
+
+/* -------- MS EDGE (Legacy) -------- */
+.plyr input[type="range"]::-ms-track {
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.plyr input[type="range"]::-ms-fill-lower {
+  border-radius: 0 !important;
+}
+
+.plyr input[type="range"]::-ms-fill-upper {
+  border-radius: 0 !important;
+}
+
+.plyr__menu__container:after {
+    border-top-color: #00000000;
+}
