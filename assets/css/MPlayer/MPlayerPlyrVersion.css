@@ -99,7 +99,7 @@
 }
 
 /* Solo en fullscreen */
-.plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
+.plyr.plyr--fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
   left: 20em;
   font-size: 0.9em;
 }
@@ -110,25 +110,17 @@
   top: 2.8em;
 }
 
-.plyr__dtime:fullscreen {
-}
-
-.plyr.is-fullscreen .plyr__time.plyr__dtime {
+.plyr.plyr--fullscreen .plyr__time.plyr__dtime {
   left: -22em;
   position: relative;
 }
 
-    .plyr__dtime {
-      color: #f00;
-      margin-left: auto;
-      padding-right: 1em;
-      font-size: 0.9em;
-      white-space: pre;
-    }
-
-.plyr.is-fullscreen .plyr__controls__item.plyr__time--current.plyr__time {
-    left: 10em;
-    position: ;
+.plyr__dtime {
+  color: #f00;
+  margin-left: auto;
+  padding-right: 1em;
+  font-size: 0.9em;
+  white-space: pre;
 }
 
 .plyr__menu {
