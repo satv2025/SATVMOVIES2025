@@ -1,4 +1,4 @@
-const video = document.getElementById('MPlayer');
+const video = document.getElementById('player');
 const source = 'https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E1/REITE666%20T1%20E1.m3u8';
 
 const player = new Plyr(video);
