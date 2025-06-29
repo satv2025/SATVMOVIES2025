@@ -41,19 +41,26 @@ player.on('timeupdate', () => {
   const currentTime = player.currentTime;
   const timeDisplay = document.querySelector('.plyr__time--current');
   if (timeDisplay) {
-    timeDisplay.textContent = formatTime(currentTime);
+    // Solo actualizamos si NO estamos en fullscreen (para evitar que sobrescriba el texto personalizado)
+    if (!document.body.classList.contains('plyr--fullscreen') && !player.fullscreen.active) {
+      timeDisplay.textContent = formatTime(currentTime);
+    }
   }
 });
 
-// Manejar fullscreen (puedes añadir lógica aquí si necesitas)
+// Manejar fullscreen: modificar texto de tiempo y duración
 player.on('enterfullscreen', () => {
-  console.log('Entró en fullscreen');
-  // Aquí podés actualizar estilos o estados si querés
+  const dtime = document.querySelector('.plyr__time.plyr__dtime');
+  const current = document.querySelector('.plyr__time--current');
+  if (dtime) dtime.textContent = '/ FULLSCREEN';
+  if (current) current.textContent = '00:00 FS';
 });
 
 player.on('exitfullscreen', () => {
-  console.log('Salió de fullscreen');
-  // Aquí podés revertir cambios o actualizar estados
+  const dtime = document.querySelector('.plyr__time.plyr__dtime');
+  const current = document.querySelector('.plyr__time--current');
+  if (dtime) updateDuration(player.duration);
+  if (current) current.textContent = formatTime(player.currentTime);
 });
 
 // Reproducción y carga del video con HLS.js o fallback nativo
