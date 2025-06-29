@@ -7,7 +7,7 @@
 
     <!-- CSS Plyr oficial -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
-    <!-- CSS personalizado Plyr versión -->
+    <!-- CSS personalizados -->
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/MPlayer/MPlayerPlyrVersion.css" />
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css" />
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css" />
@@ -18,7 +18,7 @@
 <body>
 <header>
     <nav>
-        <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
+        <a class="logo" href="index" style="color: #007BFF; text-decoration: none;">SATVMOVIES</a>
         <ul>
             <li><a href="../../inicio">Inicio</a></li>
             <li><a href="../../proximamente">Próximamente</a></li>
@@ -48,9 +48,7 @@
 
     <!-- Reproductor Plyr -->
     <div id="player-container" style="margin: 0 auto; max-width: 900px;">
-        <video id="player" playsinline controls crossorigin poster="https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg" style="width: 100%; height: auto;">
-            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8" type="application/x-mpegURL" />
-        </video>
+        <video id="player" playsinline controls crossorigin poster="https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg" style="width: 100%; height: auto;"></video>
     </div>
 
     <div class="season-dropdown">
@@ -69,9 +67,7 @@
 
     <div class="episodios">
         <h2>Lista de Episodios</h2>
-        <ul id="episode-list">
-            <!-- Episodios cargados dinámicamente -->
-        </ul>
+        <ul id="episode-list"></ul>
     </div>
 </main>
 
@@ -179,14 +175,12 @@
 
     function changeSeason(season) {
         renderEpisodeList(season);
-        // Carga el primer episodio de la temporada
         loadEpisode(seasons[season][0]);
     }
 
-    // Inicializar Plyr solo una vez
     document.addEventListener('DOMContentLoaded', () => {
         player = new Plyr(video);
-        changeSeason(1); // Cargar temporada 1 y episodio 1 al inicio
+        changeSeason(1);
     });
 </script>
 </body>
