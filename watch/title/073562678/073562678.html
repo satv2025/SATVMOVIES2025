@@ -272,6 +272,7 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 // Crear la lista de episodios
+episodeList.innerHTML = ''; // Limpia la lista antes de agregar
 episodes.forEach((ep) => {
   const li = document.createElement('li');
   li.innerHTML = `
