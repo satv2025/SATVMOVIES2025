@@ -220,59 +220,64 @@ html, body {
             }
   ];
 
-  const player = new Plyr('#player', {
-    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
-  });
+const player = new Plyr('#player', {
+  controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+});
 
-  // Agregar botón de episodios a los controles de Plyr
-  const controls = document.querySelector('.plyr__controls');
-  const episodeBtn = document.createElement('button');
-  episodeBtn.className = 'plyr__control custom-episode-btn';
-  episodeBtn.setAttribute('type', 'button');
-  episodeBtn.setAttribute('aria-label', 'Episodios');
-  episodeBtn.innerHTML = `
-    <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
-        <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"/>
-        <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"/>
-        <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"/>
-      </g>
-    </svg>`;
-  episodeBtn.onclick = toggleModal;
-  controls.appendChild(episodeBtn);
+const controls = document.querySelector('.plyr__controls');
+const episodeBtn = document.createElement('button');
+episodeBtn.className = 'plyr__control custom-episode-btn';
+episodeBtn.setAttribute('type', 'button');
+episodeBtn.setAttribute('aria-label', 'Episodios');
+episodeBtn.innerHTML = `
+  <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
+      <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"/>
+      <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"/>
+      <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"/>
+    </g>
+  </svg>`;
+controls.appendChild(episodeBtn);
 
-  function toggleModal() {
-    const modal = document.getElementById('episodeModal');
-    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function loadVideo(src, poster) {
-    const video = document.querySelector('#player');
-
-    if (window.hls) {
-      window.hls.destroy();
-      window.hls = null;
-    }
-
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
-      window.hls = hls;
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
-    } else {
-      alert('Tu navegador no soporta este tipo de video.');
-    }
-
-    video.poster = poster;
-    video.play();
-  }
-
+const modal = document.getElementById('episodeModal');
 const episodeList = document.getElementById('episodeList');
+
+episodeBtn.onmouseenter = () => {
+  modal.style.display = 'block';
+};
+
+modal.onmouseleave = () => {
+  modal.style.display = 'none';
+};
+
+// Definir loadVideo para cambiar fuente y reproducir video
+function loadVideo(src, poster) {
+  const video = document.querySelector('#player');
+
+  // Si usas Hls.js
+  if (window.hls) {
+    window.hls.destroy();
+    window.hls = null;
+  }
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    window.hls = hls;
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+  } else {
+    alert('Tu navegador no soporta este tipo de video.');
+  }
+
+  video.poster = poster;
+  video.play();
+}
+
+// Crear la lista de episodios y añadir click handler
 episodes.forEach((ep) => {
   const li = document.createElement('li');
-  li.onclick = () => loadVideo(ep.videoPath, ep.image);
   li.innerHTML = `
     <img src="${ep.image}" alt="${ep.title}">
     <div class="episode-info">
@@ -280,19 +285,22 @@ episodes.forEach((ep) => {
       <p>${ep.description}</p>
     </div>
   `;
+  li.onclick = () => {
+    loadVideo(ep.videoPath, ep.image);
+    modal.style.display = 'none';  // Cerrar modal al clickear
+  };
   episodeList.appendChild(li);
 });
 
-  // Cargar primer episodio
-  loadVideo(episodes[0].videoPath, episodes[0].image);
+// Cargar primer episodio
+loadVideo(episodes[0].videoPath, episodes[0].image);
 
-  // Cerrar el modal al hacer clic fuera
-  document.addEventListener('click', function(e) {
-    const modal = document.getElementById('episodeModal');
-    if (!modal.contains(e.target) && !episodeBtn.contains(e.target)) {
-      modal.style.display = 'none';
-    }
-  });
+// Cerrar modal al clickear fuera
+document.addEventListener('click', (e) => {
+  if (!modal.contains(e.target) && !episodeBtn.contains(e.target)) {
+    modal.style.display = 'none';
+  }
+});
 </script>
 
 </body>
