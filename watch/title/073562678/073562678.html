@@ -56,19 +56,6 @@ html, body {
   border-radius: 8px;
 }
 
-/* ✅ Estilos en fullscreen */
-.modal.fullscreen-mode {
-  position: absolute;
-  top: 80px;
-  right: 30px;
-  width: 80vw;
-  height: 80vh;
-  max-height: none;
-  overflow-y: auto;
-  z-index: 9999;
-  border-radius: 8px;
-}
-
 /* Header */
 .modal-header h2 {
   color: #fff;
@@ -88,11 +75,6 @@ html, body {
   padding-bottom: 1.67em;
   overflow-y: hidden;
   margin-top: -1.3em;
-}
-
-.modal.fullscreen-mode .modal-content {
-  padding-left: 2em;
-  padding-right: 2em;
 }
 
 /* Lista de episodios */
@@ -137,15 +119,6 @@ html, body {
   flex-shrink: 0;
 }
 
-.modal.fullscreen-mode li {
-  height: auto;
-  min-height: 73px;
-}
-
-.modal.fullscreen-mode li img {
-  width: 140px;
-}
-
 /* Info del episodio */
 .episode-info {
   display: flex;
@@ -168,6 +141,105 @@ html, body {
 
 /* Botón cerrar invisible */
 .close {
+  cursor: auto;
+  font-size: 20px;
+  color: #ffffff00;
+}
+
+.modal.fullscreen-mode {
+  display: none;
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  background-color: #222;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 767px;
+  max-height: 87vh;
+  height: 87vh;
+  overflow-y: auto;
+  z-index: 2000;
+  border-radius: 8px;
+}
+
+.modal.fullscreen-mode .modal-header h2 {
+  color: #fff;
+  padding-left: 2em;
+  padding-top: 0.2em;
+}
+
+.modal.fullscreen-mode .modal-content {
+  background-color: #222;
+  border: 1px solid #222;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 3em;
+  padding-right: 3.5em;
+  padding-bottom: 1.67em;
+  overflow-y: hidden;
+  margin-top: -1.3em;
+}
+
+.modal.fullscreen-mode ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal.fullscreen-mode li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: justify;
+  height: 73px;
+  overflow: hidden;
+}
+
+.modal.fullscreen-mode li:hover {
+  background-color: #444;
+}
+
+.modal.fullscreen-mode li:first-child {
+  border-top: none;
+}
+
+.modal.fullscreen-mode li:last-child {
+  border-bottom: none;
+}
+
+.modal.fullscreen-mode li img {
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.modal.fullscreen-mode .episode-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal.fullscreen-mode .episode-info strong {
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+.modal.fullscreen-mode .episode-info p {
+  font-size: 0.9em;
+  margin: 0;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.modal.fullscreen-mode .close {
   cursor: auto;
   font-size: 20px;
   color: #ffffff00;
