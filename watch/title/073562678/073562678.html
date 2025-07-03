@@ -309,8 +309,10 @@ document.addEventListener('fullscreenchange', () => {
 
   if (fullscreenElement) {
     fullscreenElement.appendChild(modal);
+    modal.classList.add('fullscreen-mode');
   } else {
     document.querySelector('.player-wrapper').appendChild(modal);
+    modal.classList.remove('fullscreen-mode');
   }
 });
 </script>
