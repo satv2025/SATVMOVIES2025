@@ -1,90 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>100%Lucha - Las Peliculas</title>
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
-        <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
-        <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
-        <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
-    </head>
-    <body>
-        <header>
-            <nav>
-                <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
-                <ul>
-                    <li><a href="../../index">Inicio</a></li>
-                    <li><a href="../../proximamente">Próximamente</a></li>
-                    <li><a href="../../acercade">Acerca De</a></li>
-                </ul>
-            </nav>
-        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reproductor con Modal de Episodios</title>
 
-        <main>
-            <!-- Contenedor de los datos de la serie -->
-            <section class="serie-info">
-                <h2>Acerca de 100% Lucha - Las Peliculas</h2>
-                <ul>
-                    <li><strong>Año:</strong> 2008 y 2009</li>
-                    <li><strong>Duración:</strong> 80-85 mins por pelicula</li>
-                    <li><strong>Sinopsis:</strong>Koshe Plostenko: Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas. | El Amo De Los Clones: Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.</li>
-                    <li><strong>Creado por:</strong> Eduardo Husni</li>
-                    <li><strong>Elenco:</strong> Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Carlos Kaspar, Julio Mario Sibara 'Turco Naím', Roberto Carnaghi, Daniel Casablanca, Delfina Gerez Bosco, Pablo Rago, Juan Pablo Varsky, Berta Muñiz, Natalia Kim, Rocío Rodríguez Presedo, Esteban Rojas, Gonzalo Nennal, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini (están incluidos los repartos de ambas películas)</li>
-                    <li><strong>Guión:</strong> CineAR</li>
-                    <li><strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas, apuestas, secuestros, traiciones</li>
-                    <li><strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido</li>
-                    <li><strong>Clasificación por edad:</strong> 12+ lenguaje inapropiado, daños físicos, humor absurdo</li>
-                    <li><strong>Curiosidad:</strong> En el 2011 iba a salir una tercera película, pero debido a la cancelación del programa, se canceló por ende también la tercera pelicula</li>
-                </ul>
-            </section>
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+  <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
+  <style>
+    @import url(https://fuentes.solargentinotv.com.ar/netflixsans.css);
 
-    <!-- Contenedor del reproductor -->
-    <div id="player-container" style="margin: 0 auto;">
-        <div id="MPlayer"></div>
-    </div>
-
-            <div class="season-dropdown">
-                <button class="dropdown-button open">Temporada 1</button>
-                <div class="dropdown-content" style="display: block;">
-                    <button class="texto" onclick="changeSeason(1)">
-                        <span class="textotemp">Pelicula 1</span>
-                        <span class="episode-count">(1 episodio)</span>
-                    </button>
-                    <button class="texto texto2" onclick="changeSeason(2)">
-                        <span class="textotemp">Pelicula 2</span>
-                        <span class="episode-count">(1 episodio)</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="episodios">
-                <h2>Lista de Episodios</h2>
-                <ul id="episode-list">
-                    <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
-                </ul>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
-        </footer>
-
-<script src="https://movies.solargentinotv.com.ar/watch/title/084352635/dropdown.js"></script>
- <script src="https://movies.solargentinotv.com.ar/assets/MPlayer/MPlayerMVersion.js" type="text/javascript"></script>
-    <script>
-        var player = new Playerjs({
-            id: "MPlayer",
-            file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8",
-        });
-
-    // Función para cargar un episodio con autoplay
-    function loadEpisode(videoPath) {
-        player.api("file", videoPath);
-        player.api("play");
+    * {
+        font-family: 'Netflix Sans';
     }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* evita scrollbars */
+  background: #181818;
+}
+
+.player-wrapper {
+  position: fixed; /* se posiciona respecto a la ventana */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.plyr {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 119px;
+  right: 20px;
+  background-color: #222;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 767px;
+  max-height: 87vh;
+  overflow-y: auto;
+  z-index: 2000;
+  border-radius: 8px;
+}
+
+.modal-header h2 {
+    color: #fff;
+    padding-left: 2em;
+    padding-top: 0.2em;
+}
+
+
+.modal-content {
+  background-color: #222;
+  border: 1px solid #222;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 3em;
+  padding-right: 3.5em;
+  padding-bottom: 1.67em;
+  overflow-y: hidden;
+  margin-top: -1.3em;
+}
+
+.modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: justify;
+  height: 73px; /* altura fija */
+  overflow: hidden; /* oculta contenido extra */
+}
+
+
+.modal li:hover {
+  background-color: #444;
+}
+
+.modal li:first-child {
+  border-top: none;
+}
+
+.modal li:last-child {
+  border-bottom: none;
+}
+
+.modal li img {
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.episode-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.episode-info strong {
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+.episode-info p {
+  font-size: 0.9em;
+  margin: 0;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+    .close {
+      cursor: auto;
+      font-size: 20px;
+      color: #ffffff00;
+    }
+
+    /* Estilo para el botón SVG personalizado */
+    .plyr__control.custom-episode-btn svg {
+      stroke: #f00;
+      width: 20px;
+      height: 20px;
+    }
+
+    path {
+        stroke: #F00;
+    }
+  </style>
+</head>
+<body>
+<div class="player-wrapper">
+  <video id="player" controls crossorigin playsinline></video>
+
+  <!-- Modal de Episodios -->
+  <div id="episodeModal" class="modal">
+    <div class="modal-header">
+      <h2>Episodios</h2>
+      <span class="close" onclick="toggleModal()">&times;</span>
+    </div>
+    <div class="modal-content">
+      <ul id="episodeList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- Plyr JS -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<!-- HLS.js -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<script>
+  const episodes = [
+            {
+                title: 'Koshe Plostenko',
+                description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
+                image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
+                duration: '1 h 20 min' // Duración actualizada
+            },
+            {
+                title: 'El Amo De Los Clones',
+                description: 'Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/damianc/100Lucha%20El%20Amo%20de%20los%20Clones.m3u8',
+                image: 'https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png',
+                duration: '1 h 25 min' // Duración para el episodio de la temporada 2
+            }
+  ];
+
+const player = new Plyr('#player', {
+  controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+});
+
+const controls = document.querySelector('.plyr__controls');
+const episodeBtn = document.createElement('button');
+episodeBtn.className = 'plyr__control custom-episode-btn';
+episodeBtn.setAttribute('type', 'button');
+episodeBtn.setAttribute('aria-label', 'Episodios');
+episodeBtn.innerHTML = `
+  <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
+      <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"/>
+      <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"/>
+      <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"/>
+    </g>
+  </svg>`;
+controls.appendChild(episodeBtn);
+
+const modal = document.getElementById('episodeModal');
+const episodeList = document.getElementById('episodeList');
+
+episodeBtn.onmouseenter = () => {
+  modal.style.display = 'block';
+};
+
+modal.onmouseleave = () => {
+  modal.style.display = 'none';
+};
+
+// Definir loadVideo para cambiar fuente y reproducir video
+function loadVideo(src, poster) {
+  const video = document.querySelector('#player');
+
+  // Si usas Hls.js
+  if (window.hls) {
+    window.hls.destroy();
+    window.hls = null;
+  }
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    window.hls = hls;
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+  } else {
+    alert('Tu navegador no soporta este tipo de video.');
+  }
+
+  video.poster = poster;
+  video.play();
+}
+
+// Crear la lista de episodios y añadir click handler
+episodes.forEach((ep) => {
+  const li = document.createElement('li');
+  li.innerHTML = `
+    <img src="${ep.image}" alt="${ep.title}">
+    <div class="episode-info">
+      <strong>${ep.title}</strong>
+      <p>${ep.description}</p>
+    </div>
+  `;
+  li.onclick = () => {
+    loadVideo(ep.videoPath, ep.image);
+    modal.style.display = 'none';  // Cerrar modal al clickear
+  };
+  episodeList.appendChild(li);
+});
+
+// Cargar primer episodio
+loadVideo(episodes[0].videoPath, episodes[0].image);
+
+// Cerrar modal al clickear fuera
+document.addEventListener('click', (e) => {
+  if (!modal.contains(e.target) && !episodeBtn.contains(e.target)) {
+    modal.style.display = 'none';
+  }
+});
 </script>
+
 </body>
 </html>
