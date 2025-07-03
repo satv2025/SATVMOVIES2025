@@ -57,13 +57,27 @@ html, body {
   border-radius: 8px;
 }
 
-.modal-header h2 {
-    color: #fff;
-    padding-left: 2em;
-    padding-top: 0.2em;
+/* ✅ Estilos en fullscreen */
+.modal.fullscreen-mode {
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  width: 80vw;
+  height: 80vh;
+  max-height: none;
+  overflow-y: auto;
+  z-index: 9999;
+  border-radius: 8px;
 }
 
+/* Header */
+.modal-header h2 {
+  color: #fff;
+  padding-left: 2em;
+  padding-top: 0.2em;
+}
 
+/* Contenido del modal */
 .modal-content {
   background-color: #222;
   border: 1px solid #222;
@@ -77,6 +91,12 @@ html, body {
   margin-top: -1.3em;
 }
 
+.modal.fullscreen-mode .modal-content {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+/* Lista de episodios */
 .modal ul {
   list-style: none;
   padding: 0;
@@ -93,10 +113,9 @@ html, body {
   cursor: pointer;
   transition: background 0.2s;
   text-align: justify;
-  height: 73px; /* altura fija */
-  overflow: hidden; /* oculta contenido extra */
+  height: 73px;
+  overflow: hidden;
 }
-
 
 .modal li:hover {
   background-color: #444;
@@ -110,6 +129,7 @@ html, body {
   border-bottom: none;
 }
 
+/* Imagen del episodio */
 .modal li img {
   width: 120px;
   aspect-ratio: 16 / 9;
@@ -118,6 +138,16 @@ html, body {
   flex-shrink: 0;
 }
 
+.modal.fullscreen-mode li {
+  height: auto;
+  min-height: 73px;
+}
+
+.modal.fullscreen-mode li img {
+  width: 140px;
+}
+
+/* Info del episodio */
 .episode-info {
   display: flex;
   flex-direction: column;
@@ -137,11 +167,12 @@ html, body {
   line-height: 1.4;
 }
 
-    .close {
-      cursor: auto;
-      font-size: 20px;
-      color: #ffffff00;
-    }
+/* Botón cerrar invisible */
+.close {
+  cursor: auto;
+  font-size: 20px;
+  color: #ffffff00;
+}
 
     /* Estilo para el botón SVG personalizado */
     .plyr__control.custom-episode-btn svg {
@@ -194,6 +225,7 @@ const player = new Plyr('#player', {
 const modal = document.getElementById('episodeModal');
 const episodeList = document.getElementById('episodeList');
 const episodeBtn = document.querySelector('.custom-episode-btn') || (() => {
+  // Si no está creado, crealo (según tu fragmento 2)
   const controls = document.querySelector('.plyr__controls');
   const btn = document.createElement('button');
   btn.className = 'plyr__control custom-episode-btn';
@@ -210,19 +242,19 @@ const episodeBtn = document.querySelector('.custom-episode-btn') || (() => {
   return btn;
 })();
 
+// Guardamos el contenedor original para volver a poner el modal cuando no estemos en fullscreen
 const originalParent = modal.parentElement;
 
-function moveModalToCorrectParent() {
-  const plyrFullUI = document.querySelector('.plyr--full-ui');
-  if (plyrFullUI) {
-    plyrFullUI.appendChild(modal);
+episodeBtn.onmouseenter = () => {
+  // Detectamos si hay fullscreen activo
+  const fullscreenElement = document.fullscreenElement;
+
+  if (fullscreenElement) {
+    fullscreenElement.appendChild(modal);
   } else {
     originalParent.appendChild(modal);
   }
-}
 
-episodeBtn.onmouseenter = () => {
-  moveModalToCorrectParent();
   modal.style.display = 'block';
 };
 
@@ -230,13 +262,20 @@ modal.onmouseleave = () => {
   modal.style.display = 'none';
 };
 
+// También movemos el modal cuando salís o entrás en fullscreen mientras el modal está abierto
 document.addEventListener('fullscreenchange', () => {
   if (modal.style.display === 'block') {
-    moveModalToCorrectParent();
+    const fullscreenElement = document.fullscreenElement;
+
+    if (fullscreenElement) {
+      fullscreenElement.appendChild(modal);
+    } else {
+      originalParent.appendChild(modal);
+    }
   }
 });
 
-// Crear la lista de episodios
+// Fragmento para crear la lista de episodios (sin tocar)
 episodes.forEach((ep) => {
   const li = document.createElement('li');
   li.innerHTML = `
@@ -248,17 +287,21 @@ episodes.forEach((ep) => {
   `;
   li.onclick = () => {
     loadVideo(ep.videoPath, ep.image);
-    modal.style.display = 'none';
+    modal.style.display = 'none';  // Cierra modal cuando el episodio se carga
   };
   episodeList.appendChild(li);
 });
 
+// Definir loadVideo para cambiar fuente y reproducir video
 function loadVideo(src, poster) {
   const video = document.querySelector('#player');
+
+  // Si usas Hls.js
   if (window.hls) {
     window.hls.destroy();
     window.hls = null;
   }
+
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(src);
@@ -269,12 +312,32 @@ function loadVideo(src, poster) {
   } else {
     alert('Tu navegador no soporta este tipo de video.');
   }
+
   video.poster = poster;
   video.play();
 }
 
+// Crear la lista de episodios y añadir click handler
+episodes.forEach((ep) => {
+  const li = document.createElement('li');
+  li.innerHTML = `
+    <img src="${ep.image}" alt="${ep.title}">
+    <div class="episode-info">
+      <strong>${ep.title}</strong>
+      <p>${ep.description}</p>
+    </div>
+  `;
+  li.onclick = () => {
+    loadVideo(ep.videoPath, ep.image);
+    modal.style.display = 'none';  // Cerrar modal al clickear
+  };
+  episodeList.appendChild(li);
+});
+
+// Cargar primer episodio
 loadVideo(episodes[0].videoPath, episodes[0].image);
 
+// Cerrar modal al clickear fuera
 document.addEventListener('click', (e) => {
   if (!modal.contains(e.target) && !episodeBtn.contains(e.target)) {
     modal.style.display = 'none';
