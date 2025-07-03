@@ -1,135 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asesinato Para Principiantes</title>
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
-    <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
-    <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reproductor con Modal de Episodios</title>
+
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+  <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/plyr/satvplyr.css">
+  <style>
+    @import url(https://fuentes.solargentinotv.com.ar/netflixsans.css);
+
+    * {
+        font-family: 'Netflix Sans';
+    }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* evita scrollbars */
+  background: #181818;
+}
+
+.player-wrapper {
+  position: fixed; /* se posiciona respecto a la ventana */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.plyr {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 119px;
+  right: 20px;
+  background-color: #222;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 767px;
+  max-height: 87vh;
+  overflow-y: auto;
+  z-index: 2000;
+  border-radius: 8px;
+}
+
+.modal-header h2 {
+    color: #fff;
+    padding-left: 2em;
+    padding-top: 0.2em;
+}
+
+
+.modal-content {
+  background-color: #222;
+  border: 1px solid #222;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 3em;
+  padding-right: 3.5em;
+  padding-bottom: 1.67em;
+  overflow-y: hidden;
+  margin-top: -1.3em;
+}
+
+.modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: justify;
+  height: 73px; /* altura fija */
+  overflow: hidden; /* oculta contenido extra */
+}
+
+
+.modal li:hover {
+  background-color: #444;
+}
+
+.modal li:first-child {
+  border-top: none;
+}
+
+.modal li:last-child {
+  border-bottom: none;
+}
+
+.modal li img {
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.episode-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.episode-info strong {
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+.episode-info p {
+  font-size: 0.9em;
+  margin: 0;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+    .close {
+      cursor: auto;
+      font-size: 20px;
+      color: #ffffff00;
+    }
+
+    /* Estilo para el botón SVG personalizado */
+    .plyr__control.custom-episode-btn svg {
+      stroke: #f00;
+      width: 20px;
+      height: 20px;
+    }
+
+    path {
+        stroke: #F00;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-        <a class="logo" href="index" style="color: #007BFF; text-decoration: none;" onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
-      <ul>
-        <li><a href="../../inicio">Inicio</a></li>
-        <li><a href="../../proximamente">Próximamente</a></li>
-        <li><a href="../../acercade">Acerca De</a></li>
-      </ul>
-    </nav>
-  </header>
-<main>
-    <!-- Contenedor de los datos de la serie -->
-    <section class="serie-info">
-        <h2>Acerca de Asesinato Para Principiantes</h2>
-        <ul>
-            <li><strong>Año:</strong> 2024</li>
-            <li><strong>Temporadas:</strong> 1</li>
-            <li><strong>Episodios:</strong> 6</li>
-            <li><strong>Sinopsis:</strong> En este thriller atrapante, una estudiante investiga, para un proyecto escolar, un caso ocurrido hace cinco años.</li>
-            <li><strong>Creado por:</strong> Poppy Cogan</li>
-            <li><strong>Elenco:</strong> Emma Myers Zain Iqbal, Asha Banks, Raiko Gohara, Jude Morgan-Collie, Yali Topol Margalith, Yasmin Al-Khudhairi, Henry Ashton, Carla Woodcock, Mathew Baynton, Gary Beadle, Anna Maxwell Martin</li>
-            <li><strong>Guión:</strong> Poppy Cogan, Ruby Thomas, Zia Ahmed, Ajoke Ibironke</li>
-            <li><strong>Géneros:</strong> Series dramáticas, De Gran Bretaña, Series basadas en libros</li>
-            <li><strong>Este título es:</strong> Íntimo, Sombrío, De suspenso</li>
-            <li><strong>Clasificación por edad:</strong> 16+ lenguaje inapropiado, drogas, violencia sexual | Apta para mayores de 16 años</li>
-            <li><Strong>ES OFICIAL:</Strong> Una nueva temporada se acerca</li>
-        </ul>
-    </section>
-    <!-- Contenedor del reproductor -->
-    <div id="player-container" style="margin: 0 auto;">
-        <div id="MPlayer"></div>
-    </div>
+<div class="player-wrapper">
+  <video id="player" controls crossorigin playsinline></video>
 
-    <div class="season-dropdown">
-        <button class="dropdown-button open">Temporada 1</button>
-        <div class="dropdown-content" style="display: block;">
-            <button class="texto" onclick="changeSeason(1)">
-                <span class="textotemp">Temporada 1</span>
-                <span class="episode-count">(6 episodios)</span>
-            </button>
-            <button class="texto texto2" onclick="changeSeason(2)">
-                <span class="textotemp">Temporada 2</span>
-                <span class="episode-count">(1 episodio)</span>
-            </button>
-        </div>
+  <!-- Modal de Episodios -->
+  <div id="episodeModal" class="modal">
+    <div class="modal-header">
+      <h2>Episodios</h2>
+      <span class="close" onclick="toggleModal()">&times;</span>
     </div>
-    <div class="episodios">
-        <h2>Lista de Episodios</h2>
-        <ul id="episode-list">
-            <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
-        </ul>
+    <div class="modal-content">
+      <ul id="episodeList"></ul>
     </div>
-    
-</main>
+  </div>
+</div>
 
-<footer>
-    <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
-</footer>
+<!-- Plyr JS -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<!-- HLS.js -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
- <script src="https://movies.solargentinotv.com.ar/watch/title/073562678/dropdown.js"></script>
- <script src="https://movies.solargentinotv.com.ar/assets/MPlayer/MPlayerMVersion.js" type="text/javascript"></script>
 <script>
-    var player = new Playerjs({
-        id: "MPlayer",
-        file: [
+  const episodes = [
             {
-                "title": "Temporada 1",
-                "folder": [
-                    {
-                        "title": "Episodio 1",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
-                        "poster": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
-                    },
-                    {
-                        "title": "Episodio 2",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8",
-                        "poster": "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg"
-                    },
-                    {
-                        "title": "Episodio 3",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8",
-                        "poster": "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg"
-                    },
-                    {
-                        "title": "Episodio 4",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8",
-                        "poster": "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg"
-                    },
-                    {
-                        "title": "Episodio 5",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8",
-                        "poster": "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5"
-                    },
-                    {
-                        "title": "Episodio 6",
-                        "file": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8",
-                        "poster": "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg"
-                    }
-                ]
+                title: 'Episodio 1',
+                description: 'Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
+                image: 'https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg',
+                duration: '43 min'
             },
             {
-                "title": "Temporada 2",
-                "folder": [
-                    {
-                        "title": "Próxima temporada",
-                        "file": "#",
-                        "poster": ""
-                    }
-                ]
+                title: 'Episodio 2',
+                description: 'Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8',
+                image: 'https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg',
+                duration: '44 min'
+            },
+            {
+                title: 'Episodio 3',
+                description: 'Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8',
+                image: 'https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg',
+                duration: '43 min'
+            },
+            {
+                title: 'Episodio 4',
+                description: 'Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8',
+                image: 'https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg',
+                duration: '44 min'
+            },
+            {
+                title: 'Episodio 5',
+                description: 'Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8',
+                image: 'https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5',
+                duration: '50 min'
+            },
+            {
+                title: 'Episodio 6',
+                description: 'La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8',
+                image: 'https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg',
+                duration: '51 min'
             }
-        ]
-    });
+  ];
 
-    // Función para cargar un episodio con autoplay
-    function loadEpisode(videoPath) {
-        player.api("file", videoPath);
-        player.api("play");
+  const player = new Plyr('#player', {
+    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+  });
+
+  // Agregar botón de episodios a los controles de Plyr
+  const controls = document.querySelector('.plyr__controls');
+  const episodeBtn = document.createElement('button');
+  episodeBtn.className = 'plyr__control custom-episode-btn';
+  episodeBtn.setAttribute('type', 'button');
+  episodeBtn.setAttribute('aria-label', 'Episodios');
+  episodeBtn.innerHTML = `
+    <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
+        <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"/>
+        <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"/>
+        <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"/>
+      </g>
+    </svg>`;
+  episodeBtn.onclick = toggleModal;
+  controls.appendChild(episodeBtn);
+
+  function toggleModal() {
+    const modal = document.getElementById('episodeModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function loadVideo(src, poster) {
+    const video = document.querySelector('#player');
+
+    if (window.hls) {
+      window.hls.destroy();
+      window.hls = null;
     }
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      window.hls = hls;
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+    } else {
+      alert('Tu navegador no soporta este tipo de video.');
+    }
+
+    video.poster = poster;
+    video.play();
+  }
+
+const episodeList = document.getElementById('episodeList');
+episodes.forEach((ep) => {
+  const li = document.createElement('li');
+  li.onclick = () => loadVideo(ep.videoPath, ep.image);
+  li.innerHTML = `
+    <img src="${ep.image}" alt="${ep.title}">
+    <div class="episode-info">
+      <strong>${ep.title}</strong>
+      <p>${ep.description}</p>
+    </div>
+  `;
+  episodeList.appendChild(li);
+});
+
+  // Cargar primer episodio
+  loadVideo(episodes[0].videoPath, episodes[0].image);
+
+  // Cerrar el modal al hacer clic fuera
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('episodeModal');
+    if (!modal.contains(e.target) && !episodeBtn.contains(e.target)) {
+      modal.style.display = 'none';
+    }
+  });
 </script>
+
 </body>
 </html>
