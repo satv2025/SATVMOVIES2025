@@ -406,32 +406,6 @@ document.addEventListener('click', (e) => {
     modal.style.display = 'none';
   }
 });
-
-const modal = document.getElementById('episodeModal');
-const openModalBtn = document.getElementById('openModalButton');
-const originalParent = modal.parentElement;
-
-openModalBtn.addEventListener('click', () => {
-  const fullscreenElement = document.fullscreenElement;
-
-  // Si estamos en fullscreen, movemos el modal dentro del contenedor fullscreen
-  if (fullscreenElement) {
-    fullscreenElement.appendChild(modal);
-  } else {
-    originalParent.appendChild(modal);
-  }
-
-  modal.style.display = 'block';
-});
-
-// Por si salís de fullscreen y el modal sigue abierto, lo devolvés
-document.addEventListener('fullscreenchange', () => {
-  const fullscreenElement = document.fullscreenElement;
-
-  if (!fullscreenElement && modal.style.display === 'block') {
-    originalParent.appendChild(modal);
-  }
-});
 </script>
 
 </body>
