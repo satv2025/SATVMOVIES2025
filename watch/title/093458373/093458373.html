@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reproductor con Modal de Episodios</title>
+  <title>Matias Ponce - La Película - Sol Argentino TV MOVIES</title>
+  <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
 
   <!-- Plyr CSS -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
@@ -44,7 +45,7 @@ html, body {
 .modal {
   display: none;
   position: fixed;
-  top: 119px;
+  top: 72px;
   right: 20px;
   background-color: #222;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -56,14 +57,13 @@ html, body {
   border-radius: 8px;
 }
 
-/* Header */
 .modal-header h2 {
-  color: #fff;
-  padding-left: 2em;
-  padding-top: 0.2em;
+    color: #fff;
+    padding-left: 2em;
+    padding-top: 0.2em;
 }
 
-/* Contenido del modal */
+
 .modal-content {
   background-color: #222;
   border: 1px solid #222;
@@ -77,7 +77,6 @@ html, body {
   margin-top: -1.3em;
 }
 
-/* Lista de episodios */
 .modal ul {
   list-style: none;
   padding: 0;
@@ -94,9 +93,10 @@ html, body {
   cursor: pointer;
   transition: background 0.2s;
   text-align: justify;
-  height: 73px;
-  overflow: hidden;
+  height: 73px; /* altura fija */
+  overflow: hidden; /* oculta contenido extra */
 }
+
 
 .modal li:hover {
   background-color: #444;
@@ -110,7 +110,6 @@ html, body {
   border-bottom: none;
 }
 
-/* Imagen del episodio */
 .modal li img {
   width: 120px;
   aspect-ratio: 16 / 9;
@@ -119,7 +118,6 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Info del episodio */
 .episode-info {
   display: flex;
   flex-direction: column;
@@ -139,111 +137,11 @@ html, body {
   line-height: 1.4;
 }
 
-/* Botón cerrar invisible */
-.close {
-  cursor: auto;
-  font-size: 20px;
-  color: #ffffff00;
-}
-
-.modal.fullscreen-mode {
-  display: none;
-  position: fixed;
-  top: 72px;
-  right: 20px;
-  background-color: #222;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  width: 767px;
-  max-height: 87vh;
-  height: 87vh;
-  overflow-y: auto;
-  z-index: 2000;
-  border-radius: 8px;
-}
-
-.modal.fullscreen-mode .modal-header h2 {
-  color: #fff;
-  padding-left: 2em;
-  padding-top: 0.2em;
-}
-
-.modal.fullscreen-mode .modal-content {
-  background-color: #222;
-  border: 1px solid #222;
-  width: 100%;
-  color: #fff;
-  box-sizing: border-box;
-  padding-left: 3em;
-  padding-right: 3.5em;
-  padding-bottom: 1.67em;
-  overflow-y: hidden;
-  margin-top: -1.3em;
-}
-
-.modal.fullscreen-mode ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.modal.fullscreen-mode li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-align: justify;
-  height: 73px;
-  overflow: hidden;
-}
-
-.modal.fullscreen-mode li:hover {
-  background-color: #444;
-}
-
-.modal.fullscreen-mode li:first-child {
-  border-top: none;
-}
-
-.modal.fullscreen-mode li:last-child {
-  border-bottom: none;
-}
-
-.modal.fullscreen-mode li img {
-  width: 120px;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-}
-
-.modal.fullscreen-mode .episode-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.modal.fullscreen-mode .episode-info strong {
-  font-size: 1em;
-  margin-bottom: 6px;
-}
-
-.modal.fullscreen-mode .episode-info p {
-  font-size: 0.9em;
-  margin: 0;
-  color: #ccc;
-  line-height: 1.4;
-}
-
-.modal.fullscreen-mode .close {
-  cursor: auto;
-  font-size: 20px;
-  color: #ffffff00;
-}
+    .close {
+      cursor: auto;
+      font-size: 20px;
+      color: #ffffff00;
+    }
 
     /* Estilo para el botón SVG personalizado */
     .plyr__control.custom-episode-btn svg {
@@ -371,16 +269,29 @@ document.addEventListener('click', (e) => {
   }
 });
 
-document.addEventListener('fullscreenchange', () => {
-  const modal = document.getElementById('episodeModal');
+const modal = document.getElementById('episodeModal');
+const openModalBtn = document.getElementById('openModalButton');
+const originalParent = modal.parentElement;
+
+openModalBtn.addEventListener('click', () => {
   const fullscreenElement = document.fullscreenElement;
 
+  // Si estamos en fullscreen, movemos el modal dentro del contenedor fullscreen
   if (fullscreenElement) {
     fullscreenElement.appendChild(modal);
-    modal.classList.add('fullscreen-mode');
   } else {
-    document.querySelector('.player-wrapper').appendChild(modal);
-    modal.classList.remove('fullscreen-mode');
+    originalParent.appendChild(modal);
+  }
+
+  modal.style.display = 'block';
+});
+
+// Por si salís de fullscreen y el modal sigue abierto, lo devolvés
+document.addEventListener('fullscreenchange', () => {
+  const fullscreenElement = document.fullscreenElement;
+
+  if (!fullscreenElement && modal.style.display === 'block') {
+    originalParent.appendChild(modal);
   }
 });
 </script>

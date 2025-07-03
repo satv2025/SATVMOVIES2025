@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reproductor con Modal de Episodios</title>
+  <title>Asesinato Para Principiantes - Sol Argentino TV MOVIES</title>
+  <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
 
   <!-- Plyr CSS -->
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
@@ -406,16 +407,29 @@ document.addEventListener('click', (e) => {
   }
 });
 
-document.addEventListener('fullscreenchange', () => {
-  const modal = document.getElementById('episodeModal');
+const modal = document.getElementById('episodeModal');
+const openModalBtn = document.getElementById('openModalButton');
+const originalParent = modal.parentElement;
+
+openModalBtn.addEventListener('click', () => {
   const fullscreenElement = document.fullscreenElement;
 
+  // Si estamos en fullscreen, movemos el modal dentro del contenedor fullscreen
   if (fullscreenElement) {
     fullscreenElement.appendChild(modal);
-    modal.classList.add('fullscreen-mode');
   } else {
-    document.querySelector('.player-wrapper').appendChild(modal);
-    modal.classList.remove('fullscreen-mode');
+    originalParent.appendChild(modal);
+  }
+
+  modal.style.display = 'block';
+});
+
+// Por si salís de fullscreen y el modal sigue abierto, lo devolvés
+document.addEventListener('fullscreenchange', () => {
+  const fullscreenElement = document.fullscreenElement;
+
+  if (!fullscreenElement && modal.style.display === 'block') {
+    originalParent.appendChild(modal);
   }
 });
 </script>
