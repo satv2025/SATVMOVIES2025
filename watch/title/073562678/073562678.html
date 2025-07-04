@@ -289,29 +289,32 @@ background-color: rgba(57, 8, 8, 0);
 
 <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
 <script>
-  const playerConfig = {
-    key: "d275250c-39e1-4bee-bff1-d0714547b1d0",
-    playback: {
-      autoplay: true
-    }
+  var conf = {
+    key: 'd275250c-39e1-4bee-bff1-d0714547b1d0',
+    analytics: {
+      key: '6d15f68f-f646-4fd7-ac09-f9adfe5cd172',
+      title: 'undefined',
+      videoId: 'wizard-untitled-1751664802285',
+    },
   };
 
-  const sourceConfig = {
-    hls: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
-    title: "Asesinato Para Principiantes - T1 E1"
+  var source = {
+    title: '',
+    hls: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
   };
 
-  const player = new bitmovin.player.Player(document.getElementById('player'), playerConfig);
+  var player = new bitmovin.player.Player(document.getElementById('player'), conf);
+
+  player.load(source).then(function() {
+    console.log('Video cargado correctamente');
+  }).catch(function(error) {
+    console.error('Error al cargar el video:', error);
+    alert('Error al cargar el video: ' + (error.message || JSON.stringify(error)));
+  });
 
   player.on('error', function(event) {
     console.error('Bitmovin Player Error:', event);
     alert('Error en el reproductor: ' + (event.message || JSON.stringify(event)));
-  });
-
-  player.load(sourceConfig).then(function() {
-    console.log('Video cargado correctamente');
-  }).catch(function(error) {
-    console.error('Error al cargar el video:', error);
   });
 
   const episodes = [
