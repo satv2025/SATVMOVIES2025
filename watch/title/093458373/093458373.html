@@ -183,12 +183,30 @@
 .episode.active {
   background: #444;
 }
+
+.episode-title {
+  position: absolute;
+  bottom: 58.9em;
+  left: 62em;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
 
 <div id="dplayer"></div>
-
+<div id="dplayer"></div>
+<div id="dplayerContainer" style="position: relative;">
+  <div id="dplayer"></div>
+<div id="episodeTitle" class="episode-title">
+  Episodio 1
+</div>
+</div>
 <!-- Modal Episodios -->
 <div class="modal" id="episodeModal">
   <div class="modal-content">
@@ -204,32 +222,42 @@
   const episodes = [
             {
                 title: 'Matias Ponce - La Película',
-                description: 'Matías Ponce, creador de contenido, ve cómo su canal de YouTube —o “Yutun”, como él lo llama— es suspendido sin explicación. Para recuperarlo, se enfrenta a hackers y alienígenas en una aventura absurda y llena de humor.',
+                description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
                 videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpp/mp/MATIAS%20PONCE%20%20LA%20PEL%C3%8DCULA.m3u8',
                 image: 'https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg',
                 duration: '60 min' // Duración actualizada
             }
   ];
 
-  const dp = new DPlayer({
-    container: document.getElementById('dplayer'),
-    autoplay: true,
-    video: {
-      url: episodes[0].videoPath,
-      type: 'customHls',
-      customType: {
-        customHls: function (video, player) {
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(video.src);
-            hls.attachMedia(video);
-          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = video.src;
-          }
+const dp = new DPlayer({
+  container: document.getElementById('dplayer'),
+  autoplay: true,
+  video: {
+    url: episodes[0].videoPath,
+    type: 'customHls',
+    customType: {
+      customHls: function (video, player) {
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(video.src);
+          hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = video.src;
         }
       }
     }
-  });
+  }
+});
+
+// Referencia al contenedor del título
+const episodeTitle = document.getElementById('episodeTitle');
+
+function updateEpisodeTitle(title) {
+  episodeTitle.textContent = title;
+}
+
+// Inicializar título con el primer episodio
+updateEpisodeTitle(episodes[0].title);
 
 // Insertar botón en controles
 const observer = new MutationObserver(() => {
@@ -246,13 +274,13 @@ const observer = new MutationObserver(() => {
           <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"></path>
         </g>
       </svg>`;
-    
-    // Cambio aquí: abrir modal con hover en el botón
+
+    // Abrir modal con hover en el botón
     btn.onmouseenter = () => {
       document.getElementById('episodeModal').style.display = 'flex';
       renderEpisodes();
     };
-    
+
     controls.appendChild(btn);
     observer.disconnect(); // evitar inserciones múltiples
   }
@@ -280,7 +308,7 @@ function renderEpisodes() {
 
     // Borde superior solo para el primer episodio
     if (index === 0) {
-      item.classList.add('e1item'); // ya está incluido arriba, pero lo reforzamos si querés usar esa clase para CSS
+      item.classList.add('e1item'); 
     }
 
     item.innerHTML = `
@@ -306,7 +334,7 @@ function renderEpisodes() {
       if (previousItem) previousItem.classList.remove('prev-active');
     });
 
-    // Click para cambiar episodio
+    // Click para cambiar episodio y actualizar título
     item.onclick = () => {
       dp.switchVideo({
         url: ep.videoPath,
@@ -324,6 +352,9 @@ function renderEpisodes() {
         }
       });
       dp.play();
+
+      updateEpisodeTitle(ep.title); // <-- Actualiza título aquí
+
       document.getElementById('episodeModal').style.display = 'none';
     };
 

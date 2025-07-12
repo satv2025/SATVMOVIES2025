@@ -3,7 +3,7 @@ const peliculas = {
     matiponcepeli: {
         year: "2022",
         duration: "1h",
-        description: "Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama 'Yutun', desatando una hilarante y absurda aventura.",
+        description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
         cast: "<strong>Elenco:</strong> Matias Ponce, Santino Ponce, Indio Ponce, <a href='#about'>más</a>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'></span> <strong class='titulo'>Matias Ponce - La Película</strong>",
         genres: "<strong>Géneros:</strong> Humor, humor absurdo, hackers, fama, grandes élites",
