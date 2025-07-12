@@ -130,11 +130,14 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
 /* Posiciones con em */
 .modal-year {
     position: absolute;
-    top: 32.6em;
-    font-size: 0.875em;
+    top: 28.4em;
+    font-size: 16px;
     padding-left: 2.2em;
     z-index: 1000;
     color: #bcbcbc !important;!i;!;
+}
+
+.modal-year, .modal-duration {
 }
 
 .modal-title {
@@ -169,7 +172,7 @@ a#watch-button, a#watch-button:visited, a#watch-button:hover, a#watch-button:foc
     font-weight: 700;
     height: 2.4em;
     font-family: 'Netflix Sans';
-    margin-top: 6.7em;
+    margin-top: 7.3em;
     margin-left: 10.7em;
 }
 
@@ -3371,8 +3374,8 @@ a.eplink {
 
 .modal-duration {
     position: absolute;
-    top: 32.6em;
-    font-size: 0.875em;
+    top: 28.4em;
+    font-size: 16px;
     left: 7.2em;
     color: #bcbcbc !important;!i;!;
 }
@@ -3393,9 +3396,10 @@ a.eplink {
 .modal-genres,
 .modal-titleType {
     position: absolute;
-    padding-left: 32em;
+    padding-left: 40em !important;
     text-align: left;
     padding-right: 2em;
+    font-size: 14px !important;
 }
 
 .modal-fullcreatedBy { top: 47em; }
@@ -3416,8 +3420,8 @@ a.eplink {
 
 span.fcprefix {color: #bcbcbc;}
 .modal-script {top: 2em;left: -30.67em;}
-.modal-genres {top: 35.5em;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
-.modal-titleType {top: 38.4em;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
+.modal-genres {top: 36.3em !important;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
+.modal-titleType {top: 40.3em !important;font-size: 0.875em;padding-left: 36.6em;padding-right: 4em;}
 
 .modal-ageRating,
 .modal-description,
@@ -3455,7 +3459,7 @@ span.fcprefix {color: #bcbcbc;}
 }
 
 .modal-cast strong, .modal-genres strong, .modal-titleType strong {
-    color: #bcbcbc;
+    color: #777;
     font-weight: 400;
 }
 
