@@ -255,13 +255,10 @@ const dp = new DPlayer({
 
 // Referencia al contenedor del título
 const episodeTitle = document.getElementById('episodeTitle');
-
 function updateEpisodeTitle(title) {
   episodeTitle.textContent = title;
 }
-
-// Inicializar título con el primer episodio
-updateEpisodeTitle(episodes[0].title);
+updateEpisodeTitle(episodes[0].title); // Título inicial
 
 // Insertar botón en controles
 const observer = new MutationObserver(() => {
@@ -279,35 +276,45 @@ const observer = new MutationObserver(() => {
         </g>
       </svg>`;
 
-    // Abrir modal con hover en el botón
-    btn.onmouseenter = () => {
-      document.getElementById('episodeModal').style.display = 'flex';
-      renderEpisodes();
-    };
-
     controls.appendChild(btn);
     observer.disconnect(); // evitar inserciones múltiples
+
+    // Mostrar y ocultar modal con hover usando timeout
+    const episodeModal = document.getElementById('episodeModal');
+    let modalTimeout;
+
+    function showModal() {
+      clearTimeout(modalTimeout);
+      episodeModal.style.display = 'flex';
+      renderEpisodes();
+    }
+
+    function hideModal() {
+      modalTimeout = setTimeout(() => {
+        episodeModal.style.display = 'none';
+      }, 200);
+    }
+
+    btn.addEventListener('mouseenter', showModal);
+    btn.addEventListener('mouseleave', hideModal);
+
+    episodeModal.addEventListener('mouseenter', () => clearTimeout(modalTimeout));
+    episodeModal.addEventListener('mouseleave', hideModal);
   }
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-// Modal cierre con click
+// Cierre por botón manual
 document.getElementById('closeModal').onclick = () => {
   document.getElementById('episodeModal').style.display = 'none';
 };
 
-const episodeModal = document.getElementById('episodeModal');
-
-// Cerrar modal si haces click fuera de él
+// Cierre si se hace click fuera del modal
 window.onclick = function (event) {
-  if (event.target === episodeModal) episodeModal.style.display = "none";
+  const modal = document.getElementById('episodeModal');
+  if (event.target === modal) modal.style.display = "none";
 };
-
-// Cerrar modal al sacar el mouse del modal
-episodeModal.addEventListener('mouseleave', () => {
-  episodeModal.style.display = 'none';
-});
 
 function renderEpisodes() {
   const list = document.getElementById('episodeList');
@@ -316,11 +323,7 @@ function renderEpisodes() {
   episodes.forEach((ep, index) => {
     const item = document.createElement('div');
     item.className = `episode e${index + 1}item`;
-
-    // Borde superior solo para el primer episodio
-    if (index === 0) {
-      item.classList.add('e1item'); 
-    }
+    if (index === 0) item.classList.add('e1item');
 
     item.innerHTML = `
       <img src="${ep.image}" alt="${ep.title}" />
@@ -330,22 +333,18 @@ function renderEpisodes() {
       </div>
     `;
 
-    // Hover: aplicar clases dinámicas a este y al anterior
     item.addEventListener('mouseenter', () => {
       item.classList.add('active');
-
       const previousItem = list.children[index - 1];
       if (previousItem) previousItem.classList.add('prev-active');
     });
 
     item.addEventListener('mouseleave', () => {
       item.classList.remove('active');
-
       const previousItem = list.children[index - 1];
       if (previousItem) previousItem.classList.remove('prev-active');
     });
 
-    // Click para cambiar episodio y actualizar título
     item.onclick = () => {
       dp.switchVideo({
         url: ep.videoPath,
@@ -363,10 +362,8 @@ function renderEpisodes() {
         }
       });
       dp.play();
-
-      updateEpisodeTitle(ep.title); // <-- Actualiza título aquí
-
-      episodeModal.style.display = 'none';
+      updateEpisodeTitle(ep.title);
+      document.getElementById('episodeModal').style.display = 'none';
     };
 
     list.appendChild(item);
