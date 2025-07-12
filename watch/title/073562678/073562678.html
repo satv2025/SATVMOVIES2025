@@ -24,14 +24,18 @@
         font-family: 'Netflix Sans' !important;
     }
 
-    body {
-      margin: 0;
-      background-color: #000;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* evita scroll */
+}
 
-    #dplayer {
-      max-width: 100%;
-    }
+#dplayer {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
 
     .episode-btn-dp {
       display: inline-flex;
