@@ -2,59 +2,87 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Asesinato Para Principiantes (APP)</title>
-  <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
-  <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reproductor con Episodios</title>
+
+  <!-- DPlayer CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css">
+
+  <!-- DPlayer SATV CSS-->
+  <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
+
+  <!-- HLS.js para soporte m3u8 -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <!-- DPlayer JS -->
+  <script src="https://unpkg.com/dplayer/dist/DPlayer.min.js"></script>
+
   <style>
     @import url(https://fuentes.solargentinotv.com.ar/netflixsans.css);
-
+    
     * {
-      font-family: 'Netflix Sans';
+        font-family: 'Netflix Sans' !important;
     }
 
     body {
-      background: #111;
-      color: white;
       margin: 0;
-      padding: 0;
+      background-color: #000;
     }
 
-    #player {
-      width: auto;
-      height: 100vh;
-      background: black;
-      position: relative;
+    #dplayer {
+      max-width: 100%;
     }
 
-    .episode-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 5px;
-      padding: 5px;
+    .episode-btn-dp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-left: 10px;
+      background: transparent;
       cursor: pointer;
-      z-index: 10;
     }
 
-    .episode-button svg {
-      width: 24px;
-      height: 24px;
-      stroke: white;
-      margin-top: 53.9em;
-      margin-left: -3.8em;
+    .episode-btn-dp svg {
+      width: 26px;
+      height: auto;
+      margin-top: 0.46em;
+      position: absolute;
+      margin-left: -12em;
+      stroke: #f00;
+      fill: #ffffff00 !important;
+      color: #ffffff00 !important;
+    }
+
+    .episode-btn-dp svg path {
+        fill: #ffffff00 !important;
+    }
+
+    .dplayer-controller .dplayer-icons.dplayer-icons-right .dplayer-icon {
+    margin-top: -1.2em;
+    margin-right: -2.7em;
+    }
+
+    .dplayer-controller .dplayer-icons .dplayer-icon.dplayer-setting-icon {
+    margin-top: -1.2em;
+    margin-right: 0em;
+    }
+
+
+    .skb-svg {
+        width: 26px !important;
     }
 
     .modal {
       position: fixed;
       top: 5em;
-      left: 33em;
+      left: 79%;
+      transform: translateX(-50%);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 9999;
       width: 100vw;
       height: 78vh;
     }
@@ -63,34 +91,35 @@
       background: #222;
       padding: 20px;
       border-radius: 10px;
-      height: 87vh;
       overflow-y: auto;
       width: 90%;
-      max-width: 656px;
-      padding-left: 4em;
-      padding-right: 4.2em;
-      height: 83vh;
+      max-width: 749px;
+      height: 90vh;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .modal-header h2 {
-    color: #fff;
-    padding-left: 0em;
-    padding-top: 0.2em;
-}
+      color: #fff;
+    }
 
     .close-btn {
       color: #fff;
       font-size: 28px;
       font-weight: bold;
-      text-align: right;
       cursor: pointer;
     }
 
     .selector-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 2.5em;
+      gap: -14px;
+      padding-left: 2em;
+      padding-right: 2em;
     }
 
     .episode {
@@ -98,330 +127,210 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid #444;
-      padding: 20px;
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      margin-top: -0.7em;
+      padding: 21px 0;
+      padding-left: 2em;
+      padding-right: 2em;
     }
-
-    .episode:hover {
+      .episode:hover {
       background: #444;
     }
 
     .episode img {
       width: 160px;
-      height: auto;
-      object-fit: contain;
+      width: 132px;
       border-radius: 5px;
     }
 
     .episode-info h4 {
       margin: 0 0 5px;
+      color: #fff;
     }
 
     .episode-info p {
       margin: 0;
       font-size: 14px;
+      margin: 0;
+      font-size: 14px;
       color: #ccc;
-      text-align: justify;
     }
 
-    .bmpui-ui-watermark {
-      opacity: 0;
-      cursor: default;
-    }
-
-    .bmpui-ui-watermark:hover {
-      opacity: 0;
-      cursor: default;
-    }
-
-.bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition, .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition {
-      background-color: #f00;
-    }
-
-.bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition-marker, .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
-      background-color: #f00;
-      border: 0.1875em solid #f00;
-    }
-
-    .custom-episode-button {
-  width: 40px;
-  height: 40px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 4px;
+/* Estilo general para episodios */
+.episode {
+  border-bottom: 1px solid #444;
+  border-radius: 5px;
+  padding: 21px 2em;
+  cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 12px;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.custom-episode-button svg {
-  width: 24px;
-  height: 24px;
-  stroke: white;
-  fill: none;
+/* Solo el primer episodio tiene borde superior */
+.e1item {
+  border-top: 1px solid #444;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-svg {
-  width: 200px;
+/* Al hacer hover, ocultar visualmente el borde sin colapso de espacio */
+.episode.active,
+.episode.prev-active {
+  border-bottom-color: transparent !important;
 }
 
-.bmpui-ui-fullscreentogglebutton {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M8 2H4C2.89543 2 2 2.89543 2 4V8' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M22 8L22 4C22 2.89543 21.1046 2 20 2H16' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M16 22L20 22C21.1046 22 22 21.1046 22 20L22 16' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M8 22L4 22C2.89543 22 2 21.1046 2 20V16' /%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 18px 18px;
+/* Opcional: fondo al hacer hover */
+.episode.active {
+  background: #444;
 }
-
-.bmpui-ui-fullscreentogglebutton.bmpui-on {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M2 7H5C6.10457 7 7 6.10457 7 5V2' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M17 2V5C17 6.10457 17.8954 7 19 7H22' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M22 17H19C17.8954 17 17 17.8954 17 19V22' /%3e%3cpath stroke='%23fff' stroke-width='1.5' stroke-linecap='round' d='M2 17H5C6.10457 17 7 17.8954 7 19L7 22' /%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 18px 18px;
-}
-
-.bmpui-ui-fullscreentogglebutton:hover {
-    -webkit-filter: none !important;
-    filter: none !important;
-}
-
-.bmpui-ui-piptogglebutton {
-    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' style='enable-background:new 0 0 32 32' xml:space='preserve'%3E%3Cstyle%3E.st0{fill-rule:evenodd;clip-rule:evenodd;fill:%23fff}%3C/style%3E%3Cpath class='st0' d='M5 8.3h19.8v5.5H27V8.3c0-1.2-1-2.2-2.2-2.2H5c-1.2 0-2.2 1-2.2 2.2v12.1c0 1.2 1 2.2 2.2 2.2h7.7v-2.2H5V8.3zm9.9 7.7v9.9h14.3V16H14.9z' id='Rectangle_512'/%3E%3Cpath class='st0' d='M12.7 10.5H7.2V16h2.2v-3.3h3.3z' id='Rectangle_513'/%3E%3C/svg%3E);
-    opacity: 0;
-    cursor: default;
-}
-
-.bmpui-ui-audiotracksettingstogglebutton:hover, .bmpui-ui-settingstogglebutton:hover, .bmpui-ui-subtitlesettingstogglebutton:hover {
-    -webkit-filter: none !important;
-    filter: none !important;
-}
-
-.bmpui-ui-settingstogglebutton {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='%23ffffff'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'/%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg id='style=linear'%3E%3Cg id='setting'%3E%3Cpath id='vector' d='M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z' stroke='%23ffffff' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath id='vector_2' d='M2 12.88V11.12C2 10.08 2.85 9.22 3.9 9.22C5.71 9.22 6.45 7.94 5.54 6.37C5.02 5.47 5.33 4.3 6.24 3.78L7.97 2.79C8.76 2.32 9.78 2.6 10.25 3.39L10.36 3.58C11.26 5.15 12.74 5.15 13.65 3.58L13.76 3.39C14.23 2.6 15.25 2.32 16.04 2.79L17.77 3.78C18.68 4.3 18.99 5.47 18.47 6.37C17.56 7.94 18.3 9.22 20.11 9.22C21.15 9.22 22.01 10.07 22.01 11.12V12.88C22.01 13.92 21.16 14.78 20.11 14.78C18.3 14.78 17.56 16.06 18.47 17.63C18.99 18.54 18.68 19.7 17.77 20.22L16.04 21.21C15.25 21.68 14.23 21.4 13.76 20.61L13.65 20.42C12.75 18.85 11.27 18.85 10.36 20.42L10.25 20.61C9.78 21.4 8.76 21.68 7.97 21.21L6.24 20.22C5.33 19.7 5.02 18.53 5.54 17.63C6.45 16.06 5.71 14.78 3.9 14.78C2.85 14.78 2 13.92 2 12.88Z' stroke='%23ffffff' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 18px 18px;
-}
-
-.bmpui-ui-settingstogglebutton.bmpui-on {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='%23ffffff'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'/%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg id='style=linear'%3E%3Cg id='setting'%3E%3Cpath id='vector' d='M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z' stroke='%23ffffff' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath id='vector_2' d='M2 12.88V11.12C2 10.08 2.85 9.22 3.9 9.22C5.71 9.22 6.45 7.94 5.54 6.37C5.02 5.47 5.33 4.3 6.24 3.78L7.97 2.79C8.76 2.32 9.78 2.6 10.25 3.39L10.36 3.58C11.26 5.15 12.74 5.15 13.65 3.58L13.76 3.39C14.23 2.6 15.25 2.32 16.04 2.79L17.77 3.78C18.68 4.3 18.99 5.47 18.47 6.37C17.56 7.94 18.3 9.22 20.11 9.22C21.15 9.22 22.01 10.07 22.01 11.12V12.88C22.01 13.92 21.16 14.78 20.11 14.78C18.3 14.78 17.56 16.06 18.47 17.63C18.99 18.54 18.68 19.7 17.77 20.22L16.04 21.21C15.25 21.68 14.23 21.4 13.76 20.61L13.65 20.42C12.75 18.85 11.27 18.85 10.36 20.42L10.25 20.61C9.78 21.4 8.76 21.68 7.97 21.21L6.24 20.22C5.33 19.7 5.02 18.53 5.54 17.63C6.45 16.06 5.71 14.78 3.9 14.78C2.85 14.78 2 13.92 2 12.88Z' stroke='%23ffffff' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 18px 18px;
-}
-
-.bmpui-ui-selectbox {
-    color: #f00;
-}
-
-.bmpui-ui-selectbox option:checked {
-    color: #f00;
-}
-
-.bmpui-ui-recommendation-overlay {
-    background-color: rgba(57, 8, 8, 0);
-}
-
-.bmpui-ui-recommendation-overlay.bmpui-recommendations .bmpui-ui-recommendation-item .bmpui-background {
-background-color: rgba(57, 8, 8, 0);
-}
-
-.bmpui-ui-buffering-overlay {
-    background-color: rgba(57, 8, 8, 0);
-}
-
-.bmpui-ui-buffering-overlay-indicator {
-  display: none !important;
-}
-
-.bmpui-ui-buffering-overlay::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;  /* centrar */
-  margin-top: -20px;
-  border: 3px solid transparent;
-  border-top-color: red;
-  border-right-color: red; /* Para que el "gap" sea pequeño, pintamos dos lados */
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
-  z-index: 1000;
-}
-
-@keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.bmpui-ui-hugeplaybacktogglebutton .bmpui-image {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='173px' height='173px' viewBox='0 0 32 32' enable-background='new 0 0 32 32' xml:space='preserve' fill='%23ff0000' stroke='%23ff0000' stroke-width='0.064'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg%3E%3Cpath fill='%23ff0000' d='M16,0C7.178,0,0,7.178,0,16s7.178,16,16,16s16-7.178,16-16S24.822,0,16,0z M16,31C7.729,31,1,24.271,1,16 S7.729,1,16,1s15,6.729,15,15S24.271,31,16,31z'%3E%3C/path%3E%3Cpath fill='%23ff0000' d='M19.609,14.802L14.316,10.8c-0.263-0.197-0.567-0.302-0.88-0.302C12.631,10.498,12,11.158,12,12v8 c0,0.842,0.635,1.502,1.445,1.502c0.313,0,0.619-0.104,0.885-0.304l5.258-3.998c0.382-0.287,0.611-0.742,0.611-1.218 C20.198,15.512,19.983,15.081,19.609,14.802z M18.985,16.401l-5.258,3.998C13.434,20.622,13,20.453,13,20v-8 c0-0.326,0.225-0.502,0.437-0.502c0.096,0,0.19,0.034,0.279,0.101l5.293,4.002c0.165,0.123,0.19,0.292,0.19,0.382 C19.198,16.147,19.122,16.3,18.985,16.401z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    cursor: pointer;
-}
-
-
-.bmpui-ui-titlebar {
-  opacity: 0;
-}
-  </style>
+</style>
 </head>
 <body>
 
-<div id="player">
-</div>
+<div id="dplayer"></div>
 
-<!-- Modal -->
+<!-- Modal Episodios -->
 <div class="modal" id="episodeModal">
   <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-header">
       <h2>Episodios</h2>
+      <span class="close-btn" id="closeModal">&times;</span>
     </div>
     <div class="selector-container" id="episodeList"></div>
   </div>
 </div>
 
-
-<script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
 <script>
-  const playerConfig = {
-    key: "23e8f02e-e245-45f5-88e6-e67b650dc3c0",
-    playback: {
-      autoplay: true
-    }
-  };
-
-  const sourceConfig = {
-    hls: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpp/mp/MATIAS%20PONCE%20%20LA%20PEL%C3%8DCULA.m3u8",
-    title: "Asesinato Para Principiantes - T1 E1"
-  };
-
-  const player = new bitmovin.player.Player(document.getElementById('player'), playerConfig);
-
-  player.on('error', function(event) {
-    console.error('Bitmovin Player Error:', event);
-    alert('Error en el reproductor: ' + (event.message || JSON.stringify(event)));
-  });
-
-  player.load(sourceConfig).then(function() {
-    console.log('Video cargado correctamente');
-  }).catch(function(error) {
-    console.error('Error al cargar el video:', error);
-  });
-
   const episodes = [
             {
-                title: 'Koshe Plostenko',
-                description: 'Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8',
-                image: 'https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg',
-                duration: '1 h 20 min' // Duración actualizada
-            },
-            {
-                title: 'El Amo De Los Clones',
-                description: 'Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.',
-                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/damianc/100Lucha%20El%20Amo%20de%20los%20Clones.m3u8',
-                image: 'https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png',
-                duration: '1 h 25 min' // Duración para el episodio de la temporada 2
+                title: 'Matias Ponce - La Película',
+                description: 'Matías Ponce, creador de contenido, ve cómo su canal de YouTube —o “Yutun”, como él lo llama— es suspendido sin explicación. Para recuperarlo, se enfrenta a hackers y alienígenas en una aventura absurda y llena de humor.',
+                videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpp/mp/MATIAS%20PONCE%20%20LA%20PEL%C3%8DCULA.m3u8',
+                image: 'https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg',
+                duration: '60 min' // Duración actualizada
             }
   ];
 
-const list = document.getElementById('episodeList');
-const modal = document.getElementById('episodeModal');
-const closeBtn = document.getElementById('closeModalBtn');
+  const dp = new DPlayer({
+    container: document.getElementById('dplayer'),
+    autoplay: true,
+    video: {
+      url: episodes[0].videoPath,
+      type: 'customHls',
+      customType: {
+        customHls: function (video, player) {
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(video.src);
+            hls.attachMedia(video);
+          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = video.src;
+          }
+        }
+      }
+    }
+  });
 
-episodes.forEach(episode => {
-  const ep = document.createElement('div');
-  ep.classList.add('episode');
-  ep.innerHTML = `
-    <img src="${episode.image}" alt="">
-    <div class="episode-info">
-      <h4>${episode.title}</h4>
-      <p>${episode.description}</p>
-    </div>
-  `;
-  ep.onclick = () => {
-    player.load({
-      hls: episode.videoPath,
-      title: episode.title,
-      description: episode.description
-    });
-    modal.style.display = 'none';
-  };
-  list.appendChild(ep);
+// Insertar botón en controles
+const observer = new MutationObserver(() => {
+  const controls = document.querySelector('.dplayer-icons.dplayer-icons-right');
+  if (controls && !document.getElementById('episodeBtn')) {
+    const btn = document.createElement('div');
+    btn.className = 'episode-btn-dp skb-svg';
+    btn.id = 'episodeBtn';
+    btn.innerHTML = `
+      <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
+          <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"></path>
+          <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"></path>
+          <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"></path>
+        </g>
+      </svg>`;
+    
+    // Cambio aquí: abrir modal con hover en el botón
+    btn.onmouseenter = () => {
+      document.getElementById('episodeModal').style.display = 'flex';
+      renderEpisodes();
+    };
+    
+    controls.appendChild(btn);
+    observer.disconnect(); // evitar inserciones múltiples
+  }
 });
 
-  closeBtn.onclick = () => {
-    modal.style.display = 'none';
-  };
+observer.observe(document.body, { childList: true, subtree: true });
 
-  window.onclick = (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
+// Modal cierre con click
+document.getElementById('closeModal').onclick = () => {
+  document.getElementById('episodeModal').style.display = 'none';
+};
+
+window.onclick = function (event) {
+  const modal = document.getElementById('episodeModal');
+  if (event.target === modal) modal.style.display = "none";
+};
+
+function renderEpisodes() {
+  const list = document.getElementById('episodeList');
+  list.innerHTML = '';
+
+  episodes.forEach((ep, index) => {
+    const item = document.createElement('div');
+    item.className = `episode e${index + 1}item`;
+
+    // Borde superior solo para el primer episodio
+    if (index === 0) {
+      item.classList.add('e1item'); // ya está incluido arriba, pero lo reforzamos si querés usar esa clase para CSS
     }
-  };
 
-  // Cargar primer episodio
-  player.load({
-    hls: episodes[0].videoPath,
-    title: episodes[0].title,
-    description: episodes[0].description
+    item.innerHTML = `
+      <img src="${ep.image}" alt="${ep.title}" />
+      <div class="episode-info">
+        <h4>${ep.title}</h4>
+        <p>${ep.description}</p>
+      </div>
+    `;
+
+    // Hover: aplicar clases dinámicas a este y al anterior
+    item.addEventListener('mouseenter', () => {
+      item.classList.add('active');
+
+      const previousItem = list.children[index - 1];
+      if (previousItem) previousItem.classList.add('prev-active');
+    });
+
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('active');
+
+      const previousItem = list.children[index - 1];
+      if (previousItem) previousItem.classList.remove('prev-active');
+    });
+
+    // Click para cambiar episodio
+    item.onclick = () => {
+      dp.switchVideo({
+        url: ep.videoPath,
+        type: 'customHls',
+        customType: {
+          customHls: function (video, player) {
+            if (Hls.isSupported()) {
+              const hls = new Hls();
+              hls.loadSource(video.src);
+              hls.attachMedia(video);
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+              video.src = video.src;
+            }
+          }
+        }
+      });
+      dp.play();
+      document.getElementById('episodeModal').style.display = 'none';
+    };
+
+    list.appendChild(item);
   });
-
-  // Construir UI
-  const uiManager = bitmovin.playerui.UIFactory.buildDefaultUI(player);
-
-  // Crear y agregar botón SVG personalizado
-  const button = document.createElement('div');
-  button.classList.add('episode-button');
-  button.innerHTML = `
-<svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g fill="none" fill-rule="evenodd" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)"> <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"></path> <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"></path> <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"></path> </g> </g></svg>
-  `;
-  document.getElementById('player').appendChild(button);
-</script>
-
-<script>
-  const indicator = document.querySelector('.bmpui-ui-buffering-overlay-indicator');
-if (indicator) {
-  // Ocultamos hijos existentes
-  [...indicator.children].forEach(child => child.style.display = 'none');
-  
-  // Creamos el spinner
-  const spinner = document.createElement('div');
-  spinner.style.width = '50px';
-  spinner.style.height = '50px';
-  spinner.style.border = '4px solid transparent';
-  spinner.style.borderTopColor = 'red';
-  spinner.style.borderRadius = '50%';
-  spinner.style.animation = 'spin 1.2s linear infinite';
-  spinner.style.margin = 'auto';
-  
-  indicator.appendChild(spinner);
 }
-
-  // 1. Mostrar modal al hacer hover
-  const episodeButton = document.querySelector('.episode-button');
-
-  episodeButton.addEventListener('mouseenter', () => {
-    modal.style.display = 'flex';
-  });
-
-  // 2. Ocultar modal al salir de su área
-  modal.addEventListener('mouseleave', () => {
-    modal.style.display = 'none';
-  });
-
-  // 3. Ocultar el botón cuando se ocultan los controles del player
-  player.on(player.exports.PlayerEvent.ControlsHide, () => {
-    episodeButton.style.display = 'none';
-  });
-
-  player.on(player.exports.PlayerEvent.ControlsShow, () => {
-    episodeButton.style.display = 'block';
-  });
 </script>
+
 </body>
 </html>
