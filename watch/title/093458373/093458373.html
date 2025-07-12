@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reproductor con Episodios</title>
+  <title>Matias Ponce, La Película - Sol Argentino TV MOVIES</title>
 
   <!-- DPlayer CSS -->
   <link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css">
@@ -295,10 +295,17 @@ document.getElementById('closeModal').onclick = () => {
   document.getElementById('episodeModal').style.display = 'none';
 };
 
+const episodeModal = document.getElementById('episodeModal');
+
+// Cerrar modal si haces click fuera de él
 window.onclick = function (event) {
-  const modal = document.getElementById('episodeModal');
-  if (event.target === modal) modal.style.display = "none";
+  if (event.target === episodeModal) episodeModal.style.display = "none";
 };
+
+// Cerrar modal al sacar el mouse del modal
+episodeModal.addEventListener('mouseleave', () => {
+  episodeModal.style.display = 'none';
+});
 
 function renderEpisodes() {
   const list = document.getElementById('episodeList');
@@ -357,7 +364,7 @@ function renderEpisodes() {
 
       updateEpisodeTitle(ep.title); // <-- Actualiza título aquí
 
-      document.getElementById('episodeModal').style.display = 'none';
+      episodeModal.style.display = 'none';
     };
 
     list.appendChild(item);
