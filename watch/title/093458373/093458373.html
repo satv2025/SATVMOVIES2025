@@ -41,6 +41,11 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    .episodesButtonReact,
+    #episodesButtonReact {
+      display: none !important;
+    }
   </style>
 </head>
 
@@ -65,11 +70,6 @@
         title.classList.add('hidden');
       }, 2840); // oculta después de 3 segundos sin actividad
     }
-
-    player.addEventListener('mousemove', showTitle);
-    player.addEventListener('mouseleave', () => {
-      title.classList.add('hidden');
-    });
 
     // Mostrar título al cargar
     showTitle();

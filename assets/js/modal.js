@@ -2,7 +2,7 @@
 const peliculas = {
     matiponcepeli: {
         year: "2022",
-        duration: "1h",
+        duration: "1 h",
         description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
         cast: "<strong>Elenco:</strong> Matias Ponce, Santino Ponce, Indio Ponce, <a href='#about'>más</a>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'></span> <strong class='titulo'>Matias Ponce - La Película</strong>",
@@ -20,7 +20,7 @@ const peliculas = {
     },
     cienporcientolucha: {
         year: "2008",
-        duration: "<span style='margin-left: 1.3em;'>1h 20m</span>",
+        duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
         description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <a href='#about'>más</a>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
@@ -38,7 +38,7 @@ const peliculas = {
     },
     cienporcientoluchaeadc: {
         year: "2009",
-        duration: "<span style='margin-left: 1.3em;'>1h 20m</span>",
+        duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
         description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.",
         cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <a href='#about'>más</a>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
