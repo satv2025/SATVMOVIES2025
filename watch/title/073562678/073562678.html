@@ -3,403 +3,261 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Asesinato Para Principiantes - Sol Argentino TV MOVIES</title>
-
-  <!-- DPlayer CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css">
-
-  <!-- DPlayer SATV CSS-->
-  <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
-
-  <!-- HLS.js para soporte m3u8 -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-  <!-- DPlayer JS -->
-  <script src="https://unpkg.com/dplayer/dist/DPlayer.min.js"></script>
-
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.solargentinotv.com.ar/build/SATVPlayer.js"></script>
+  <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
+    type="image/x-icon">
   <style>
-    @import url(https://fuentes.solargentinotv.com.ar/netflixsans.css);
-
-    * {
-      font-family: 'Netflix Sans' !important;
-    }
-
-    html,
-    body {
+    body,
+    html {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
-      /* evita scroll */
-    }
-
-    #dplayer {
-      width: 100vw;
+      background: black;
       height: 100vh;
-      box-sizing: border-box;
-    }
-
-    .episode-btn-dp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      margin-left: 10px;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .episode-btn-dp svg {
-      width: 26px;
-      height: auto;
-      margin-top: 0.46em;
-      position: absolute;
-      margin-left: -12em;
-      stroke: #f00;
-      fill: #ffffff00 !important;
-      color: #ffffff00 !important;
-    }
-
-    .episode-btn-dp svg path {
-      fill: #ffffff00 !important;
-    }
-
-    .dplayer-controller .dplayer-icons.dplayer-icons-right .dplayer-icon {
-      margin-top: -1.2em;
-      margin-right: -2.7em;
-    }
-
-    .dplayer-controller .dplayer-icons .dplayer-icon.dplayer-setting-icon {
-      margin-top: -1.2em;
-      margin-right: 0em;
-    }
-
-
-    .skb-svg {
-      width: 26px !important;
-    }
-
-    .modal {
-      position: fixed;
-      top: 5em;
-      left: 79%;
-      transform: translateX(-50%);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      width: 100vw;
-      height: 78vh;
-    }
-
-    .modal-content {
-      background: #222;
-      padding: 20px;
-      border-radius: 10px;
-      overflow-y: auto;
-      width: 90%;
-      max-width: 749px;
-      height: 90vh;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-header h2 {
-      color: #fff;
-    }
-
-    .close-btn {
-      color: #fff;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .selector-container {
       display: flex;
       flex-direction: column;
-      gap: -14px;
-      padding-left: 2em;
-      padding-right: 2em;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 5px 10px;
     }
 
-    .episode {
+    #player video {
+      max-width: 90vw;
+      max-height: 80vh;
+      background: black;
+    }
+
+    .serie,
+    .epname {
+      font-weight: normal;
+      font-size: 22px;
+      margin: 40.6em 0 -20.6em 0px;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+      position: relative;
+      margin-top: 20.31em;
+      left: -3em;
+    }
+
+    .epname {
+      margin-left: 21em;
+      margin-top: 20.3em;
+    }
+
+    .serie {
+      font-weight: 500;
+      font-size: 23px;
+      margin-top: 14.992em;
+    }
+
+    .serie:fullscreen,
+    .epname:fullscreen {
+      font-weight: normal;
+      font-size: 20px;
+      margin: 40.6em 0 10px 0;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    /* para ocultar */
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Botón de episodios */
+    #episodesButtonReact img {
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #episodesButtonReact img:hover {
+      transform: scale(1.2);
+    }
+
+    .episodes-button-container {
+      position: relative;
+      cursor: pointer;
+      width: 24px;
+    }
+
+    .episodes-button {
+      width: 40px;
+      height: 40px;
+      margin-left: -17.3em;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .episodes-modal {
+      position: absolute;
+      bottom: 37px !important;
+      right: 0;
+      background-color: #181818;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 100;
+      user-select: none;
+      width: 562px !important;
+      height: 36em;
+      overflow-y: auto;
+    }
+
+    .episodes-modal-title {
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+      margin-left: 1.4em;
+      margin-top: 0.5em;
+    }
+
+    .episode-item {
       display: flex;
       align-items: center;
-      gap: 21px;
-      padding: 21px 0;
-      padding-left: 2em;
-      padding-right: 2em;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
 
-    .episode:hover {
-      background: #444;
+    .episode-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
-    .episode img {
-      width: 160px;
-      width: 132px;
-      border-radius: 5px;
+    .episode-item img {
+      width: 126px !important;
+      height: auto;
+      margin-right: 10px;
+      border-radius: 3px;
+      zoom: 1.6;
+    }
+
+    .episode-info {
+      color: white;
     }
 
     .episode-info h4 {
-      margin: 0 0 5px;
-      color: #fff;
+      margin: 0;
+      font-size: 1em;
     }
 
     .episode-info p {
       margin: 0;
-      font-size: 14px;
-      margin: 0;
-      font-size: 14px;
+      font-size: 0.8em;
       color: #ccc;
     }
 
-    /* Estilo general para episodios */
-    .episode {
-      border-bottom: 1px solid #444;
-      border-radius: 5px;
-      padding: 21px 2em;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 21px;
-      transition: background 0.2s, border-color 0.2s;
+    .epimage img:hover,
+    #epimage img:hover {
+      all: unset;
     }
 
-    /* Solo el primer episodio tiene borde superior */
-    .e1item {
-      border-top: 1px solid #444;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
-
-    /* Al hacer hover, ocultar visualmente el borde sin colapso de espacio */
-    .episode.active,
-    .episode.prev-active {
-      border-bottom-color: transparent !important;
-    }
-
-    /* Opcional: fondo al hacer hover */
-    .episode.active {
-      background: #444;
-    }
-
-    .episode-title {
-      position: absolute;
-      bottom: 1.5em;
-      left: 62em;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      pointer-events: none;
+    .episodes-modal {
+      zoom: 1.6 !important;
     }
   </style>
 </head>
 
 <body>
-
-  <div id="dplayerContainer" style="position: relative;">
-    <div id="dplayer"></div>
-    <div id="episodeTitle" class="episode-title">
-      Episodio 1
-    </div>
-  </div>
-  <!-- Modal Episodios -->
-  <div class="modal" id="episodeModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Episodios</h2>
-      </div>
-      <div class="selector-container" id="episodeList"></div>
-    </div>
-  </div>
+  <strong class="serie" id="serie">Asesinato para principiantes</strong>
+  <p class="epname" id="epname"></p>
+  <div id="player"></div>
+  <div id="episodes-root"></div>
 
   <script>
-    const episodes = [
-      {
-        title: 'Episodio 1',
-        description: 'Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8',
-        image: 'https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg'
-      },
-      {
-        title: 'Episodio 2',
-        description: 'Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8',
-        image: 'https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg'
-      },
-      {
-        title: 'Episodio 3',
-        description: 'Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8',
-        image: 'https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg'
-      },
-      {
-        title: 'Episodio 4',
-        description: 'Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8',
-        image: 'https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg'
-      },
-      {
-        title: 'Episodio 5',
-        description: 'Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8',
-        image: 'https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5'
-      },
-      {
-        title: 'Episodio 6',
-        description: 'La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.',
-        videoPath: 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8',
-        image: 'https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg'
-      }
-    ];
-
-    const dp = new DPlayer({
-      container: document.getElementById('dplayer'),
-      autoplay: true,
-      video: {
-        url: episodes[0].videoPath,
-        type: 'customHls',
-        customType: {
-          customHls: function (video, player) {
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(video.src);
-              hls.attachMedia(video);
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-              video.src = video.src;
-            }
-          }
-        }
-      }
-    });
-
-    // Referencia al contenedor del título
-    const episodeTitle = document.getElementById('episodeTitle');
-    function updateEpisodeTitle(title) {
-      episodeTitle.textContent = title;
-    }
-    updateEpisodeTitle(episodes[0].title); // Título inicial
-
-    // Insertar botón en controles
-    const observer = new MutationObserver(() => {
-      const controls = document.querySelector('.dplayer-icons.dplayer-icons-right');
-      if (controls && !document.getElementById('episodeBtn')) {
-        const btn = document.createElement('div');
-        btn.className = 'episode-btn-dp skb-svg';
-        btn.id = 'episodeBtn';
-        btn.innerHTML = `
-      <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
-        <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 4)">
-          <path d="m13.5 12.5v-6c0-1.1045695-.8954305-2-2-2h-9c-1.1045695 0-2 .8954305-2 2v6c0 1.1045695.8954305 2 2 2h9c1.1045695 0 2-.8954305 2-2z"></path>
-          <path d="m15.5 12.5v-6.99481259c0-1.65685425-1.3431458-3-3-3-.0017276 0-.0034553 0-.0051829 0l-8.9948171.01554432"></path>
-          <path d="m17.5 10.5v-5.99308345c0-2.209139-1.790861-4-4-4-.0023035 0-.004607 0-.0069106 0l-7.9930894.01381519"></path>
-        </g>
-      </svg>`;
-
-        controls.appendChild(btn);
-        observer.disconnect(); // evitar inserciones múltiples
-
-        // Mostrar y ocultar modal con hover usando timeout
-        const episodeModal = document.getElementById('episodeModal');
-        let modalTimeout;
-
-        function showModal() {
-          clearTimeout(modalTimeout);
-          episodeModal.style.display = 'flex';
-          renderEpisodes();
-        }
-
-        function hideModal() {
-          modalTimeout = setTimeout(() => {
-            episodeModal.style.display = 'none';
-          }, 200);
-        }
-
-        btn.addEventListener('mouseenter', showModal);
-        btn.addEventListener('mouseleave', hideModal);
-
-        episodeModal.addEventListener('mouseenter', () => clearTimeout(modalTimeout));
-        episodeModal.addEventListener('mouseleave', hideModal);
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Cierre por botón manual
-    document.getElementById('closeModal').onclick = () => {
-      document.getElementById('episodeModal').style.display = 'none';
-    };
-
-    // Cierre si se hace click fuera del modal
-    window.onclick = function (event) {
-      const modal = document.getElementById('episodeModal');
-      if (event.target === modal) modal.style.display = "none";
-    };
-
-    function renderEpisodes() {
-      const list = document.getElementById('episodeList');
-      list.innerHTML = '';
-
-      episodes.forEach((ep, index) => {
-        const item = document.createElement('div');
-        item.className = `episode e${index + 1}item`;
-        if (index === 0) item.classList.add('e1item');
-
-        item.innerHTML = `
-      <img src="${ep.image}" alt="${ep.title}" />
-      <div class="episode-info">
-        <h4>${ep.title}</h4>
-        <p>${ep.description}</p>
-      </div>
-    `;
-
-        item.addEventListener('mouseenter', () => {
-          item.classList.add('active');
-          const previousItem = list.children[index - 1];
-          if (previousItem) previousItem.classList.add('prev-active');
-        });
-
-        item.addEventListener('mouseleave', () => {
-          item.classList.remove('active');
-          const previousItem = list.children[index - 1];
-          if (previousItem) previousItem.classList.remove('prev-active');
-        });
-
-        item.onclick = () => {
-          dp.switchVideo({
-            url: ep.videoPath,
-            type: 'customHls',
-            customType: {
-              customHls: function (video, player) {
-                if (Hls.isSupported()) {
-                  const hls = new Hls();
-                  hls.loadSource(video.src);
-                  hls.attachMedia(video);
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                  video.src = video.src;
-                }
-              }
-            }
-          });
-          dp.play();
-          updateEpisodeTitle(ep.title);
-          document.getElementById('episodeModal').style.display = 'none';
-        };
-
-        list.appendChild(item);
+    window.onload = function () {
+      SATVPlayerEmbed({
+        elementId: "player",
+        videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u"
       });
+
+      const serie = document.getElementById('serie');
+      const epname = document.getElementById('epname');
+      const player = document.getElementById('player');
+
+      let hideTimeout;
+
+      function showTitles() {
+        clearTimeout(hideTimeout);
+        serie.classList.remove('hidden');
+        epname.classList.remove('hidden');
+
+        hideTimeout = setTimeout(() => {
+          serie.classList.add('hidden');
+          epname.classList.add('hidden');
+        }, 3000);
+      }
+
+      showTitles();
+      player.addEventListener('mousemove', showTitles);
+    };
+  </script>
+
+  <script id="episodes-data" type="application/json">
+        [
+            {
+                "title": "Episodio 1",
+                "description": "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
+                "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
+            },
+            {
+                "title": "Episodio 2",
+                "description": "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8",
+                "image": "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg"
+            },
+            {
+                "title": "Episodio 3",
+                "description": "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina.Y su siguiente pista la lleva a territorio aún más peligroso.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8",
+                "image": "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg"
+            },
+            {
+                "title": "Episodio 4",
+                "description": "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8",
+                "image": "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg"
+            },
+            {
+                "title": "Episodio 5",
+                "description": "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8",
+                "image": "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5"
+            },
+            {
+                "title": "Episodio 6",
+                "description": "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado,así que va a visitar a la única persona que podría tener respuestas.",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8",
+                "image": "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg"
+            }
+        ]
+    </script>
+
+  <script>
+    // Parseamos el JSON de episodios
+    const episodesData = JSON.parse(document.getElementById('episodes-data').textContent);
+
+    // Referencias a los elementos para actualizar
+    const epnameEl = document.getElementById('epname');
+
+    // Función simple que muestra el episodio por índice
+    function updateEpisodeInfo(index) {
+      const episode = episodesData[index];
+      epnameEl.textContent = `E${index + 1} ${episode.title}`;
     }
+
+    // Inicializamos mostrando el primer episodio
+    updateEpisodeInfo(0);
+
+    // Ejemplo: cambiar al episodio 2 a los 3 segundos
+    // setTimeout(() => updateEpisodeInfo(1), 3000);
   </script>
 
 </body>
