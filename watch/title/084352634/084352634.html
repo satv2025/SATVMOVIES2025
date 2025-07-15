@@ -71,6 +71,11 @@
       }, 2840); // oculta después de 3 segundos sin actividad
     }
 
+    player.addEventListener('mousemove', showTitle);
+    player.addEventListener('', () => {
+      title.classList.add('hidden');
+    });
+
     // Mostrar título al cargar
     showTitle();
   </script>
