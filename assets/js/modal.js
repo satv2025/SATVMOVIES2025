@@ -12,26 +12,43 @@ const peliculas = {
         background: "https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg",
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/093458373' target='_self'>▶ Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Matías Ponce</span></div>",
-        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Matías Ponce, Santino Ponce, Indio Ponce, Antonella Ponce, Valeria Volpi, Julieta</span></div>", 
-        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Matías Ponce</span></div>", 
-        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, humor absurdo, hackers, fama, grandes élites, paranoia, haters, YouTube</span></div>", 
-        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este titulo es:</span> <span class='fttcontent'> Original, delirante</span></div>", 
+        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Matías Ponce, Santino Ponce, Indio Ponce, Antonella Ponce, Valeria Volpi, Julieta</span></div>",
+        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Matías Ponce</span></div>",
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, humor absurdo, hackers, fama, grandes élites, paranoia, haters, YouTube</span></div>",
+        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este titulo es:</span> <span class='fttcontent'> Original, delirante</span></div>",
         fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> adolescentes, adultos, lenguaje inapropiado, delirante</span> <span class='facontent2'>Apta para mayores de 12 años</span></div>"
     },
     cienporcientolucha: {
-        year: "2008-09",
-        duration: "<span style='margin-left: 1.3em;'>1h 20m (por película)</span>",
-        description: "Los productores detrás del famoso programa 100% Lucha decidieron hacerle películas.",
-        curiosity: "<strong class='curiosidad'>Último día para ver esto: 10 de marzo</strong>",
+        year: "2008",
+        duration: "<span style='margin-left: 1.3em;'>1h 20m</span>",
+        description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <a href='#about'>más</a>",
-        title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - Las Películas</strong>",
+        title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
         genres: "<strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas",
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
         background: "https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352634' target='_self'>▶ Reproducir</a>",
+        createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
+        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>María Fernanda Neil, Carlos Kaspar, Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Julio Mario Sibara 'Turco Naím', Gonzalo Nenna, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini</span></div>",
+        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, Lucha Libre, Luchas Clandestinas, Apuestas, Secuestros, Traiciones</span></div>",
+        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este titulo es:</span> <span class='fttcontent'> Intenso, Íntimo, Delirante, Divertido</span></div>",
+        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>"
+    },
+    cienporcientoluchaeadc: {
+        year: "2009",
+        duration: "<span style='margin-left: 1.3em;'>1h 20m</span>",
+        description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.",
+        cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <a href='#about'>más</a>",
+        title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
+        genres: "<strong>Géneros:</strong> Humor, lucha libre, futurista, robots, androides",
+        titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
+        ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
+        background: "https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png",
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352635' target='_self'>▶ Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
-        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Carlos Kaspar, Julio Mario Sibara 'Turco Naím', Roberto Carnaghi, Daniel Casablanca, Delfina Gerez Bosco, Pablo Rago, Juan Pablo Varsky, Berta Muñiz, Natalia Kim, Rocío Rodríguez Presedo, Esteban Rojas, Gonzalo Nennal, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini</span></div>",
+        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, Leo Montero, VNorberto Adrián Fernández, Delfina Gerez Bosco, La Masa, Osvaldo Príncipi, Berta Muñiz, Eduardo Husni, Natalia Kim, Daniel Casablanca, Walter Cornás, Jefe de piso en estudio, Rocío Rodríguez Presedo, Esteban Rojas, Dallys Ferreyra Enciso, Julia Lenzberg</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
         fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, Lucha Libre, Luchas Clandestinas, Apuestas, Secuestros, Traiciones</span></div>",
         fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este titulo es:</span> <span class='fttcontent'> Intenso, Íntimo, Delirante, Divertido</span></div>",
@@ -83,23 +100,23 @@ const peliculas = {
         `
     },
     reite666: {
-    year: "2018",
-    duration: "2 temporadas",
-    description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
-    cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <a href='#about'>más</a>",
-    title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
-    genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
-    titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
-    ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
-    background: "https://movies.solargentinotv.com.ar/assets/media/images/Logo Reite666 2.png",
-    link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>▶ Reproducir</a>",
-    createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
-    fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
-    fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
-    fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal, De España</span></div>",
-    fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
-    fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
-  }
+        year: "2018",
+        duration: "2 temporadas",
+        description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
+        cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <a href='#about'>más</a>",
+        title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
+        genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
+        titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
+        ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
+        background: "https://movies.solargentinotv.com.ar/assets/media/images/Logo Reite666 2.png",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>▶ Reproducir</a>",
+        createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
+        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
+        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal, De España</span></div>",
+        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
+        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
+    }
 };
 
 // Datos de episodios por temporada
@@ -282,39 +299,39 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function ajustarModalTop() {
-  const cast = document.querySelector('.modal-cast');
-  const genres = document.querySelector('.modal-genres');
-  const titleType = document.querySelector('.modal-titleType');
+    const cast = document.querySelector('.modal-cast');
+    const genres = document.querySelector('.modal-genres');
+    const titleType = document.querySelector('.modal-titleType');
 
-  const getLineCount = (el) => {
-    const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-    const height = el.getBoundingClientRect().height;
-    return Math.round(height / lineHeight);
-  };
+    const getLineCount = (el) => {
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const height = el.getBoundingClientRect().height;
+        return Math.round(height / lineHeight);
+    };
 
-  const castLines = getLineCount(cast);
-  const genresLines = getLineCount(genres);
+    const castLines = getLineCount(cast);
+    const genresLines = getLineCount(genres);
 
-  // Valores base según tu CSS
-  let genresTop = 35.5;      // en em
-  let titleTypeTop = 38.4;   // en em
+    // Valores base según tu CSS
+    let genresTop = 35.5;      // en em
+    let titleTypeTop = 38.4;   // en em
 
-  // Ajuste por línea faltante (aproximado)
-  const lineOffset = 1.2; // em
+    // Ajuste por línea faltante (aproximado)
+    const lineOffset = 1.2; // em
 
-  // Si el cast tiene menos de 2 líneas, subir genres y titleType
-  if (castLines < 2) {
-    genresTop -= lineOffset;
-    titleTypeTop -= lineOffset;
-  }
+    // Si el cast tiene menos de 2 líneas, subir genres y titleType
+    if (castLines < 2) {
+        genresTop -= lineOffset;
+        titleTypeTop -= lineOffset;
+    }
 
-  // Si genres tiene menos de 2 líneas, subir titleType
-  if (genresLines < 2) {
-    titleTypeTop -= lineOffset;
-  }
+    // Si genres tiene menos de 2 líneas, subir titleType
+    if (genresLines < 2) {
+        titleTypeTop -= lineOffset;
+    }
 
-  genres.style.top = `${genresTop}em`;
-  titleType.style.top = `${titleTypeTop}em`;
+    genres.style.top = `${genresTop}em`;
+    titleType.style.top = `${titleTypeTop}em`;
 }
 
 window.addEventListener('load', ajustarModalTop);
