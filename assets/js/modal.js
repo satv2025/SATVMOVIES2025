@@ -4,7 +4,7 @@ const peliculas = {
         year: "2022",
         duration: "1 h",
         description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
-        cast: "<strong>Elenco:</strong> Matias Ponce, Santino Ponce, Indio Ponce, <a href='#about'>más</a>",
+        cast: "<strong>Elenco:</strong> Matias Ponce, Santino Ponce, Indio Ponce, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'></span> <strong class='titulo'>Matias Ponce - La Película</strong>",
         genres: "<strong>Géneros:</strong> Humor, humor absurdo, hackers, fama, grandes élites",
         titleType: "<strong>Este título es:</strong> Original, delirante",
@@ -22,7 +22,7 @@ const peliculas = {
         year: "2008",
         duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
         description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
-        cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <a href='#about'>más</a>",
+        cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
         genres: "<strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas",
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
@@ -40,7 +40,7 @@ const peliculas = {
         year: "2009",
         duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
         description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.",
-        cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <a href='#about'>más</a>",
+        cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
         genres: "<strong>Géneros:</strong> Humor, lucha libre, futurista, robots, androides",
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
@@ -58,7 +58,7 @@ const peliculas = {
         year: "2024",
         duration: "6 episodios",
         description: "En este thriller atrapante, una estudiante investiga, para un proyecto escolar, un caso ocurrido hace cinco años.",
-        cast: "<strong>Elenco:</strong> Emma Myers, Zain Iqbal, Asha Banks, <a href='#about'>más</a>",
+        cast: "<strong>Elenco:</strong> Emma Myers, Zain Iqbal, Asha Banks, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Asesinato Para Principiantes</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
         genres: "<strong>Géneros:</strong> Series dramáticas, De Gran Bretaña, Series basadas en libros",
@@ -103,7 +103,7 @@ const peliculas = {
         year: "2018",
         duration: "2 temporadas",
         description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
-        cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <a href='#about'>más</a>",
+        cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
         genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
@@ -200,7 +200,37 @@ function openModal(movieKey) {
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerText = movie.description;
-    document.getElementById("modal-cast").innerHTML = movie.cast;
+    document.getElementById('modal-cast').innerHTML = movie.cast;
+
+    const scrollButton = document.querySelector('#modal-cast #scrollAbout');
+    if (scrollButton) {
+        scrollButton.addEventListener('click', () => {
+            const aboutSection = document.getElementById('about');
+            const container = document.getElementById('infoModal'); // Contenedor con scroll real
+            if (aboutSection && container) {
+                const start = container.scrollTop;
+                const end = aboutSection.offsetTop - container.offsetTop;
+                const distance = end - start;
+                const duration = 250; // ms, ajusta velocidad
+                let startTime = null;
+
+                function easeInOutQuad(t) {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                }
+
+                function animate(time) {
+                    if (!startTime) startTime = time;
+                    const elapsed = time - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easedProgress = easeInOutQuad(progress);
+                    container.scrollTop = start + distance * easedProgress;
+                    if (progress < 1) requestAnimationFrame(animate);
+                }
+
+                requestAnimationFrame(animate);
+            }
+        });
+    }
     document.getElementById("modal-genres").innerHTML = movie.genres;
     document.getElementById("modal-titleType").innerHTML = movie.titleType;
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;

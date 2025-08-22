@@ -101,38 +101,38 @@ a#watch-button:active {
     margin-top: -2.5em;
     margin-left: -1.25em;
     border-top-left-radius: 11.2px;
-    !i;
-    !;
     border-top-right-radius: 11.2px;
 }
 
-/* Texto y detalles */
-.modal-cast a {
+/* Botón "Más" dentro del cast */
+#modal-cast #scrollAbout {
     font-style: italic;
     cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Netflix Sans';
+    /* Igual que a:visited */
+    background: none;
+    border: none;
+    padding: 0;
     text-decoration: none;
-    color: #fff;
+    /* Igual que a:visited */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-.modal-cast a:visited {
+/* Hover */
+#modal-cast #scrollAbout:hover {
     color: #fff;
-}
-
-.modal-cast a:focus {
-    color: #fff;
-}
-
-.modal-cast a:hover {
-    cursor: pointer;
     text-decoration: underline;
-    color: #fff;
 }
 
-.modal-cast a:visited {}
-
-.modal-cast a:visited {
-    color: #fff;
+/* Focus / Active (clickeado) */
+#modal-cast #scrollAbout:focus,
+#modal-cast #scrollAbout:active {
+    outline: none;
+    /* quita borde de foco si quieres */
     text-decoration: none;
+    /* quita subrayado */
 }
 
 /* Posiciones con em */
@@ -143,12 +143,7 @@ a#watch-button:active {
     padding-left: 2.2em;
     z-index: 1000;
     color: #bcbcbc !important;
-    !i;
-    !;
 }
-
-.modal-year,
-.modal-duration {}
 
 .modal-title {
     position: absolute;
@@ -546,7 +541,6 @@ button.text:hover {
         align-items: center;
     }
 
-
     /* Contenido del modal */
     .modal-content {
         background-color: #181818;
@@ -559,8 +553,6 @@ button.text:hover {
         position: relative;
         height: 268vh;
     }
-
-    .modal-info {}
 
     .close-button svg {
         position: absolute;
@@ -585,7 +577,7 @@ button.text:hover {
         width: 100%;
     }
 
-    .modal-header:: before {
+    .modal-header::before {
         content: "";
         position: absolute;
         top: 0em;
@@ -601,8 +593,6 @@ button.text:hover {
         margin-top: -2.5em;
         margin-left: -1.2em;
         border-top-left-radius: 11.2px;
-        !i;
-        !;
         border-top-right-radius: 11.2px;
     }
 
@@ -962,8 +952,6 @@ button.text:hover {
         padding-left: 2em;
     }
 
-
-
     .fcprefix {
         color: #fff;
     }
@@ -1317,7 +1305,6 @@ button.text:hover {
         align-items: center;
     }
 
-
     /* Contenido del modal */
     .modal-content {
         background-color: #181818;
@@ -1330,8 +1317,6 @@ button.text:hover {
         position: relative;
         height: 268vh;
     }
-
-    .modal-info {}
 
     .close-button svg {
         position: absolute;
@@ -1732,8 +1717,6 @@ button.text:hover {
         text-align: justify;
         padding-left: 2em;
     }
-
-
 
     .fcprefix {
         color: #fff;
@@ -2088,7 +2071,6 @@ button.text:hover {
         align-items: center;
     }
 
-
     /* Contenido del modal */
     .modal-content {
         background-color: #181818;
@@ -2101,8 +2083,6 @@ button.text:hover {
         position: relative;
         height: 268vh;
     }
-
-    .modal-info {}
 
     .close-button svg {
         position: absolute;
@@ -2503,8 +2483,6 @@ button.text:hover {
         text-align: justify;
         padding-left: 2em;
     }
-
-
 
     .fcprefix {
         color: #fff;
@@ -2859,7 +2837,6 @@ button.text:hover {
         align-items: center;
     }
 
-
     /* Contenido del modal */
     .modal-content {
         background-color: #181818;
@@ -2872,8 +2849,6 @@ button.text:hover {
         position: relative;
         height: 268vh;
     }
-
-    .modal-info {}
 
     .close-button svg {
         position: absolute;
@@ -3274,8 +3249,6 @@ button.text:hover {
         text-align: justify;
         padding-left: 2em;
     }
-
-
 
     .fcprefix {
         color: #fff;
