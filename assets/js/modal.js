@@ -267,6 +267,7 @@ function openModal(movieKey) {
             }
         });
     }
+
     document.getElementById("modal-genres").innerHTML = movie.genres;
     document.getElementById("modal-titleType").innerHTML = movie.titleType;
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
@@ -286,11 +287,30 @@ function openModal(movieKey) {
     modal.style.display = "block";
     document.body.classList.add("modal-open");
 
+    // Reproducir video si existe
+    handleVideo(modal, "play");
+
     // Si es "app", cargar temporada 1
     if (movieKey === "app") {
         changeSeason(1);
     } else {
         document.getElementById("episode-list").innerHTML = "";
+    }
+}
+
+// Función global para manejar el video del modal
+function handleVideo(modal, action) {
+    const video = modal.querySelector("#modal-background video");
+    if (!video) return;
+
+    if (action === "play") {
+        video.currentTime = 0;
+        video.play().catch(() => {
+            console.warn("El navegador bloqueó el autoplay con sonido.");
+        });
+    } else if (action === "pause") {
+        video.pause();
+        video.currentTime = 0;
     }
 }
 
@@ -323,6 +343,7 @@ function changeSeason(season) {
 // Cerrar modal con botón
 document.querySelector(".close-button").addEventListener("click", () => {
     const modal = document.getElementById("infoModal");
+    handleVideo(modal, "pause");
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
 });
@@ -335,6 +356,7 @@ document.addEventListener("click", (event) => {
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
+        handleVideo(modal, "pause");
         modal.style.display = "none";
         document.body.classList.remove("modal-open");
     }
@@ -344,6 +366,7 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         const modal = document.getElementById("infoModal");
+        handleVideo(modal, "pause");
         modal.style.display = "none";
         document.body.classList.remove("modal-open");
     }
