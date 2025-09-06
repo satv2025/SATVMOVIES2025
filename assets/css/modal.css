@@ -45,6 +45,10 @@ a#watch-button:active {
     /* o sumás lo que ocupa el resto de contenido */
 }
 
+div#modal-background {
+    margin-top: -1.5em;
+}
+
 /* Ajuste de la clase .modal */
 .modal {
     display: none;
@@ -64,8 +68,8 @@ a#watch-button:active {
 
 .close-button svg {
     position: absolute;
-    top: -0.1em;
-    left: 51em;
+    top: -0.6em;
+    left: 52em;
     z-index: 1000;
     background: #181818;
     border-radius: 50%;
