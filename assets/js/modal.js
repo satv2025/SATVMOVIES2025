@@ -79,7 +79,7 @@ const peliculas = {
     app: {
         year: "2024",
         duration: "<p class='series-duration'>6 episodios</p>",
-        description: "Años después del homicidio de una chica en un tranquilo pueblo inglés, una estudiante se propone resolver el caso y encontrar al verdadero asesino.",
+        description: "<span id='curiosity-synopsis'>Años después del homicidio de una chica en un tranquilo pueblo inglés, una estudiante se propone resolver el caso y encontrar al verdadero asesino.</p>",
         cast: "<strong>Elenco:</strong> Emma Myers, Zain Iqbal, Asha Banks, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Asesinato Para Principiantes</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
