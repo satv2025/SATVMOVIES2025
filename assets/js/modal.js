@@ -10,7 +10,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Original, delirante",
         ageRating: "<span class='age'>16+</span> adolescentes, adultos, lenguaje inapropiado, delirante",
         background: "https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg",
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/093458373' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/093458373' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Matías Ponce</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Matías Ponce, Santino Ponce, Indio Ponce, Antonella Ponce, Valeria Volpi, Julieta</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Matías Ponce</span></div>",
@@ -29,7 +29,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
         background: "https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg",
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352634' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352634' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>María Fernanda Neil, Carlos Kaspar, Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Julio Mario Sibara 'Turco Naím', Gonzalo Nenna, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
@@ -48,7 +48,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
         background: "https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png",
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352635' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352635' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, Leo Montero, VNorberto Adrián Fernández, Delfina Gerez Bosco, La Masa, Osvaldo Príncipi, Berta Muñiz, Eduardo Husni, Natalia Kim, Daniel Casablanca, Walter Cornás, Jefe de piso en estudio, Rocío Rodríguez Presedo, Esteban Rojas, Dallys Ferreyra Enciso, Julia Lenzberg</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
@@ -67,7 +67,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
         ageRating: "<span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas",
         background: "https://whatsondisneyplus.b-cdn.net/wp-content/uploads/2020/11/Home-Alone.jpg",
-        link: "<a id='watch-button' href='https://www.disneyplus.com/movies/home-alone/3v4AGJ6xXOzK' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://www.disneyplus.com/movies/home-alone/3v4AGJ6xXOzK' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Dirigido por:</span> <span class='fcbcontent'>Chris Columbus</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Macaulay Culkin, Joe Pesci, Daniel Stern, Catherine O'Hara, John Heard, Kieran Culkin, Devin Ratray, John Candy, Roberts Blossom, Angela Goethals, Gerry Bamman, Hillary Wolf, Larry Hankin, Hope Davis, Senta Moses, Diana Rein, Jedidiah Cohen, Ralph Foody, Terrie Snell, Kristin Minter, Anna Slotky, Jeffrey Wiseman, Ann Whitney, Ken Hudson Campbell, Billie Bird, Michael Guido, Peter Siragusa, Jim Ortlieb, Ray Toler, Matt Doherty, Mark Beltzman, Alan Wilder, Ally Sheedy, entre otros.</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>John Hughes</span></div>",
@@ -102,7 +102,7 @@ const peliculas = {
             Tu navegador no soporta el video.
         </video>
     `,
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/073562678' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/073562678' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy app-createdBy'><span class='fcbprefix app-fcbprefix'>Creado por:</span> <span class='fcbcontent app-fcbcontent'>Poppy Cogan</span></div>",
         fullcast: "<div class='fullcast app-fullcast'><span class='fcprefix app-fcprefix'>Elenco:</span> <span class='fccontent app-fccontent'>Emma Myers Zain Iqbal, Asha Banks, Raiko Gohara, Jude Morgan-Collie, Yali Topol Margalith, Yasmin Al-Khudhairi, Henry Ashton, Carla Woodcock, Mathew Baynton, Gary Beadle, Anna Maxwell Martin</span></div>",
         fullscript: "<div class='fullscript app-fullscript'><span class='fsprefix app-fsprefix'>Guión:</span> <span class='fscontent app-fscontent'>Poppy Cogan, Ruby Thomas, Zia Ahmed, Ajoke Ibironke</span></div>",
@@ -145,7 +145,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
         background: "https://movies.solargentinotv.com.ar/assets/media/images/Logo Reite666 2.png",
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>▶ Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
@@ -231,52 +231,23 @@ function openModal(movieKey) {
 
     if (!movie) return;
 
-    // Cargar el video y meter el botón de mute
-    document.getElementById("modal-background").innerHTML = `
-        ${movie.background}
-        <div class="previewModal-audioToggle has-smaller-buttons detail-modal" id="audioToggleWrapper">
-          <div class="global-supplemental-audio-toggle">
-            <button aria-label="Activar el audio" id="audioToggleBtn"
-              class="color-supplementary hasIcon round"
-              data-uia="audio-toggle-muted"
-              type="button">
-              <div>
-                <!-- Ícono mute -->
-                <svg id="iconMute" viewBox="0 0 24 24" width="24" height="24"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z"
-                    fill="currentColor"></path>
-                </svg>
-                <!-- Ícono unmute -->
-                <svg id="iconUnmute" viewBox="0 0 24 24" width="24" height="24"
-                  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" style="display:none;">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M5 9v6h4l5 5V4L9 9H5zm14.5 3c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47z"
-                    fill="currentColor"></path>
-                </svg>
-              </div>
-            </button>
-          </div>
-        </div>
-    `;
-
+    // Cargar los datos en el modal
+    document.getElementById("modal-background").innerHTML = movie.background;
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
     document.getElementById('modal-cast').innerHTML = movie.cast;
 
-    // Botón scroll en elenco
     const scrollButton = document.querySelector('#modal-cast #scrollAbout');
     if (scrollButton) {
         scrollButton.addEventListener('click', () => {
             const aboutSection = document.getElementById('about');
-            const container = document.getElementById('infoModal');
+            const container = document.getElementById('infoModal'); // Contenedor con scroll real
             if (aboutSection && container) {
                 const start = container.scrollTop;
                 const end = aboutSection.offsetTop - container.offsetTop;
                 const distance = end - start;
-                const duration = 250;
+                const duration = 250; // ms, ajusta velocidad
                 let startTime = null;
 
                 function easeInOutQuad(t) {
@@ -319,37 +290,12 @@ function openModal(movieKey) {
     // Reproducir video si existe
     handleVideo(modal, "play");
 
-    // Activar botón mute
-    setupMuteButton(modal);
-
     // Si es "app", cargar temporada 1
     if (movieKey === "app") {
         changeSeason(1);
     } else {
         document.getElementById("episode-list").innerHTML = "";
     }
-}
-
-// Función para mute/unmute
-function setupMuteButton(modal) {
-    const video = modal.querySelector("#modal-background video");
-    const muteBtn = modal.querySelector("#audioToggleBtn");
-    const iconMute = modal.querySelector("#iconMute");
-    const iconUnmute = modal.querySelector("#iconUnmute");
-
-    if (!video || !muteBtn) return;
-
-    muteBtn.addEventListener("click", () => {
-        if (video.muted) {
-            video.muted = false;
-            iconMute.style.display = "none";
-            iconUnmute.style.display = "block";
-        } else {
-            video.muted = true;
-            iconMute.style.display = "block";
-            iconUnmute.style.display = "none";
-        }
-    });
 }
 
 // Función global para manejar el video del modal
@@ -367,3 +313,115 @@ function handleVideo(modal, action) {
         video.currentTime = 0;
     }
 }
+
+// Función global para cambiar temporada
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    episodeList.innerHTML = "";
+
+    if (episodios[season]) {
+        episodios[season].forEach(ep => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div>${ep.number}</div>
+                </div>
+            `;
+            episodeList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement("li");
+        li.innerText = "No hay episodios disponibles para esta temporada.";
+        episodeList.appendChild(li);
+    }
+}
+
+// Cerrar modal con botón
+document.querySelector(".close-button").addEventListener("click", () => {
+    const modal = document.getElementById("infoModal");
+    handleVideo(modal, "pause");
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+document.addEventListener("click", (event) => {
+    const modal = document.getElementById("infoModal");
+    const modalContent = document.querySelector(".modal-content");
+
+    if (modal.style.display === "block" &&
+        !modalContent.contains(event.target) &&
+        !event.target.closest(".moreinfobutton")) {
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+});
+
+// Cerrar modal con tecla Escape
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        const modal = document.getElementById("infoModal");
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+});
+
+// Dropdown para temporadas
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = document.querySelector('.season-dropdown');
+    if (!dropdown) return;
+
+    const button = dropdown.querySelector('.dropdown-button');
+    const arrow = button.querySelector('span');
+    const seasonMenu = document.getElementById('seasonMenu');
+
+    button.addEventListener('click', () => {
+        seasonMenu.classList.toggle('show');
+        arrow.classList.toggle('rotate');
+    });
+});
+
+function ajustarModalTop() {
+    const cast = document.querySelector('.modal-cast');
+    const genres = document.querySelector('.modal-genres');
+    const titleType = document.querySelector('.modal-titleType');
+
+    const getLineCount = (el) => {
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const height = el.getBoundingClientRect().height;
+        return Math.round(height / lineHeight);
+    };
+
+    const castLines = getLineCount(cast);
+    const genresLines = getLineCount(genres);
+
+    // Valores base según tu CSS
+    let genresTop = 35.5;      // en em
+    let titleTypeTop = 38.4;   // en em
+
+    // Ajuste por línea faltante (aproximado)
+    const lineOffset = 1.2; // em
+
+    // Si el cast tiene menos de 2 líneas, subir genres y titleType
+    if (castLines < 2) {
+        genresTop -= lineOffset;
+        titleTypeTop -= lineOffset;
+    }
+
+    // Si genres tiene menos de 2 líneas, subir titleType
+    if (genresLines < 2) {
+        titleTypeTop -= lineOffset;
+    }
+
+    genres.style.top = `${genresTop}em`;
+    titleType.style.top = `${titleTypeTop}em`;
+}
+
+window.addEventListener('load', ajustarModalTop);
+window.addEventListener('resize', ajustarModalTop);
