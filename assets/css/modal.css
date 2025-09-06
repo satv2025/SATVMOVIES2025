@@ -179,7 +179,6 @@ a#watch-button:active {
     font-family: 'Netflix Sans';
     margin-top: 7.3em;
     margin-left: 10.7em;
-    display: none;
 }
 
 .dropdown-button::after {
@@ -3706,38 +3705,29 @@ span.fcprefix {
     padding: 0 .4em;
 }
 
-.modal-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-info>p {
-    margin: 0.5em 0;
-    color: #fff;
-    font-size: 14px;
-}
-
 .modal-description {
     font-size: 16px;
+    left: 1.2em;
     padding-right: 22em;
-    margin-top: 0;
-    /* elimina el -9em */
-    left: auto;
-    /* no usar absolute */
-    position: static;
-    /* asegura que respete el flujo */
+    margin-top: -9em !important;
 }
 
 .modal-curiosity {
+    top: 27.4em;
+    z-index: 1000;
     font-size: 1.17em;
-    margin-top: 0.5em;
-    position: static;
-    /* que fluya */
+    left: 0.8em;
 }
 
 .modal-curiosity p {
-    font-size: 12px;
-    /* ojo, aquí tenías '12p' => es error */
+    font-size: 12p;
+}
+
+/* Información adicional */
+.modal-info>p {
+    margin: 0.3125em 0;
+    color: #fff;
+    z-index: 1000;
 }
 
 .facontent2 {
