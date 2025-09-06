@@ -40,7 +40,7 @@ const peliculas = {
     homealone: {
         year: "1990",
         duration: "<span style='margin-left: 1.3em;'>1 h 45 min</span>",
-        description: "Kevin McCallister, un niño de 8 años, es olvidado por accidente cuando su familia se va de vacaciones de Navidad. Solo en casa, deberá ingeniárselas para defenderse de dos torpes ladrones que intentan entrar.",
+        description: "En este clásico, Macaulay Culkin es Kevin MacAllister, un niño olvidado en casa en Navidad que debe enfrentarse a dos torpes y despiadados ladrones.",
         cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Mi Pobre Angelito </strong>",
         genres: "<strong>Géneros:</strong> Infantil, Comedia, Fiestas navideñas",
