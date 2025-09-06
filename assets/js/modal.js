@@ -232,7 +232,7 @@ function openModal(movieKey) {
     if (!movie) return;
 
     // Cargar los datos en el modal
-    document.getElementById("modal-background").src = movie.background;
+    document.getElementById("modal-background").innerHTML = movie.background;
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
