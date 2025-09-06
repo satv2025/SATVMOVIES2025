@@ -3717,7 +3717,12 @@ span.fcprefix {
     font-size: 16px;
     left: 1.2em;
     padding-right: 22em;
-    top: 43.2em;
+    top: 41.3em;
+}
+
+#curiosity-synopsis {
+    top: 1.90em !important;
+    position: relative;
 }
 
 .modal-curiosity {
