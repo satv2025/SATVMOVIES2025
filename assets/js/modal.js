@@ -344,7 +344,7 @@ function handleVideo(modal, action) {
 
     if (action === "play") {
         video.currentTime = 0;
-        video.muted = true; // inicia muteado
+        video.muted = false; // inicia muteado
         video.play().catch(() => {
             console.warn("El navegador bloqueó el autoplay con sonido.");
         });
