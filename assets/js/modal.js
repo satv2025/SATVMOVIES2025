@@ -93,7 +93,44 @@ const peliculas = {
         genres: "<strong>Géneros:</strong> Infantil, Comedia, Fiestas navideñas",
         titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
         ageRating: "<span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas",
-        background: "https://whatsondisneyplus.b-cdn.net/wp-content/uploads/2020/11/Home-Alone.jpg",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/Mi_Pobre_Angelito_1_trailer.mkv" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+`,
+        link: "<a id='watch-button' href='https://www.disneyplus.com/movies/home-alone/3v4AGJ6xXOzK' target='_self'>Reproducir</a>",
+        createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Dirigido por:</span> <span class='fcbcontent'>Chris Columbus</span></div>",
+        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Macaulay Culkin, Joe Pesci, Daniel Stern, Catherine O'Hara, John Heard, Kieran Culkin, Devin Ratray, John Candy, Roberts Blossom, Angela Goethals, Gerry Bamman, Hillary Wolf, Larry Hankin, Hope Davis, Senta Moses, Diana Rein, Jedidiah Cohen, Ralph Foody, Terrie Snell, Kristin Minter, Anna Slotky, Jeffrey Wiseman, Ann Whitney, Ken Hudson Campbell, Billie Bird, Michael Guido, Peter Siragusa, Jim Ortlieb, Ray Toler, Matt Doherty, Mark Beltzman, Alan Wilder, Ally Sheedy, entre otros.</span></div>",
+        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>John Hughes</span></div>",
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Infantil, Comedia, Aventuras, Fiestas navideñas</span></div>",
+        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'> Divertido, Familiar, Emotivo</span></div>",
+        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas</span> <span class='facontent2'>Apta para todo público</span></div>"
+    },
+
+    homealone2: {
+        year: "1990",
+        duration: "<span style='margin-left: 1.3em;'>1 h 45 min</span>",
+        description: "En este clásico, Macaulay Culkin es Kevin MacAllister, un niño olvidado en casa en Navidad que debe enfrentarse a dos torpes y despiadados ladrones.",
+        cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout'>más</button>",
+        title: "<span class='about'>Acerca de</span> <strong class='titulo'> Mi Pobre Angelito </strong>",
+        genres: "<strong>Géneros:</strong> Infantil, Comedia, Fiestas navideñas",
+        titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
+        ageRating: "<span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/Mi_Pobre_Angelito_1_trailer.mkv" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+`,
         link: "<a id='watch-button' href='https://www.disneyplus.com/movies/home-alone/3v4AGJ6xXOzK' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Dirigido por:</span> <span class='fcbcontent'>Chris Columbus</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Macaulay Culkin, Joe Pesci, Daniel Stern, Catherine O'Hara, John Heard, Kieran Culkin, Devin Ratray, John Candy, Roberts Blossom, Angela Goethals, Gerry Bamman, Hillary Wolf, Larry Hankin, Hope Davis, Senta Moses, Diana Rein, Jedidiah Cohen, Ralph Foody, Terrie Snell, Kristin Minter, Anna Slotky, Jeffrey Wiseman, Ann Whitney, Ken Hudson Campbell, Billie Bird, Michael Guido, Peter Siragusa, Jim Ortlieb, Ray Toler, Matt Doherty, Mark Beltzman, Alan Wilder, Ally Sheedy, entre otros.</span></div>",
