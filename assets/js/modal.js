@@ -9,7 +9,16 @@ const peliculas = {
         genres: "<strong>Géneros:</strong> Humor, humor absurdo, hackers, fama, grandes élites",
         titleType: "<strong>Este título es:</strong> Original, delirante",
         ageRating: "<span class='age'>16+</span> adolescentes, adultos, lenguaje inapropiado, delirante",
-        background: "https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/MATIAS_PONCE_-_LA_PEL%C3%8DCULA__TR%C3%81ILER_OFICIAL_2022.webm?ref_type=heads" type="video/webm">
+    Tu navegador no soporta el video.
+</video>
+`,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/093458373' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Matías Ponce</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Matías Ponce, Santino Ponce, Indio Ponce, Antonella Ponce, Valeria Volpi, Julieta</span></div>",
@@ -28,7 +37,16 @@ const peliculas = {
         genres: "<strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas",
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
-        background: "https://movies.solargentinotv.com.ar/assets/media/images/100luchathumb.jpg",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/100_LUCHA_LA_PEL%C3%8DCULA__Tr%C3%A1iler__HD_.mp4?ref_type=heads" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+`,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352634' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>María Fernanda Neil, Carlos Kaspar, Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Julio Mario Sibara 'Turco Naím', Gonzalo Nenna, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini</span></div>",
@@ -47,7 +65,16 @@ const peliculas = {
         genres: "<strong>Géneros:</strong> Humor, lucha libre, futurista, robots, androides",
         titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
-        background: "https://media.minutouno.com/p/8f27c301f5e629ec8dab0477e7a75ae0/adjuntos/150/imagenes/026/947/0026947782/1200x675/smart/lucha.png",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/100_LUCHA_EL_AMO_DE_LOS_CLONES__Tr%C3%A1iler__HD_.mp4?ref_type=heads" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+`,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/084352635' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, Leo Montero, VNorberto Adrián Fernández, Delfina Gerez Bosco, La Masa, Osvaldo Príncipi, Berta Muñiz, Eduardo Husni, Natalia Kim, Daniel Casablanca, Walter Cornás, Jefe de piso en estudio, Rocío Rodríguez Presedo, Esteban Rojas, Dallys Ferreyra Enciso, Julia Lenzberg</span></div>",
@@ -144,7 +171,16 @@ const peliculas = {
         genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
-        background: "https://movies.solargentinotv.com.ar/assets/media/images/Logo Reite666 2.png",
+        background: `
+<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/trailer.mp4?ref_type=heads" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+`,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
