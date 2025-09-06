@@ -94,15 +94,20 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
         ageRating: "<span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas",
         background: `
-<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
-       oncontextmenu="return false;" 
-       onmousedown="return false;" 
-       onselectstart="return false;" 
-       ondragstart="return false;">
-    <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/trailer/Mi_Pobre_Angelito_1_trailer.mp4" type="video/mp4">
-    Tu navegador no soporta el video.
-</video>
-`,
+        <video 
+            autoplay 
+            loop 
+            playsinline 
+            style="width:100%; height:100%; object-fit:cover;" 
+            oncontextmenu="return false;" 
+            onmousedown="return false;" 
+            onselectstart="return false;" 
+            ondragstart="return false;"
+        >
+            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/trailer/Mi_Pobre_Angelito_1_trailer.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    `,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/24122025' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Dirigido por:</span> <span class='fcbcontent'>Chris Columbus</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Macaulay Culkin, Joe Pesci, Daniel Stern, Catherine O'Hara, John Heard, Kieran Culkin, Devin Ratray, John Candy, Roberts Blossom, Angela Goethals, Gerry Bamman, Hillary Wolf, Larry Hankin, Hope Davis, Senta Moses, Diana Rein, Jedidiah Cohen, Ralph Foody, Terrie Snell, Kristin Minter, Anna Slotky, Jeffrey Wiseman, Ann Whitney, Ken Hudson Campbell, Billie Bird, Michael Guido, Peter Siragusa, Jim Ortlieb, Ray Toler, Matt Doherty, Mark Beltzman, Alan Wilder, Ally Sheedy, entre otros.</span></div>",
@@ -122,15 +127,20 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
         ageRating: "<span class='age'>7+</span> humor slapstick, situaciones de riesgo cómicas",
         background: `
-<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
-       oncontextmenu="return false;" 
-       onmousedown="return false;" 
-       onselectstart="return false;" 
-       ondragstart="return false;">
-    <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa2/trailer/Mi_Pobre_Angelito_2_trailer.mp4" type="video/mp4">
-    Tu navegador no soporta el video.
-</video>
-`,
+        <video 
+            autoplay 
+            loop 
+            playsinline 
+            style="width:100%; height:100%; object-fit:cover;" 
+            oncontextmenu="return false;" 
+            onmousedown="return false;" 
+            onselectstart="return false;" 
+            ondragstart="return false;"
+        >
+            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa2/trailer/Mi_Pobre_Angelito_2_trailer.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    `,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/241220251' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Dirigido por:</span> <span class='fcbcontent'>Chris Columbus</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Macaulay Culkin, Joe Pesci, Daniel Stern, Catherine O'Hara, Tim Curry, Brenda Fricker, Devin Ratray, John Heard, Rob Schneider, entre otros.</span></div>",
