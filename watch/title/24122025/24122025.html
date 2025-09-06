@@ -68,39 +68,39 @@
 </head>
 
 <body>
-    <<h1 id="title" class="weightnormal">Mi Pobre Angelito 1</h1>
+    <h1 id="title" class="weightnormal">Mi Pobre Angelito 1</h1>
 
-        <div id="player"></div>
-        <div id="episodes-root"></div>
+    <div id="player"></div>
+    <div id="episodes-root"></div>
 
-        <script>
-            window.onload = function () {
-                SATVPlayerEmbed({
-                    elementId: "player",
-                    videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/Mi_Pobre_Angelito_1.m3u8"
-                });
+    <script>
+        window.onload = function () {
+            SATVPlayerEmbed({
+                elementId: "player",
+                videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/Mi_Pobre_Angelito_1.m3u8"
+            });
 
-                const title = document.getElementById('title');
-                const player = document.getElementById('player');
+            const title = document.getElementById('title');
+            const player = document.getElementById('player');
 
-                let hideTimeout;
+            let hideTimeout;
 
-                function showTitle() {
-                    clearTimeout(hideTimeout);
-                    title.classList.remove('hidden');
-                    hideTimeout = setTimeout(() => {
-                        title.classList.add('hidden');
-                    }, 3000); // Oculta tras 3 segundos sin actividad
-                }
+            function showTitle() {
+                clearTimeout(hideTimeout);
+                title.classList.remove('hidden');
+                hideTimeout = setTimeout(() => {
+                    title.classList.add('hidden');
+                }, 3000); // Oculta tras 3 segundos sin actividad
+            }
 
-                player.addEventListener('mousemove', showTitle);
+            player.addEventListener('mousemove', showTitle);
 
-                // Mostrar título al cargar
-                showTitle();
-            };
-        </script>
+            // Mostrar título al cargar
+            showTitle();
+        };
+    </script>
 
-        <script id="episodes-data" type="application/json">
+    <script id="episodes-data" type="application/json">
         [
             {
                 "title": "Episodio 1",
