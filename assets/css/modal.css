@@ -67,7 +67,7 @@ a#watch-button:active {
     top: -0.1em;
     left: 51em;
     z-index: 1000;
-    background: #1818188c;
+    background: #181818;
     border-radius: 50%;
     padding: 0.3em;
     width: 2em;
@@ -179,6 +179,7 @@ a#watch-button:active {
     font-family: 'Netflix Sans';
     margin-top: 7.3em;
     margin-left: 10.7em;
+    display: none;
 }
 
 .dropdown-button::after {
@@ -3609,10 +3610,10 @@ a.eplink {
     position: absolute;
     top: 28.4em;
     font-size: 16px;
-    left: 5.2em;
     color: #bcbcbc !important;
     !i;
     !;
+    margin-left: 5.3em !important;
 }
 
 .modal strong p {
@@ -3705,29 +3706,38 @@ span.fcprefix {
     padding: 0 .4em;
 }
 
+.modal-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-info>p {
+    margin: 0.5em 0;
+    color: #fff;
+    font-size: 14px;
+}
+
 .modal-description {
-    top: 32.3em;
     font-size: 16px;
-    left: 1.2em;
     padding-right: 22em;
+    margin-top: 0;
+    /* elimina el -9em */
+    left: auto;
+    /* no usar absolute */
+    position: static;
+    /* asegura que respete el flujo */
 }
 
 .modal-curiosity {
-    top: 27.4em;
-    z-index: 1000;
     font-size: 1.17em;
-    left: 0.8em;
+    margin-top: 0.5em;
+    position: static;
+    /* que fluya */
 }
 
 .modal-curiosity p {
-    font-size: 12p;
-}
-
-/* Información adicional */
-.modal-info>p {
-    margin: 0.3125em 0;
-    color: #fff;
-    z-index: 1000;
+    font-size: 12px;
+    /* ojo, aquí tenías '12p' => es error */
 }
 
 .facontent2 {
