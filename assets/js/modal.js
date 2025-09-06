@@ -290,6 +290,9 @@ function openModal(movieKey) {
     // Reproducir video si existe
     handleVideo(modal, "play");
 
+    // Agregar botón de mute/unmute automáticamente
+    addMuteButton(modal);
+
     // Si es "app", cargar temporada 1
     if (movieKey === "app") {
         changeSeason(1);
@@ -305,6 +308,7 @@ function handleVideo(modal, action) {
 
     if (action === "play") {
         video.currentTime = 0;
+        video.muted = true; // inicia muteado
         video.play().catch(() => {
             console.warn("El navegador bloqueó el autoplay con sonido.");
         });
@@ -312,6 +316,49 @@ function handleVideo(modal, action) {
         video.pause();
         video.currentTime = 0;
     }
+}
+
+// Función para agregar botón de mute/unmute
+function addMuteButton(modal) {
+    // Evitar duplicados
+    if (modal.querySelector("#audioToggleBtn")) return;
+
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("previewModal-audioToggle");
+
+    const btn = document.createElement("button");
+    btn.id = "audioToggleBtn";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Activar/desactivar audio");
+    btn.innerHTML = `
+        <svg id="iconMute" viewBox="0 0 24 24" width="24" height="24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z" fill="currentColor"></path>
+        </svg>
+        <svg id="iconUnmute" viewBox="0 0 24 24" width="24" height="24" style="display:none;">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M5 9v6h4l5 5V4L9 9H5zm14.5 3c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47z" fill="currentColor"></path>
+        </svg>
+    `;
+
+    wrapper.appendChild(btn);
+    modal.appendChild(wrapper);
+
+    // Evento toggle
+    btn.addEventListener("click", () => {
+        const video = modal.querySelector("#modal-background video");
+        if (!video) return;
+
+        if (video.muted) {
+            video.muted = false;
+            btn.querySelector("#iconMute").style.display = "none";
+            btn.querySelector("#iconUnmute").style.display = "block";
+        } else {
+            video.muted = true;
+            btn.querySelector("#iconMute").style.display = "block";
+            btn.querySelector("#iconUnmute").style.display = "none";
+        }
+    });
 }
 
 // Función global para cambiar temporada

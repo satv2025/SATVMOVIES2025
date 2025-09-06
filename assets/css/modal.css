@@ -3835,20 +3835,37 @@ span.about {
 .watch-button {
     background-color: #fff;
     color: #000;
-    padding: 0.625em 1.25em;
-    font-size: 1.3em;
-    border-radius: 0.3125em;
+    padding: 0.625em 2.25em;
+    font-size: 23px;
+    border-radius: 4px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
     position: absolute;
-    top: 17.4em;
+    top: 16.4em;
     left: 2em;
     z-index: 1000;
-    cursor: pointer;
+    padding-left: 3em;
 }
 
+.watch-button::after {
+    content: '';
+    position: absolute;
+    top: 0.6em;
+    left: 1.3em;
+    width: 30;
+    /* ancho equivalente al font-size */
+    height: 30;
+    /* alto equivalente al font-size */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" fill="currentColor"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    /* si quieres que esté sobre otros elementos */
+}
+
+
 .watch-button:hover {
-    background-color: #eee;
+    background-color: #e6e6e6 !important;
     color: #000;
 }
 
