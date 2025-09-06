@@ -80,12 +80,12 @@ a#watch-button:active {
 }
 
 /* Imagen de fondo */
-.modal-header {
+#modal-background::before {
     position: relative;
     width: 100%;
 }
 
-.modal-header::before {
+#modal-background::before {
     content: "";
     position: absolute;
     top: 0em;
@@ -96,7 +96,7 @@ a#watch-button:active {
     z-index: 1;
 }
 
-.modal-header img {
+#modal-background {
     position: relative;
     margin-top: -2.5em;
     margin-left: -1.25em;
@@ -572,12 +572,12 @@ button.text:hover {
     }
 
     /* Imagen de fondo */
-    .modal-header {
+    #modal-background {
         position: relative;
         width: 100%;
     }
 
-    .modal-header::before {
+    #modal-background::before {
         content: "";
         position: absolute;
         top: 0em;
@@ -588,7 +588,7 @@ button.text:hover {
         z-index: 1;
     }
 
-    .modal-header img {
+    #modal-background {
         position: relative;
         margin-top: -2.5em;
         margin-left: -1.2em;
@@ -1189,7 +1189,7 @@ button.text:hover {
             padding: 1em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 100%;
             height: auto;
         }
@@ -1219,7 +1219,7 @@ button.text:hover {
             padding: 1.25em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 70%;
             height: auto;
         }
@@ -1244,7 +1244,7 @@ button.text:hover {
             width: 46%;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 54.7em;
             border-top-left-radius: 11.2px;
             border-top-right-radius: 11.2px;
@@ -1336,7 +1336,7 @@ button.text:hover {
     }
 
     /* Imagen de fondo */
-    .modal-header {
+    #modal-background {
         position: relative;
         width: 100%;
     }
@@ -1352,7 +1352,7 @@ button.text:hover {
         z-index: 1;
     }
 
-    .modal-header img {
+    #modal-background {
         position: relative;
         margin-top: -2.5em;
         margin-left: -1.2em;
@@ -1955,7 +1955,7 @@ button.text:hover {
             padding: 1em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 100%;
             height: auto;
         }
@@ -1985,7 +1985,7 @@ button.text:hover {
             padding: 1.25em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 70%;
             height: auto;
         }
@@ -2010,7 +2010,7 @@ button.text:hover {
             width: 46%;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 54.7em;
             border-top-left-radius: 11.2px;
             border-top-right-radius: 11.2px;
@@ -2102,7 +2102,7 @@ button.text:hover {
     }
 
     /* Imagen de fondo */
-    .modal-header {
+    #modal-background {
         position: relative;
         width: 100%;
     }
@@ -2118,7 +2118,7 @@ button.text:hover {
         z-index: 1;
     }
 
-    .modal-header img {
+    #modal-background {
         position: relative;
         margin-top: -2.5em;
         margin-left: -1.2em;
@@ -2721,7 +2721,7 @@ button.text:hover {
             padding: 1em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 100%;
             height: auto;
         }
@@ -2751,7 +2751,7 @@ button.text:hover {
             padding: 1.25em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 70%;
             height: auto;
         }
@@ -2776,7 +2776,7 @@ button.text:hover {
             width: 46%;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 54.7em;
             border-top-left-radius: 11.2px;
             border-top-right-radius: 11.2px;
@@ -2868,7 +2868,7 @@ button.text:hover {
     }
 
     /* Imagen de fondo */
-    .modal-header {
+    #modal-background {
         position: relative;
         width: 100%;
     }
@@ -2884,7 +2884,7 @@ button.text:hover {
         z-index: 1;
     }
 
-    .modal-header img {
+    #modal-background {
         position: relative;
         margin-top: -2.5em;
         margin-left: -1.2em;
@@ -3487,7 +3487,7 @@ button.text:hover {
             padding: 1em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 100%;
             height: auto;
         }
@@ -3517,7 +3517,7 @@ button.text:hover {
             padding: 1.25em;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 70%;
             height: auto;
         }
@@ -3542,7 +3542,7 @@ button.text:hover {
             width: 46%;
         }
 
-        .modal-header img {
+        #modal-background {
             width: 54.7em;
             border-top-left-radius: 11.2px;
             border-top-right-radius: 11.2px;
@@ -3894,7 +3894,7 @@ span.about {
         padding: 1em;
     }
 
-    .modal-header img {
+    #modal-background {
         width: 100%;
         height: auto;
     }
@@ -3924,7 +3924,7 @@ span.about {
         padding: 1.25em;
     }
 
-    .modal-header img {
+    #modal-background {
         width: 70%;
         height: auto;
     }
@@ -3949,7 +3949,7 @@ span.about {
         width: 46%;
     }
 
-    .modal-header img {
+    #modal-background {
         width: 54.8em;
         border-top-left-radius: 11.2px;
         border-top-right-radius: 11.2px;
