@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reite666</title>
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/dplayer/satvdplayer.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/b1_s1_ip1.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/indpags/dropdown.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/slidebar.css">
+    <link rel="stylesheet" href="https://fuentes.solargentinotv.com.ar/netflixsans.css">
+    <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
+        type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="index" style="color: #007BFF; text-decoration: none;"
+                onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
+            <ul>
+                <li><a href="../../index">Inicio</a></li>
+                <li><a href="../../proximamente">Próximamente</a></li>
+                <li><a href="../../acercade">Acerca De</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contenedor de los datos de la serie -->
+        <section class="serie-info">
+            <h2>Acerca de Reite666</h2>
+            <ul>
+                <li><strong>Año:</strong> 2018</li>
+                <li><strong>Temporadas:</strong>2</li>
+                <li><strong>Episodios:</strong>44 (T1: 20 | T2: 24)</li>
+                <li><strong>Sinopsis:</strong>CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego
+                    macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.</li>
+                <li><strong>Creado por:</strong> Franco Crivera</li>
+                <li><strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés
+                    Ilopo Bollero, Laura Guerra, Marta Guerra</li>
+                <li><strong>Guión:</strong> Franco Crivera, Andrés Ilopo Bollero</li>
+                <li><strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers
+                    Aventura, Paranormal</li>
+                <li><strong>Este título es:</strong> Misterioso, Paranormal, Terror, Inquietante</li>
+                <li><strong>Clasificación por edad:</strong> 16+ lenguaje inapropiado</li>
+            </ul>
+        </section>
+
+        <!-- Contenedor del reproductor -->
+        <div id="player-container" style="margin: 0 auto;">
+            <div id="MPlayer"></div>
+        </div>
+
+
+        <div class="season-dropdown">
+            <button class="dropdown-button open">Temporada 1</button>
+            <div class="dropdown-content" style="display: block;">
+                <button class="texto" onclick="changeSeason(1)">
+                    <span class="textotemp">Temporada 1</span>
+                    <span class="episode-count">(20 episodio)</span>
+                </button>
+                <button class="texto texto2" onclick="changeSeason(2)">
+                    <span class="textotemp">Temporada 2</span>
+                    <span class="episode-count">(24 episodio)</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="episodios">
+            <h2>Lista de Episodios</h2>
+            <ul id="episode-list">
+                <!-- Los episodios se cargarán dinámicamente dependiendo de la temporada seleccionada -->
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sol Argentino TV. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://movies.solargentinotv.com.ar/watch/title/0194753295/dropdown.js"></script>
+    <script src="https://movies.solargentinotv.com.ar/assets/MPlayer/MPlayerMVersion.js"
+        type="text/javascript"></script>
+    <script>
+        var player = new Playerjs({
+            id: "MPlayer",
+            file: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/Mi_Pobre_Angelito_1.m3u8",
+        });
+
+        // Función para cargar un episodio con autoplay
+        function loadEpisode(videoPath) {
+            player.api("file", videoPath);
+            player.api("play");
+        }
+    </script>
+
+    // Función para cargar un episodio con autoplay
+    function loadEpisode(videoPath) {
+    dp.switchVideo({
+    url: videoPath,
+    type: 'hls',
+    });
+    dp.play(); // iniciar reproducción automáticamente
+    }
+    </script>
+</body>
+
+</html>
