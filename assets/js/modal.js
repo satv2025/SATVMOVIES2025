@@ -104,7 +104,7 @@ const peliculas = {
             onselectstart="return false;" 
             ondragstart="return false;"
         >
-            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/trailer/Mi_Pobre_Angelito_1_trailer.mp4" type="video/mp4">
+            <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/Mi_Pobre_Angelito_1_trailer.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
     `,
@@ -137,7 +137,7 @@ const peliculas = {
             onselectstart="return false;" 
             ondragstart="return false;"
         >
-            <source src="https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa2/trailer/Mi_Pobre_Angelito_2_trailer.mp4" type="video/mp4">
+            <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/Mi_Pobre_Angelito_2_trailer.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
     `,
