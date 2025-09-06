@@ -3612,7 +3612,10 @@ a.eplink {
     color: #bcbcbc !important;
     !i;
     !;
-    margin-left: 5.3em !important;
+    left: 5em;
+    display: flex;
+    text-align: left;
+    padding-left: 0em;
 }
 
 .modal strong p {
