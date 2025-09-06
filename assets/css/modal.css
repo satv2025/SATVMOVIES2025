@@ -3830,6 +3830,7 @@ span.about {
     align-items: center;
     gap: 0.625em;
     margin-top: 0.625em;
+    cursor: pointer;
 }
 
 .watch-button {
