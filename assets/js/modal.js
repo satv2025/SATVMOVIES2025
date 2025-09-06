@@ -221,7 +221,7 @@ function openModal(movieKey) {
     document.getElementById("modal-background").src = movie.background;
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
-    document.getElementById("modal-description").innerText = movie.description;
+    document.getElementById("modal-description").innerHTML = movie.description;
     document.getElementById('modal-cast').innerHTML = movie.cast;
 
     const scrollButton = document.querySelector('#modal-cast #scrollAbout');

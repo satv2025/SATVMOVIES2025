@@ -3618,6 +3618,11 @@ a.eplink {
     padding-left: 0em;
 }
 
+.series-duration {
+    left: 1.4em;
+    position: relative;
+}
+
 .modal strong p {
     color: #777;
     font-weight: normal;
