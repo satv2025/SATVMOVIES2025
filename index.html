@@ -193,6 +193,18 @@
         <p>Sol Argentino TV MOVIES 2025 © - Todos Los Derechos Reservados</p>
     </footer>
     <script src="assets/js/modal.js"></script>
+    <script>
+        const curiosity = document.getElementById("modal-curiosity");
+        const description = document.getElementById("modal-description");
+
+        if (curiosity && curiosity.textContent.trim() !== "") {
+            // Si curiosity existe y tiene contenido
+            description.style.marginTop = "3.7em";
+        } else {
+            // Si no existe
+            description.style.marginTop = "-9em";
+        }
+    </script>
 </body>
 
 </html>
