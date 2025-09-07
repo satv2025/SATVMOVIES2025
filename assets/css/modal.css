@@ -3835,6 +3835,8 @@ span.about {
     left: 2.06em;
     z-index: 1000;
     padding-left: 3.3em;
+    width: 10.13em;
+    height: 2.465em;
 }
 
 .watch-button::after {
