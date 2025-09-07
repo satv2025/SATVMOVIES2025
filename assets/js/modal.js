@@ -307,8 +307,8 @@ const episodios = {
             position: absolute;
             bottom: 5%;
             right: 2em;
-            background: rgba(0,0,0,0.6);
-            border: none;
+            background-color: rgba(42, 42, 42, 0.6);
+            border: 2px solid hsla(0, 0%, 100%, 0.5);
             border-radius: 50%;
             padding: 8px;
             z-index: 20;
@@ -340,115 +340,60 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botones de audio estilo Netflix
+    // Insertar video + botón de mute personalizado
     document.getElementById("modal-background").innerHTML = `
         ${movie.background}
-        <div class="previewModal-audioToggle has-smaller-buttons detail-modal" style="opacity: 0.4; display: block;">
-            <div class="global-supplemental-audio-toggle">
-                <button aria-label="Activar el audio" class="color-supplementary hasIcon round default-ltr-iqcdef-cache-1t5n97z" data-uia="audio-toggle-unmuted" type="button">
-                    <div class="default-ltr-iqcdef-cache-1st24vv">
-                        <div class="small default-ltr-iqcdef-cache-iyulz3" role="presentation">
-                            <!-- SVG de volumen activado -->
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12C24 8.28693 22.525 4.72597 19.8995 2.10046L18.4853 3.51468C20.7357 5.76511 22 8.81736 22 12C22 15.1826 20.7357 18.2348 18.4853 20.4852L19.8995 21.8995C22.525 19.2739 24 15.713 24 12ZM11 3.99995C11 3.59549 10.7564 3.23085 10.3827 3.07607C10.009 2.92129 9.57889 3.00685 9.29289 3.29285L4.58579 7.99995H1C0.447715 7.99995 0 8.44767 0 8.99995V15C0 15.5522 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0786 10.3827 20.9238C10.7564 20.7691 11 20.4044 11 20V3.99995ZM5.70711 9.70706L9 6.41417V17.5857L5.70711 14.2928L5.41421 14H5H2V9.99995H5H5.41421L5.70711 9.70706ZM16.0001 12C16.0001 10.4087 15.368 8.88254 14.2428 7.75732L12.8285 9.17154C13.5787 9.92168 14.0001 10.9391 14.0001 12C14.0001 13.0608 13.5787 14.0782 12.8285 14.8284L14.2428 16.2426C15.368 15.1174 16.0001 13.5913 16.0001 12ZM17.0709 4.92889C18.9462 6.80426 19.9998 9.3478 19.9998 12C19.9998 14.6521 18.9462 17.1957 17.0709 19.071L15.6567 17.6568C17.157 16.1565 17.9998 14.1217 17.9998 12C17.9998 9.87823 17.157 7.8434 15.6567 6.34311L17.0709 4.92889Z" fill="currentColor"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </button>
-
-                <button aria-label="Silenciar el audio" class="color-supplementary hasIcon round default-ltr-iqcdef-cache-1t5n97z" data-uia="audio-toggle-muted" type="button">
-                    <div class="default-ltr-iqcdef-cache-1st24vv">
-                        <div class="small default-ltr-iqcdef-cache-iyulz3" role="presentation">
-                            <!-- SVG de volumen desactivado -->
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z" fill="currentColor"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </div>
+        <button class="modal-mute-btn" id="muteBtn">
+            <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
+        </button>
     `;
-}
 
-// Cargar resto de datos
-document.getElementById("modal-title").innerHTML = movie.title;
-document.getElementById("modal-year").innerHTML = movie.year;
-document.getElementById("modal-description").innerHTML = movie.description;
-document.getElementById("modal-cast").innerHTML = movie.cast;
-document.getElementById("modal-genres").innerHTML = movie.genres;
-document.getElementById("modal-titleType").innerHTML = movie.titleType;
-document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
-document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
-document.getElementById("modal-duration").innerHTML = movie.duration;
-document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
-document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
-document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
-document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
-document.getElementById("modal-fullscript").innerHTML = movie.fullscript;
-document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres;
-document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype;
-document.getElementById("modal-fullage").innerHTML = movie.fullage;
-document.getElementById("watch-button").innerHTML = movie.link;
+    // Cargar resto de datos
+    document.getElementById("modal-title").innerHTML = movie.title;
+    document.getElementById("modal-year").innerHTML = movie.year;
+    document.getElementById("modal-description").innerHTML = movie.description;
+    document.getElementById("modal-cast").innerHTML = movie.cast;
+    document.getElementById("modal-genres").innerHTML = movie.genres;
+    document.getElementById("modal-titleType").innerHTML = movie.titleType;
+    document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
+    document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
+    document.getElementById("modal-duration").innerHTML = movie.duration;
+    document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
+    document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
+    document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
+    document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
+    document.getElementById("modal-fullscript").innerHTML = movie.fullscript;
+    document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres;
+    document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype;
+    document.getElementById("modal-fullage").innerHTML = movie.fullage;
+    document.getElementById("watch-button").innerHTML = movie.link;
 
-// Mostrar modal
-modal.style.display = "block";
-document.body.classList.add("modal-open");
+    // Mostrar modal
+    modal.style.display = "block";
+    document.body.classList.add("modal-open");
 
-// Video y mute
-const video = modal.querySelector("#modal-background video");
-const muteBtn = document.getElementById("muteBtn");
-const muteIcon = document.getElementById("muteIcon");
+    // Video y mute
+    const video = modal.querySelector("#modal-background video");
+    const muteBtn = document.getElementById("muteBtn");
+    const muteIcon = document.getElementById("muteIcon");
 
-if (video) {
-    video.currentTime = 0;
-    video.muted = false; // 🔊 empieza con sonido
-    video.play().catch(() => console.warn("Autoplay bloqueado"));
+    if (video) {
+        video.currentTime = 0;
+        video.muted = false; // Empieza con sonido
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
 
-    if (muteBtn) {
-        muteBtn.addEventListener("click", () => {
-            video.muted = !video.muted;
-            muteIcon.src = video.muted ? "volume_off.svg" : "volume_on.svg";
-        });
-    }
-}
-
-// Scroll smooth al about
-const scrollButton = document.querySelector('#modal-cast #scrollAbout');
-if (scrollButton) {
-    scrollButton.addEventListener('click', () => {
-        const aboutSection = document.getElementById('about');
-        const container = modal;
-        if (aboutSection && container) {
-            const start = container.scrollTop;
-            const end = aboutSection.offsetTop - container.offsetTop;
-            const distance = end - start;
-            const duration = 250;
-            let startTime = null;
-
-            function easeInOutQuad(t) {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-            }
-
-            function animate(time) {
-                if (!startTime) startTime = time;
-                const progress = Math.min((time - startTime) / duration, 1);
-                container.scrollTop = start + distance * easeInOutQuad(progress);
-                if (progress < 1) requestAnimationFrame(animate);
-            }
-            requestAnimationFrame(animate);
+        if (muteBtn) {
+            muteBtn.addEventListener("click", () => {
+                video.muted = !video.muted;
+                muteIcon.src = video.muted
+                    ? "assets/media/images/modal-vol-mute.svg"
+                    : "assets/media/images/modal-vol-on.svg";
+            });
         }
-    });
-}
+    }
 
-// Cargar temporada si aplica
-if (movieKey === "app") {
-    changeSeason(1);
-} else {
-    document.getElementById("episode-list").innerHTML = "";
-}
-
-ajustarModalTop();
+    // Ajustar top dinámico según líneas
+    ajustarModalTop();
 }
 
 // === Función global para video ===
@@ -462,30 +407,6 @@ function handleVideo(modal, action) {
     } else if (action === "pause") {
         video.pause();
         video.currentTime = 0;
-    }
-}
-
-// === Cambiar temporada ===
-function changeSeason(season) {
-    const episodeList = document.getElementById("episode-list");
-    episodeList.innerHTML = "";
-    if (episodios[season]) {
-        episodios[season].forEach(ep => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-                <div class="episode-info">
-                    <h3>${ep.title}</h3>
-                    <p>${ep.description}</p>
-                    <span>${ep.duration}</span>
-                    <div>${ep.number}</div>
-                </div>`;
-            episodeList.appendChild(li);
-        });
-    } else {
-        const li = document.createElement("li");
-        li.innerText = "No hay episodios disponibles para esta temporada.";
-        episodeList.appendChild(li);
     }
 }
 
@@ -519,21 +440,6 @@ document.addEventListener("keydown", (event) => {
         modal.style.display = "none";
         document.body.classList.remove("modal-open");
     }
-});
-
-// Dropdown para temporadas
-document.addEventListener('DOMContentLoaded', () => {
-    const dropdown = document.querySelector('.season-dropdown');
-    if (!dropdown) return;
-
-    const button = dropdown.querySelector('.dropdown-button');
-    const arrow = button.querySelector('span');
-    const seasonMenu = document.getElementById('seasonMenu');
-
-    button.addEventListener('click', () => {
-        seasonMenu.classList.toggle('show');
-        arrow.classList.toggle('rotate');
-    });
 });
 
 // Ajuste dinámico de top según líneas
