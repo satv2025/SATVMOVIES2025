@@ -299,6 +299,35 @@ const episodios = {
         }
     ]
 };
+// === Insertar CSS del botón de mute dinámicamente ===
+(function insertMuteCSS() {
+    const style = document.createElement("style");
+    style.textContent = `
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1); /* hace la imagen blanca */
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
@@ -307,12 +336,13 @@ document.querySelectorAll(".moreinfobutton").forEach(button => {
     });
 });
 
+// === Abrir modal con video y botón mute dinámico ===
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botón de mute dinámicamente
+    // Insertar video + botón de mute
     document.getElementById("modal-background").innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -320,7 +350,30 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Cargar resto de datos
+    // Mostrar modal y permitir scroll
+    modal.style.display = "block";
+    modal.style.overflowY = "auto";
+    document.body.classList.add("modal-open");
+
+    // Asignar listener al botón de mute
+    const video = modal.querySelector("#modal-background video");
+    const muteBtn = document.getElementById("muteBtn");
+    const muteIcon = document.getElementById("muteIcon");
+
+    if (video && muteBtn) {
+        video.currentTime = 0;
+        video.muted = false;
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
+
+        muteBtn.addEventListener("click", () => {
+            video.muted = !video.muted;
+            muteIcon.src = video.muted
+                ? "assets/media/images/modal-vol-mute.svg"
+                : "assets/media/images/modal-vol-on.svg";
+        });
+    }
+
+    // Cargar datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -340,64 +393,6 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Mostrar modal y permitir scroll interno
-    modal.style.display = "block";
-    modal.style.overflowY = "auto";
-    document.body.classList.add("modal-open");
-
-    // Configurar botón de mute dinámico
-    const video = modal.querySelector("#modal-background video");
-    const muteBtn = document.getElementById("muteBtn");
-    const muteIcon = document.getElementById("muteIcon");
-
-    if (video && muteBtn) {
-        video.currentTime = 0;
-        video.muted = false;
-        video.play().catch(() => console.warn("Autoplay bloqueado"));
-
-        muteBtn.addEventListener("click", () => {
-            video.muted = !video.muted;
-            muteIcon.src = video.muted
-                ? "assets/media/images/modal-vol-mute.svg"
-                : "assets/media/images/modal-vol-on.svg";
-        });
-    }
-
-    // Scroll smooth al "about" si aplica
-    const scrollButton = document.querySelector('#modal-cast #scrollAbout');
-    if (scrollButton) {
-        scrollButton.addEventListener('click', () => {
-            const aboutSection = document.getElementById('about');
-            if (!aboutSection) return;
-
-            const start = modal.scrollTop;
-            const end = aboutSection.offsetTop - modal.offsetTop;
-            const distance = end - start;
-            const duration = 250;
-            let startTime = null;
-
-            function easeInOutQuad(t) {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-            }
-
-            function animate(time) {
-                if (!startTime) startTime = time;
-                const progress = Math.min((time - startTime) / duration, 1);
-                modal.scrollTop = start + distance * easeInOutQuad(progress);
-                if (progress < 1) requestAnimationFrame(animate);
-            }
-
-            requestAnimationFrame(animate);
-        });
-    }
-
-    // Cargar episodios si aplica
-    if (movieKey === "app") {
-        changeSeason(1);
-    } else {
-        document.getElementById("episode-list").innerHTML = "";
-    }
-
     ajustarModalTop();
 }
 
@@ -405,7 +400,6 @@ function openModal(movieKey) {
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
     if (!video) return;
-
     if (action === "play") {
         video.currentTime = 0;
         video.muted = false;
@@ -451,7 +445,7 @@ document.querySelector(".close-button").addEventListener("click", () => {
 // Cerrar modal al hacer clic fuera
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
-    const modalContent = modal.querySelector(".modal-content");
+    const modalContent = document.querySelector(".modal-content");
 
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
@@ -489,7 +483,7 @@ function ajustarModalTop() {
 
     let genresTop = 35.5;
     let titleTypeTop = 38.4;
-    const lineOffset = 1.2; // em
+    const lineOffset = 1.2;
 
     if (castLines < 2) {
         genresTop -= lineOffset;
