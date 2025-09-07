@@ -299,44 +299,67 @@ const episodios = {
         }
     ]
 };
-// === Función para renderizar episodios ===
-function renderEpisodeList(episodesArray) {
-    if (!episodesArray) return "<li>No hay episodios disponibles.</li>";
-    return episodesArray.map(ep => `
-        <li>
-            <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-            <div class="episode-info">
-                <h3>${ep.title}</h3>
-                <p>${ep.description}</p>
-                <span>${ep.duration}</span>
-                <div>${ep.number || ""}</div>
-            </div>
-        </li>
-    `).join('');
-}
+// === Insertar CSS del botón de mute dinámicamente ===
+(function insertMuteCSS() {
+    const style = document.createElement("style");
+    style.textContent = `
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1); /* hace la imagen blanca */
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
-// === Abrir modal con video y datos ===
-function openModal(movieKey, season = 1) {
+// === Detectar clic en botones "Más Información" ===
+document.querySelectorAll(".moreinfobutton").forEach(button => {
+    button.addEventListener("click", function () {
+        const movieKey = this.getAttribute("data-movie");
+        openModal(movieKey);
+    });
+});
+
+// === Abrir modal con video y botón mute dinámico ===
+function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Video y botón mute
+    // Insertar video + botón de mute
     document.getElementById("modal-background").innerHTML = `
-        ${movie.background || ""}
+        ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
             <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
         </button>
     `;
 
-    // Mostrar modal
+    // Mostrar modal y permitir scroll
     modal.style.display = "block";
+    modal.style.overflowY = "auto";
     document.body.classList.add("modal-open");
 
-    // Video
+    // Asignar listener al botón de mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
+
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -360,63 +383,103 @@ function openModal(movieKey, season = 1) {
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
     document.getElementById("modal-duration").innerHTML = movie.duration;
-    document.getElementById("modal-seasons").innerHTML = movie.seasons;
-
-    // Cargar episodios de la temporada por defecto
-    document.getElementById("episode-list").innerHTML = renderEpisodeList(episodios[season]);
-
-    // Configurar botones de temporada dentro del modal
-    const seasonButtons = modal.querySelectorAll(".season-option button");
-    seasonButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const seasonNum = parseInt(btn.textContent.match(/\d+/));
-            if (!isNaN(seasonNum) && episodios[seasonNum]) {
-                document.getElementById("episode-list").innerHTML = renderEpisodeList(episodios[seasonNum]);
-            } else if (btn.classList.contains("vtle")) {
-                // Ver todos los episodios
-                const allEps = Object.values(episodios).flat();
-                document.getElementById("episode-list").innerHTML = renderEpisodeList(allEps);
-            }
-        });
-    });
+    document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
+    document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
+    document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
+    document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
+    document.getElementById("modal-fullscript").innerHTML = movie.fullscript;
+    document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres;
+    document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype;
+    document.getElementById("modal-fullage").innerHTML = movie.fullage;
+    document.getElementById("watch-button").innerHTML = movie.link;
 
     ajustarModalTop();
 }
 
-// === Cerrar modal ===
-function closeModal() {
-    const modal = document.getElementById("infoModal");
+// === Función global para video ===
+function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
-    if (video) {
+    if (!video) return;
+    if (action === "play") {
+        video.currentTime = 0;
+        video.muted = false;
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
+    } else if (action === "pause") {
         video.pause();
         video.currentTime = 0;
     }
-    modal.style.display = "none";
-    document.body.classList.remove("modal-open");
 }
 
-// Listeners de cierre
-document.querySelector(".close-button").addEventListener("click", closeModal);
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-document.addEventListener("click", event => {
+// === Cambiar temporada ===
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    episodeList.innerHTML = "";
+    if (episodios[season]) {
+        episodios[season].forEach(ep => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div>${ep.number}</div>
+                </div>`;
+            episodeList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement("li");
+        li.innerText = "No hay episodios disponibles para esta temporada.";
+        episodeList.appendChild(li);
+    }
+}
+
+// === Cerrar modal ===
+document.querySelector(".close-button").addEventListener("click", () => {
+    const modal = document.getElementById("infoModal");
+    handleVideo(modal, "pause");
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+});
+
+// Cerrar modal al hacer clic fuera
+document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-    if (modal.style.display === "block" && !modalContent.contains(event.target) && !event.target.closest(".moreinfobutton")) {
-        closeModal();
+
+    if (modal.style.display === "block" &&
+        !modalContent.contains(event.target) &&
+        !event.target.closest(".moreinfobutton")) {
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
     }
 });
 
-// === Ajuste dinámico de top ===
+// Cerrar modal con Escape
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        const modal = document.getElementById("infoModal");
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+});
+
+// Ajuste dinámico de top según líneas
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');
     const titleType = document.querySelector('.modal-titleType');
-    if (!cast || !genres || !titleType) return;
 
-    const getLineCount = el => Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight));
+    const getLineCount = (el) => {
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const height = el.getBoundingClientRect().height;
+        return Math.round(height / lineHeight);
+    };
 
-    let castLines = getLineCount(cast);
-    let genresLines = getLineCount(genres);
+    const castLines = getLineCount(cast);
+    const genresLines = getLineCount(genres);
 
     let genresTop = 35.5;
     let titleTypeTop = 38.4;
@@ -426,7 +489,9 @@ function ajustarModalTop() {
         genresTop -= lineOffset;
         titleTypeTop -= lineOffset;
     }
-    if (genresLines < 2) titleTypeTop -= lineOffset;
+    if (genresLines < 2) {
+        titleTypeTop -= lineOffset;
+    }
 
     genres.style.top = `${genresTop}em`;
     titleType.style.top = `${titleTypeTop}em`;
@@ -435,14 +500,3 @@ function ajustarModalTop() {
 // Ajuste al cargar y redimensionar
 window.addEventListener('load', ajustarModalTop);
 window.addEventListener('resize', ajustarModalTop);
-
-// === Botones "Más Información" para abrir modal ===
-document.querySelectorAll(".moreinfobutton").forEach(button => {
-    button.addEventListener("click", function () {
-        const movieKey = this.getAttribute("data-movie");
-        openModal(movieKey);
-    });
-});
-
-// === Cargar lista de episodios principal al inicio ===
-changeSeason(1);
