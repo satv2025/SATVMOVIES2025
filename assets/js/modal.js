@@ -350,12 +350,18 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal y permitir scroll
+    // Justo después de mostrar el modal:
     modal.style.display = "block";
-    modal.style.overflowY = "auto"; // Scroll vertical
-    modal.style.overflowX = "hidden"; // Evitar scroll horizontal
-    modal.style.height = "100vh"; // Asegura que ocupe toda la ventana
-    document.body.classList.add("modal-open");
+    modal.style.overflowY = "auto";
+    modal.style.overflowX = "hidden";
+    modal.style.height = "100vh";
+
+    // --- NUEVO: asegurar que el contenido interno permita scroll ---
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.style.position = "relative"; // evita que absolute bloquee scroll
+        modalContent.style.maxHeight = "100%";    // ocupa todo el contenedor
+    }
 
     // Asignar listener al botón de mute
     const video = modal.querySelector("#modal-background video");
