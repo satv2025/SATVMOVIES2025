@@ -30,7 +30,7 @@ const peliculas = {
 
     cienporcientolucha: {
         year: "2008",
-        duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
+        duration: "1 h 20 min",
         description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
@@ -58,7 +58,7 @@ const peliculas = {
 
     cienporcientoluchaeadc: {
         year: "2009",
-        duration: "<span style='margin-left: 1.3em;'>1 h 20 min</span>",
+        duration: "1 h 20 min",
         description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.",
         cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
@@ -86,7 +86,7 @@ const peliculas = {
 
     homealone: {
         year: "1990",
-        duration: "<span style='margin-left: 1.3em;'>1 h 45 min</span>",
+        duration: "1 h 45 min",
         description: "En este clásico, Macaulay Culkin es Kevin MacCallister, un niño olvidado en casa en Navidad que debe enfrentarse a dos torpes y despiadados ladrones.",
         cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Mi Pobre Angelito </strong>",
@@ -119,7 +119,7 @@ const peliculas = {
 
     homealone2: {
         year: "1992",
-        duration: "<span style='margin-left: 1.3em;'>2 h 0 min</span>",
+        duration: "2 h",
         description: "En este clásico secuelar, Kevin McCallister toma un avión incorrecto y termina varado en Nueva York donde debe nuevamente sortear a los torpes ladrones.",
         cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout2'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Mi Pobre Angelito 2: Perdido en Nueva York </strong>",

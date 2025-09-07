@@ -4139,3 +4139,7 @@ h1#modal-title {
 .dropdown-content::-webkit-scrollbar-thumb:hover {
     background-color: rgb(204, 204, 204);
 }
+
+.no-min-duration {
+    left: 6.4em
+}
