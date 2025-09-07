@@ -312,7 +312,7 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botón de mute (ya con CSS externo)
+    // Insertar video + botón de mute dinámicamente
     document.getElementById("modal-background").innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -342,30 +342,62 @@ function openModal(movieKey) {
 
     // Mostrar modal y permitir scroll interno
     modal.style.display = "block";
-    modal.style.overflowY = "auto"; // importante para scroll
+    modal.style.overflowY = "auto";
     document.body.classList.add("modal-open");
 
-    // Video y mute
+    // Configurar botón de mute dinámico
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
 
-    if (video) {
+    if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
-        if (muteBtn) {
-            muteBtn.addEventListener("click", () => {
-                video.muted = !video.muted;
-                muteIcon.src = video.muted
-                    ? "assets/media/images/modal-vol-mute.svg"
-                    : "assets/media/images/modal-vol-on.svg";
-            });
-        }
+        muteBtn.addEventListener("click", () => {
+            video.muted = !video.muted;
+            muteIcon.src = video.muted
+                ? "assets/media/images/modal-vol-mute.svg"
+                : "assets/media/images/modal-vol-on.svg";
+        });
     }
 
-    // Ajustar top dinámico según líneas
+    // Scroll smooth al "about" si aplica
+    const scrollButton = document.querySelector('#modal-cast #scrollAbout');
+    if (scrollButton) {
+        scrollButton.addEventListener('click', () => {
+            const aboutSection = document.getElementById('about');
+            if (!aboutSection) return;
+
+            const start = modal.scrollTop;
+            const end = aboutSection.offsetTop - modal.offsetTop;
+            const distance = end - start;
+            const duration = 250;
+            let startTime = null;
+
+            function easeInOutQuad(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            }
+
+            function animate(time) {
+                if (!startTime) startTime = time;
+                const progress = Math.min((time - startTime) / duration, 1);
+                modal.scrollTop = start + distance * easeInOutQuad(progress);
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        });
+    }
+
+    // Cargar episodios si aplica
+    if (movieKey === "app") {
+        changeSeason(1);
+    } else {
+        document.getElementById("episode-list").innerHTML = "";
+    }
+
     ajustarModalTop();
 }
 
@@ -373,6 +405,7 @@ function openModal(movieKey) {
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
     if (!video) return;
+
     if (action === "play") {
         video.currentTime = 0;
         video.muted = false;
@@ -380,6 +413,30 @@ function handleVideo(modal, action) {
     } else if (action === "pause") {
         video.pause();
         video.currentTime = 0;
+    }
+}
+
+// === Cambiar temporada ===
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    episodeList.innerHTML = "";
+    if (episodios[season]) {
+        episodios[season].forEach(ep => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div>${ep.number}</div>
+                </div>`;
+            episodeList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement("li");
+        li.innerText = "No hay episodios disponibles para esta temporada.";
+        episodeList.appendChild(li);
     }
 }
 
