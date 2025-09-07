@@ -915,8 +915,6 @@ button.text:hover {
         font-size: 0.875em;
         left: 7.2em;
         color: #bcbcbc !important;
-        !i;
-        !;
     }
 
     .modal strong p {
@@ -1681,8 +1679,6 @@ button.text:hover {
         font-size: 0.875em;
         left: 9.1em;
         color: #bcbcbc !important;
-        !i;
-        !;
     }
 
     .modal strong p {
@@ -2447,8 +2443,6 @@ button.text:hover {
         font-size: 0.875em;
         left: 9.1em;
         color: #bcbcbc !important;
-        !i;
-        !;
     }
 
     .modal strong p {
@@ -3213,8 +3207,6 @@ button.text:hover {
         font-size: 0.875em;
         left: 9.1em;
         color: #bcbcbc !important;
-        !i;
-        !;
     }
 
     .modal strong p {
@@ -3616,9 +3608,7 @@ a.eplink {
     top: 28.4em;
     font-size: 16px;
     color: #bcbcbc !important;
-    !i;
-    !;
-    left: 5em;
+    left: 6.4em;
     display: flex;
     text-align: left;
     padding-left: 0em;
@@ -4138,8 +4128,4 @@ h1#modal-title {
 
 .dropdown-content::-webkit-scrollbar-thumb:hover {
     background-color: rgb(204, 204, 204);
-}
-
-.no-min-duration {
-    left: 6.4em
 }

@@ -299,7 +299,35 @@ const episodios = {
         }
     ]
 };
-// Detectar clic en los botones "Más Información"
+// === CSS Dinámico para el botón de mute ===
+(function insertMuteCSS() {
+    const style = document.createElement("style");
+    style.textContent = `
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+// === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
         const movieKey = this.getAttribute("data-movie");
@@ -307,50 +335,25 @@ document.querySelectorAll(".moreinfobutton").forEach(button => {
     });
 });
 
-// Función para abrir el modal y cargar los datos de la serie o película
+// === Abrir modal ===
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
-
     if (!movie) return;
 
-    // Cargar los datos en el modal
-    document.getElementById("modal-background").innerHTML = movie.background;
+    // Insertar video + botón mute dinámico
+    document.getElementById("modal-background").innerHTML = `
+        ${movie.background}
+        <button id="muteBtn" class="modal-mute-btn">
+            <img id="muteIcon" src="volume_on.svg" alt="Toggle sound">
+        </button>
+    `;
+
+    // Cargar resto de datos
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
-    document.getElementById('modal-cast').innerHTML = movie.cast;
-
-    const scrollButton = document.querySelector('#modal-cast #scrollAbout');
-    if (scrollButton) {
-        scrollButton.addEventListener('click', () => {
-            const aboutSection = document.getElementById('about');
-            const container = document.getElementById('infoModal'); // Contenedor con scroll real
-            if (aboutSection && container) {
-                const start = container.scrollTop;
-                const end = aboutSection.offsetTop - container.offsetTop;
-                const distance = end - start;
-                const duration = 250; // ms, ajusta velocidad
-                let startTime = null;
-
-                function easeInOutQuad(t) {
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                }
-
-                function animate(time) {
-                    if (!startTime) startTime = time;
-                    const elapsed = time - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const easedProgress = easeInOutQuad(progress);
-                    container.scrollTop = start + distance * easedProgress;
-                    if (progress < 1) requestAnimationFrame(animate);
-                }
-
-                requestAnimationFrame(animate);
-            }
-        });
-    }
-
+    document.getElementById("modal-cast").innerHTML = movie.cast;
     document.getElementById("modal-genres").innerHTML = movie.genres;
     document.getElementById("modal-titleType").innerHTML = movie.titleType;
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
@@ -366,43 +369,84 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Mostrar el modal
+    // Mostrar modal
     modal.style.display = "block";
     document.body.classList.add("modal-open");
 
-    // Reproducir video si existe
-    handleVideo(modal, "play");
+    // Video y mute
+    const video = modal.querySelector("#modal-background video");
+    const muteBtn = document.getElementById("muteBtn");
+    const muteIcon = document.getElementById("muteIcon");
 
-    // Si es "app", cargar temporada 1
+    if (video) {
+        video.currentTime = 0;
+        video.muted = false; // 🔊 empieza con sonido
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
+
+        if (muteBtn) {
+            muteBtn.addEventListener("click", () => {
+                video.muted = !video.muted;
+                muteIcon.src = video.muted ? "volume_off.svg" : "volume_on.svg";
+            });
+        }
+    }
+
+    // Scroll smooth al about
+    const scrollButton = document.querySelector('#modal-cast #scrollAbout');
+    if (scrollButton) {
+        scrollButton.addEventListener('click', () => {
+            const aboutSection = document.getElementById('about');
+            const container = modal;
+            if (aboutSection && container) {
+                const start = container.scrollTop;
+                const end = aboutSection.offsetTop - container.offsetTop;
+                const distance = end - start;
+                const duration = 250;
+                let startTime = null;
+
+                function easeInOutQuad(t) {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                }
+
+                function animate(time) {
+                    if (!startTime) startTime = time;
+                    const progress = Math.min((time - startTime) / duration, 1);
+                    container.scrollTop = start + distance * easeInOutQuad(progress);
+                    if (progress < 1) requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            }
+        });
+    }
+
+    // Cargar temporada si aplica
     if (movieKey === "app") {
         changeSeason(1);
     } else {
         document.getElementById("episode-list").innerHTML = "";
     }
+
+    ajustarModalTop();
 }
 
-// Función global para manejar el video del modal
+// === Función global para video ===
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
     if (!video) return;
-
     if (action === "play") {
         video.currentTime = 0;
-        video.muted = false; // inicia muteado
-        video.play().catch(() => {
-            console.warn("El navegador bloqueó el autoplay con sonido.");
-        });
+        video.muted = false;
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
     } else if (action === "pause") {
         video.pause();
         video.currentTime = 0;
     }
 }
 
-// Función global para cambiar temporada
+// === Cambiar temporada ===
 function changeSeason(season) {
     const episodeList = document.getElementById("episode-list");
     episodeList.innerHTML = "";
-
     if (episodios[season]) {
         episodios[season].forEach(ep => {
             const li = document.createElement("li");
@@ -413,8 +457,7 @@ function changeSeason(season) {
                     <p>${ep.description}</p>
                     <span>${ep.duration}</span>
                     <div>${ep.number}</div>
-                </div>
-            `;
+                </div>`;
             episodeList.appendChild(li);
         });
     } else {
@@ -424,7 +467,7 @@ function changeSeason(season) {
     }
 }
 
-// Cerrar modal con botón
+// === Cerrar modal ===
 document.querySelector(".close-button").addEventListener("click", () => {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
@@ -432,7 +475,7 @@ document.querySelector(".close-button").addEventListener("click", () => {
     document.body.classList.remove("modal-open");
 });
 
-// Cerrar modal al hacer clic fuera del contenido
+// Cerrar modal al hacer clic fuera
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
@@ -446,7 +489,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-// Cerrar modal con tecla Escape
+// Cerrar modal con Escape
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         const modal = document.getElementById("infoModal");
@@ -471,6 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Ajuste dinámico de top según líneas
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');
@@ -485,20 +529,14 @@ function ajustarModalTop() {
     const castLines = getLineCount(cast);
     const genresLines = getLineCount(genres);
 
-    // Valores base según tu CSS
-    let genresTop = 35.5;      // en em
-    let titleTypeTop = 38.4;   // en em
-
-    // Ajuste por línea faltante (aproximado)
+    let genresTop = 35.5;
+    let titleTypeTop = 38.4;
     const lineOffset = 1.2; // em
 
-    // Si el cast tiene menos de 2 líneas, subir genres y titleType
     if (castLines < 2) {
         genresTop -= lineOffset;
         titleTypeTop -= lineOffset;
     }
-
-    // Si genres tiene menos de 2 líneas, subir titleType
     if (genresLines < 2) {
         titleTypeTop -= lineOffset;
     }
@@ -507,5 +545,6 @@ function ajustarModalTop() {
     titleType.style.top = `${titleTypeTop}em`;
 }
 
+// Ajuste al cargar y redimensionar
 window.addEventListener('load', ajustarModalTop);
 window.addEventListener('resize', ajustarModalTop);
