@@ -299,7 +299,6 @@ const episodios = {
         }
     ]
 };
-
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
@@ -313,7 +312,7 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botón de mute personalizado
+    // Insertar video + botón de mute (ya con CSS externo)
     document.getElementById("modal-background").innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -341,8 +340,9 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Mostrar modal
+    // Mostrar modal y permitir scroll interno
     modal.style.display = "block";
+    modal.style.overflowY = "auto"; // importante para scroll
     document.body.classList.add("modal-open");
 
     // Video y mute
@@ -352,7 +352,7 @@ function openModal(movieKey) {
 
     if (video) {
         video.currentTime = 0;
-        video.muted = false; // Empieza con sonido
+        video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
         if (muteBtn) {
@@ -394,7 +394,7 @@ document.querySelector(".close-button").addEventListener("click", () => {
 // Cerrar modal al hacer clic fuera
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
-    const modalContent = document.querySelector(".modal-content");
+    const modalContent = modal.querySelector(".modal-content");
 
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&

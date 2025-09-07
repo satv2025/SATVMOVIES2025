@@ -4132,8 +4132,9 @@ h1#modal-title {
     cursor: pointer;
     transition: opacity 0.2s;
     background-color: rgb(42 42 42 / 60%);
-    border-color: hsla(0, 0%, 100%, .5);
-    border-width: 2px;
+    border: 2px solid hsla(0, 0%, 100%, .5);
+    /* combina color + width + style */
+    border-radius: 50%;
     opacity: 0.6;
 }
 
@@ -4142,7 +4143,9 @@ h1#modal-title {
 }
 
 .modal-mute-btn img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     display: block;
+    filter: brightness(0) invert(1);
+    /* Hace que la imagen se vea blanca */
 }
