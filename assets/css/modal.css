@@ -9,9 +9,8 @@ html {
 
 body.modal-open {
     overflow: hidden;
+    /* bloquea scroll del body */
 }
-
-body.modal-open {}
 
 /* Estilos del modal */
 
@@ -34,15 +33,15 @@ a#watch-button:active {
     background-color: #181818;
     color: white;
     margin: 5% auto;
-    margin-bottom: -41px !important;
     padding: 1.25em;
     width: 43%;
-    top: -2.6em;
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    height: calc(39.4em + 62em);
-    /* o sumás lo que ocupa el resto de contenido */
+    max-height: 90vh;
+    /* máximo alto visible */
+    overflow-y: auto;
+    /* scroll interno si el contenido supera el máximo */
 }
 
 div#modal-background {
@@ -52,13 +51,15 @@ div#modal-background {
 /* Ajuste de la clase .modal */
 .modal {
     display: none;
-    position: absolute;
+    position: fixed;
+    /* cambiar absolute por fixed para que el scroll funcione correctamente */
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    /* scroll interno del modal */
     background-color: rgba(0, 0, 0, 0.7);
 }
 
