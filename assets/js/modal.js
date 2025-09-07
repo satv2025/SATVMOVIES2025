@@ -360,7 +360,6 @@ function openModal(movieKey) {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) {
         modalContent.style.position = "relative"; // evita que absolute bloquee scroll
-        modalContent.style.maxHeight = "100%";    // ocupa todo el contenedor
     }
 
     // Asignar listener al botón de mute
