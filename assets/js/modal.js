@@ -299,11 +299,6 @@ const episodios = {
         }
     ]
 };
-// === Llamar por defecto a temporada 1 al cargar ===
-document.addEventListener("DOMContentLoaded", () => {
-    changeSeason(1); // Carga temporada 1 en la lista principal
-});
-
 // === Función para renderizar episodios ===
 function renderEpisodeList(episodesArray) {
     if (!episodesArray) return "<li>No hay episodios disponibles.</li>";
@@ -320,15 +315,7 @@ function renderEpisodeList(episodesArray) {
     `).join('');
 }
 
-// === Cambiar temporada ===
-function changeSeason(season) {
-    const episodeList = document.getElementById("episode-list");
-    if (!episodeList) return;
-
-    episodeList.innerHTML = renderEpisodeList(episodios[season]);
-}
-
-// === Abrir modal con video, datos y lista de episodios ===
+// === Abrir modal con video y datos ===
 function openModal(movieKey, season = 1) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
@@ -342,13 +329,14 @@ function openModal(movieKey, season = 1) {
         </button>
     `;
 
+    // Mostrar modal
     modal.style.display = "block";
     document.body.classList.add("modal-open");
 
+    // Video
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
-
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -362,7 +350,7 @@ function openModal(movieKey, season = 1) {
         });
     }
 
-    // Datos del modal
+    // Cargar datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -372,22 +360,23 @@ function openModal(movieKey, season = 1) {
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
     document.getElementById("modal-duration").innerHTML = movie.duration;
-    document.getElementById("modal-episodelist").innerHTML = renderEpisodeList(episodios[season]);
-    document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
-    document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
-    document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
-    document.getElementById("modal-fullscript").innerHTML = movie.fullscript;
-    document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres;
-    document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype;
-    document.getElementById("modal-fullage").innerHTML = movie.fullage;
-    document.getElementById("watch-button").innerHTML = movie.link;
+    document.getElementById("modal-seasons").innerHTML = movie.seasons;
 
-    // Cambiar temporada desde dentro del modal
-    const seasonButtons = document.querySelectorAll(".season-btn");
+    // Cargar episodios de la temporada por defecto
+    document.getElementById("episode-list").innerHTML = renderEpisodeList(episodios[season]);
+
+    // Configurar botones de temporada dentro del modal
+    const seasonButtons = modal.querySelectorAll(".season-option button");
     seasonButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            const selectedSeason = parseInt(btn.getAttribute("data-season"));
-            document.getElementById("modal-episodelist").innerHTML = renderEpisodeList(episodios[selectedSeason]);
+            const seasonNum = parseInt(btn.textContent.match(/\d+/));
+            if (!isNaN(seasonNum) && episodios[seasonNum]) {
+                document.getElementById("episode-list").innerHTML = renderEpisodeList(episodios[seasonNum]);
+            } else if (btn.classList.contains("vtle")) {
+                // Ver todos los episodios
+                const allEps = Object.values(episodios).flat();
+                document.getElementById("episode-list").innerHTML = renderEpisodeList(allEps);
+            }
         });
     });
 
@@ -408,8 +397,8 @@ function closeModal() {
 
 // Listeners de cierre
 document.querySelector(".close-button").addEventListener("click", closeModal);
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-document.addEventListener("click", (event) => {
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+document.addEventListener("click", event => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
     if (modal.style.display === "block" && !modalContent.contains(event.target) && !event.target.closest(".moreinfobutton")) {
@@ -424,7 +413,7 @@ function ajustarModalTop() {
     const titleType = document.querySelector('.modal-titleType');
     if (!cast || !genres || !titleType) return;
 
-    const getLineCount = (el) => Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight));
+    const getLineCount = el => Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight));
 
     let castLines = getLineCount(cast);
     let genresLines = getLineCount(genres);
@@ -451,6 +440,9 @@ window.addEventListener('resize', ajustarModalTop);
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
         const movieKey = this.getAttribute("data-movie");
-        openModal(movieKey); // temporada 1 por defecto
+        openModal(movieKey);
     });
 });
+
+// === Cargar lista de episodios principal al inicio ===
+changeSeason(1);
