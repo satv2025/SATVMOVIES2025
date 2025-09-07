@@ -121,7 +121,7 @@ const peliculas = {
         year: "1992",
         duration: "2 h",
         description: "En este clásico secuelar, Kevin McCallister toma un avión incorrecto y termina varado en Nueva York donde debe nuevamente sortear a los torpes ladrones.",
-        cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout2'>más</button>",
+        cast: "<strong>Elenco:</strong> Macaulay Culkin, Joe Pesci, Daniel Stern, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Mi Pobre Angelito 2: Perdido en Nueva York </strong>",
         genres: "<strong>Géneros:</strong> Infantil, Comedia, Fiestas navideñas, Aventuras",
         titleType: "<strong>Este título es:</strong> Divertido, Familiar, Emotivo",
