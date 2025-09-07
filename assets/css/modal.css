@@ -3831,10 +3831,10 @@ span.about {
     text-decoration: none;
     font-weight: 500;
     position: absolute;
-    top: 16.4em;
-    left: 2em;
+    top: 15.36em;
+    left: 2.06em;
     z-index: 1000;
-    padding-left: 3em;
+    padding-left: 3.3em;
 }
 
 .watch-button::after {
@@ -3842,9 +3842,9 @@ span.about {
     position: absolute;
     top: 0.6em;
     left: 1.3em;
-    width: 30;
+    width: 32px;
     /* ancho equivalente al font-size */
-    height: 30;
+    height: 32px;
     /* alto equivalente al font-size */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" fill="currentColor"/></svg>');
     background-size: contain;
@@ -3863,6 +3863,8 @@ span.about {
     all: unset;
     text-decoration: none;
 }
+
+a {}
 
 .icon-button {
     background: none;
@@ -4126,26 +4128,25 @@ h1#modal-title {
 }
 
 .modal-mute-btn {
-    position: absolute;
-    bottom: 5%;
-    right: 2em;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    background-color: rgb(42 42 42 / 60%);
-    border: 2px solid hsla(0, 0%, 100%, .5);
-    /* combina color + width + style */
-    border-radius: 50%;
-    opacity: 0.6;
+    position: absolute !important;
+    bottom: 4.66em !important;
+    right: 1.812em !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s !important;
+    background-color: rgb(42 42 42 / 60%) !important;
+    border: 2px solid hsla(0, 0%, 100%, .5) !important;
+    border-radius: 50% !important;
+    opacity: 0.4 !important;
 }
 
 .modal-mute-btn:hover {
-    opacity: 1;
+    opacity: 1 !important;
+    border: 2px solid #fff !important;
 }
 
 .modal-mute-btn img {
-    width: 24px;
-    height: 24px;
-    display: block;
-    filter: brightness(0) invert(1);
-    /* Hace que la imagen se vea blanca */
+    width: 30px !important;
+    height: 30px !important;
+    display: block !important;
+    filter: brightness(0) invert(1) !important;
 }
