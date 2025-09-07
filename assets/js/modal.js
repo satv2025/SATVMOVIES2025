@@ -299,7 +299,44 @@ const episodios = {
         }
     ]
 };
-// === Abrir modal con scroll dinámico ===
+// === Insertar CSS del botón de mute dinámicamente ===
+(function insertMuteCSS() {
+    const style = document.createElement("style");
+    style.textContent = `
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1); /* hace la imagen blanca */
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+// === Detectar clic en botones "Más Información" ===
+document.querySelectorAll(".moreinfobutton").forEach(button => {
+    button.addEventListener("click", function () {
+        const movieKey = this.getAttribute("data-movie");
+        openModal(movieKey);
+    });
+});
+
+// === Abrir modal con video y botón mute dinámico ===
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
@@ -313,18 +350,14 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal
+    // Mostrar modal y permitir scroll
     modal.style.display = "block";
-
-    // === Scroll dinámico ===
-    modal.style.overflowY = "auto";  // scroll vertical
-    modal.style.overflowX = "hidden"; // evitar scroll horizontal
-    modal.style.height = "100vh";     // asegura que ocupe toda la ventana
-
-    // Evitar scroll del fondo
+    modal.style.overflowY = "auto"; // Scroll vertical
+    modal.style.overflowX = "hidden"; // Evitar scroll horizontal
+    modal.style.height = "100vh"; // Asegura que ocupe toda la ventana
     document.body.classList.add("modal-open");
 
-    // Video y botón mute
+    // Asignar listener al botón de mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
@@ -365,31 +398,107 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Cerrar modal ===
-function closeModal() {
-    const modal = document.getElementById("infoModal");
+// === Función global para video ===
+function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
-    if (video) {
+    if (!video) return;
+    if (action === "play") {
+        video.currentTime = 0;
+        video.muted = false;
+        video.play().catch(() => console.warn("Autoplay bloqueado"));
+    } else if (action === "pause") {
         video.pause();
         video.currentTime = 0;
     }
-    modal.style.display = "none";
-    document.body.classList.remove("modal-open");
 }
 
-// === Listeners ===
-document.querySelector(".close-button")?.addEventListener("click", closeModal);
+// === Cambiar temporada ===
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    episodeList.innerHTML = "";
+    if (episodios[season]) {
+        episodios[season].forEach(ep => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div>${ep.number}</div>
+                </div>`;
+            episodeList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement("li");
+        li.innerText = "No hay episodios disponibles para esta temporada.";
+        episodeList.appendChild(li);
+    }
+}
 
+// === Cerrar modal ===
+document.querySelector(".close-button").addEventListener("click", () => {
+    const modal = document.getElementById("infoModal");
+    handleVideo(modal, "pause");
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+});
+
+// Cerrar modal al hacer clic fuera
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
+
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
-        closeModal();
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
     }
 });
 
+// Cerrar modal con Escape
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
+    if (event.key === "Escape") {
+        const modal = document.getElementById("infoModal");
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
 });
+
+// Ajuste dinámico de top según líneas
+function ajustarModalTop() {
+    const cast = document.querySelector('.modal-cast');
+    const genres = document.querySelector('.modal-genres');
+    const titleType = document.querySelector('.modal-titleType');
+
+    const getLineCount = (el) => {
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const height = el.getBoundingClientRect().height;
+        return Math.round(height / lineHeight);
+    };
+
+    const castLines = getLineCount(cast);
+    const genresLines = getLineCount(genres);
+
+    let genresTop = 35.5;
+    let titleTypeTop = 38.4;
+    const lineOffset = 1.2;
+
+    if (castLines < 2) {
+        genresTop -= lineOffset;
+        titleTypeTop -= lineOffset;
+    }
+    if (genresLines < 2) {
+        titleTypeTop -= lineOffset;
+    }
+
+    genres.style.top = `${genresTop}em`;
+    titleType.style.top = `${titleTypeTop}em`;
+}
+
+// Ajuste al cargar y redimensionar
+window.addEventListener('load', ajustarModalTop);
+window.addEventListener('resize', ajustarModalTop);
