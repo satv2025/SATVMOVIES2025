@@ -395,6 +395,12 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
+    // === NUEVO: cargar episodios de la primera temporada automáticamente ===
+    if (movie.seasons && episodios) {
+        const primeraTemporada = Object.keys(episodios)[0];
+        if (primeraTemporada) changeSeason(primeraTemporada);
+    }
+
     ajustarModalTop();
 }
 
