@@ -299,33 +299,6 @@ const episodios = {
         }
     ]
 };
-// === CSS Dinámico para el botón de mute ===
-(function insertMuteCSS() {
-    const style = document.createElement("style");
-    style.textContent = `
-        .modal-mute-btn {
-            position: absolute;
-            bottom: 5%;
-            right: 2em;
-            background-color: rgba(42, 42, 42, 0.6);
-            border: 2px solid hsla(0, 0%, 100%, 0.5);
-            border-radius: 50%;
-            padding: 8px;
-            z-index: 20;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .modal-mute-btn:hover {
-            opacity: 1;
-        }
-        .modal-mute-btn img {
-            width: 28px;
-            height: 28px;
-            display: block;
-        }
-    `;
-    document.head.appendChild(style);
-})();
 
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
