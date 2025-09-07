@@ -45,14 +45,6 @@
       opacity: 1;
     }
 
-    .weightnormal {
-      font-weight: normal;
-      font-size: 20px;
-      margin-bottom: 10px;
-      transition: opacity 0.3s ease;
-      opacity: 1;
-    }
-
     .hidden {
       opacity: 0;
       pointer-events: none;
@@ -61,8 +53,7 @@
     .weightnormal {
       font-weight: normal;
       font-size: 20px;
-      margin: 40em 0 10px 0;
-      z-index: 1000;
+      margin-bottom: 10px;
       transition: opacity 0.3s ease;
       opacity: 1;
     }
@@ -75,8 +66,6 @@
 </head>
 
 <body>
-  <h1 id="title" class="weightnormal">100% Lucha - La Película</h1>
-
   <div id="player"></div>
   <div id="episodes-root"></div>
 
@@ -86,37 +75,20 @@
         elementId: "player",
         videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8"
       });
-
-      const title = document.getElementById('title');
-      const player = document.getElementById('player');
-
-      let hideTimeout;
-
-      function showTitle() {
-        clearTimeout(hideTimeout);
-        title.classList.remove('hidden');
-        hideTimeout = setTimeout(() => {
-          title.classList.add('hidden');
-        }, 3000); // Oculta tras 3 segundos sin actividad
-      }
-
-      player.addEventListener('mousemove', showTitle);
-
-      // Mostrar título al cargar
-      showTitle();
     };
   </script>
 
   <script id="episodes-data" type="application/json">
-        [
-            {
-                "title": "Episodio 1",
-                "description": "Una introducción al mundo de 100% Lucha.",
-                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8",
-                "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
-            }
-        ]
-    </script>
+    [
+      {
+        "titleType": "Movie",
+        "title": "100% Lucha - La Película",
+        "description": "Una introducción al mundo de 100% Lucha.",
+        "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8",
+        "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
+      }
+    ]
+  </script>
 </body>
 
 </html>
