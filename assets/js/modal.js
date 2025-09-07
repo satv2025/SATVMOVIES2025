@@ -238,124 +238,52 @@ const peliculas = {
     }
 };
 
-// Datos de episodios por temporada
-const episodios = {
-    1: [
-        {
-            title: "Episodio 1",
-            number: "<strong class='epnumber1'>1</strong>",
-            description: "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
-            image: "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
-            duration: "43 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 2",
-            number: "<strong class='epnumber2'>2</strong>",
-            description: "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
-            image: "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg",
-            duration: "44 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 3",
-            number: "<strong class='epnumber3'>3</strong>",
-            description: "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.",
-            image: "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg",
-            duration: "43 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 4",
-            number: "<strong class='epnumber4'>4</strong>",
-            description: "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
-            image: "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg",
-            duration: "44 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 5",
-            number: "<strong class='epnumber5'>5</strong>",
-            description: "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
-            image: "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5",
-            duration: "50 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 6",
-            number: "<strong class='epnumber6'>6</strong>",
-            description: "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.",
-            image: "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg",
-            duration: "51 min",
-            link: "app"
-        }
-    ],
-    2: [
-        {
-            title: "Coming Soon...",
-            description: "La temporada 2 aún no tiene episodios confirmados.",
-            image: "https://www.mediafire.com/convkey/4a6d/478xmus1d6v68eh9g.jpg?size_id=6",
-            duration: "?? min"
-        }
-    ]
-};
-// === Insertar CSS del botón de mute dinámicamente ===
-(function insertMuteCSS() {
-    const style = document.createElement("style");
-    style.textContent = `
-        .modal-mute-btn {
-            position: absolute;
-            bottom: 5%;
-            right: 2em;
-            background: rgba(0,0,0,0.6);
-            border: none;
-            border-radius: 50%;
-            padding: 8px;
-            z-index: 20;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .modal-mute-btn:hover {
-            opacity: 1;
-        }
-        .modal-mute-btn img {
-            width: 28px;
-            height: 28px;
-            display: block;
-            filter: brightness(0) invert(1); /* hace la imagen blanca */
-        }
-    `;
-    document.head.appendChild(style);
-})();
-
-// === Detectar clic en botones "Más Información" ===
-document.querySelectorAll(".moreinfobutton").forEach(button => {
-    button.addEventListener("click", function () {
-        const movieKey = this.getAttribute("data-movie");
-        openModal(movieKey);
-    });
+// === Llamar por defecto a temporada 1 al cargar ===
+document.addEventListener("DOMContentLoaded", () => {
+    changeSeason(1); // Carga temporada 1 en la lista principal
 });
 
-// === Abrir modal con video y botón mute dinámico ===
-function openModal(movieKey) {
+// === Función para renderizar episodios ===
+function renderEpisodeList(episodesArray) {
+    if (!episodesArray) return "<li>No hay episodios disponibles.</li>";
+    return episodesArray.map(ep => `
+        <li>
+            <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+            <div class="episode-info">
+                <h3>${ep.title}</h3>
+                <p>${ep.description}</p>
+                <span>${ep.duration}</span>
+                <div>${ep.number || ""}</div>
+            </div>
+        </li>
+    `).join('');
+}
+
+// === Cambiar temporada ===
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    if (!episodeList) return;
+
+    episodeList.innerHTML = renderEpisodeList(episodios[season]);
+}
+
+// === Abrir modal con video, datos y lista de episodios ===
+function openModal(movieKey, season = 1) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botón de mute
+    // Video y botón mute
     document.getElementById("modal-background").innerHTML = `
-        ${movie.background}
+        ${movie.background || ""}
         <button class="modal-mute-btn" id="muteBtn">
             <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
         </button>
     `;
 
-    // Mostrar modal y permitir scroll
     modal.style.display = "block";
-    modal.style.overflowY = "auto";
     document.body.classList.add("modal-open");
 
-    // Asignar listener al botón de mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
@@ -373,7 +301,7 @@ function openModal(movieKey) {
         });
     }
 
-    // Cargar datos del modal
+    // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -383,7 +311,7 @@ function openModal(movieKey) {
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
     document.getElementById("modal-duration").innerHTML = movie.duration;
-    document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
+    document.getElementById("modal-episodelist").innerHTML = renderEpisodeList(episodios[season]);
     document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
     document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
     document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
@@ -393,93 +321,52 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
+    // Cambiar temporada desde dentro del modal
+    const seasonButtons = document.querySelectorAll(".season-btn");
+    seasonButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const selectedSeason = parseInt(btn.getAttribute("data-season"));
+            document.getElementById("modal-episodelist").innerHTML = renderEpisodeList(episodios[selectedSeason]);
+        });
+    });
+
     ajustarModalTop();
 }
 
-// === Función global para video ===
-function handleVideo(modal, action) {
+// === Cerrar modal ===
+function closeModal() {
+    const modal = document.getElementById("infoModal");
     const video = modal.querySelector("#modal-background video");
-    if (!video) return;
-    if (action === "play") {
-        video.currentTime = 0;
-        video.muted = false;
-        video.play().catch(() => console.warn("Autoplay bloqueado"));
-    } else if (action === "pause") {
+    if (video) {
         video.pause();
         video.currentTime = 0;
     }
-}
-
-// === Cambiar temporada ===
-function changeSeason(season) {
-    const episodeList = document.getElementById("episode-list");
-    episodeList.innerHTML = "";
-    if (episodios[season]) {
-        episodios[season].forEach(ep => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-                <div class="episode-info">
-                    <h3>${ep.title}</h3>
-                    <p>${ep.description}</p>
-                    <span>${ep.duration}</span>
-                    <div>${ep.number}</div>
-                </div>`;
-            episodeList.appendChild(li);
-        });
-    } else {
-        const li = document.createElement("li");
-        li.innerText = "No hay episodios disponibles para esta temporada.";
-        episodeList.appendChild(li);
-    }
-}
-
-// === Cerrar modal ===
-document.querySelector(".close-button").addEventListener("click", () => {
-    const modal = document.getElementById("infoModal");
-    handleVideo(modal, "pause");
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
-});
+}
 
-// Cerrar modal al hacer clic fuera
+// Listeners de cierre
+document.querySelector(".close-button").addEventListener("click", closeModal);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-
-    if (modal.style.display === "block" &&
-        !modalContent.contains(event.target) &&
-        !event.target.closest(".moreinfobutton")) {
-        handleVideo(modal, "pause");
-        modal.style.display = "none";
-        document.body.classList.remove("modal-open");
+    if (modal.style.display === "block" && !modalContent.contains(event.target) && !event.target.closest(".moreinfobutton")) {
+        closeModal();
     }
 });
 
-// Cerrar modal con Escape
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        const modal = document.getElementById("infoModal");
-        handleVideo(modal, "pause");
-        modal.style.display = "none";
-        document.body.classList.remove("modal-open");
-    }
-});
-
-// Ajuste dinámico de top según líneas
+// === Ajuste dinámico de top ===
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');
     const titleType = document.querySelector('.modal-titleType');
+    if (!cast || !genres || !titleType) return;
 
-    const getLineCount = (el) => {
-        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-        const height = el.getBoundingClientRect().height;
-        return Math.round(height / lineHeight);
-    };
+    const getLineCount = (el) => Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight));
 
-    const castLines = getLineCount(cast);
-    const genresLines = getLineCount(genres);
+    let castLines = getLineCount(cast);
+    let genresLines = getLineCount(genres);
 
     let genresTop = 35.5;
     let titleTypeTop = 38.4;
@@ -489,9 +376,7 @@ function ajustarModalTop() {
         genresTop -= lineOffset;
         titleTypeTop -= lineOffset;
     }
-    if (genresLines < 2) {
-        titleTypeTop -= lineOffset;
-    }
+    if (genresLines < 2) titleTypeTop -= lineOffset;
 
     genres.style.top = `${genresTop}em`;
     titleType.style.top = `${titleTypeTop}em`;
@@ -500,3 +385,11 @@ function ajustarModalTop() {
 // Ajuste al cargar y redimensionar
 window.addEventListener('load', ajustarModalTop);
 window.addEventListener('resize', ajustarModalTop);
+
+// === Botones "Más Información" para abrir modal ===
+document.querySelectorAll(".moreinfobutton").forEach(button => {
+    button.addEventListener("click", function () {
+        const movieKey = this.getAttribute("data-movie");
+        openModal(movieKey); // temporada 1 por defecto
+    });
+});
