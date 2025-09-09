@@ -376,7 +376,7 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Cambiar temporada y manejar episodios como <li> botón ===
+// === Cambiar temporada ===
 function changeSeason(season, movieKey) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
@@ -387,8 +387,11 @@ function changeSeason(season, movieKey) {
             const li = document.createElement("li");
             li.classList.add("episode-item");
             li.style.cursor = "pointer";
-            li.style.borderBottom = "1px solid #333";
-            if (index === 0) li.style.borderTop = "1px solid #333";
+            li.style.borderBottom = "1px solid #333"; // borde inferior por defecto
+
+            if (index === 0) {
+                li.style.borderTop = "1px solid #333"; // primer li con border-top
+            }
 
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -399,19 +402,18 @@ function changeSeason(season, movieKey) {
                     <div class="episode-number">${ep.number || ""}</div>
                 </div>`;
 
-            // Al hacer clic, redirigir al link del episodio
             li.addEventListener("click", () => {
                 if (ep.link) window.location.href = ep.link;
             });
 
-            // Hover: quitar border-bottom del li anterior
+            // === Hover dinámico para ocultar border-bottom del li anterior ===
             li.addEventListener("mouseenter", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "none";
+                if (prev) prev.style.borderBottomColor = "transparent";
             });
             li.addEventListener("mouseleave", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "1px solid #333";
+                if (prev) prev.style.borderBottomColor = "#333";
             });
 
             episodeList.appendChild(li);
