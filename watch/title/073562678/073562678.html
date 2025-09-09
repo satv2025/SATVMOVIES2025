@@ -78,18 +78,9 @@
 
     #episodesButtonReact img:hover {
       transform: scale(1.2);
-
-
-
     }
 
     .episodes-button-container {
-
-
-
-
-
-
       position: relative;
       cursor: pointer;
       width: 24px;
@@ -99,7 +90,6 @@
       width: 40px;
       height: 40px;
       margin-left: -17.3em;
-
       background: none;
       border: none;
       padding: 0;
@@ -166,8 +156,6 @@
     .epimage img:hover,
     #epimage img:hover {
       all: unset;
-
-
     }
 
     .episodes-modal {
@@ -179,6 +167,41 @@
       width: 0 !important;
     }
 
+    /* Escala al hover o cuando esté activo */
+    .episodes-icon:hover,
+    .episodes-icon.active {
+      transform: scale(1.2);
+    }
+
+    .volume-icon:hover,
+    .volume-icon.active {
+      transform: scale(1.2);
+    }
+
+    .speed-icon:hover,
+    .speed-icon.active {
+      transform: scale(1.2);
+    }
+
+    .speed-modal {
+      top: -13.8em !important;
+    }
+
+    .watch-video--scrubber-volume-container {
+      box-sizing: border-box;
+      height: 2em;
+      max-height: 20rem;
+      min-height: 11.4rem;
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 2.4em;
+      margin-left: -0.4em;
+      border-radius: 0.2em !important;
+    }
+
     .title-styles {
       position: absolute !important;
       left: 50% !important;
@@ -186,16 +209,22 @@
       z-index: 1000 !important;
       font-size: 22px !important;
       color: white !important;
+
+      /* Evitar salto de línea y cortar texto largo */
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      /* Ajusta según prefieras */
+      display: inline !important;
     }
 
     .title-styles.fullscreen {
-      top: 46em !important;
-      /* mismo que windowed */
+      top: 46.2em !important;
     }
 
     .title-styles.windowed {
-      top: 38.9em !important;
-      /* mismo que fullscreen */
+      top: 39em !important;
     }
   </style>
 </head>
@@ -206,13 +235,44 @@
 
   <script>
     window.onload = function () {
+      const episodesDataScript = document.getElementById("episodes-data");
+      const episodes = episodesDataScript ? JSON.parse(episodesDataScript.textContent) : [];
+
+      if (episodes.length === 0) return;
+
+      // Inicializar SATVPlayerEmbed con el primer episodio
       SATVPlayerEmbed({
         elementId: "player",
-        videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8"
+        videoUrl: episodes[0].videoPath
       });
 
-      const serie = document.getElementById('serie');
-      const player = document.getElementById('player');
+      // Crear contenedor de título
+      let titleContainer = document.createElement("div");
+      titleContainer.id = "title-container";
+      titleContainer.className = "title-styles";
+      document.getElementById("player").appendChild(titleContainer);
+
+      // Función global para cambiar de episodio
+      window.playEpisode = function (index) {
+        if (!episodes[index]) return;
+        const ep = episodes[index];
+
+        SATVPlayerEmbed({
+          elementId: "player",
+          videoUrl: ep.videoPath
+        });
+
+        if (ep.titleType === "Movie") {
+          titleContainer.innerHTML = `<div class="MovieTitleType">${ep.title}</div>`;
+        } else {
+          titleContainer.innerHTML = `
+            <div class="SeriesTitleType">
+              <strong style="font-weight:500;">${ep.seriesName}</strong>
+              <p style="font-weight:400;">E${ep.episodeNumber} ${ep.title}</p>
+            </div>
+          `;
+        }
+      };
     };
   </script>
 

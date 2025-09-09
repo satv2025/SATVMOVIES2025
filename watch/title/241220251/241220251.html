@@ -66,6 +66,22 @@
             width: 0 !important;
         }
 
+        /* Escala al hover o cuando esté activo */
+        .episodes-icon:hover,
+        .episodes-icon.active {
+            transform: scale(1.2);
+        }
+
+        .volume-icon:hover,
+        .volume-icon.active {
+            transform: scale(1.2);
+        }
+
+        .speed-icon:hover,
+        .speed-icon.active {
+            transform: scale(1.2);
+        }
+
         .speed-modal {
             top: -13.8em !important;
         }
@@ -92,16 +108,22 @@
             z-index: 1000 !important;
             font-size: 22px !important;
             color: white !important;
+
+            /* Evitar salto de línea y cortar texto largo */
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 100% !important;
+            /* Ajusta según prefieras */
+            display: inline !important;
         }
 
         .title-styles.fullscreen {
-            top: 46em !important;
-            /* mismo que windowed */
+            top: 46.2em !important;
         }
 
         .title-styles.windowed {
-            top: 38.9em !important;
-            /* mismo que fullscreen */
+            top: 39em !important;
         }
     </style>
 </head>
