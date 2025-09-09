@@ -284,6 +284,7 @@ async function cargarEpisodiosJSON() {
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
         episodiosPorSerie = data; // Guardamos todo en variable global
+        console.log("Episodios cargados", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
@@ -360,8 +361,10 @@ function openModal(movieKey) {
     document.getElementById("watch-button").innerHTML = movie.link;
 
     // Cargar episodios de la primera temporada automáticamente desde JSON
-    const primeraTemporada = episodiosPorSerie[movieKey] ? Object.keys(episodiosPorSerie[movieKey])[0] : null;
-    if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
+    if (episodiosPorSerie[movieKey]) {
+        const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
+        if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
+    }
 
     ajustarModalTop();
 }
