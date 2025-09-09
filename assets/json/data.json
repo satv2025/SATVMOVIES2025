@@ -1,0 +1,227 @@
+// === Episodios de "app" ===
+const episodiosApp = {
+    1: [
+        {
+            title: "Episodio 1",
+            number: "<strong class='epnumber1'>1</strong>",
+            description: "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
+            image: "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
+            duration: "43 min",
+            link: "app"
+        },
+        {
+            title: "Episodio 2",
+            number: "<strong class='epnumber2'>2</strong>",
+            description: "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
+            image: "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg",
+            duration: "44 min",
+            link: "app"
+        },
+        {
+            title: "Episodio 3",
+            number: "<strong class='epnumber3'>3</strong>",
+            description: "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.",
+            image: "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg",
+            duration: "43 min",
+            link: "app"
+        },
+        {
+            title: "Episodio 4",
+            number: "<strong class='epnumber4'>4</strong>",
+            description: "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
+            image: "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg",
+            duration: "44 min",
+            link: "app"
+        },
+        {
+            title: "Episodio 5",
+            number: "<strong class='epnumber5'>5</strong>",
+            description: "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
+            image: "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5",
+            duration: "50 min",
+            link: "app"
+        },
+        {
+            title: "Episodio 6",
+            number: "<strong class='epnumber6'>6</strong>",
+            description: "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.",
+            image: "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg",
+            duration: "51 min",
+            link: "app"
+        }
+    ],
+    2: [
+        {
+            title: "Coming Soon...",
+            description: "La temporada 2 aún no tiene episodios confirmados.",
+            image: "https://www.mediafire.com/convkey/4a6d/478xmus1d6v68eh9g.jpg?size_id=6",
+            duration: "?? min"
+        }
+    ]
+};
+
+// === Episodios de "Reite666" ===
+const episodiosReite666 = {
+    1: [
+        {
+            title: "Cilio Debe Regresar",
+            number: "<strong class='epnumber1'>1</strong>",
+            description: "Luego de recibir un misterioso mensaje, Cilio debe volver a Argentina y descubrir quién lo envió.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e01.jpg",
+            duration: "12 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E1/REITE666%20T1%20E1.m3u8"
+        },
+        {
+            title: "Bienvenido A Casa",
+            number: "<strong class='epnumber2'>2</strong>",
+            description: "Luego del viaje, Cilio llega a su casa solo para encontrarse con más enigmas. Un cartel y unas coordenadas lo esperan.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e02.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E12/REITE666%20T1%20E2.m3u8"
+        },
+        {
+            title: "El Reencuentro",
+            number: "<strong class='epnumber3'>3</strong>",
+            description: "Cilio es citado en un parque cercano junto a dos desconocidos; al llegar se reencuentra con dos viejos amigos.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e03.jpg",
+            duration: "14 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E3/REITE666%20T1%20E3.m3u8"
+        },
+        {
+            title: "La Casa De Juli",
+            number: "<strong class='epnumber4'>4</strong>",
+            description: "Al día siguiente en la casa de Julián, alguien toca el timbre y se encuentran con un sobre.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e04.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E4/REITE666%20T1%20E4.m3u8"
+        },
+        {
+            title: "El Código QR",
+            number: "<strong class='epnumber5'>5</strong>",
+            description: "El sobre que les dejaron contenía un código QR, el mismo los llevó a una isla.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e05.jpg",
+            duration: "13 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E5/REITE666%20T1%20E5.m3u8"
+        },
+        {
+            title: "La Isla",
+            number: "<strong class='epnumber6'>6</strong>",
+            description: "Los chicos van a la locación del código e investigan cómo entrar.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e06.jpg",
+            duration: "13 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E6/REITE666%20T1%20E6.m3u8"
+        },
+        {
+            title: "La Isla 2",
+            number: "<strong class='epnumber7'>7</strong>",
+            description: "Al investigar la isla, los chicos encuentran un CD.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e07.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E7/REITE666%20T1%20E7.m3u8"
+        },
+        {
+            title: "El CD",
+            number: "<strong class='epnumber8'>8</strong>",
+            description: "Al investigar el CD, encuentran una grabación que solo uno de los tres puede ver, mientras los otros dos la ven en blanco.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e08.jpg",
+            duration: "15 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E8/REITE666%20T1%20E8.m3u8"
+        },
+        {
+            title: "El Club De Golf",
+            number: "<strong class='epnumber9'>9</strong>",
+            description: "Una tranquila visita al campo de golf se transforma en una pesadilla cuando una bola con un mensaje en rojo revela que alguien los está siguiendo.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e09.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E9/REITE666%20T1%20E9.m3u8"
+        },
+        {
+            title: "El Auto",
+            number: "<strong class='epnumber10'>10</strong>",
+            description: "La persecución termina en un giro inesperado: su auto desaparece y un mensaje enigmático los empuja a un nuevo peligro.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e10.jpg",
+            duration: "10 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E10/REITE666%20T1%20E10.m3u8"
+        },
+        {
+            title: "La Búsqueda",
+            number: "<strong class='epnumber11'>11</strong>",
+            description: "Un acertijo se convierte en la única esperanza para recuperar el auto. Pero con él llega un nuevo misterio: ¿lograrán encontrar las llaves antes del psicópata?",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e11.jpg",
+            duration: "8 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E11/REITE666%20T1%20E11.m3u8"
+        },
+        {
+            title: "La Universidad",
+            number: "<strong class='epnumber12'>12</strong>",
+            description: "Entre emoción y tensión, los chicos acuden a la universidad en busca del psicópata y las llaves desaparecidas.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e12.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E12/REITE666%20T1%20E12.m3u8"
+        },
+        {
+            title: "Fotos Familiares",
+            number: "<strong class='epnumber13'>13</strong>",
+            description: "Un email revela fotos de su infancia, pero algo extraño ocurre: solo uno de ellos puede verlas.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e13.jpg",
+            duration: "10 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E13/REITE666%20T1%20E13.m3u8"
+        },
+        {
+            title: "La Plaza",
+            number: "<strong class='epnumber14'>14</strong>",
+            description: "La confianza entre ellos se resquebraja cuando la foto que solo uno podía ver ahora muestra una plaza desconocida.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e14.jpg",
+            duration: "10 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E14/REITE666%20T1%20E14.m3u8"
+        },
+        {
+            title: "Búsqueda en la Plaza",
+            number: "<strong class='epnumber15'>15</strong>",
+            description: "Dos de los chicos recorren la plaza y descubren un Post-It con coordenadas y un mensaje que los conduce a una nueva pista misteriosa.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e15.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E15/REITE666%20T1%20E15.m3u8"
+        },
+        {
+            title: "GeoBúsqueda",
+            number: "<strong class='epnumber16'>16</strong>",
+            description: "Las coordenadas los llevan a unas vías de tren abandonadas, iniciando una travesía que pondrá a prueba su ingenio y valentía.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e16.jpg",
+            duration: "11 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E16/REITE666%20T1%20E16.m3u8"
+        },
+        {
+            title: "Vías Del Tren",
+            number: "<strong class='epnumber17'>17</strong>",
+            description: "Un nuevo CD aparece en las vías del tren, generando más preguntas que respuestas y obligando a los chicos a regresar a casa con precaución.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e17.jpg",
+            duration: "12 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E17/REITE666%20T1%20E17.m3u8"
+        },
+        {
+            title: "El Comienzo del Fin",
+            number: "<strong class='epnumber18'>18</strong>",
+            description: "El CD revela un nuevo juego con reglas extrañas… y para jugar, los chicos necesitan un pez.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e18.jpg",
+            duration: "13 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E18/REITE666%20T1%20E18.m3u8"
+        },
+        {
+            title: "Un Nuevo Integrante",
+            number: "<strong class='epnumber19'>19</strong>",
+            description: "Deciden buscar el pez que dará inicio al siguiente desafío, poniendo a prueba su intuición y coraje.",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e19.jpg",
+            duration: "10 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E19/REITE666%20T1%20E19.m3u8"
+        },
+        {
+            title: "El Juego Comienza",
+            number: "<strong class='epnumber20'>20</strong>",
+            description: "El pez elige a uno de ellos, y el desafío debe cumplirse sin ayuda. Pero la pregunta sigue: ¿ha terminado la pesadilla?",
+            image: "https://movies.solargentinotv.com.ar/assets/media/images/reite666thumbs/Reite666_thumb_e20.jpg",
+            duration: "14 min",
+            link: "https://cdn.jsdelivr.net/gh/satv2025/media@refs/heads/main/videos/reite666/t1/E20/REITE666%20T1%20E20.m3u8"
+        }
+    ]
+};

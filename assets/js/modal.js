@@ -1,6 +1,7 @@
 // Datos de las películas y series
 const peliculas = {
     matiponcepeli: {
+        type: "pelicula",
         year: "2022",
         duration: "1 h",
         description: 'Matías Ponce, creador de contenido en redes, se enfrenta a alienígenas y hackers tras la misteriosa suspensión de su canal de YouTube, o como él lo llama "Yutun", desatando una hilarante y absurda aventura.',
@@ -29,6 +30,7 @@ const peliculas = {
     },
 
     cienporcientolucha: {
+        type: "pelicula",
         year: "2008",
         duration: "1 h 20 min",
         description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
@@ -57,6 +59,7 @@ const peliculas = {
     },
 
     cienporcientoluchaeadc: {
+        type: "pelicula",
         year: "2009",
         duration: "1 h 20 min",
         description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Cansado de su fama, decide crear clones de los luchadores de 100% Lucha para destruir la imagen de su ídolo de la infancia.",
@@ -85,6 +88,7 @@ const peliculas = {
     },
 
     homealone: {
+        type: "pelicula",
         year: "1990",
         duration: "1 h 45 min",
         description: "En este clásico, Macaulay Culkin es Kevin MacCallister, un niño olvidado en casa en Navidad que debe enfrentarse a dos torpes y despiadados ladrones.",
@@ -118,6 +122,7 @@ const peliculas = {
     },
 
     homealone2: {
+        type: "pelicula",
         year: "1992",
         duration: "2 h",
         description: "En este clásico secuelar, Kevin McCallister toma un avión incorrecto y termina varado en Nueva York donde debe nuevamente sortear a los torpes ladrones.",
@@ -151,6 +156,7 @@ const peliculas = {
     },
 
     app: {
+        type: "serie",
         year: "2024",
         duration: "<p id='series-duration'>6 episodios</p>",
         description: "<span id='curiosity-synopsis'>Años después del homicidio de una chica en un tranquilo pueblo inglés, una estudiante se propone resolver el caso y encontrar al verdadero asesino.</p>",
@@ -210,6 +216,7 @@ const peliculas = {
         `
     },
     reite666: {
+        type: "serie",
         year: "2018",
         duration: "2 temporadas",
         description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
@@ -238,67 +245,19 @@ const peliculas = {
     }
 };
 
-// Datos de episodios por temporada
-const episodios = {
-    1: [
-        {
-            title: "Episodio 1",
-            number: "<strong class='epnumber1'>1</strong>",
-            description: "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
-            image: "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
-            duration: "43 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 2",
-            number: "<strong class='epnumber2'>2</strong>",
-            description: "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
-            image: "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg",
-            duration: "44 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 3",
-            number: "<strong class='epnumber3'>3</strong>",
-            description: "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.",
-            image: "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg",
-            duration: "43 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 4",
-            number: "<strong class='epnumber4'>4</strong>",
-            description: "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
-            image: "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg",
-            duration: "44 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 5",
-            number: "<strong class='epnumber5'>5</strong>",
-            description: "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
-            image: "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5",
-            duration: "50 min",
-            link: "app"
-        },
-        {
-            title: "Episodio 6",
-            number: "<strong class='epnumber6'>6</strong>",
-            description: "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.",
-            image: "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg",
-            duration: "51 min",
-            link: "app"
-        }
-    ],
-    2: [
-        {
-            title: "Coming Soon...",
-            description: "La temporada 2 aún no tiene episodios confirmados.",
-            image: "https://www.mediafire.com/convkey/4a6d/478xmus1d6v68eh9g.jpg?size_id=6",
-            duration: "?? min"
-        }
-    ]
-};
+// === Variables globales para datos ===
+let peliculas = {}; // contendrá películas y series
+let episodios = {}; // contendrá episodios de series
+
+// === Cargar datos de JSON dinámicamente ===
+fetch('assets/data.json')
+    .then(response => response.json())
+    .then(data => {
+        peliculas = data.peliculas || {};
+        episodios = data.series || {};
+    })
+    .catch(err => console.error("Error cargando JSON:", err));
+
 // === Insertar CSS del botón de mute dinámicamente ===
 (function insertMuteCSS() {
     const style = document.createElement("style");
@@ -322,7 +281,7 @@ const episodios = {
             width: 28px;
             height: 28px;
             display: block;
-            filter: brightness(0) invert(1); /* hace la imagen blanca */
+            filter: brightness(0) invert(1);
         }
     `;
     document.head.appendChild(style);
@@ -350,19 +309,15 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Justo después de mostrar el modal:
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
 
-    // --- NUEVO: asegurar que el contenido interno permita scroll ---
     const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) {
-        modalContent.style.position = "relative"; // evita que absolute bloquee scroll
-    }
+    if (modalContent) modalContent.style.position = "relative";
 
-    // Asignar listener al botón de mute
+    // Botón mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
@@ -400,10 +355,10 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // === NUEVO: cargar episodios de la primera temporada automáticamente ===
-    if (movie.seasons && episodios) {
-        const primeraTemporada = Object.keys(episodios)[0];
-        if (primeraTemporada) changeSeason(primeraTemporada);
+    // Cargar episodios de la primera temporada si es serie
+    if (movie.titleType === "Serie" && episodios[movieKey]) {
+        const primeraTemporada = Object.keys(episodios[movieKey])[0];
+        if (primeraTemporada) changeSeason(movieKey, primeraTemporada);
     }
 
     ajustarModalTop();
@@ -424,11 +379,11 @@ function handleVideo(modal, action) {
 }
 
 // === Cambiar temporada ===
-function changeSeason(season) {
+function changeSeason(movieKey, season) {
     const episodeList = document.getElementById("episode-list");
     episodeList.innerHTML = "";
-    if (episodios[season]) {
-        episodios[season].forEach(ep => {
+    if (episodios[movieKey] && episodios[movieKey][season]) {
+        episodios[movieKey][season].forEach(ep => {
             const li = document.createElement("li");
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -436,7 +391,7 @@ function changeSeason(season) {
                     <h3>${ep.title}</h3>
                     <p>${ep.description}</p>
                     <span>${ep.duration}</span>
-                    <div>${ep.number}</div>
+                    <div>${ep.number || ""}</div>
                 </div>`;
             episodeList.appendChild(li);
         });
