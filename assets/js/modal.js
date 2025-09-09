@@ -268,29 +268,29 @@ const peliculas = {
             width: 28px;
             height: 28px;
             display: block;
-            filter: brightness(0) invert(1); /* hace la imagen blanca */
+            filter: brightness(0) invert(1);
         }
     `;
     document.head.appendChild(style);
 })();
 
-// === Parsear JSON de episodios ===
-const episodiosData = JSON.parse(document.getElementById("episodes-data").textContent);
+// === Variable global para los episodios cargados desde JSON ===
+let episodiosPorSerie = {};
 
-// Agrupar por temporada automáticamente
-const episodiosPorTemporada = episodiosData.reduce((acc, ep) => {
-    const season = 1; // Si más adelante agregas temporada, puedes usar ep.season
-    if (!acc[season]) acc[season] = [];
-    acc[season].push({
-        title: ep.title,
-        number: `<strong class='epnumber${ep.episodeNumber}'>${ep.episodeNumber}</strong>`,
-        description: ep.description,
-        image: ep.image,
-        duration: `${ep.duration || "?? min"}`, // opcional, si tenés duración
-        link: ep.videoPath
-    });
-    return acc;
-}, {});
+// === Cargar JSON de episodios dinámicamente ===
+async function cargarEpisodiosJSON() {
+    try {
+        const response = await fetch('/assets/json/data.json'); // Ajusta ruta
+        if (!response.ok) throw new Error("No se pudo cargar el JSON");
+        const data = await response.json();
+        episodiosPorSerie = data; // Guardamos todo en variable global
+    } catch (error) {
+        console.error("Error al cargar episodios:", error);
+    }
+}
+
+// Ejecutar la carga al iniciar
+cargarEpisodiosJSON();
 
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
@@ -359,19 +359,19 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Cargar episodios de primera temporada automáticamente desde JSON
-    const primeraTemporada = Object.keys(episodiosPorTemporada)[0];
-    if (primeraTemporada) changeSeason(primeraTemporada);
+    // Cargar episodios de la primera temporada automáticamente desde JSON
+    const primeraTemporada = episodiosPorSerie[movieKey] ? Object.keys(episodiosPorSerie[movieKey])[0] : null;
+    if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
 
     ajustarModalTop();
 }
 
 // === Cambiar temporada ===
-function changeSeason(season) {
+function changeSeason(season, movieKey) {
     const episodeList = document.getElementById("episode-list");
     episodeList.innerHTML = "";
-    if (episodiosPorTemporada[season]) {
-        episodiosPorTemporada[season].forEach(ep => {
+    if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
+        episodiosPorSerie[movieKey][season].forEach(ep => {
             const li = document.createElement("li");
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -379,7 +379,7 @@ function changeSeason(season) {
                     <h3>${ep.title}</h3>
                     <p>${ep.description}</p>
                     <span>${ep.duration}</span>
-                    <div>${ep.number}</div>
+                    <div>${ep.number || ""}</div>
                 </div>`;
             episodeList.appendChild(li);
         });
@@ -436,3 +436,9 @@ document.addEventListener("keydown", (event) => {
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');
+    if (cast && genres) {
+        const topOffset = cast.offsetHeight + genres.offsetHeight + 40;
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) modalContent.style.paddingTop = topOffset + 'px';
+    }
+}
