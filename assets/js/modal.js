@@ -261,15 +261,9 @@ const peliculas = {
             cursor: pointer;
             transition: opacity 0.2s;
         }
-        .modal-mute-btn:hover {
-            opacity: 1;
-        }
-        .modal-mute-btn img {
-            width: 28px;
-            height: 28px;
-            display: block;
-            filter: brightness(0) invert(1);
-        }
+        .modal-mute-btn:hover { opacity: 1; }
+        .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
+        .episode-item:hover { background: rgba(255,255,255,0.05); } /* opcional hover para los LI */
     `;
     document.head.appendChild(style);
 })();
@@ -308,11 +302,9 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Limpiar modal previo
     modalBackground.innerHTML = "";
     if (episodeList) episodeList.innerHTML = "";
 
-    // Insertar video + botón mute
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -320,7 +312,6 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
@@ -329,7 +320,6 @@ function openModal(movieKey) {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
 
-    // Configurar botón mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
@@ -339,7 +329,6 @@ function openModal(movieKey) {
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
-        // Remover listener previo si existía
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
 
         currentMuteListener = () => {
@@ -351,18 +340,15 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Agregar clases específicas si es "reite666" ===
     const modalHeader = modal.querySelector(".modal-header");
     if (movieKey === "reite666") {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
     } else {
-        // Remover en caso de abrir otros modales
         if (video) video.classList.remove("reite-bg");
         if (modalHeader) modalHeader.classList.remove("reite-header");
     }
 
-    // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -382,7 +368,6 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Cargar episodios solo si es serie
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
@@ -396,9 +381,13 @@ function changeSeason(season, movieKey) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
     episodeList.innerHTML = "";
+
     if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
         episodiosPorSerie[movieKey][season].forEach(ep => {
             const li = document.createElement("li");
+            li.classList.add("episode-item");
+            li.style.cursor = "pointer";
+
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
                 <div class="episode-info">
@@ -407,6 +396,11 @@ function changeSeason(season, movieKey) {
                     <span>${ep.duration}</span>
                     <div class="episode-number">${ep.number || ""}</div>
                 </div>`;
+
+            li.addEventListener("click", () => {
+                if (ep.link) window.location.href = ep.link;
+            });
+
             episodeList.appendChild(li);
         });
     } else {
