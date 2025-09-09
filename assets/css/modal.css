@@ -64,7 +64,7 @@ div#modal-background {
 
 .close-button svg {
     position: absolute;
-    top: -1em;
+    top: -1.3em;
     left: 52em;
     z-index: 1000;
     background: #181818;
@@ -101,7 +101,7 @@ div#modal-background {
 }
 
 .reite-header::before {
-    margin-top: -12.67em !important;
+    margin-top: -11.48em !important;
     height: 26em;
 }
 
@@ -128,7 +128,7 @@ div#modal-background {
 }
 
 video.reite-video.reite-bg {
-    top: -8.7em !important;
+    top: -7.5em !important;
 }
 
 #modal-cast #scrollAbout {
@@ -984,7 +984,7 @@ reite-mute {
 
 button.reite-mute {
     position: absolute !important;
-    bottom: -22.6em !important;
+    bottom: -23.9em !important;
 }
 
 .modal-mute-btn:hover {
