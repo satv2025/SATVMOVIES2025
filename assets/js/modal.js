@@ -394,7 +394,7 @@ function changeSeason(season, movieKey) {
                     <h3>${ep.title}</h3>
                     <p>${ep.description}</p>
                     <span>${ep.duration}</span>
-                    <div>${ep.number || ""}</div>
+                    <div class="episode-number">${ep.number || ""}</div>
                 </div>`;
             episodeList.appendChild(li);
         });
