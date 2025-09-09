@@ -218,7 +218,7 @@ const peliculas = {
     reite666: {
         type: "serie",
         year: "2018",
-        duration: "2 temporadas",
+        duration: "20 episodios",
         description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
@@ -245,19 +245,6 @@ const peliculas = {
     }
 };
 
-// === Variables globales para datos ===
-let peliculas = {}; // contendrá películas y series
-let episodios = {}; // contendrá episodios de series
-
-// === Cargar datos de JSON dinámicamente ===
-fetch('assets/data.json')
-    .then(response => response.json())
-    .then(data => {
-        peliculas = data.peliculas || {};
-        episodios = data.series || {};
-    })
-    .catch(err => console.error("Error cargando JSON:", err));
-
 // === Insertar CSS del botón de mute dinámicamente ===
 (function insertMuteCSS() {
     const style = document.createElement("style");
@@ -281,11 +268,29 @@ fetch('assets/data.json')
             width: 28px;
             height: 28px;
             display: block;
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1); /* hace la imagen blanca */
         }
     `;
     document.head.appendChild(style);
 })();
+
+// === Parsear JSON de episodios ===
+const episodiosData = JSON.parse(document.getElementById("episodes-data").textContent);
+
+// Agrupar por temporada automáticamente
+const episodiosPorTemporada = episodiosData.reduce((acc, ep) => {
+    const season = 1; // Si más adelante agregas temporada, puedes usar ep.season
+    if (!acc[season]) acc[season] = [];
+    acc[season].push({
+        title: ep.title,
+        number: `<strong class='epnumber${ep.episodeNumber}'>${ep.episodeNumber}</strong>`,
+        description: ep.description,
+        image: ep.image,
+        duration: `${ep.duration || "?? min"}`, // opcional, si tenés duración
+        link: ep.videoPath
+    });
+    return acc;
+}, {});
 
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
@@ -309,6 +314,7 @@ function openModal(movieKey) {
         </button>
     `;
 
+    // Mostrar modal
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
@@ -321,12 +327,10 @@ function openModal(movieKey) {
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
-
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
-
         muteBtn.addEventListener("click", () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -335,7 +339,7 @@ function openModal(movieKey) {
         });
     }
 
-    // Cargar datos del modal
+    // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -355,16 +359,38 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Cargar episodios de la primera temporada si es serie
-    if (movie.titleType === "Serie" && episodios[movieKey]) {
-        const primeraTemporada = Object.keys(episodios[movieKey])[0];
-        if (primeraTemporada) changeSeason(movieKey, primeraTemporada);
-    }
+    // Cargar episodios de primera temporada automáticamente desde JSON
+    const primeraTemporada = Object.keys(episodiosPorTemporada)[0];
+    if (primeraTemporada) changeSeason(primeraTemporada);
 
     ajustarModalTop();
 }
 
-// === Función global para video ===
+// === Cambiar temporada ===
+function changeSeason(season) {
+    const episodeList = document.getElementById("episode-list");
+    episodeList.innerHTML = "";
+    if (episodiosPorTemporada[season]) {
+        episodiosPorTemporada[season].forEach(ep => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div>${ep.number}</div>
+                </div>`;
+            episodeList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement("li");
+        li.innerText = "No hay episodios disponibles para esta temporada.";
+        episodeList.appendChild(li);
+    }
+}
+
+// === Funciones auxiliares de video y cierre de modal ===
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
     if (!video) return;
@@ -378,31 +404,6 @@ function handleVideo(modal, action) {
     }
 }
 
-// === Cambiar temporada ===
-function changeSeason(movieKey, season) {
-    const episodeList = document.getElementById("episode-list");
-    episodeList.innerHTML = "";
-    if (episodios[movieKey] && episodios[movieKey][season]) {
-        episodios[movieKey][season].forEach(ep => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-                <div class="episode-info">
-                    <h3>${ep.title}</h3>
-                    <p>${ep.description}</p>
-                    <span>${ep.duration}</span>
-                    <div>${ep.number || ""}</div>
-                </div>`;
-            episodeList.appendChild(li);
-        });
-    } else {
-        const li = document.createElement("li");
-        li.innerText = "No hay episodios disponibles para esta temporada.";
-        episodeList.appendChild(li);
-    }
-}
-
-// === Cerrar modal ===
 document.querySelector(".close-button").addEventListener("click", () => {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
@@ -410,11 +411,9 @@ document.querySelector(".close-button").addEventListener("click", () => {
     document.body.classList.remove("modal-open");
 });
 
-// Cerrar modal al hacer clic fuera
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
@@ -424,7 +423,6 @@ document.addEventListener("click", (event) => {
     }
 });
 
-// Cerrar modal con Escape
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         const modal = document.getElementById("infoModal");
@@ -434,37 +432,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// Ajuste dinámico de top según líneas
+// Ajuste dinámico de top
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');
-    const titleType = document.querySelector('.modal-titleType');
-
-    const getLineCount = (el) => {
-        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-        const height = el.getBoundingClientRect().height;
-        return Math.round(height / lineHeight);
-    };
-
-    const castLines = getLineCount(cast);
-    const genresLines = getLineCount(genres);
-
-    let genresTop = 35.5;
-    let titleTypeTop = 38.4;
-    const lineOffset = 1.2;
-
-    if (castLines < 2) {
-        genresTop -= lineOffset;
-        titleTypeTop -= lineOffset;
-    }
-    if (genresLines < 2) {
-        titleTypeTop -= lineOffset;
-    }
-
-    genres.style.top = `${genresTop}em`;
-    titleType.style.top = `${titleTypeTop}em`;
-}
-
-// Ajuste al cargar y redimensionar
-window.addEventListener('load', ajustarModalTop);
-window.addEventListener('resize', ajustarModalTop);
