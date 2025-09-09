@@ -87,12 +87,17 @@ div#modal-background {
 .modal-header::before {
     content: "";
     position: absolute;
-    top: -6.6em;
-    left: -1.25em;
-    width: 104.77%;
-    height: 100%;
+    top: 181px;
+    /* ajuste fijo */
+    left: -20px;
+    /* ajuste fijo */
+    width: 877px;
+    /* ancho fijo ligeramente mayor que el video */
+    height: 231px;
+    /* mismo alto que el video */
     background: linear-gradient(0deg, #181818, transparent 50%);
     z-index: 1;
+    /* encima del video */
 }
 
 #modal-background {
@@ -103,20 +108,19 @@ div#modal-background {
 #modal-background video {
     position: absolute;
     /* fijo en el contenedor */
-    top: 0;
+    top: -88px;
     /* posición desde el borde superior */
-    left: 0;
+    left: -20px;
     /* posición desde el borde izquierdo */
-    width: 880px;
+    width: 877px !important;
     /* tamaño fijo */
-    height: 500px;
+    height: 500px !important;
     /* tamaño fijo */
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     object-fit: cover;
     /* opcional: asegura que el contenido se ajuste al contenedor */
 }
-
 
 #modal-cast #scrollAbout {
     font-style: italic;
@@ -1778,4 +1782,3 @@ h1#modal-title {
             border-top-right-radius: 11.2px;
         }
     }
-}
