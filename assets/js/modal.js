@@ -274,20 +274,17 @@ const peliculas = {
     document.head.appendChild(style);
 })();
 
-// === Variable global para episodios ===
+// === Variables globales ===
 let episodiosPorSerie = {};
 
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch('assets/json/data.json'); // Ajusta ruta
+        const response = await fetch('assets/json/data.json');
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
-
-        // Convertir tu JSON a la estructura que espera el código
         episodiosPorSerie["app"] = data.episodiosApp;
         episodiosPorSerie["reite666"] = data.episodiosReite666;
-
         console.log("Episodios cargados:", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
@@ -298,7 +295,7 @@ cargarEpisodiosJSON();
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
-        const movieKey = this.getAttribute("data-movie"); // "app" o "reite666"
+        const movieKey = this.getAttribute("data-movie");
         openModal(movieKey);
     });
 });
@@ -306,17 +303,24 @@ document.querySelectorAll(".moreinfobutton").forEach(button => {
 // === Abrir modal ===
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
+    const modalBackground = document.getElementById("modal-background");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Video + botón mute
-    document.getElementById("modal-background").innerHTML = `
+    // Limpiar modal previo
+    modalBackground.innerHTML = "";
+    const muteBtnOld = document.getElementById("muteBtn");
+    if (muteBtnOld) muteBtnOld.replaceWith(muteBtnOld.cloneNode(true));
+
+    // Insertar video + botón mute
+    modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
             <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
         </button>
     `;
 
+    // Mostrar modal
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
@@ -325,7 +329,7 @@ function openModal(movieKey) {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
 
-    // Botón mute
+    // Configurar botón mute
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
@@ -361,10 +365,13 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Cargar episodios de primera temporada
-    if (episodiosPorSerie[movieKey]) {
+    // Cargar episodios solo si es serie
+    if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
+    } else {
+        const episodeList = document.getElementById("episode-list");
+        if (episodeList) episodeList.innerHTML = "";
     }
 
     ajustarModalTop();
