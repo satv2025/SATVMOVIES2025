@@ -263,7 +263,7 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
-        .episode-item:hover { background: rgba(255,255,255,0.05); } /* hover opcional */
+        .episode-item:hover { background: rgba(255,255,255,0.05); }
     `;
     document.head.appendChild(style);
 })();
@@ -323,7 +323,9 @@ function openModal(movieKey) {
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
+    const modalHeader = modal.querySelector(".modal-header");
 
+    // Configurar video y mute
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -340,15 +342,18 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    const modalHeader = modal.querySelector(".modal-header");
+    // === Agregar clases específicas si es "reite666" ===
     if (movieKey === "reite666") {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
+        if (muteBtn) muteBtn.classList.add("reite-mute");
     } else {
         if (video) video.classList.remove("reite-bg");
         if (modalHeader) modalHeader.classList.remove("reite-header");
+        if (muteBtn) muteBtn.classList.remove("reite-mute");
     }
 
+    // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -368,6 +373,7 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
+    // Cargar episodios solo si es serie
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
@@ -387,8 +393,8 @@ function changeSeason(season, movieKey) {
             const li = document.createElement("li");
             li.classList.add("episode-item");
             li.style.cursor = "pointer";
-            li.style.borderBottom = "1px solid #333"; // borde inferior por defecto
-            li.style.borderTop = index === 0 ? "1px solid #333" : "none"; // primer li con border-top
+            li.style.borderBottom = "1px solid #333";
+            li.style.borderTop = index === 0 ? "1px solid #333" : "none";
 
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -403,17 +409,16 @@ function changeSeason(season, movieKey) {
                 if (ep.link) window.location.href = ep.link;
             });
 
-            // Hover dinámico de borde-top
             li.addEventListener("mouseenter", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "none"; // desaparece el borde inferior del anterior
-                li.style.borderTop = "1px solid #333"; // se dibuja borde superior en hover
+                if (prev) prev.style.borderBottom = "none";
+                li.style.borderTop = "1px solid #333";
             });
 
             li.addEventListener("mouseleave", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "1px solid #333"; // restaurar borde inferior del anterior
-                li.style.borderTop = index === 0 ? "1px solid #333" : "none"; // restaurar borde superior del primero
+                if (prev) prev.style.borderBottom = "1px solid #333";
+                li.style.borderTop = index === 0 ? "1px solid #333" : "none";
             });
 
             episodeList.appendChild(li);
