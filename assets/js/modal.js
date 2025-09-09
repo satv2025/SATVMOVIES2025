@@ -375,6 +375,16 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
+    // === Activar botón "más" para scroll al final ===
+    const scrollAboutBtn = document.getElementById('scrollAbout');
+    if (scrollAboutBtn) {
+        scrollAboutBtn.addEventListener('click', () => {
+            if (modalContent) {
+                modalContent.scrollTo({ top: modalContent.scrollHeight, behavior: 'smooth' });
+            }
+        });
+    }
+
     // Cargar episodios solo si es serie
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
