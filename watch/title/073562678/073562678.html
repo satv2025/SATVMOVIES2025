@@ -206,6 +206,12 @@
       height: 10.3em;
     }
 
+    .next-episode-title {
+      margin-top: -6.2em !important;
+      line-height: 1.2;
+      margin-bottom: 0.6em !important;
+    }
+
     .next-episode-overlay img {
       width: 220px !important;
       height: auto !important;
@@ -213,12 +219,21 @@
       margin-left: 0em;
     }
 
-    .next-episode-title {
-      margin-top: -4.73em !important;
-    }
-
     .next-episode-overlay img:hover {
       transform: none;
+    }
+
+    .next-episode-title,
+    .next-episode-description {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0;
+      /* Eliminamos márgenes que rompan el centrado */
+    }
+
+    .next-episode-description {
+      line-height: 1em !important;
     }
 
     .volume-icon:hover,
