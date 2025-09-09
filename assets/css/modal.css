@@ -448,6 +448,10 @@ button.text:hover {
     color: #fff;
 }
 
+.epnumber {
+    color: #f00;
+}
+
 a.eplink:hover {
     color: #fff;
 }
@@ -513,6 +517,8 @@ a.eplink {
 .modal .curiosidad {
     color: #fff;
     font-weight: 500;
+    width: 100vw;
+    display: block;
 }
 
 .modal-fullcreatedBy,
@@ -1488,6 +1494,11 @@ h1#modal-title {
         top: 41em;
     }
 
+    ul#episode-list {
+        !em;
+        !e;
+        !;
+    }
 
     .modal strong.eplist {
         color: #fff;
