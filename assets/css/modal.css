@@ -459,8 +459,8 @@ a.eplink {
 }
 
 #episode-list li img {
-    width: 170px;
-    height: 75px;
+    width: 133px !important;
+    height: auto;
     border-radius: 0.4em;
     object-fit: cover;
     margin-right: 1em;
@@ -867,7 +867,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 22.5em;
+    top: 94.9em !important;
 }
 
 .app-fcbprefix,
