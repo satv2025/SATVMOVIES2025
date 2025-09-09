@@ -270,8 +270,8 @@ button.texto.vtle {
 strong[class^="epnumber"] {
     color: #bcbcbc !important;
     position: absolute;
-    left: 0.2em;
-    font-size: 2em;
+    left: -0.2em;
+    font-size: 27px;
     font-weight: 400;
     z-index: 1000;
 }
