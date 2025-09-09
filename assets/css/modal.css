@@ -95,7 +95,7 @@ div#modal-background {
 
 #modal-background video {
     position: relative;
-    margin-top: -1.2em;
+    margin-top: -7em;
     margin-left: -1.3em;
     border-top-left-radius: 0.7em !important;
     border-top-right-radius: 0.7em !important;
@@ -903,7 +903,7 @@ h1#modal-title {
 
 .modal-mute-btn {
     position: absolute !important;
-    bottom: 4.66em !important;
+    bottom: 5.5em !important;
     right: 1.812em !important;
     cursor: pointer !important;
     transition: opacity 0.2s !important;
