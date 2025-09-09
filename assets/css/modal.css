@@ -100,6 +100,11 @@ div#modal-background {
     /* encima del video */
 }
 
+.reite-header::before {
+    margin-top: -12.67em !important;
+    height: 26em;
+}
+
 #modal-background {
     position: relative;
     /* necesario para que el video se posicione respecto a este contenedor */
@@ -120,6 +125,10 @@ div#modal-background {
     border-top-right-radius: 0.7em;
     object-fit: cover;
     /* opcional: asegura que el contenido se ajuste al contenedor */
+}
+
+video.reite-video.reite-bg {
+    top: -8.7em !important;
 }
 
 #modal-cast #scrollAbout {
@@ -463,6 +472,24 @@ button.text:hover {
 
 .episode-info {
     color: #fff;
+}
+
+.episode-item {
+    position: relative;
+    /* contenedor relativo */
+    padding-right: 60px;
+    /* espacio para el número */
+}
+
+.episode-number {
+    position: absolute;
+    right: 29.5em;
+    /* alineado al borde derecho del contenedor */
+    top: 50%;
+    /* centrado vertical */
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: #bcbcbc;
 }
 
 .epnumber {
@@ -1771,14 +1798,16 @@ h1#modal-title {
         border-top-right-radius: 11.2px;
     }
 
-    @media (min-width: 1025px) {
-        .modal-content {
-            width: 46%;
-        }
+}
 
-        #modal-background video {
-            width: 54.7em;
-            border-top-left-radius: 11.2px;
-            border-top-right-radius: 11.2px;
-        }
+@media (min-width: 1025px) {
+    .modal-content {
+        width: 46%;
     }
+
+    #modal-background video {
+        width: 54.7em;
+        border-top-left-radius: 11.2px;
+        border-top-right-radius: 11.2px;
+    }
+}
