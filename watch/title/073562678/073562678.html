@@ -104,10 +104,14 @@
       border-radius: 5px;
       z-index: 100;
       user-select: none;
-      width: 562px !important;
-      height: 36em;
+      width: 480px !important;
+      /* nuevo width */
+      height: 72em !important;
+      /* nuevo height */
       overflow-y: auto;
-      zoom: 0 !important
+      /* sigue solo vertical */
+      /* no se agrega overflow-x */
+      zoom: 0 !important;
     }
 
     .episodes-modal img:hover {
@@ -122,12 +126,17 @@
     .episode-item {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: -0.06em !important;
       cursor: pointer;
       transition: background-color 0.2s;
       font-size: 12px;
       height: 7em;
       padding: 0.6em 1.5em !important;
+      width: 400px !important;
+      margin-left: 2em !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
 
     .episode-item:hover {
@@ -157,6 +166,7 @@
       margin: 0;
       font-size: 10px !important;
       color: #ccc;
+      font-weight: 300;
     }
 
     .epimage img:hover,
@@ -226,7 +236,7 @@
     }
 
     .title-styles.fullscreen {
-      top: 46.2em !important;
+      top: 46.5em !important;
     }
 
     .title-styles.windowed {
