@@ -165,7 +165,7 @@ div#modal-background {
     align-items: center;
     position: absolute;
     opacity: 1;
-    font-weight: 700;
+    font-weight: 500;
     height: 2.4em;
     font-family: 'Netflix Sans';
     margin-top: 7.3em;
@@ -226,7 +226,7 @@ div#modal-background {
     transition: color 0.2s ease;
     padding-left: 0.7em;
     display: block;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 button.texto.vtle {
@@ -272,7 +272,7 @@ strong[class^="epnumber"] {
     position: absolute;
     left: -0.2em;
     font-size: 27px;
-    font-weight: 400;
+    font-weight: 300;
     z-index: 1000;
 }
 
@@ -482,7 +482,7 @@ a.eplink {
 }
 
 .episode-title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 1em;
 }
 
@@ -504,12 +504,12 @@ a.eplink {
 
 .modal strong p {
     color: #777;
-    font-weight: normal;
+    font-weight: 300;
 }
 
 .modal .curiosidad {
     color: #fff;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .modal-fullcreatedBy,
@@ -629,7 +629,7 @@ span.fcprefix {
 .modal-genres strong,
 .modal-titleType strong {
     color: #777;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 span.fcbprefix {
@@ -667,7 +667,7 @@ ul#episode-list {
 
 .modal strong.eplist {
     color: #fff;
-    font-weight: 700;
+    font-weight: 500;
     position: absolute;
     top: 25.6em;
     left: 2.2em;
@@ -682,7 +682,7 @@ ul#episode-list {
 
 .overlay h1 {
     font-size: 2em;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 strong.titulo {
@@ -690,7 +690,7 @@ strong.titulo {
 }
 
 span.about {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .overlay p {
@@ -786,7 +786,7 @@ a {}
 
 h1#modal-title {
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 500;
     margin-top: 120.6em;
     margin-left: -2.6em;
     padding-left: 2em;
@@ -847,7 +847,7 @@ h1#modal-title {
 }
 
 .age {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .app-createdBy {
@@ -897,7 +897,7 @@ h1#modal-title {
 }
 
 .app-age {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .dropdown-content::-webkit-scrollbar {
@@ -1095,7 +1095,7 @@ h1#modal-title {
         left: 1.1em;
         top: 1em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
         z-index: 1000;
     }
 
@@ -1105,7 +1105,7 @@ h1#modal-title {
         left: 1.1em;
         top: 4.3em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
         z-index: 1000;
     }
 
@@ -1115,7 +1115,7 @@ h1#modal-title {
         left: 1.1em;
         top: 7.6em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
         z-index: 1000;
     }
 
@@ -1125,7 +1125,7 @@ h1#modal-title {
         left: 1.1em;
         top: 10.9em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
         z-index: 1000;
     }
 
@@ -1135,7 +1135,7 @@ h1#modal-title {
         left: 1.1em;
         top: 14.2em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
         z-index: 1000;
     }
 
@@ -1145,7 +1145,7 @@ h1#modal-title {
         left: 1.1em;
         top: 17.5em;
         font-size: 2em;
-        font-weight: 400;
+        font-weight: 300;
     }
 
     strong.epnumber1:hover {
@@ -1316,7 +1316,7 @@ h1#modal-title {
     }
 
     .episode-title {
-        font-weight: bold;
+        font-weight: 500;
         font-size: 1em;
     }
 
@@ -1335,12 +1335,12 @@ h1#modal-title {
 
     .modal strong p {
         color: #777;
-        font-weight: normal;
+        font-weight: 300;
     }
 
     .modal .curiosidad {
         color: #fff;
-        font-weight: 700;
+        font-weight: 500;
     }
 
     .modal-fullcreatedBy,
@@ -1448,7 +1448,7 @@ h1#modal-title {
     .modal-genres strong,
     .modal-titleType strong {
         color: #bcbcbc;
-        font-weight: 400;
+        font-weight: 300;
     }
 
     span.fcbprefix {
@@ -1493,7 +1493,7 @@ h1#modal-title {
 
     .modal strong.eplist {
         color: #fff;
-        font-weight: 700;
+        font-weight: 500;
         position: absolute;
         top: 25.6em;
         left: 2.2em;
@@ -1508,12 +1508,12 @@ h1#modal-title {
 
     .overlay h1 {
         font-size: 2em;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     h1#modal-title {
         font-size: 2em;
-        font-weight: bold;
+        font-weight: 500;
         position: relative;
         top: 31.5em;
         z-index: 1000;
@@ -1525,7 +1525,7 @@ h1#modal-title {
     }
 
     span.about {
-        font-weight: 400;
+        font-weight: 300;
     }
 
     .overlay p {
@@ -1546,7 +1546,7 @@ h1#modal-title {
         font-size: 1.3em;
         border-radius: 0.3125em;
         text-decoration: none;
-        font-weight: 700;
+        font-weight: 500;
         position: absolute;
         top: 17.4em;
         left: 2em;
@@ -1636,7 +1636,7 @@ h1#modal-title {
         font-size: 1.3em;
         border-radius: 0.3125em;
         text-decoration: none;
-        font-weight: 700;
+        font-weight: 500;
         position: absolute;
         top: 17.4em;
         left: 2em;
