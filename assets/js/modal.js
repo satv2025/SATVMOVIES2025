@@ -280,7 +280,7 @@ let episodiosPorSerie = {};
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch('/assets/json/data.json'); // Ajusta ruta
+        const response = await fetch('https://movies.solargentinotv.com.ar/assets/json/data.json'); // Ajusta ruta
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
         episodiosPorSerie = data; // Guardamos todo en variable global
