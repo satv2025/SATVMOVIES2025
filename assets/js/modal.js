@@ -263,7 +263,7 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
-        .episode-item:hover { background: rgba(255,255,255,0.05); } /* opcional hover para los LI */
+        .episode-item:hover { background: rgba(255,255,255,0.05); } /* hover opcional */
     `;
     document.head.appendChild(style);
 })();
@@ -376,7 +376,7 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Cambiar temporada ===
+// === Cambiar temporada con efecto border-top dinámico ===
 function changeSeason(season, movieKey) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
@@ -388,10 +388,7 @@ function changeSeason(season, movieKey) {
             li.classList.add("episode-item");
             li.style.cursor = "pointer";
             li.style.borderBottom = "1px solid #333"; // borde inferior por defecto
-
-            if (index === 0) {
-                li.style.borderTop = "1px solid #333"; // primer li con border-top
-            }
+            li.style.borderTop = index === 0 ? "1px solid #333" : "none"; // primer li con border-top
 
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -406,14 +403,17 @@ function changeSeason(season, movieKey) {
                 if (ep.link) window.location.href = ep.link;
             });
 
-            // === Hover dinámico para ocultar border-bottom del li anterior ===
+            // Hover dinámico de borde-top
             li.addEventListener("mouseenter", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottomColor = "transparent";
+                if (prev) prev.style.borderBottom = "none"; // desaparece el borde inferior del anterior
+                li.style.borderTop = "1px solid #333"; // se dibuja borde superior en hover
             });
+
             li.addEventListener("mouseleave", () => {
                 const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottomColor = "#333";
+                if (prev) prev.style.borderBottom = "1px solid #333"; // restaurar borde inferior del anterior
+                li.style.borderTop = index === 0 ? "1px solid #333" : "none"; // restaurar borde superior del primero
             });
 
             episodeList.appendChild(li);
