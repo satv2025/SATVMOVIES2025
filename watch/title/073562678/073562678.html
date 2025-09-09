@@ -107,15 +107,16 @@
       width: 562px !important;
       height: 36em;
       overflow-y: auto;
+      zoom: 0 !important
     }
 
-    .episodes-modal-title {
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 10px;
-      margin-left: 1.4em;
-      margin-top: 0.5em;
+    .episodes-modal img:hover {
+      transform: none;
+    }
+
+    .episodelist-title {
+      font-weight: 500 !important;
+      font-size: 16px !important;
     }
 
     .episode-item {
@@ -124,6 +125,9 @@
       margin-bottom: 10px;
       cursor: pointer;
       transition: background-color 0.2s;
+      font-size: 12px;
+      height: 7em;
+      padding: 0.6em 1.5em !important;
     }
 
     .episode-item:hover {
@@ -135,21 +139,23 @@
       height: auto;
       margin-right: 10px;
       border-radius: 3px;
-      zoom: 1.6;
+      zoom: 1.2;
     }
 
     .episode-info {
       color: white;
+      font-size: 12px !important;
     }
 
-    .episode-info h4 {
+    .episode-item h4 {
       margin: 0;
-      font-size: 1em;
+      font-size: 12px !important;
+      font-weight: 500;
     }
 
-    .episode-info p {
+    .episode-item p {
       margin: 0;
-      font-size: 0.8em;
+      font-size: 10px !important;
       color: #ccc;
     }
 
