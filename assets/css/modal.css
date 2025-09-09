@@ -87,17 +87,12 @@ div#modal-background {
 .modal-header::before {
     content: "";
     position: absolute;
-    top: 181px;
-    /* ajuste fijo */
-    left: -20px;
-    /* ajuste fijo */
-    width: 877px;
-    /* ancho fijo ligeramente mayor que el video */
-    height: 231px;
-    /* mismo alto que el video */
+    top: -6.6em;
+    left: -1.25em;
+    width: 104.77%;
+    height: 100%;
     background: linear-gradient(0deg, #181818, transparent 50%);
     z-index: 1;
-    /* encima del video */
 }
 
 #modal-background {
@@ -108,13 +103,13 @@ div#modal-background {
 #modal-background video {
     position: absolute;
     /* fijo en el contenedor */
-    top: -88px;
+    top: 0;
     /* posición desde el borde superior */
-    left: -20px;
+    left: 0;
     /* posición desde el borde izquierdo */
-    width: 877px !important;
+    width: 880px;
     /* tamaño fijo */
-    height: 500px !important;
+    height: 500px;
     /* tamaño fijo */
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
