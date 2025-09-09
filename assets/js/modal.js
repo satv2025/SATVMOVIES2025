@@ -263,7 +263,7 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
-        .episode-item:hover { background: rgba(255,255,255,0.05); } /* opcional hover para los LI */
+        .episode-item:hover { background: rgba(255,255,255,0.05); transition: background 0.2s; }
     `;
     document.head.appendChild(style);
 })();
@@ -383,10 +383,12 @@ function changeSeason(season, movieKey) {
     episodeList.innerHTML = "";
 
     if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
-        episodiosPorSerie[movieKey][season].forEach(ep => {
+        episodiosPorSerie[movieKey][season].forEach((ep, index) => {
             const li = document.createElement("li");
             li.classList.add("episode-item");
             li.style.cursor = "pointer";
+            li.style.borderBottom = "1px solid #333";
+            if (index === 0) li.style.borderTop = "1px solid #333";
 
             li.innerHTML = `
                 <img src="${ep.image}" alt="${ep.title}" class="episode-img">
@@ -399,6 +401,22 @@ function changeSeason(season, movieKey) {
 
             li.addEventListener("click", () => {
                 if (ep.link) window.location.href = ep.link;
+            });
+
+            // Hover: intercambiar border-bottom del li anterior por border-top
+            li.addEventListener("mouseenter", () => {
+                const prev = li.previousElementSibling;
+                if (prev) {
+                    prev.style.borderBottom = "none";
+                    prev.style.borderTop = "1px solid #333";
+                }
+            });
+            li.addEventListener("mouseleave", () => {
+                const prev = li.previousElementSibling;
+                if (prev) {
+                    prev.style.borderBottom = "1px solid #333";
+                    prev.style.borderTop = index === 1 ? "1px solid #333" : "none";
+                }
             });
 
             episodeList.appendChild(li);
