@@ -968,7 +968,8 @@ h1#modal-title {
     background-color: rgb(204, 204, 204);
 }
 
-.modal-mute-btn {
+.modal-mute-btn,
+reite-mute {
     position: absolute !important;
     bottom: -23.97em !important;
     right: 1.812em !important;
@@ -979,6 +980,11 @@ h1#modal-title {
     border-radius: 50% !important;
     opacity: 0.4 !important;
     z-index: 2 !important;
+}
+
+button.reite-mute {
+    position: absolute !important;
+    bottom: -22.6em !important;
 }
 
 .modal-mute-btn:hover {
