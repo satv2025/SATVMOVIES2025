@@ -270,10 +270,11 @@ button.texto.vtle {
 strong[class^="epnumber"] {
     color: #bcbcbc !important;
     position: absolute;
-    left: -0.2em;
+    left: 0.6em;
     font-size: 27px;
     font-weight: 300;
     z-index: 1000;
+    text-align: center;
 }
 
 /* Hover para todos */
@@ -388,7 +389,7 @@ ul#episode-list li:hover {
     border-radius: 50%;
     border: 0.02em solid white;
     position: absolute;
-    left: 13%;
+    left: 16.6%;
     top: 50%;
     transform: translate(-50%, -50%);
     background: rgba(30, 30, 20, 0.5);
@@ -406,7 +407,7 @@ ul#episode-list li:hover {
     font-family: FONTAWESOME;
     color: white;
     position: absolute;
-    left: 12.89%;
+    left: 16.5%;
     top: 49.8%;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -427,6 +428,8 @@ button.text:hover {
     align-items: center;
     padding: 0.5em 2em;
     border-bottom: 0.1em solid #bcbcbc80;
+    padding-left: 4em !important;
+    padding-right: 5em;
 }
 
 #episode-list li:focus {
@@ -1612,8 +1615,6 @@ h1#modal-title {
         margin-top: -2.5em;
         margin-left: -1.2em;
         border-top-left-radius: 11.2px;
-        !i;
-        !;
         border-top-right-radius: 11.2px;
     }
 
