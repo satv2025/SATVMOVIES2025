@@ -376,7 +376,6 @@ ul#episode-list li {
 }
 
 ul#episode-list li:hover {
-    background: #bcbcbc80;
     cursor: pointer;
 }
 
