@@ -274,40 +274,42 @@ const peliculas = {
     document.head.appendChild(style);
 })();
 
-// === Variable global para los episodios cargados desde JSON ===
+// === Variable global para episodios ===
 let episodiosPorSerie = {};
 
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch('https://movies.solargentinotv.com.ar/assets/json/data.json'); // Ajusta ruta
+        const response = await fetch('assets/json/data.json'); // Ajusta ruta
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
-        episodiosPorSerie = data; // Guardamos todo en variable global
-        console.log("Episodios cargados", episodiosPorSerie);
+
+        // Convertir tu JSON a la estructura que espera el código
+        episodiosPorSerie["app"] = data.episodiosApp;
+        episodiosPorSerie["reite666"] = data.episodiosReite666;
+
+        console.log("Episodios cargados:", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
 }
-
-// Ejecutar la carga al iniciar
 cargarEpisodiosJSON();
 
 // === Detectar clic en botones "Más Información" ===
 document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
-        const movieKey = this.getAttribute("data-movie");
+        const movieKey = this.getAttribute("data-movie"); // "app" o "reite666"
         openModal(movieKey);
     });
 });
 
-// === Abrir modal con video y botón mute dinámico ===
+// === Abrir modal ===
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Insertar video + botón de mute
+    // Video + botón mute
     document.getElementById("modal-background").innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -315,7 +317,6 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
@@ -360,7 +361,7 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // Cargar episodios de la primera temporada automáticamente desde JSON
+    // Cargar episodios de primera temporada
     if (episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
@@ -393,7 +394,7 @@ function changeSeason(season, movieKey) {
     }
 }
 
-// === Funciones auxiliares de video y cierre de modal ===
+// === Cierre de modal y video ===
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
     if (!video) return;
