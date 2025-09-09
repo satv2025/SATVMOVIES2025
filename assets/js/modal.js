@@ -379,8 +379,10 @@ function openModal(movieKey) {
     const scrollAboutBtn = document.getElementById('scrollAbout');
     if (scrollAboutBtn) {
         scrollAboutBtn.addEventListener('click', () => {
-            if (modalContent) {
-                modalContent.scrollTo({ top: modalContent.scrollHeight, behavior: 'smooth' });
+            const modal = document.getElementById('infoModal');
+            if (modal) {
+                // Scroll hasta el final del modal
+                modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
             }
         });
     }
