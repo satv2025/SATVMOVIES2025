@@ -266,240 +266,104 @@ button.texto.vtle {
     margin-top: -1.4em;
 }
 
-strong.epnumber1 {
+/* Estilo base para todos los epnumbers */
+strong[class^="epnumber"] {
     color: #bcbcbc !important;
     position: absolute;
     left: 0.2em;
-    top: 1em;
     font-size: 2em;
     font-weight: 400;
     z-index: 1000;
+}
+
+/* Hover para todos */
+strong[class^="epnumber"]:hover {
+    left: 0.1em;
+}
+
+/* Ajuste de top según número usando nth-of-type relativo a su contenedor */
+strong.epnumber1 {
+    top: 1em;
 }
 
 strong.epnumber2 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1em;
-    font-size: 2em;
-    font-weight: 400;
-    z-index: 1000;
 }
 
 strong.epnumber3 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1em;
-    font-size: 2em;
-    font-weight: 400;
-    z-index: 1000;
 }
 
 strong.epnumber4 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1em;
-    font-size: 2em;
-    font-weight: 400;
-    z-index: 1000;
 }
 
 strong.epnumber5 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1.034em;
-    font-size: 2em;
-    font-weight: 400;
-    z-index: 1000;
 }
-
-strong.epnumber5 {}
 
 strong.epnumber6 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1.1em;
-    font-size: 2em;
-    font-weight: 400;
 }
 
+/* Del 7 al 8: incremento uniforme 0.066em */
 strong.epnumber7 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1.166em;
-    font-size: 2em;
-    font-weight: 400;
 }
 
 strong.epnumber8 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
     top: 1.232em;
-    font-size: 2em;
-    font-weight: 400;
 }
 
+/* Del 9 al 19: incremento “un pelín más” 0.07em */
 strong.epnumber9 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.298em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.302em;
 }
 
 strong.epnumber10 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.364em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.372em;
 }
 
 strong.epnumber11 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.43em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.442em;
 }
 
 strong.epnumber12 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.496em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.512em;
 }
 
 strong.epnumber13 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.562em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.582em;
 }
 
 strong.epnumber14 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.628em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.652em;
 }
 
 strong.epnumber15 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.694em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.722em;
 }
 
 strong.epnumber16 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.76em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.792em;
 }
 
 strong.epnumber17 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.826em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.862em;
 }
 
 strong.epnumber18 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.892em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 1.932em;
 }
 
 strong.epnumber19 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 1.958em;
-    font-size: 2em;
-    font-weight: 400;
+    top: 2.002em;
 }
 
+/* Epnumber 20 con font-size menor */
 strong.epnumber20 {
-    color: #bcbcbc !important;
-    position: absolute;
-    left: 0.2em;
-    top: 2.024em;
-    font-size: 2em;
-    font-weight: 400;
-}
-
-/* Hover effect */
-strong.epnumber7:hover,
-strong.epnumber8:hover,
-strong.epnumber9:hover,
-strong.epnumber10:hover,
-strong.epnumber11:hover,
-strong.epnumber12:hover,
-strong.epnumber13:hover,
-strong.epnumber14:hover,
-strong.epnumber15:hover,
-strong.epnumber16:hover,
-strong.epnumber17:hover,
-strong.epnumber18:hover,
-strong.epnumber19:hover,
-strong.epnumber20:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber1:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber2:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber3:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber4:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber5:hover {
-    position: absolute;
-    left: 0.1em;
-}
-
-strong.epnumber6:hover {
-    position: absolute;
-    left: 0.1em;
+    top: 2.072em;
+    font-size: 16px;
 }
 
 ul#episode-list {
