@@ -351,6 +351,17 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
+    // === Agregar clases específicas si es "reite666" ===
+    const modalHeader = modal.querySelector(".modal-header");
+    if (movieKey === "reite666") {
+        if (video) video.classList.add("reite-bg");
+        if (modalHeader) modalHeader.classList.add("reite-header");
+    } else {
+        // Remover en caso de abrir otros modales
+        if (video) video.classList.remove("reite-bg");
+        if (modalHeader) modalHeader.classList.remove("reite-header");
+    }
+
     // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;

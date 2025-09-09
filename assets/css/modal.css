@@ -33,7 +33,7 @@ a#watch-button:active {
     margin-bottom: -41px !important;
     padding: 1.25em;
     width: 43%;
-    top: -4em;
+    top: -2em;
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
@@ -64,7 +64,7 @@ div#modal-background {
 
 .close-button svg {
     position: absolute;
-    top: 0.8em;
+    top: -1em;
     left: 52em;
     z-index: 1000;
     background: #181818;
@@ -87,7 +87,7 @@ div#modal-background {
 .modal-header::before {
     content: "";
     position: absolute;
-    top: 181px;
+    top: 147px;
     /* ajuste fijo */
     left: -20px;
     /* ajuste fijo */
@@ -108,7 +108,7 @@ div#modal-background {
 #modal-background video {
     position: absolute;
     /* fijo en el contenedor */
-    top: -88px;
+    top: -122px;
     /* posición desde el borde superior */
     left: -20px;
     /* posición desde el borde izquierdo */
@@ -941,7 +941,7 @@ h1#modal-title {
 
 .modal-mute-btn {
     position: absolute !important;
-    bottom: 15em !important;
+    bottom: -23.97em !important;
     right: 1.812em !important;
     cursor: pointer !important;
     transition: opacity 0.2s !important;
