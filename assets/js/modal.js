@@ -159,7 +159,7 @@ const peliculas = {
         type: "serie",
         year: "2024",
         duration: "<p id='series-duration'>6 episodios</p>",
-        description: "<span class='curiosity-synopsis'>Años después del homicidio de una chica en un tranquilo pueblo inglés, una estudiante se propone resolver el caso y encontrar al verdadero asesino.</span>",
+        description: "<span id='curiosity-synopsis'>Años después del homicidio de una chica en un tranquilo pueblo inglés, una estudiante se propone resolver el caso y encontrar al verdadero asesino.</span>",
         cast: "<strong>Elenco:</strong> Emma Myers, Zain Iqbal, Asha Banks, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> Asesinato Para Principiantes</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
@@ -273,16 +273,6 @@ const peliculas = {
 let episodiosPorSerie = {};
 let currentMuteListener = null;
 
-// Helper: ajustar min-height dinámicamente según el contenido y ventana
-function ajustarMinHeightModalContent(modalContent) {
-    if (!modalContent) return;
-    // altura total del contenido
-    const contentHeight = modalContent.scrollHeight;
-    // asegurar que cubra al menos el 90% de la ventana para que el fondo no "quede por la mitad"
-    const minFromViewport = Math.round(window.innerHeight * 0.9);
-    modalContent.style.minHeight = Math.max(contentHeight, minFromViewport) + "px";
-}
-
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
@@ -310,15 +300,12 @@ function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const modalBackground = document.getElementById("modal-background");
     const episodeList = document.getElementById("episode-list");
-    const modalContent = modal.querySelector('.modal-content');
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Limpiar modal previo
     modalBackground.innerHTML = "";
     if (episodeList) episodeList.innerHTML = "";
 
-    // Insertar video + botón mute
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -326,25 +313,13 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal (ajustes desde JS para asegurar scroll/posición)
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
-    // usar fixed para cubrir la ventana y permitir scroll interno del modal
-    modal.style.position = "fixed";
-    modal.style.top = "0";
-    modal.style.left = "0";
-    modal.style.width = "100%";
-    modal.style.height = "100%";
+    modal.style.height = "100vh";
 
-    if (modalContent) {
-        modalContent.style.position = "relative";
-        // quitar márgenes negativos que rompen el flow si existen
-        modalContent.style.marginBottom = "0";
-        modalContent.style.top = "0";
-        // establecer min-height inicial pequeño y luego recalculamos
-        modalContent.style.minHeight = "0";
-    }
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) modalContent.style.position = "relative";
 
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
@@ -357,10 +332,8 @@ function openModal(movieKey) {
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
-        // si ya había listener, quitarlo del botón anterior
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
 
-        // crear y añadir listener
         currentMuteListener = () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -368,12 +341,6 @@ function openModal(movieKey) {
                 : "assets/media/images/modal-vol-on.svg";
         };
         muteBtn.addEventListener("click", currentMuteListener);
-
-        // Si cambia metadata del video (dimensiones/duración) reajustar el minHeight
-        video.addEventListener('loadedmetadata', () => {
-            // esperar repaint
-            setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
-        });
     }
 
     // === Agregar clases específicas si es "reite666" ===
@@ -412,10 +379,6 @@ function openModal(movieKey) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
     }
-
-    // Reajustar el min-height una vez renderizado el contenido
-    // Le doy un pequeño timeout para que el DOM se pinte (videos, images, etc.)
-    setTimeout(() => ajustarMinHeightModalContent(modalContent), 80);
 
     ajustarModalTop();
 }
@@ -461,16 +424,10 @@ function changeSeason(season, movieKey) {
 
             episodeList.appendChild(li);
         });
-
-        // después de añadir episodios, reajustar minHeight porque el contenido cambió
-        const modalContent = document.querySelector('.modal-content');
-        setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
     } else {
         const li = document.createElement("li");
         li.innerText = "No hay episodios disponibles para esta temporada.";
         episodeList.appendChild(li);
-        const modalContent = document.querySelector('.modal-content');
-        setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
     }
 }
 
@@ -490,24 +447,7 @@ function handleVideo(modal, action) {
 
 function closeModal() {
     const modal = document.getElementById("infoModal");
-    if (!modal) return;
-
-    // Pausar y resetear video
     handleVideo(modal, "pause");
-
-    // Remover clases reite si quedaron
-    const video = modal.querySelector("#modal-background video");
-    const modalHeader = modal.querySelector(".modal-header");
-    const muteBtn = document.getElementById("muteBtn");
-    if (video) video.classList.remove("reite-bg");
-    if (modalHeader) modalHeader.classList.remove("reite-header");
-    if (muteBtn) {
-        muteBtn.classList.remove("reite-mute");
-        // remover listener si existe
-        if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
-        currentMuteListener = null;
-    }
-
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
     const episodeList = document.getElementById("episode-list");
@@ -519,8 +459,8 @@ document.querySelector(".close-button").addEventListener("click", closeModal);
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-    if (modal && modal.style.display === "block" &&
-        modalContent && !modalContent.contains(event.target) &&
+    if (modal.style.display === "block" &&
+        !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
         closeModal();
     }
@@ -542,9 +482,3 @@ function ajustarModalTop() {
         if (modalContent) modalContent.style.paddingTop = topOffset + 'px';
     }
 }
-
-// Reajustar minHeight en resize de ventana (útil si el usuario cambia tamaño)
-window.addEventListener('resize', () => {
-    const modalContent = document.querySelector('.modal-content');
-    ajustarMinHeightModalContent(modalContent);
-});
