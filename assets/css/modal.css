@@ -327,6 +327,151 @@ strong.epnumber6 {
     font-weight: 400;
 }
 
+strong.epnumber7 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.166em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber8 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.232em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber9 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.298em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber10 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.364em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber11 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.43em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber12 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.496em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber13 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.562em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber14 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.628em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber15 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.694em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber16 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.76em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber17 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.826em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber18 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.892em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber19 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 1.958em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+strong.epnumber20 {
+    color: #bcbcbc !important;
+    position: absolute;
+    left: 0.2em;
+    top: 2.024em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+/* Hover effect */
+strong.epnumber7:hover,
+strong.epnumber8:hover,
+strong.epnumber9:hover,
+strong.epnumber10:hover,
+strong.epnumber11:hover,
+strong.epnumber12:hover,
+strong.epnumber13:hover,
+strong.epnumber14:hover,
+strong.epnumber15:hover,
+strong.epnumber16:hover,
+strong.epnumber17:hover,
+strong.epnumber18:hover,
+strong.epnumber19:hover,
+strong.epnumber20:hover {
+    position: absolute;
+    left: 0.1em;
+}
+
 strong.epnumber1:hover {
     position: absolute;
     left: 0.1em;
