@@ -276,7 +276,6 @@ const peliculas = {
 
 // === Variables globales ===
 let episodiosPorSerie = {};
-let currentMuteListener = null;
 
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
@@ -286,6 +285,7 @@ async function cargarEpisodiosJSON() {
         const data = await response.json();
         episodiosPorSerie["app"] = data.episodiosApp;
         episodiosPorSerie["reite666"] = data.episodiosReite666;
+        console.log("Episodios cargados:", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
@@ -304,13 +304,13 @@ document.querySelectorAll(".moreinfobutton").forEach(button => {
 function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const modalBackground = document.getElementById("modal-background");
-    const episodeList = document.getElementById("episode-list");
     const movie = peliculas[movieKey];
     if (!movie) return;
 
     // Limpiar modal previo
     modalBackground.innerHTML = "";
-    if (episodeList) episodeList.innerHTML = "";
+    const muteBtnOld = document.getElementById("muteBtn");
+    if (muteBtnOld) muteBtnOld.replaceWith(muteBtnOld.cloneNode(true));
 
     // Insertar video + botón mute
     modalBackground.innerHTML = `
@@ -333,22 +333,16 @@ function openModal(movieKey) {
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
-
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
-
-        // Remover listener previo si existía
-        if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
-
-        currentMuteListener = () => {
+        muteBtn.addEventListener("click", () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
                 ? "assets/media/images/modal-vol-mute.svg"
                 : "assets/media/images/modal-vol-on.svg";
-        };
-        muteBtn.addEventListener("click", currentMuteListener);
+        });
     }
 
     // Datos del modal
@@ -375,6 +369,9 @@ function openModal(movieKey) {
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
+    } else {
+        const episodeList = document.getElementById("episode-list");
+        if (episodeList) episodeList.innerHTML = "";
     }
 
     ajustarModalTop();
@@ -383,7 +380,6 @@ function openModal(movieKey) {
 // === Cambiar temporada ===
 function changeSeason(season, movieKey) {
     const episodeList = document.getElementById("episode-list");
-    if (!episodeList) return;
     episodeList.innerHTML = "";
     if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
         episodiosPorSerie[movieKey][season].forEach(ep => {
@@ -419,16 +415,12 @@ function handleVideo(modal, action) {
     }
 }
 
-function closeModal() {
+document.querySelector(".close-button").addEventListener("click", () => {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
-    const episodeList = document.getElementById("episode-list");
-    if (episodeList) episodeList.innerHTML = "";
-}
-
-document.querySelector(".close-button").addEventListener("click", closeModal);
+});
 
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
@@ -436,13 +428,18 @@ document.addEventListener("click", (event) => {
     if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
-        closeModal();
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
     }
 });
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-        closeModal();
+        const modal = document.getElementById("infoModal");
+        handleVideo(modal, "pause");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
     }
 });
 
