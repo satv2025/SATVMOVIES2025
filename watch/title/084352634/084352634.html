@@ -61,11 +61,45 @@
     .episodesReactButton,
     #episodesReactButton {
       display: none !important;
+      width: 0 !important;
+    }
+
+    .speed-modal {
+      top: -13.8em !important;
+    }
+
+    .watch-video--scrubber-volume-container {
+      box-sizing: border-box;
+      height: 2em;
+      max-height: 20rem;
+      min-height: 11.4rem;
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 2.4em;
+      margin-left: -0.4em;
+      border-radius: 0.2em !important;
     }
 
     .title-styles {
-      margin-top: 51.5em !important;
-      margin-left: 56em !important;
+      position: absolute !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      z-index: 1000 !important;
+      font-size: 22px !important;
+      color: white !important;
+    }
+
+    .title-styles.fullscreen {
+      top: 46em !important;
+      /* mismo que windowed */
+    }
+
+    .title-styles.windowed {
+      top: 38.9em !important;
+      /* mismo que fullscreen */
     }
   </style>
 </head>
