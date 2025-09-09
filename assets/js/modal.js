@@ -226,7 +226,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
         background: `
-<video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+<video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
        onmousedown="return false;" 
        onselectstart="return false;" 
