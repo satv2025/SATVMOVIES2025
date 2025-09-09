@@ -37,7 +37,7 @@ a#watch-button:active {
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    height: calc(338% + 62em);
+    min-height: 256em;
 }
 
 div#about {}
@@ -621,7 +621,7 @@ span.fcprefix {
     top: 40.3em !important;
     font-size: 0.875em;
     padding-left: 36.6em;
-    padding-right: 4em;
+    padding-right: 3em;
 }
 
 .modal-ageRating,
@@ -1017,7 +1017,6 @@ button.reite-mute {
         overflow: hidden;
     }
 
-    body.modal-open {}
 
     .modal {
         display: none;

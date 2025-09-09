@@ -222,9 +222,10 @@ const peliculas = {
         description: "CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.",
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
-        genres: "<strong>Géneros:</strong> Suspenso, Misterio, Terror urbano, Thriller psicológico, De España",
+        genres: "<strong>Géneros:</strong> De España, Thriller psicológico, Youtubers",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
+        curiosity: "<strong class='curiosidad'>Es oficial: Se estrenará otra temporada</strong>",
         background: `
 <video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
@@ -239,7 +240,7 @@ const peliculas = {
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
-        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Terror urbano, Thriller psicológico, Youtubers Aventura, Paranormal, De España</span></div>",
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> De España, Thriller psicológico, Youtubers Aventura, Paranormal, Suspenso, Misterio, Terror urbano</span></div>",
         fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
         fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
     }
@@ -272,6 +273,16 @@ const peliculas = {
 let episodiosPorSerie = {};
 let currentMuteListener = null;
 
+// Helper: ajustar min-height dinámicamente según el contenido y ventana
+function ajustarMinHeightModalContent(modalContent) {
+    if (!modalContent) return;
+    // altura total del contenido
+    const contentHeight = modalContent.scrollHeight;
+    // asegurar que cubra al menos el 90% de la ventana para que el fondo no "quede por la mitad"
+    const minFromViewport = Math.round(window.innerHeight * 0.9);
+    modalContent.style.minHeight = Math.max(contentHeight, minFromViewport) + "px";
+}
+
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
@@ -299,12 +310,15 @@ function openModal(movieKey) {
     const modal = document.getElementById("infoModal");
     const modalBackground = document.getElementById("modal-background");
     const episodeList = document.getElementById("episode-list");
+    const modalContent = modal.querySelector('.modal-content');
     const movie = peliculas[movieKey];
     if (!movie) return;
 
+    // Limpiar modal previo
     modalBackground.innerHTML = "";
     if (episodeList) episodeList.innerHTML = "";
 
+    // Insertar video + botón mute
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -312,13 +326,25 @@ function openModal(movieKey) {
         </button>
     `;
 
+    // Mostrar modal (ajustes desde JS para asegurar scroll/posición)
     modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
-    modal.style.height = "100vh";
+    // usar fixed para cubrir la ventana y permitir scroll interno del modal
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
 
-    const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) modalContent.style.position = "relative";
+    if (modalContent) {
+        modalContent.style.position = "relative";
+        // quitar márgenes negativos que rompen el flow si existen
+        modalContent.style.marginBottom = "0";
+        modalContent.style.top = "0";
+        // establecer min-height inicial pequeño y luego recalculamos
+        modalContent.style.minHeight = "0";
+    }
 
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
@@ -331,8 +357,10 @@ function openModal(movieKey) {
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
+        // si ya había listener, quitarlo del botón anterior
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
 
+        // crear y añadir listener
         currentMuteListener = () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -340,6 +368,12 @@ function openModal(movieKey) {
                 : "assets/media/images/modal-vol-on.svg";
         };
         muteBtn.addEventListener("click", currentMuteListener);
+
+        // Si cambia metadata del video (dimensiones/duración) reajustar el minHeight
+        video.addEventListener('loadedmetadata', () => {
+            // esperar repaint
+            setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
+        });
     }
 
     // === Agregar clases específicas si es "reite666" ===
@@ -378,6 +412,10 @@ function openModal(movieKey) {
         const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
         if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
     }
+
+    // Reajustar el min-height una vez renderizado el contenido
+    // Le doy un pequeño timeout para que el DOM se pinte (videos, images, etc.)
+    setTimeout(() => ajustarMinHeightModalContent(modalContent), 80);
 
     ajustarModalTop();
 }
@@ -423,10 +461,16 @@ function changeSeason(season, movieKey) {
 
             episodeList.appendChild(li);
         });
+
+        // después de añadir episodios, reajustar minHeight porque el contenido cambió
+        const modalContent = document.querySelector('.modal-content');
+        setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
     } else {
         const li = document.createElement("li");
         li.innerText = "No hay episodios disponibles para esta temporada.";
         episodeList.appendChild(li);
+        const modalContent = document.querySelector('.modal-content');
+        setTimeout(() => ajustarMinHeightModalContent(modalContent), 60);
     }
 }
 
@@ -446,7 +490,24 @@ function handleVideo(modal, action) {
 
 function closeModal() {
     const modal = document.getElementById("infoModal");
+    if (!modal) return;
+
+    // Pausar y resetear video
     handleVideo(modal, "pause");
+
+    // Remover clases reite si quedaron
+    const video = modal.querySelector("#modal-background video");
+    const modalHeader = modal.querySelector(".modal-header");
+    const muteBtn = document.getElementById("muteBtn");
+    if (video) video.classList.remove("reite-bg");
+    if (modalHeader) modalHeader.classList.remove("reite-header");
+    if (muteBtn) {
+        muteBtn.classList.remove("reite-mute");
+        // remover listener si existe
+        if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
+        currentMuteListener = null;
+    }
+
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
     const episodeList = document.getElementById("episode-list");
@@ -458,8 +519,8 @@ document.querySelector(".close-button").addEventListener("click", closeModal);
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-    if (modal.style.display === "block" &&
-        !modalContent.contains(event.target) &&
+    if (modal && modal.style.display === "block" &&
+        modalContent && !modalContent.contains(event.target) &&
         !event.target.closest(".moreinfobutton")) {
         closeModal();
     }
@@ -481,3 +542,9 @@ function ajustarModalTop() {
         if (modalContent) modalContent.style.paddingTop = topOffset + 'px';
     }
 }
+
+// Reajustar minHeight en resize de ventana (útil si el usuario cambia tamaño)
+window.addEventListener('resize', () => {
+    const modalContent = document.querySelector('.modal-content');
+    ajustarMinHeightModalContent(modalContent);
+});
