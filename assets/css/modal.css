@@ -3,7 +3,7 @@ html {
 }
 
 #about {
-    margin-top: 20vh;
+    margin-top: 22vh;
     height: 0vh;
 }
 
@@ -37,8 +37,10 @@ a#watch-button:active {
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    height: calc(39.4em + 62em);
+    height: calc(284% + 62em);
 }
+
+div#about {}
 
 div#modal-background {
     margin-top: -1.5em;
@@ -624,6 +626,7 @@ span.fcprefix {
 
 span.fcbprefix {
     color: #bcbcbc;
+    margin-top: 18em;
 }
 
 span.fsprefix {
@@ -776,7 +779,7 @@ a {}
 h1#modal-title {
     font-size: 1.5em;
     font-weight: bold;
-    margin-top: 36.8em;
+    margin-top: 120.6em;
     margin-left: -2.6em;
     padding-left: 2em;
     width: 100vh;
@@ -793,9 +796,10 @@ h1#modal-title {
     padding-right: 3em;
     color: #fff;
     text-align: left;
-    margin-top: 1.5em;
+    margin-top: 1.5em !important;
     margin-bottom: 0.5em;
     line-height: 1.4em;
+    top: 97em;
 }
 
 .modal-createdBy,
@@ -812,7 +816,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 24.8em;
+    top: 96.2em;
     position: relative;
 }
 
