@@ -222,6 +222,7 @@ const peliculas = {
         description: "<span class='curiosity-synopsis'>CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.</span>",
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
+        episodelist: "<strong class='eplist'>Episodios</strong>",
         genres: "<strong>Géneros:</strong> De España, Thriller psicológico, Youtubers",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
@@ -243,31 +244,6 @@ const peliculas = {
         fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> De España, Thriller psicológico, Youtubers Aventura, Paranormal, Suspenso, Misterio, Terror urbano</span></div>",
         fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
         fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
-        seasons: `
-<div class="season-dropdown">
-  <button class="dropdown-button" id="seasonToggle">
-    Temporada 1
-  </button>
-
-  <div class="dropdown-content" id="seasonMenu">
-    <div class="season-option">
-      <button class="texto t1" onclick="changeSeason(1)">Temporada 1<span class="episode-count ep1">(6 episodios)</span></button>
-    </div>
-    <div class="season-option">
-      <button class="texto t2" onclick="changeSeason(2)">Temporada 2 <span class="episode-count ep2">(1 episodio)</span></button>
-    </div>
-    <div class="sepaoption">
-    </div>
-        <div class="season-option">
-      <button class="texto vtle" onclick="changeSeason(3)">Ver todos los episodios</button>
-    </div>
-  </div>
-</div>
-            <div class="episodios">
-                <h2>Lista de Episodios</h2>
-                <ul id="episode-list"></ul>
-            </div>
-        `
     },
 };
 
