@@ -218,7 +218,7 @@ const peliculas = {
     reite666: {
         type: "serie",
         year: "2018",
-        duration: "20 episodios",
+        duration: "2 temporadas",
         description: "<span class='curiosity-synopsis'>CILIO está en España...</span>",
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about reite-modal-title'>Acerca de</span> <strong class='titulo reite-modal-title'>Reite666</strong>",
