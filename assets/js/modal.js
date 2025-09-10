@@ -237,7 +237,7 @@ const peliculas = {
     Tu navegador no soporta el video.
 </video>
 `,
-        link: "<a id='watch-button' href='...' target='_self'>Reproducir</a>",
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy reite-modal-createdBy'><span class='fcbprefix reite-fcbprefix'>Creado por:</span> <span class='fcbcontent reite-fcbcontent'>Franco Crivera</span></div>",
         fullcast: "<div class='fullcast reite-fullcast'><span class='fcprefix reite-fcprefix'>Elenco:</span> <span class='fccontent reite-fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
         fullscript: "<div class='fullscript reite-fullscript'><span class='fsprefix reite-fsprefix'>Guión:</span> <span class='fscontent reite-fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
