@@ -223,7 +223,7 @@ const peliculas = {
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
-        genres: "<strong>Géneros:</strong> De España, Thriller psicológico, Youtubers",
+        genres: "<strong>Géneros:</strong> De España, Youtubers, Thriller psicológico",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
         curiosity: "<strong class='curiosidad'>Es oficial: Se estrenará otra temporada</strong>",
@@ -381,19 +381,86 @@ function openModal(movieKey) {
         scrollAboutBtn.addEventListener('click', () => {
             const modal = document.getElementById('infoModal');
             if (modal) {
-                // Scroll hasta el final del modal
                 modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
             }
         });
     }
 
-    // Cargar episodios solo si es serie
+    // Cargar episodios y dropdown si es serie
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
-        const primeraTemporada = Object.keys(episodiosPorSerie[movieKey])[0];
-        if (primeraTemporada) changeSeason(primeraTemporada, movieKey);
+        generarDropdownTemporadas(movieKey);
     }
 
     ajustarModalTop();
+}
+
+// === Generar dropdown dinámico de temporadas con tu CSS ===
+function generarDropdownTemporadas(movieKey) {
+    const seasonContainer = document.getElementById("modal-seasons");
+    if (!seasonContainer) return;
+    seasonContainer.innerHTML = "";
+
+    const temporadas = episodiosPorSerie[movieKey];
+    if (!temporadas) return;
+
+    const totalTemporadas = Object.keys(temporadas).length;
+    if (totalTemporadas < 2) {
+        // Si solo hay una temporada, cargarla directamente
+        changeSeason(Object.keys(temporadas)[0], movieKey);
+        return;
+    }
+
+    const dropdownWrapper = document.createElement("div");
+    dropdownWrapper.classList.add("season-dropdown");
+
+    const button = document.createElement("button");
+    button.classList.add("dropdown-button");
+    button.innerText = `Temporada 1`;
+
+    const dropdownContent = document.createElement("div");
+    dropdownContent.classList.add("dropdown-content");
+    dropdownContent.id = "seasonMenu";
+
+    Object.keys(temporadas).forEach((seasonKey) => {
+        const option = document.createElement("div");
+        option.classList.add("season-option");
+
+        const btn = document.createElement("button");
+        btn.classList.add("texto");
+        const epCount = temporadas[seasonKey].length;
+        btn.innerText = `Temporada ${seasonKey} (${epCount} ep.)`;
+
+        btn.addEventListener("click", () => {
+            button.innerText = `Temporada ${seasonKey}`;
+            dropdownContent.classList.remove("show");
+            dropdownWrapper.classList.remove("show");
+            changeSeason(seasonKey, movieKey);
+        });
+
+        option.appendChild(btn);
+        dropdownContent.appendChild(option);
+    });
+
+    button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdownContent.classList.toggle("show");
+        dropdownWrapper.classList.toggle("show");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!dropdownWrapper.contains(e.target)) {
+            dropdownContent.classList.remove("show");
+            dropdownWrapper.classList.remove("show");
+        }
+    });
+
+    dropdownWrapper.appendChild(button);
+    dropdownWrapper.appendChild(dropdownContent);
+    seasonContainer.appendChild(dropdownWrapper);
+
+    // Cargar la primera temporada por defecto
+    changeSeason(Object.keys(temporadas)[0], movieKey);
+    button.style.display = "flex";
 }
 
 // === Cambiar temporada con efecto border-top dinámico ===
