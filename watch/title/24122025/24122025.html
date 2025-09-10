@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.solargentinotv.com.ar/build/SATVPlayer.js"></script>
-    <link rel="stylesheet" href="https://cdn.solargentinotv.com.ar/src/css/SATVPlayer.css">
+    <link rel="stylesheet" href="https://cdn.solargentinotv.com.ar/build/SATVPlayer.css">
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
         type="image/x-icon">
     <style>
@@ -505,48 +505,19 @@
                 return;
             }
 
-            // episodesList será el array final de episodios que usaremos
-            let episodesList = [];
-
-            // Caso 1: el JSON ya es un array (formato antiguo/plano)
-            if (Array.isArray(parsed)) {
-                episodesList = parsed;
-            } else if (parsed && typeof parsed === "object") {
-                // Caso 2: el JSON es un objeto por series -> temporadas -> [episodios]
-                const seriesKeys = Object.keys(parsed);
-                if (seriesKeys.length === 0) {
-                    console.warn("JSON de episodios vacío (no hay series)");
-                    return;
-                }
-
-                // Tomamos la primera serie encontrada (igual que hacías en React)
-                const firstSeriesKey = seriesKeys[0];
-                const seasons = parsed[firstSeriesKey] || {};
-
-                const seasonKeys = Object.keys(seasons);
-                if (seasonKeys.length === 0) {
-                    console.warn("La serie no tiene temporadas:", firstSeriesKey);
-                    return;
-                }
-
-                // Tomamos la primera temporada
-                const firstSeasonKey = seasonKeys[0];
-                episodesList = seasons[firstSeasonKey] || [];
-            } else {
-                console.warn("Formato de episodes-data inesperado");
-                return;
-            }
+            // Asegurarse de que episodesList sea un array
+            let episodesList = Array.isArray(parsed) ? parsed : [parsed];
 
             if (!episodesList || episodesList.length === 0) {
                 console.warn("No hay episodios en la lista final");
                 return;
             }
 
-            // Inicializar SATVPlayerEmbed con el primer episodio (si existe videoPath)
+            // Inicializar SATVPlayerEmbed con el primer episodio
             const firstVideo = episodesList[0];
             SATVPlayerEmbed({
                 elementId: "player",
-                videoUrl: (firstVideo && firstVideo.videoPath) ? firstVideo.videoPath : ""
+                videoUrl: firstVideo.link || ""
             });
 
             // Crear contenedor de título (si no existe)
@@ -566,10 +537,9 @@
                 }
                 const ep = episodesList[index];
 
-                // Re-inicializar o cambiar video en tu player
                 SATVPlayerEmbed({
                     elementId: "player",
-                    videoUrl: ep.videoPath || ""
+                    videoUrl: ep.link || ""
                 });
 
                 // Actualizar título
@@ -577,15 +547,15 @@
                     titleContainer.innerHTML = `<div class="MovieTitleType">${ep.title || ""}</div>`;
                 } else {
                     titleContainer.innerHTML = `
-        <div class="SeriesTitleType">
-          <strong style="font-weight:500;">${ep.seriesName || ""}</strong>
-          <p style="font-weight:400;">E${ep.episodeNumber ?? ep.number ?? (index + 1)} ${ep.title || ""}</p>
-        </div>
-      `;
+                        <div class="SeriesTitleType">
+                          <strong style="font-weight:500;">${ep.seriesName || ""}</strong>
+                          <p style="font-weight:400;">E${ep.episodeNumber ?? ep.number ?? (index + 1)} ${ep.title || ""}</p>
+                        </div>
+                    `;
                 }
             };
 
-            // Opcional: reproducir el primero (ya inicializamos arriba), pero también actualizamos título
+            // Reproducir el primero al cargar
             window.playEpisode(0);
         };
     </script>
@@ -595,13 +565,13 @@
   {
     "titleType": "Movie",
     "title": "Mi Pobre Angelito 1",
-    "description": "Una introducción al mundo de Mi Pobre Angelito.",
+    "description": "Una divertida historia de un niño que queda solo en casa durante las fiestas.",
     "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
     "duration": "90 min",
     "link": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/Mi_Pobre_Angelito.m3u8"
   }
 ]
-  </script>
+    </script>
 </body>
 
 </html>
