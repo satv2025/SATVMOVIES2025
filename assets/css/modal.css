@@ -11,8 +11,6 @@ body.modal-open {
     overflow: hidden;
 }
 
-body.modal-open {}
-
 .modal-open {
     overflow: auto;
 }
@@ -37,10 +35,8 @@ a#watch-button:active {
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    min-height: 256em;
+    min-height: 300em;
 }
-
-div#about {}
 
 div#modal-background {
     margin-top: -1.5em;
@@ -174,28 +170,25 @@ video.reite-video.reite-bg {
     display: inline-block;
     font-size: 18px;
     font-family: 'Netflix Sans';
+    z-index: 1000;
+    margin-top: 30.4em;
+    margin-left: 33.16em;
 }
 
 .dropdown-button {
-    background-color: rgb(36, 36, 36);
-    color: white;
-    border: 0.1em solid rgb(77, 77, 77);
-    padding: 0.8em 1.2em;
-    font-size: 1em;
-    border-radius: 0.2em;
-    cursor: pointer;
-    width: 11em;
-    text-align: left;
-    display: none;
-    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: center;
     align-items: center;
-    position: absolute;
-    opacity: 1;
-    font-weight: 500;
-    height: 2.4em;
-    font-family: 'Netflix Sans';
-    margin-top: 7.3em;
-    margin-left: 10.7em;
+    min-width: 4em;
+    position: relative;
+    font-size: 1.5em;
+    background-color: rgb(36, 36, 36);
+    padding: 0.5em 1em;
+    color: white;
+    cursor: pointer;
+    border: 0.1em solid rgb(77, 77, 77);
+    border-radius: 0.2em;
+    zoom: 0.7;
 }
 
 .dropdown-button::after {
@@ -211,20 +204,24 @@ video.reite-video.reite-bg {
 }
 
 .dropdown-content {
+    min-width: 4em;
     position: absolute;
-    background-color: rgb(36, 36, 36);
+    right: 0px;
+    cursor: pointer;
     color: white;
-    width: 236px;
+    list-style-type: none;
     border: 0.1em solid rgb(77, 77, 77);
-    margin-top: 172px;
-    z-index: 10;
-    font-size: 1em;
-    font-family: 'Netflix Sans', sans-serif;
-    margin-left: 8em;
-    height: 9.2em;
-    overflow-y: auto;
-    overflow-x: clip;
-    display: none;
+    margin-top: 0.1em;
+    font-size: 1.5em;
+    z-index: 1;
+    background-color: rgb(36, 36, 36);
+    white-space: nowrap;
+    column-gap: 1.8em;
+    max-height: max(10em, 165.415px - 2rem);
+    overflow: auto;
+    padding: 1rem 0px;
+    zoom: 0.7;
+    overflow-x: hidden;
 }
 
 #seasonMenu {
@@ -246,13 +243,48 @@ video.reite-video.reite-bg {
     color: white;
     cursor: pointer;
     padding: 0.5em;
-    width: 100%;
+    width: 102%;
     text-align: left;
     font-family: 'Netflix Sans', sans-serif;
     transition: color 0.2s ease;
     padding-left: 0.7em;
     display: block;
     font-weight: 500;
+}
+
+.episodios-count {
+    font-size: 0.8em !important;
+    color: #ffffff !important;
+    margin-left: 0.3em !important;
+    font-weight: 400 !important;
+}
+
+.season-divider {
+    border-top: 1px solid #444 !important;
+    margin-top: 24px !important;
+    padding-top: 5px !important;
+}
+
+.view-all-btn {
+    width: 100% !important;
+    text-align: left !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding-left: 2.7em !important;
+    padding-right: 2em !important;
+    padding-top: 0.7em !important;
+    padding-bottom: 0.7em !important;
+    font-size: 23px !important;
+    width: 120% !important;
+    margin-left: -0.8em !important;
+    margin-top: 0.5em !important;
+}
+
+.view-all-btn:hover {
+    background-color: #424242 !important;
 }
 
 button.texto.vtle {
@@ -842,7 +874,7 @@ a {}
 h1#modal-title {
     font-size: 1.5em;
     font-weight: 500;
-    margin-top: 155.6em;
+    margin-top: 184.9em;
     margin-left: -2.6em;
     padding-left: 2em;
     width: 100vh;
@@ -879,7 +911,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 96em;
+    top: 121.44em;
     position: relative;
 }
 
@@ -930,7 +962,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 94.9em !important;
+    top: 122.8em !important;
 }
 
 .app-fcbprefix,
@@ -953,6 +985,66 @@ h1#modal-title {
 
 .app-age {
     font-weight: 500;
+}
+
+/* ---------------------------------------------
+   ESTILOS PARA REITE666
+---------------------------------------------- */
+.reite-modal-createdBy {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 97em;
+}
+
+.reite-modal-createdBy,
+.reite-fullcast,
+.reite-fullscript,
+.reite-fullgenres,
+.reite-fulltitletype,
+.reite-fullage {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 105.5em;
+    position: relative;
+}
+
+.reite-fcbprefix,
+.reite-fcprefix,
+.reite-fsprefix,
+.reite-fgprefix,
+.reite-fttprefix,
+.reite-faprefix {
+    color: #bcbcbc;
+}
+
+.reite-fccontent,
+.reite-fscontent,
+.reite-fgcontent,
+.reite-fttcontent,
+.reite-facontent,
+.reite-facontent2 {
+    color: #fff;
+}
+
+.reite-age {
+    font-weight: 500;
+}
+
+.reite-modal-title {
+    position: relative;
+    top: 30em;
 }
 
 .dropdown-content::-webkit-scrollbar {

@@ -219,9 +219,9 @@ const peliculas = {
         type: "serie",
         year: "2018",
         duration: "20 episodios",
-        description: "<span class='curiosity-synopsis'>CILIO está en España. Un mensaje lo obliga a volver a Argentina a un juego macabro. Un error lo cambia todo… y lo trae de vuelta, de forma inquietante.</span>",
+        description: "<span class='curiosity-synopsis'>CILIO está en España...</span>",
         cast: "<strong>Elenco:</strong> Franco Crivera, Julián Iurchuk, Facundo Duré, <button id='scrollAbout'>más</button>",
-        title: "<span class='about'>Acerca de</span> <strong class='titulo'>Reite666</strong>",
+        title: "<span class='about reite-modal-title'>Acerca de</span> <strong class='titulo reite-modal-title'>Reite666</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
         genres: "<strong>Géneros:</strong> De España, Youtubers, Thriller psicológico",
         titleType: "<strong>Este título es:</strong> Misterioso, Perturbador, Inquietante",
@@ -237,14 +237,14 @@ const peliculas = {
     Tu navegador no soporta el video.
 </video>
 `,
-        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0194753295' target='_self'>Reproducir</a>",
-        createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Franco Crivera</span></div>",
-        fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
-        fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
-        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> De España, Thriller psicológico, Youtubers Aventura, Paranormal, Suspenso, Misterio, Terror urbano</span></div>",
-        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
-        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>16+</span> lenguaje inapropiado</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>",
-    },
+        link: "<a id='watch-button' href='...' target='_self'>Reproducir</a>",
+        createdBy: "<div class='modal-createdBy reite-modal-createdBy'><span class='fcbprefix reite-fcbprefix'>Creado por:</span> <span class='fcbcontent reite-fcbcontent'>Franco Crivera</span></div>",
+        fullcast: "<div class='fullcast reite-fullcast'><span class='fcprefix reite-fcprefix'>Elenco:</span> <span class='fccontent reite-fccontent'>Franco Crivera, Julián Iurchuk, Facundo Duré, Roger Cascón Segura, Andrés Ilopo Bollero, Laura Guerra, Marta Guerra</span></div>",
+        fullscript: "<div class='fullscript reite-fullscript'><span class='fsprefix reite-fsprefix'>Guión:</span> <span class='fscontent reite-fscontent'>Franco Crivera, Andrés Ilopo Bollero</span></div>",
+        fullgenres: "<div class='fullgenres reite-fullgenres'><span class='fgprefix reite-fgprefix'>Géneros:</span><span class='fgcontent reite-fgcontent'>De España, Thriller psicológico, Youtubers Aventura, Paranormal, Suspenso, Misterio, Terror urbano</span></div>",
+        fulltitletype: "<div class='fulltitletype reite-fulltitletype'><span class='fttprefix reite-fttprefix'>Este título es:</span> <span class='fttcontent reite-fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
+        fullage: "<div class='fullage reite-fullage'><span class='faprefix reite-faprefix'>Clasificación por edad: </span> <span class='facontent reite-facontent'><span class='age reite-age'>16+</span> lenguaje inapropiado</span> <span class='facontent2 reite-facontent2'>Apta para mayores de 16 años</span></div>"
+    }
 };
 
 // === Insertar CSS del botón de mute dinámicamente ===
@@ -266,6 +266,9 @@ const peliculas = {
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
         .episode-item:hover { background: rgba(255,255,255,0.05); }
+        .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
+        .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
+        .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
     `;
     document.head.appendChild(style);
 })();
@@ -394,7 +397,7 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Generar dropdown dinámico de temporadas con tu CSS ===
+// === Generar dropdown dinámico de temporadas ===
 function generarDropdownTemporadas(movieKey) {
     const seasonContainer = document.getElementById("modal-seasons");
     if (!seasonContainer) return;
@@ -405,7 +408,6 @@ function generarDropdownTemporadas(movieKey) {
 
     const totalTemporadas = Object.keys(temporadas).length;
     if (totalTemporadas < 2) {
-        // Si solo hay una temporada, cargarla directamente
         changeSeason(Object.keys(temporadas)[0], movieKey);
         return;
     }
@@ -427,8 +429,16 @@ function generarDropdownTemporadas(movieKey) {
 
         const btn = document.createElement("button");
         btn.classList.add("texto");
-        const epCount = temporadas[seasonKey].length;
-        btn.innerText = `Temporada ${seasonKey} (${epCount} ep.)`;
+
+        const seasonLabel = document.createElement("span");
+        seasonLabel.innerText = `Temporada ${seasonKey}`;
+
+        const epCount = document.createElement("span");
+        epCount.classList.add("episodios-count");
+        epCount.innerText = ` (${temporadas[seasonKey].length} episodios)`;
+
+        btn.appendChild(seasonLabel);
+        btn.appendChild(epCount);
 
         btn.addEventListener("click", () => {
             button.innerText = `Temporada ${seasonKey}`;
@@ -440,6 +450,24 @@ function generarDropdownTemporadas(movieKey) {
         option.appendChild(btn);
         dropdownContent.appendChild(option);
     });
+
+    // === Item especial: Ver todos los episodios ===
+    const divider = document.createElement("div");
+    divider.classList.add("season-divider");
+
+    const viewAll = document.createElement("button");
+    viewAll.classList.add("texto", "view-all-btn");
+    viewAll.innerText = "Ver todos los episodios";
+
+    viewAll.addEventListener("click", () => {
+        button.innerText = "Todos los episodios";
+        dropdownContent.classList.remove("show");
+        dropdownWrapper.classList.remove("show");
+        mostrarTodosLosEpisodios(movieKey);
+    });
+
+    divider.appendChild(viewAll);
+    dropdownContent.appendChild(divider);
 
     button.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -461,6 +489,46 @@ function generarDropdownTemporadas(movieKey) {
     // Cargar la primera temporada por defecto
     changeSeason(Object.keys(temporadas)[0], movieKey);
     button.style.display = "flex";
+}
+
+// === Mostrar todos los episodios ===
+function mostrarTodosLosEpisodios(movieKey) {
+    const episodeList = document.getElementById("episode-list");
+    if (!episodeList) return;
+    episodeList.innerHTML = "";
+
+    const temporadas = episodiosPorSerie[movieKey];
+    if (!temporadas) return;
+
+    Object.keys(temporadas).forEach((seasonKey) => {
+        const seasonHeader = document.createElement("h3");
+        seasonHeader.classList.add("season-header");
+        seasonHeader.innerText = `Temporada ${seasonKey}`;
+        episodeList.appendChild(seasonHeader);
+
+        temporadas[seasonKey].forEach((ep, index) => {
+            const li = document.createElement("li");
+            li.classList.add("episode-item");
+            li.style.cursor = "pointer";
+            li.style.borderBottom = "1px solid #333";
+            li.style.borderTop = index === 0 ? "1px solid #333" : "none";
+
+            li.innerHTML = `
+                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
+                <div class="episode-info">
+                    <h3>${ep.title}</h3>
+                    <p>${ep.description}</p>
+                    <span>${ep.duration}</span>
+                    <div class="episode-number">${ep.number || ""}</div>
+                </div>`;
+
+            li.addEventListener("click", () => {
+                if (ep.link) window.location.href = ep.link;
+            });
+
+            episodeList.appendChild(li);
+        });
+    });
 }
 
 // === Cambiar temporada con efecto border-top dinámico ===
