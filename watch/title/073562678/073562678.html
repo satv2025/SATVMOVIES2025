@@ -134,18 +134,18 @@
       padding: 0.6em 1.5em !important;
       width: 400px !important;
       margin-left: 2em !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid #333;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
 
     .episode-item:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: #333;
     }
 
     .episode-item img {
-      width: 126px !important;
-      height: auto;
+      width: 80px !important;
+      height: auto !important;
       margin-right: 10px;
       border-radius: 3px;
       zoom: 1.2;
@@ -260,12 +260,12 @@
       font-size: 16px !important;
     }
 
-    .countdown-current-time {
-      margin-bottom: -0.25em;
-    }
-
     .volume-icon {
       margin-bottom: -0.359em;
+    }
+
+    .countdown-current-time {
+      margin-bottom: -0.25em;
     }
 
     .volume-icon:hover,
@@ -315,11 +315,161 @@
     }
 
     .title-styles.fullscreen {
-      top: 46.5em !important;
+      top: 46.34em !important;
     }
 
     .title-styles.windowed {
       top: 39em !important;
+    }
+
+    div#title-container {
+      display: none !important;
+    }
+
+    .season-dropdown {
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+      font-family: 'Netflix Sans';
+      z-index: 1000;
+      zoom: 0.65;
+      margin-left: 26em;
+      margin-top: -15em;
+      top: -2em;
+    }
+
+    .season-dropdown .dropdown-button {
+      display: flex;
+      align-items: center;
+      min-width: 4em;
+      position: relative;
+      font-size: 1.5em;
+      background-color: rgb(36, 36, 36);
+      padding: 0.5em 1em;
+      color: white;
+      cursor: pointer;
+      border: 0.1em solid rgb(77, 77, 77);
+      border-radius: 0.2em;
+      zoom: 0.7;
+    }
+
+    .season-dropdown .dropdown-button::after {
+      content: "▼";
+      margin-left: 1.5em;
+      transition: transform 0.3s ease;
+      font-size: 25px;
+      margin-top: -0.02em;
+    }
+
+    .season-dropdown.show .dropdown-button::after {
+      transform: rotate(180deg);
+    }
+
+    .season-dropdown .dropdown-content {
+      min-width: 14em;
+      position: absolute;
+      right: 0px;
+      cursor: pointer;
+      color: white;
+      list-style-type: none;
+      border: 0.1em solid rgb(77, 77, 77);
+      margin-top: 0.1em;
+      font-size: 1.5em;
+      z-index: 1;
+      background-color: rgb(36, 36, 36);
+      white-space: nowrap;
+      column-gap: 1.8em;
+      max-height: max(10em, 165.415px - 2rem);
+      overflow: auto;
+      padding: 1rem 0px;
+      zoom: 0.7;
+      overflow-x: hidden;
+    }
+
+    .season-dropdown #seasonMenu {
+      display: none;
+      /* Oculto por defecto */
+    }
+
+    .season-dropdown #seasonMenu.show {
+      display: block;
+      /* Se muestra al agregar la clase show */
+    }
+
+    .season-dropdown.show {
+      display: inline-block;
+      /* O flex si prefieres */
+    }
+
+    .season-dropdown .dropdown-content {
+      display: none;
+      /* Oculto por defecto */
+    }
+
+    .season-dropdown.show .dropdown-content {
+      display: block;
+      /* Se muestra al abrir el dropdown */
+    }
+
+    .season-dropdown .season-option {
+      width: 100%;
+      padding-left: 0.4em;
+    }
+
+    .season-dropdown .season-option .texto {
+      background: none;
+      border: none;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+      padding: 0.5em 0.7em;
+      width: 102%;
+      text-align: left;
+      font-family: 'Netflix Sans', sans-serif;
+      transition: color 0.2s ease;
+      display: block;
+      font-weight: 500;
+    }
+
+    .season-dropdown .episodios-count {
+      font-size: 0.8em !important;
+      color: #ffffff !important;
+      margin-left: 0.5em !important;
+      font-weight: 400 !important;
+      margin-top: -0.7em !important;
+      position: relative;
+      top: -0.1em
+    }
+
+    .season-dropdown .season-divider {
+      border-top: 1px solid #444 !important;
+      margin-top: 24px !important;
+      padding-top: 5px !important;
+    }
+
+    .season-dropdown .view-all-btn {
+      width: 120% !important;
+      text-align: left !important;
+      color: #fff !important;
+      font-weight: bold !important;
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      padding-left: 2.7em !important;
+      padding-right: 2em !important;
+      padding-top: 0.7em !important;
+      padding-bottom: 0.7em !important;
+      font-size: 23px !important;
+      margin-left: -0.8em !important;
+      margin-top: 0.5em !important;
+    }
+
+    .season-dropdown .view-all-btn:hover {
+      background-color: #424242 !important;
+    }
+
+    .season-option:hover {
+      background-color: #424242;
     }
   </style>
 </head>
@@ -331,103 +481,159 @@
   <script>
     window.onload = function () {
       const episodesDataScript = document.getElementById("episodes-data");
-      const episodes = episodesDataScript ? JSON.parse(episodesDataScript.textContent) : [];
+      if (!episodesDataScript) {
+        console.warn("No episodes-data script found");
+        return;
+      }
 
-      if (episodes.length === 0) return;
+      let parsed;
+      try {
+        parsed = JSON.parse(episodesDataScript.textContent);
+      } catch (err) {
+        console.error("Error parsing episodes JSON:", err);
+        return;
+      }
 
-      // Inicializar SATVPlayerEmbed con el primer episodio
+      // episodesList será el array final de episodios que usaremos
+      let episodesList = [];
+
+      // Caso 1: el JSON ya es un array (formato antiguo/plano)
+      if (Array.isArray(parsed)) {
+        episodesList = parsed;
+      } else if (parsed && typeof parsed === "object") {
+        // Caso 2: el JSON es un objeto por series -> temporadas -> [episodios]
+        const seriesKeys = Object.keys(parsed);
+        if (seriesKeys.length === 0) {
+          console.warn("JSON de episodios vacío (no hay series)");
+          return;
+        }
+
+        // Tomamos la primera serie encontrada (igual que hacías en React)
+        const firstSeriesKey = seriesKeys[0];
+        const seasons = parsed[firstSeriesKey] || {};
+
+        const seasonKeys = Object.keys(seasons);
+        if (seasonKeys.length === 0) {
+          console.warn("La serie no tiene temporadas:", firstSeriesKey);
+          return;
+        }
+
+        // Tomamos la primera temporada
+        const firstSeasonKey = seasonKeys[0];
+        episodesList = seasons[firstSeasonKey] || [];
+      } else {
+        console.warn("Formato de episodes-data inesperado");
+        return;
+      }
+
+      if (!episodesList || episodesList.length === 0) {
+        console.warn("No hay episodios en la lista final");
+        return;
+      }
+
+      // Inicializar SATVPlayerEmbed con el primer episodio (si existe videoPath)
+      const firstVideo = episodesList[0];
       SATVPlayerEmbed({
         elementId: "player",
-        videoUrl: episodes[0].videoPath
+        videoUrl: (firstVideo && firstVideo.videoPath) ? firstVideo.videoPath : ""
       });
 
-      // Crear contenedor de título
-      let titleContainer = document.createElement("div");
-      titleContainer.id = "title-container";
-      titleContainer.className = "title-styles";
-      document.getElementById("player").appendChild(titleContainer);
+      // Crear contenedor de título (si no existe)
+      let titleContainer = document.getElementById("title-container");
+      if (!titleContainer) {
+        titleContainer = document.createElement("div");
+        titleContainer.id = "title-container";
+        titleContainer.className = "title-styles";
+        document.getElementById("player").appendChild(titleContainer);
+      }
 
-      // Función global para cambiar de episodio
+      // Función global para cambiar de episodio (usa episodesList)
       window.playEpisode = function (index) {
-        if (!episodes[index]) return;
-        const ep = episodes[index];
+        if (!episodesList || !episodesList[index]) {
+          console.warn("playEpisode: episodio inválido", index);
+          return;
+        }
+        const ep = episodesList[index];
 
+        // Re-inicializar o cambiar video en tu player
         SATVPlayerEmbed({
           elementId: "player",
-          videoUrl: ep.videoPath
+          videoUrl: ep.videoPath || ""
         });
 
-        if (ep.titleType === "Movie") {
-          titleContainer.innerHTML = `<div class="MovieTitleType">${ep.title}</div>`;
+        // Actualizar título
+        if ((ep.titleType || "").toLowerCase() === "movie") {
+          titleContainer.innerHTML = `<div class="MovieTitleType">${ep.title || ""}</div>`;
         } else {
           titleContainer.innerHTML = `
-            <div class="SeriesTitleType">
-              <strong style="font-weight:500;">${ep.seriesName}</strong>
-              <p style="font-weight:400;">E${ep.episodeNumber} ${ep.title}</p>
-            </div>
-          `;
+        <div class="SeriesTitleType">
+          <strong style="font-weight:500;">${ep.seriesName || ""}</strong>
+          <p style="font-weight:400;">E${ep.episodeNumber ?? ep.number ?? (index + 1)} ${ep.title || ""}</p>
+        </div>
+      `;
         }
       };
+
+      // Opcional: reproducir el primero (ya inicializamos arriba), pero también actualizamos título
+      window.playEpisode(0);
     };
   </script>
 
   <script id="episodes-data" type="application/json">
-[
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 1,
-    "title": "Episodio 1",
-    "description": "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e1/Asesinato%20Para%20Principiantes%20-%20T1%20E1.m3u8",
-    "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg"
-  },
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 2,
-    "title": "Episodio 2",
-    "description": "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e2/Asesinato-Para-Principiantes-T1-E2.m3u8",
-    "image": "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg"
-  },
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 3,
-    "title": "Episodio 3",
-    "description": "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e3/Asesinato-Para-Principiantes-T1-E3.m3u8",
-    "image": "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg"
-  },
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 4,
-    "title": "Episodio 4",
-    "description": "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e4/Asesinato-Para-Principiantes-T1-E4.m3u8",
-    "image": "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg"
-  },
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 5,
-    "title": "Episodio 5",
-    "description": "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e5/Asesinato-Para-Principiantes-T1-E5.m3u8",
-    "image": "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5"
-  },
-  {
-    "titleType": "Series",
-    "seriesName": "Asesinato Para Principiantes",
-    "episodeNumber": 6,
-    "title": "Episodio 6",
-    "description": "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado,así que va a visitar a la única persona que podría tener respuestas.",
-    "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/app/e6/Asesinato-Para-Principiantes-T1-E6.m3u8",
-    "image": "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg"
-  }
-]
+{
+    "episodiosReite666": {
+        "1": [
+            {
+                "title": "Episodio 1",
+                "number": 1,
+                "description": "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
+                "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
+                "duration": "43 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            },
+            {
+                "title": "Episodio 2",
+                "number": 2,
+                "description": "Luego de entrevistar a las mejores amigas de Andie, Pip tiene una idea más clara de quién era la víctima, pero tras reorganizar fotos viejas empieza a comprender mejor todo.",
+                "image": "https://www.mediafire.com/convkey/88d0/o7ja6efkgc857oo9g.jpg",
+                "duration": "44 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            },
+            {
+                "title": "Episodio 3",
+                "number": 3,
+                "description": "Pip descubre por primera vez en su vida el lado oscuro cuando va a una fiesta clandestina. Y su siguiente pista la lleva a territorio aún más peligroso.",
+                "image": "https://www.mediafire.com/convkey/6ed1/6870czca0karqn29g.jpg",
+                "duration": "43 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            },
+            {
+                "title": "Episodio 4",
+                "number": 4,
+                "description": "Pip y Ravi siguen una nueva pista que los lleva lejos de Little Kilton. Allí, descubren una valiosa prueba... y una desagradable sorpresa.",
+                "image": "https://www.mediafire.com/convkey/0de9/czivzlrwjyr2rlj9g.jpg",
+                "duration": "44 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            },
+            {
+                "title": "Episodio 5",
+                "number": 5,
+                "description": "Una impactante confesión arroja luz en la investigación. Antes de que Pip pueda decidir qué hacer, recibe otro mensaje amenazador.",
+                "image": "https://occ-0-2442-1380.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeED_UJixLwFl5Ln39ljb3EY3B-_bE2aisB_eLtQVDlnZTf_vQ3hbjJseEWVQtQR3_xSoTLDsQaJqB20WoXVRq4ALdwp2VwxqDgvq9ssa8GfB9Ed925tZ5zk.jpg?r=2f5",
+                "duration": "50 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            },
+            {
+                "title": "Episodio 6",
+                "number": 6,
+                "description": "La policía hace un arresto, pero Pip no está segura de que el caso esté solucionado, así que va a visitar a la única persona que podría tener respuestas.",
+                "image": "https://www.mediafire.com/convkey/0869/05fmkuq6l9kj4159g.jpg",
+                "duration": "51 min",
+                "link": "https://movies.solargentinotv.com.ar/watch/title/073562678"
+            }
+        ]
+    }
+}
 </script>
 
 </body>
