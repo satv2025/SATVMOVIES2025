@@ -332,10 +332,6 @@
             top: 39em !important;
         }
 
-        div#title-container {
-            display: none !important;
-        }
-
         .season-dropdown {
             position: relative;
             display: inline-block;
@@ -522,6 +518,8 @@
             document.getElementById("player").appendChild(titleContainer);
         };
     </script>
+
+    <script> window.onload = function () { SATVPlayerEmbed({ elementId: "player", videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8" }); }; </script>
 
     <script id="movie-data" type="application/json">
 {
