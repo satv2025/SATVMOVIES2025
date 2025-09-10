@@ -485,47 +485,46 @@
 
     <script>
         window.onload = function () {
+            // 🎯 URL por defecto (si no hay movie-data)
+            let defaultUrl = "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8";
+            let videoUrl = defaultUrl;
+            let movieTitle = "";
+
+            // ✅ Buscar datos en <script id="movie-data">
             const dataScript = document.getElementById("movie-data");
-            if (!dataScript) {
-                console.warn("No se encontró movie-data");
-                return;
+            if (dataScript) {
+                try {
+                    const movie = JSON.parse(dataScript.textContent);
+                    if (movie && movie.videoPath) {
+                        videoUrl = movie.videoPath;
+                        movieTitle = movie.title || "";
+                    }
+                } catch (err) {
+                    console.error("Error parseando JSON de movie-data:", err);
+                }
             }
 
-            let movie;
-            try {
-                movie = JSON.parse(dataScript.textContent);
-            } catch (err) {
-                console.error("Error parseando JSON:", err);
-                return;
-            }
-
-            if (!movie || !movie.videoPath) {
-                console.warn("Datos de película incompletos");
-                return;
-            }
-
-            // ✅ Inicializar player con el video de movie-data
+            // 🚀 Inicializar player con videoUrl (ya sea default o del JSON)
             SATVPlayerEmbed({
                 elementId: "player",
-                videoUrl: movie.videoPath
+                videoUrl: videoUrl
             });
 
-            // Mostrar título (opcional)
-            let titleContainer = document.createElement("div");
-            titleContainer.id = "title-container";
-            titleContainer.className = "title-styles windowed";
-            titleContainer.innerHTML = `<div class="MovieTitleType">${movie.title || ""}</div>`;
-            document.getElementById("player").appendChild(titleContainer);
+            // 📝 Mostrar título si existe
+            if (movieTitle) {
+                let titleContainer = document.createElement("div");
+                titleContainer.id = "title-container";
+                titleContainer.className = "title-styles windowed";
+                titleContainer.innerHTML = `<div class="MovieTitleType">${movieTitle}</div>`;
+                document.getElementById("player").appendChild(titleContainer);
+            }
         };
     </script>
-
-    <script> window.onload = function () { SATVPlayerEmbed({ elementId: "player", videoUrl: "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8" }); }; </script>
 
     <script id="movie-data" type="application/json">
 {
   "titleType": "Movie",
   "title": "Mi Pobre Angelito",
-  "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/m3u8/HomeAlone1.m3u8"
 }
 </script>
 
