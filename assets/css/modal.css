@@ -1016,7 +1016,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 105.5em;
+    top: 80.5em;
     position: relative;
 }
 
@@ -1044,7 +1044,7 @@ h1#modal-title {
 
 .reite-modal-title {
     position: relative;
-    top: 30em;
+    top: 1em !important;
 }
 
 .dropdown-content::-webkit-scrollbar {
