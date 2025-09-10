@@ -508,13 +508,13 @@
                 return;
             }
 
-            // Inicializar player
+            // ✅ Inicializar player con el video de movie-data
             SATVPlayerEmbed({
                 elementId: "player",
                 videoUrl: movie.videoPath
             });
 
-            // Crear y mostrar título
+            // Mostrar título (opcional)
             let titleContainer = document.createElement("div");
             titleContainer.id = "title-container";
             titleContainer.className = "title-styles windowed";
@@ -527,9 +527,6 @@
 {
   "titleType": "Movie",
   "title": "Mi Pobre Angelito",
-  "description": "Pip elige un caso de homicidio para su proyecto escolar. Pero cuando empieza a investigar, descubre que para algunas personas era mejor dejarlo enterrado para siempre.",
-  "image": "https://www.mediafire.com/convkey/8ebd/67e8toxnggmojw09g.jpg",
-  "duration": "2h 10min",
   "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/m3u8/HomeAlone1.m3u8"
 }
 </script>
