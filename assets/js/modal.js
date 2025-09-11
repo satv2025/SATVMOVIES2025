@@ -228,7 +228,7 @@ const peliculas = {
         ageRating: "<span class='age'>16+</span> lenguaje inapropiado",
         curiosity: "<strong class='curiosidad'>Es oficial: Se estrenará otra temporada</strong>",
         background: `
-<video class='nivelx-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+<video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
        onmousedown="return false;" 
        onselectstart="return false;" 
@@ -257,7 +257,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Absurdo, Divertido, Caótico",
         ageRating: "<span class='age'>13+</span> humor irreverente",
         background: `
-<video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+<video class='nivelx-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
        onmousedown="return false;" 
        onselectstart="return false;" 
