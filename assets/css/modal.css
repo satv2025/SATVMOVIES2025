@@ -199,6 +199,13 @@ video.reite-video.reite-bg {
     zoom: 0.7;
 }
 
+.season-dropdown,
+nivelx-season-dropdown {
+    position: absolute;
+    top: 6em;
+    left: 2.6em;
+}
+
 .dropdown-button::after {
     content: "▼";
     margin-left: 1.5em;
