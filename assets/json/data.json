@@ -415,6 +415,7 @@
                 "title": "Episodio 1",
                 "number": 1,
                 "description": "2009 trae Nivel X, la parodia que arrasa en YouTube. Caos en El Planetario, locuras otaku y gamers, y nada sale como esperas.",
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e1"
@@ -431,6 +432,7 @@
                 "title": "Episodio 3",
                 "number": 3,
                 "description": "Natalia atropella a Horacio con su Fiat Uno y, de vuelta en casa, Lionel la contacta en Facebook. La vida real y digital chocan con resultados hilarantes.",
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e3"
@@ -439,6 +441,7 @@
                 "title": "Episodio 4",
                 "number": 4,
                 "description": "Lionel hace las compras para que Natalia prepare un platillo navideño… que podría no ser del todo comestible. Mientras tanto, vuelven las notas en El Planetario, sumando más caos y risas.",
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx4/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e4"
@@ -446,6 +449,7 @@
             {
                 "title": "Episodio 5",
                 "number": 5,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx5/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e5"
@@ -453,6 +457,7 @@
             {
                 "title": "Episodio 6",
                 "number": 6,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx6/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e6"
@@ -460,6 +465,8 @@
             {
                 "title": "Episodio 7",
                 "number": 7,
+                "description": "",
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx7/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e7"
@@ -467,6 +474,7 @@
             {
                 "title": "Episodio 8",
                 "number": 8,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx8/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e8"
@@ -474,6 +482,7 @@
             {
                 "title": "Episodio 9",
                 "number": 9,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx9/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e9"
@@ -481,6 +490,7 @@
             {
                 "title": "Episodio 10",
                 "number": 10,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx10/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e10"
@@ -488,6 +498,7 @@
             {
                 "title": "Episodio 11",
                 "number": 11,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx11/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e11"
@@ -495,6 +506,7 @@
             {
                 "title": "Episodio 12",
                 "number": 12,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx12/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e12"
@@ -502,6 +514,7 @@
             {
                 "title": "Episodio 13",
                 "number": 13,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx13/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e13"
@@ -509,6 +522,7 @@
             {
                 "title": "Episodio 14",
                 "number": 14,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx14/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e14"
@@ -516,6 +530,7 @@
             {
                 "title": "Episodio 15",
                 "number": 15,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx15/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e15"
@@ -524,6 +539,7 @@
                 "title": "Episodio 16",
                 "number": 16,
                 "description": "Risas y caos continúan en Nivel X.",
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx16/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e16"
@@ -531,6 +547,7 @@
             {
                 "title": "Episodio 17",
                 "number": 17,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx17/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e17"
@@ -538,6 +555,7 @@
             {
                 "title": "Episodio 18",
                 "number": 18,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx18/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e18"
@@ -545,6 +563,7 @@
             {
                 "title": "Episodio 19",
                 "number": 19,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx19/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e19"
@@ -552,6 +571,7 @@
             {
                 "title": "Episodio 20",
                 "number": 20,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx20/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e20"
@@ -559,6 +579,7 @@
             {
                 "title": "Episodio 21",
                 "number": 21,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx21/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e21"
@@ -566,6 +587,7 @@
             {
                 "title": "Episodio 22",
                 "number": 22,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx22/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e22"
@@ -573,6 +595,7 @@
             {
                 "title": "Episodio 23",
                 "number": 23,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx23/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e23"
@@ -580,6 +603,7 @@
             {
                 "title": "Episodio 24",
                 "number": 24,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx24/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e24"
@@ -587,6 +611,7 @@
             {
                 "title": "Episodio 25",
                 "number": 25,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx25/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e25"
@@ -594,6 +619,7 @@
             {
                 "title": "Episodio 26",
                 "number": 26,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx26/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e26"
@@ -601,13 +627,15 @@
             {
                 "title": "Episodio 27",
                 "number": 27,
-                "description": "Más locuras y parodias en Nivel X.",
+                "description": "",
+                "image": "https://picsum.photos/seed/nivelx27/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e27"
             },
             {
                 "title": "Episodio 28",
                 "number": 28,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx28/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e28"
@@ -615,6 +643,7 @@
             {
                 "title": "Episodio 29",
                 "number": 29,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx29/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e29"
@@ -624,6 +653,7 @@
             {
                 "title": "Episodio 1",
                 "number": 1,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx_s2_1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e1"
@@ -631,6 +661,7 @@
             {
                 "title": "Episodio 2",
                 "number": 2,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx_s2_2/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e2"
@@ -638,6 +669,7 @@
             {
                 "title": "Episodio 3",
                 "number": 3,
+                "description": "",
                 "image": "https://picsum.photos/seed/nivelx_s2_3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e3"
