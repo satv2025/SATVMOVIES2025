@@ -383,13 +383,23 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Agregar clases específicas si es "reite666" o "nivelx" ===
-    if (movieKey === "reite666" || movieKey === "nivelx") {
+    // === Agregar clases específicas si es "reite666" ===
+    if (movieKey === "reite666") {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
         if (muteBtn) muteBtn.classList.add("reite-mute");
     } else {
-        // Quitar las clases si no es ninguno de los dos
+        if (video) video.classList.remove("reite-bg");
+        if (modalHeader) modalHeader.classList.remove("reite-header");
+        if (muteBtn) muteBtn.classList.remove("reite-mute");
+    }
+
+    // === Agregar clases específicas si es "nivelx" ===
+    if (movieKey === "nivelx") {
+        if (video) video.classList.add("reite-bg");
+        if (modalHeader) modalHeader.classList.add("reite-header");
+        if (muteBtn) muteBtn.classList.add("reite-mute");
+    } else {
         if (video) video.classList.remove("reite-bg");
         if (modalHeader) modalHeader.classList.remove("reite-header");
         if (muteBtn) muteBtn.classList.remove("reite-mute");
