@@ -263,7 +263,7 @@ const peliculas = {
        onmousedown="return false;" 
        onselectstart="return false;" 
        ondragstart="return false;">
-    <source src='https://ejemplo.com/trailer_nivelX.mp4' type='video/mp4'>
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/trailer.mp4?ref_type=heads" type="video/mp4">
     Tu navegador no soporta el video.
 </video>
 `,
