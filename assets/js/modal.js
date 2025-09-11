@@ -249,7 +249,7 @@ const peliculas = {
         type: "serie",
         year: "2009",
         duration: "2 temporadas",
-        description: "<span>Lionel Campoy y Natalia Dim viven situaciones absurdas y desopilantes en esta irreverente parodia de un clásico infantil. Nivel X es caótica, inesperada y completamente imposible de ignorar.</span>",
+        description: "<span>Lionel Campoy y Natalia Dim enfrentan situaciones absurdas en Nivel X, una parodia caótica e imposible de ignorar.</span>",
         cast: "<strong>Elenco:</strong> Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, <button id='scrollAbout'>más</button>",
         title: "<span class='about nivelX-modal-title'>Acerca de</span> <strong class='titulo nivelX-modal-title'>Nivel X</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
