@@ -62,7 +62,7 @@ const peliculas = {
         type: "pelicula",
         year: "2009",
         duration: "1 h 20 min",
-        description: "Damián Castillo, un doctor en biotecnología, odia a su vecino Vicente Viloni. Obsesionado con su fama, crea clones de los luchadores de 100% Lucha para arruinar la imagen de su ídolo de la infancia.",
+        description: "Damián Castillo, doctor en biotecnología, odia a su vecino Vicente Viloni y crea clones de los luchadores de 100% Lucha para arruinar la imagen de su ídolo de la infancia.",
         cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
         genres: "<strong>Géneros:</strong> Humor, lucha libre, futurista, robots, androides",
