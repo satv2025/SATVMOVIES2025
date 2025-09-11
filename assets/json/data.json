@@ -408,5 +408,267 @@
                 "link": "https://movies.solargentinotv.com.ar/watch/title/0194753295"
             }
         ]
+    },
+    "episodiosNivelX": {
+        "1": [
+            {
+                "title": "Episodio 1",
+                "number": 1,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 2",
+                "number": 2,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 3",
+                "number": 3,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 4",
+                "number": 4,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 5",
+                "number": 5,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 6",
+                "number": 6,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 7",
+                "number": 7,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 8",
+                "number": 8,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 9",
+                "number": 9,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 10",
+                "number": 10,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 11",
+                "number": 11,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 12",
+                "number": 12,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 13",
+                "number": 13,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 14",
+                "number": 14,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 15",
+                "number": 15,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 16",
+                "number": 16,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 17",
+                "number": 17,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 18",
+                "number": 18,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 19",
+                "number": 19,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 20",
+                "number": 20,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 21",
+                "number": 21,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 22",
+                "number": 22,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 23",
+                "number": 23,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 24",
+                "number": 24,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 25",
+                "number": 25,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 26",
+                "number": 26,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 27",
+                "number": 27,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 28",
+                "number": 28,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 29",
+                "number": 29,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            }
+        ],
+        "2": [
+            {
+                "title": "Episodio 1",
+                "number": 1,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 2",
+                "number": 2,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            },
+            {
+                "title": "Episodio 3",
+                "number": 3,
+                "description": "",
+                "image": "",
+                "duration": "25 min",
+                "link": ""
+            }
+        ]
     }
 }

@@ -257,7 +257,7 @@ const peliculas = {
         titleType: "<strong>Este título es:</strong> Absurdo, Divertido, Caótico",
         ageRating: "<span class='age'>13+</span> humor irreverente",
         background: `
-<video class='nivelX-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+<video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
        onmousedown="return false;" 
        onselectstart="return false;" 
