@@ -36,7 +36,7 @@ const peliculas = {
         description: "Koshe Plostenko, un mafioso implacable, secuestra a los luchadores de 100% Lucha para obligarlos a pelear en su club clandestino, desatando caos y rivalidades inesperadas.",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
-        genres: "<strong>Géneros:</strong> Humor, Lucha Libre, Acción",
+        genres: "<strong>Géneros:</strong> Humor, Lucha Libre, Acción, Rivalidades", // 4 elementos porque 3 ocupaban solo 1 línea
         titleType: "<strong>Este título es:</strong> Intenso, Delirante, Divertido",
         ageRating: "<span class='age'>12+</span> lenguaje inapropiado, violencia, humor absurdo",
         background: `
@@ -62,12 +62,12 @@ const peliculas = {
         type: "pelicula",
         year: "2009",
         duration: "1 h 20 min",
-        description: "Damián Castillo, doctor en biotecnología, odia a su vecino Vicente Viloni y crea clones de los luchadores de 100% Lucha para arruinar la imagen de su ídolo de la infancia.",
+        description: "Damián Castillo, un doctor obsesionado, crea clones de los luchadores de 100% Lucha para arruinar a su ídolo, desatando caos y rivalidades inesperadas.",
         cast: "<strong>Elenco:</strong> Pablo Rago, Roberto Carnaghi, Juan Pablo Varsky, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - El Amo De Los Clones </strong>",
-        genres: "<strong>Géneros:</strong> Humor, Lucha Libre, Sci-Fi",
+        genres: "<strong>Géneros:</strong> Humor, Lucha Libre, Sci-Fi, Clonación", // 4 elementos para ocupar 2 líneas
         titleType: "<strong>Este título es:</strong> Intenso, Delirante, Divertido",
-        ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
+        ageRating: "<span class='age'>12+</span> lenguaje inapropiado, violencia, humor absurdo",
         background: `
 <video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
@@ -84,7 +84,7 @@ const peliculas = {
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
         fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, Lucha Libre, Sci-Fi, Clonación, Rivalidades, Venganza</span></div>",
         fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'> Intenso, Delirante, Divertido, Ingenioso, Excéntrico</span></div>",
-        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>"
+        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> lenguaje inapropiado, violencia, humor absurdo</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>"
     },
 
     homealone: {
