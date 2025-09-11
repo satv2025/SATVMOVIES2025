@@ -389,10 +389,12 @@ function openModal(movieKey) {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
         if (muteBtn) muteBtn.classList.add("reite-mute");
+        if (seasonDropdown) seasonDropdown.classList.add("reite-season-dropdown");
     } else {
         if (video) video.classList.remove("reite-bg");
         if (modalHeader) modalHeader.classList.remove("reite-header");
         if (muteBtn) muteBtn.classList.remove("reite-mute");
+        if (seasonDropdown) seasonDropdown.classList.remove("reite-season-dropdown");
     }
 
     // === Agregar clases específicas si es "nivelx" ===
