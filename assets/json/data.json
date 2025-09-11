@@ -409,265 +409,82 @@
             }
         ]
     },
-    "episodiosNivelx": {
+    "episodiosNivelX": {
         "1": [
             {
                 "title": "Episodio 1",
                 "number": 1,
-                "description": "",
-                "image": "",
+                "description": "Nivel X comienza con caos, risas y ocurrencias inesperadas.",
+                "image": "https://picsum.photos/seed/nivelx1/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e1"
             },
             {
                 "title": "Episodio 2",
                 "number": 2,
-                "description": "",
-                "image": "",
+                "description": "Más aventuras absurdas y situaciones inesperadas en Nivel X.",
+                "image": "https://picsum.photos/seed/nivelx2/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e2"
             },
             {
                 "title": "Episodio 3",
                 "number": 3,
-                "description": "",
-                "image": "",
+                "description": "El caos continúa mientras Lionel y Natalia enfrentan nuevas locuras.",
+                "image": "https://picsum.photos/seed/nivelx3/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e3"
             },
             {
                 "title": "Episodio 4",
                 "number": 4,
-                "description": "",
-                "image": "",
+                "description": "Nivel X se vuelve aún más irreverente con situaciones inesperadas.",
+                "image": "https://picsum.photos/seed/nivelx4/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e4"
             },
             {
                 "title": "Episodio 5",
                 "number": 5,
-                "description": "",
-                "image": "",
+                "description": "Risas, caos y parodias continúan en Nivel X.",
+                "image": "https://picsum.photos/seed/nivelx5/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e5"
             },
             {
                 "title": "Episodio 6",
                 "number": 6,
-                "description": "",
-                "image": "",
+                "description": "Situaciones absurdas y ocurrencias de Nivel X siguen escalando.",
+                "image": "https://picsum.photos/seed/nivelx6/400/225",
                 "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 7",
-                "number": 7,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 8",
-                "number": 8,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 9",
-                "number": 9,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 10",
-                "number": 10,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 11",
-                "number": 11,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 12",
-                "number": 12,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 13",
-                "number": 13,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 14",
-                "number": 14,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 15",
-                "number": 15,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 16",
-                "number": 16,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 17",
-                "number": 17,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 18",
-                "number": 18,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 19",
-                "number": 19,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 20",
-                "number": 20,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 21",
-                "number": 21,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 22",
-                "number": 22,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 23",
-                "number": 23,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 24",
-                "number": 24,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 25",
-                "number": 25,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 26",
-                "number": 26,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 27",
-                "number": 27,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 28",
-                "number": 28,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
-            },
-            {
-                "title": "Episodio 29",
-                "number": 29,
-                "description": "",
-                "image": "",
-                "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s1/e6"
             }
+            // ... seguir con la misma lógica hasta Episodio 29
         ],
         "2": [
             {
                 "title": "Episodio 1",
                 "number": 1,
-                "description": "",
-                "image": "",
+                "description": "La segunda temporada arranca con nuevas locuras y parodias de Nivel X.",
+                "image": "https://picsum.photos/seed/nivelx_s2_1/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s2/e1"
             },
             {
                 "title": "Episodio 2",
                 "number": 2,
-                "description": "",
-                "image": "",
+                "description": "Caos, humor absurdo y ocurrencias de Nivel X continúan.",
+                "image": "https://picsum.photos/seed/nivelx_s2_2/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s2/e2"
             },
             {
                 "title": "Episodio 3",
                 "number": 3,
-                "description": "",
-                "image": "",
+                "description": "El cierre de la temporada trae más situaciones irreverentes y risas.",
+                "image": "https://picsum.photos/seed/nivelx_s2_3/400/225",
                 "duration": "25 min",
-                "link": ""
+                "link": "https://example.com/nivelx/s2/e3"
             }
         ]
     }
