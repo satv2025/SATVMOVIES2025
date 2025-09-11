@@ -312,12 +312,20 @@ async function cargarEpisodiosJSON() {
         const response = await fetch('assets/json/data.json');
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
-        episodiosPorSerie["app"] = data.episodiosApp;
-        episodiosPorSerie["reite666"] = data.episodiosReite666;
+
+        // Detectar todas las claves que empiecen con "episodios"
+        for (const key in data) {
+            if (key.startsWith("episodios")) {
+                episodiosPorSerie[key] = data[key];
+            }
+        }
+
+        console.log("Episodios cargados:", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
 }
+
 cargarEpisodiosJSON();
 
 // === Detectar clic en botones "Más Información" ===
