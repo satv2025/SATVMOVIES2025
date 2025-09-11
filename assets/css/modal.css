@@ -517,7 +517,7 @@ button.text:hover {
 
 .episode-number {
     position: absolute;
-    right: 29.4em;
+    right: 29.64em;
     /* alineado al borde derecho del contenedor */
     top: 50%;
     /* centrado vertical */
@@ -746,7 +746,7 @@ button.texto:hover {
 }
 
 ul#episode-list {
-    padding-left: 2em;
+    padding-left: 1.6em;
     padding-right: 3em;
     position: absolute;
     top: 44em;
