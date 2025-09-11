@@ -414,7 +414,6 @@
             {
                 "title": "Episodio 1",
                 "number": 1,
-                "description": "Nivel X comienza con caos, risas y ocurrencias inesperadas.",
                 "image": "https://picsum.photos/seed/nivelx1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e1"
@@ -422,7 +421,6 @@
             {
                 "title": "Episodio 2",
                 "number": 2,
-                "description": "Más aventuras absurdas y situaciones inesperadas en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx2/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e2"
@@ -430,7 +428,6 @@
             {
                 "title": "Episodio 3",
                 "number": 3,
-                "description": "El caos continúa mientras Lionel y Natalia enfrentan nuevas locuras.",
                 "image": "https://picsum.photos/seed/nivelx3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e3"
@@ -438,7 +435,6 @@
             {
                 "title": "Episodio 4",
                 "number": 4,
-                "description": "Nivel X se vuelve aún más irreverente con situaciones inesperadas.",
                 "image": "https://picsum.photos/seed/nivelx4/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e4"
@@ -446,7 +442,6 @@
             {
                 "title": "Episodio 5",
                 "number": 5,
-                "description": "Risas, caos y parodias continúan en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx5/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e5"
@@ -454,7 +449,6 @@
             {
                 "title": "Episodio 6",
                 "number": 6,
-                "description": "Situaciones absurdas y ocurrencias de Nivel X siguen escalando.",
                 "image": "https://picsum.photos/seed/nivelx6/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e6"
@@ -462,7 +456,6 @@
             {
                 "title": "Episodio 7",
                 "number": 7,
-                "description": "Nivel X sigue sorprendiendo con humor irreverente y caos.",
                 "image": "https://picsum.photos/seed/nivelx7/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e7"
@@ -470,7 +463,6 @@
             {
                 "title": "Episodio 8",
                 "number": 8,
-                "description": "Más locuras y situaciones inesperadas en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx8/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e8"
@@ -478,7 +470,6 @@
             {
                 "title": "Episodio 9",
                 "number": 9,
-                "description": "Nivel X sigue llevando el caos a otro nivel.",
                 "image": "https://picsum.photos/seed/nivelx9/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e9"
@@ -486,7 +477,6 @@
             {
                 "title": "Episodio 10",
                 "number": 10,
-                "description": "Humor absurdo y situaciones inesperadas continúan.",
                 "image": "https://picsum.photos/seed/nivelx10/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e10"
@@ -494,7 +484,6 @@
             {
                 "title": "Episodio 11",
                 "number": 11,
-                "description": "El caos alcanza nuevas alturas en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx11/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e11"
@@ -502,7 +491,6 @@
             {
                 "title": "Episodio 12",
                 "number": 12,
-                "description": "Nivel X continúa con parodias y situaciones absurdas.",
                 "image": "https://picsum.photos/seed/nivelx12/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e12"
@@ -510,7 +498,6 @@
             {
                 "title": "Episodio 13",
                 "number": 13,
-                "description": "Risas y caos se mezclan en este episodio de Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx13/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e13"
@@ -518,7 +505,6 @@
             {
                 "title": "Episodio 14",
                 "number": 14,
-                "description": "El humor irreverente no para en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx14/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e14"
@@ -526,7 +512,6 @@
             {
                 "title": "Episodio 15",
                 "number": 15,
-                "description": "Nivel X sigue con sus parodias y situaciones absurdas.",
                 "image": "https://picsum.photos/seed/nivelx15/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e15"
@@ -542,7 +527,6 @@
             {
                 "title": "Episodio 17",
                 "number": 17,
-                "description": "Nivel X no deja de sorprender con situaciones inesperadas.",
                 "image": "https://picsum.photos/seed/nivelx17/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e17"
@@ -550,7 +534,6 @@
             {
                 "title": "Episodio 18",
                 "number": 18,
-                "description": "Caos y parodias continúan en este episodio de Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx18/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e18"
@@ -558,7 +541,6 @@
             {
                 "title": "Episodio 19",
                 "number": 19,
-                "description": "Nivel X sigue con su humor absurdo característico.",
                 "image": "https://picsum.photos/seed/nivelx19/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e19"
@@ -566,7 +548,6 @@
             {
                 "title": "Episodio 20",
                 "number": 20,
-                "description": "Más situaciones inesperadas y locuras en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx20/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e20"
@@ -574,7 +555,6 @@
             {
                 "title": "Episodio 21",
                 "number": 21,
-                "description": "Risas y caos continúan en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx21/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e21"
@@ -582,7 +562,6 @@
             {
                 "title": "Episodio 22",
                 "number": 22,
-                "description": "Nivel X sigue con situaciones absurdas y parodias.",
                 "image": "https://picsum.photos/seed/nivelx22/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e22"
@@ -590,7 +569,6 @@
             {
                 "title": "Episodio 23",
                 "number": 23,
-                "description": "Más caos y ocurrencias inesperadas en Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx23/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e23"
@@ -598,7 +576,6 @@
             {
                 "title": "Episodio 24",
                 "number": 24,
-                "description": "Nivel X continúa con parodias y humor irreverente.",
                 "image": "https://picsum.photos/seed/nivelx24/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e24"
@@ -606,7 +583,6 @@
             {
                 "title": "Episodio 25",
                 "number": 25,
-                "description": "Risas y situaciones absurdas llenan este episodio de Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx25/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e25"
@@ -614,7 +590,6 @@
             {
                 "title": "Episodio 26",
                 "number": 26,
-                "description": "Nivel X sigue con su humor y caos característico.",
                 "image": "https://picsum.photos/seed/nivelx26/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e26"
@@ -623,14 +598,12 @@
                 "title": "Episodio 27",
                 "number": 27,
                 "description": "Más locuras y parodias en Nivel X.",
-                "image": "https://picsum.photos/seed/nivelx27/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e27"
             },
             {
                 "title": "Episodio 28",
                 "number": 28,
-                "description": "Nivel X sigue sorprendiendo con situaciones absurdas.",
                 "image": "https://picsum.photos/seed/nivelx28/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e28"
@@ -638,7 +611,6 @@
             {
                 "title": "Episodio 29",
                 "number": 29,
-                "description": "Cierre de la primera temporada de Nivel X con risas y caos.",
                 "image": "https://picsum.photos/seed/nivelx29/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e29"
@@ -648,7 +620,6 @@
             {
                 "title": "Episodio 1",
                 "number": 1,
-                "description": "La segunda temporada arranca con nuevas locuras y parodias de Nivel X.",
                 "image": "https://picsum.photos/seed/nivelx_s2_1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e1"
@@ -656,7 +627,6 @@
             {
                 "title": "Episodio 2",
                 "number": 2,
-                "description": "Caos, humor absurdo y ocurrencias de Nivel X continúan.",
                 "image": "https://picsum.photos/seed/nivelx_s2_2/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e2"
@@ -664,7 +634,6 @@
             {
                 "title": "Episodio 3",
                 "number": 3,
-                "description": "El cierre de la temporada trae más situaciones irreverentes y risas.",
                 "image": "https://picsum.photos/seed/nivelx_s2_3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s2/e3"

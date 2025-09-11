@@ -262,13 +262,13 @@ const peliculas = {
        onmousedown="return false;" 
        onselectstart="return false;" 
        ondragstart="return false;">
-    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/trailer.mp4?ref_type=heads" type="video/mp4">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/trailer_persons_T1E1-26_order.mp4" type="video/mp4">
     Tu navegador no soporta el video.
 </video>
 `,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0000000000' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy nivelX-modal-createdBy'><span class='fcbprefix nivelX-fcbprefix'>Creado por:</span> <span class='fcbcontent nivelX-fcbcontent'>SKB</span></div>",
-        fullcast: "<div class='fullcast nivelX-fullcast'><span class='fcprefix nivelX-fcprefix'>Elenco:</span> <span class='fccontent nivelX-fccontent'>Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández</span></div>",
+        fullcast: "<div class='fullcast nivelX-fullcast'><span class='fcprefix nivelX-fcprefix'>Elenco:</span> <span class='fccontent nivelX-fccontent'>Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández, Nico Bianchi, Thaiel Calzada Guirao, Julian Crudo, Lucas Nievas, Franco Colombo</span></div>",
         fullscript: "<div class='fullscript nivelX-fullscript'><span class='fsprefix nivelX-fsprefix'>Guión:</span> <span class='fscontent nivelX-fscontent'>SKB</span></div>",
         fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'>Parodia, Comedia, Infantil, Irreverente</span></div>",
         fulltitletype: "<div class='fulltitletype nivelX-fulltitletype'><span class='fttprefix nivelX-fttprefix'>Este título es:</span> <span class='fttcontent nivelX-fttcontent'>Absurdo, Divertido, Caótico</span></div>",

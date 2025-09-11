@@ -180,7 +180,7 @@ video.reite-video.reite-bg {
     font-family: 'Netflix Sans';
     z-index: 1000;
     margin-top: 30.4em;
-    margin-left: 33.16em;
+    margin-left: 33.13em;
 }
 
 .dropdown-button {
@@ -505,6 +505,7 @@ button.text:hover {
     padding-left: 4em !important;
     padding-right: 5em !important;
     padding: 2em;
+    width: 48.7em;
 }
 
 #episode-list li:focus {
@@ -1128,6 +1129,11 @@ button.reite-mute {
     color: #fff;
     font-size: 0.875em;
     margin-right: 4em;
+
+
+
+
+
 
 
 
