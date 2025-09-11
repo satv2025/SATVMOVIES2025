@@ -248,15 +248,14 @@ const peliculas = {
     nivelX: {
         type: "serie",
         year: "2009",
-        duration: "2 temporadas (2009-2016)",
-        description: "<span class='curiosity-synopsis'>Lionel Campoy y Natalia Dim viven situaciones absurdas y desopilantes en esta irreverente parodia de un clásico infantil. Nivel X es caótica, inesperada y completamente imposible de ignorar.</span>",
+        duration: "2 temporadas",
+        description: "<span>Lionel Campoy y Natalia Dim viven situaciones absurdas y desopilantes en esta irreverente parodia de un clásico infantil. Nivel X es caótica, inesperada y completamente imposible de ignorar.</span>",
         cast: "<strong>Elenco:</strong> Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández, <button id='scrollAbout'>más</button>",
         title: "<span class='about nivelX-modal-title'>Acerca de</span> <strong class='titulo nivelX-modal-title'>Nivel X</strong>",
         episodelist: "<strong class='eplist'>Episodios</strong>",
         genres: "<strong>Géneros:</strong> Parodia, Comedia, Infantil, Irreverente",
         titleType: "<strong>Este título es:</strong> Absurdo, Divertido, Caótico",
         ageRating: "<span class='age'>13+</span> humor irreverente",
-        curiosity: "<strong class='curiosidad'>Fenómeno cultural: atrapó a miles pese a que muchos nunca vieron el programa original</strong>",
         background: `
 <video class='nivelX-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
