@@ -415,7 +415,6 @@
                 "title": "Episodio 1",
                 "number": 1,
                 "description": "2009 trae Nivel X, la parodia que arrasa en YouTube. Caos en El Planetario, locuras otaku y gamers, y nada sale como esperas.",
-                "description": "",
                 "image": "https://picsum.photos/seed/nivelx1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e1"
@@ -432,7 +431,6 @@
                 "title": "Episodio 3",
                 "number": 3,
                 "description": "Natalia atropella a Horacio con su Fiat Uno y, de vuelta en casa, Lionel la contacta en Facebook. La vida real y digital chocan con resultados hilarantes.",
-                "description": "",
                 "image": "https://picsum.photos/seed/nivelx3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e3"
@@ -441,7 +439,6 @@
                 "title": "Episodio 4",
                 "number": 4,
                 "description": "Lionel hace las compras para que Natalia prepare un platillo navideño… que podría no ser del todo comestible. Mientras tanto, vuelven las notas en El Planetario, sumando más caos y risas.",
-                "description": "",
                 "image": "https://picsum.photos/seed/nivelx4/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e4"
@@ -465,7 +462,6 @@
             {
                 "title": "Episodio 7",
                 "number": 7,
-                "description": "",
                 "description": "",
                 "image": "https://picsum.photos/seed/nivelx7/400/225",
                 "duration": "25 min",
@@ -538,7 +534,6 @@
             {
                 "title": "Episodio 16",
                 "number": 16,
-                "description": "Risas y caos continúan en Nivel X.",
                 "description": "",
                 "image": "https://picsum.photos/seed/nivelx16/400/225",
                 "duration": "25 min",
