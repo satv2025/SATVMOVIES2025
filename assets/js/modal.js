@@ -313,14 +313,13 @@ async function cargarEpisodiosJSON() {
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
 
-        // Detectar todas las claves que empiecen con "episodios"
+        // Generalizar sin cambiar el estilo original
         for (const key in data) {
             if (key.startsWith("episodios")) {
-                episodiosPorSerie[key] = data[key];
+                episodiosPorSerie[key.replace("episodios", "").toLowerCase()] = data[key];
             }
         }
 
-        console.log("Episodios cargados:", episodiosPorSerie);
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
