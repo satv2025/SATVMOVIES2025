@@ -33,12 +33,12 @@ const peliculas = {
         type: "pelicula",
         year: "2008",
         duration: "1 h 20 min",
-        description: "Koshe Plostenko, un mafioso implacable, dirige un club de lucha clandestino. Para alimentar su negocio, decide secuestrar a los luchadores de 100% Lucha y obligarlos a pelear bajo sus reglas.",
+        description: "Koshe Plostenko, un mafioso implacable, secuestra a los luchadores de 100% Lucha para obligarlos a pelear en su club clandestino, desatando caos y rivalidades inesperadas.",
         cast: "<strong>Elenco:</strong> Maria Fernanda Neil, Carlos Kaspar, Daniel Garcilazo, <button id='scrollAbout'>más</button>",
         title: "<span class='about'>Acerca de</span> <strong class='titulo'> 100%Lucha - La Película</strong>",
-        genres: "<strong>Géneros:</strong> Humor, lucha libre, luchas clandestinas",
-        titleType: "<strong>Este título es:</strong> Intenso, Íntimo, Delirante, Divertido",
-        ageRating: "<span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo",
+        genres: "<strong>Géneros:</strong> Humor, Lucha Libre, Acción",
+        titleType: "<strong>Este título es:</strong> Intenso, Delirante, Divertido",
+        ageRating: "<span class='age'>12+</span> lenguaje inapropiado, violencia, humor absurdo",
         background: `
 <video autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
@@ -53,9 +53,9 @@ const peliculas = {
         createdBy: "<div class='modal-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Eduardo Husni</span></div>",
         fullcast: "<div class='fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>María Fernanda Neil, Carlos Kaspar, Norberto Adrián Fernandez, Marcelo Benítez, Miguel Ángel Wellington, Rubén Piuselli, Daniel Garcilazo, Paulo Giardina, Gabriel Emanuelli, Leonardo Montero, Eduardo Husni, Osvaldo Principi, Julio Mario Sibara 'Turco Naím', Gonzalo Nenna, Axel Kuschevatzky, Alejandro 'Marley' Wiebe, Mario Pergolini</span></div>",
         fullscript: "<div class='fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>CineAR</span></div>",
-        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, Lucha Libre, Luchas Clandestinas, Apuestas, Secuestros, Traiciones</span></div>",
-        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este titulo es:</span> <span class='fttcontent'> Intenso, Íntimo, Delirante, Divertido</span></div>",
-        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> lenguaje inapropiado, daños físicos, humor absurdo</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>"
+        fullgenres: "<div class='fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Humor, Lucha Libre, Acción, Rivalidades, Secuestros, Competencias</span></div>",
+        fulltitletype: "<div class='fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'> Intenso, Delirante, Divertido, Emocionante, Exagerado</span></div>",
+        fullage: "<div class='fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>12+</span> lenguaje inapropiado, violencia, humor absurdo</span> <span class='facontent2'>Apta para mayores de 16 años</span></div>"
     },
 
     cienporcientoluchaeadc: {
