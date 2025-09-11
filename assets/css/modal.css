@@ -38,6 +38,10 @@ a#watch-button:active {
     min-height: 300em;
 }
 
+.nivelx-header::before {
+    margin-top: -1.04em;
+}
+
 div#modal-background {
     margin-top: -1.5em;
 }
@@ -121,6 +125,10 @@ div#modal-background {
     border-top-right-radius: 0.7em;
     object-fit: cover;
     /* opcional: asegura que el contenido se ajuste al contenedor */
+}
+
+video.nivelx-bg {
+    margin-top: -1em;
 }
 
 video.reite-video.reite-bg {
@@ -1074,6 +1082,24 @@ reite-mute {
     z-index: 2 !important;
 }
 
+.modal-mute-btn,
+reite-mute {
+    position: absolute !important;
+    bottom: -22.66em !important;
+}
+
+button#muteBtn {}
+
+.modal-mute-btn,
+reite-mute {
+    margin-top: 1em;
+    position: relative;
+}
+
+nivelx-mute img {
+    margin-top: !important;
+}
+
 button.reite-mute {
     position: absolute !important;
     bottom: -23.9em !important;
@@ -1958,6 +1984,8 @@ button.reite-mute {
         border-top-left-radius: 11.2px;
         border-top-right-radius: 11.2px;
     }
+
+    video.nivelx-bg {}
 
 }
 

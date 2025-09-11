@@ -399,10 +399,12 @@ function openModal(movieKey) {
         if (video) video.classList.add("nivelx-bg");
         if (modalHeader) modalHeader.classList.add("nivelx-header");
         if (muteBtn) muteBtn.classList.add("nivelx-mute");
+        if (seasonDropdown) seasonDropdown.classList.add("nivelx-season-dropdown");
     } else {
         if (video) video.classList.remove("nivelx-bg");
         if (modalHeader) modalHeader.classList.remove("nivelx-header");
         if (muteBtn) muteBtn.classList.remove("nivelx-mute");
+        if (seasonDropdown) seasonDropdown.classList.remove("nivelx-season-dropdown");
     }
 
     // Datos del modal
