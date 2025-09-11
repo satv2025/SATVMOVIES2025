@@ -414,6 +414,7 @@
             {
                 "title": "Episodio 1",
                 "number": 1,
+                "description": "2009 trae Nivel X, la parodia que arrasa en YouTube. Caos en El Planetario, locuras otaku y gamers, y nada sale como esperas.",
                 "image": "https://picsum.photos/seed/nivelx1/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e1"
@@ -421,6 +422,7 @@
             {
                 "title": "Episodio 2",
                 "number": 2,
+                "description": "Un día en el Jardín Japonés se convierte en espectáculo: notas a la gente, humor inesperado y chistes que solo los internautas entenderían.",
                 "image": "https://picsum.photos/seed/nivelx2/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e2"
@@ -428,6 +430,7 @@
             {
                 "title": "Episodio 3",
                 "number": 3,
+                "description": "Natalia atropella a Horacio con su Fiat Uno y, de vuelta en casa, Lionel la contacta en Facebook. La vida real y digital chocan con resultados hilarantes.",
                 "image": "https://picsum.photos/seed/nivelx3/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e3"
@@ -435,6 +438,7 @@
             {
                 "title": "Episodio 4",
                 "number": 4,
+                "description": "Lionel hace las compras para que Natalia prepare un platillo navideño… que podría no ser del todo comestible. Mientras tanto, vuelven las notas en El Planetario, sumando más caos y risas.",
                 "image": "https://picsum.photos/seed/nivelx4/400/225",
                 "duration": "25 min",
                 "link": "https://example.com/nivelx/s1/e4"
