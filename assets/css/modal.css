@@ -35,7 +35,7 @@ a#watch-button:active {
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
-    min-height: 300em;
+    min-height: 500em;
 }
 
 .nivelx-header::before {
@@ -890,7 +890,7 @@ a {}
 h1#modal-title {
     font-size: 1.5em;
     font-weight: 500;
-    margin-top: 184.9em;
+    margin-top: 318.5em;
     margin-left: -2.6em;
     padding-left: 2em;
     width: 100vh;
@@ -927,7 +927,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 121.44em;
+    top: 235.8em;
     position: relative;
 }
 
@@ -978,7 +978,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 122.8em !important;
+    top: 236.8em !important;
 }
 
 .app-fcbprefix,
@@ -1001,6 +1001,126 @@ h1#modal-title {
 
 .app-age {
     font-weight: 500;
+}
+
+/* ---------------------------------------------
+   ESTILOS PARA MPA1
+---------------------------------------------- */
+.mpa1-modal-createdBy {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 97em;
+}
+
+.mpa1-modal-createdBy,
+.mpa1-fullcast,
+.mpa1-fullscript,
+.mpa1-fullgenres,
+.mpa1-fulltitletype,
+.mpa1-fullage {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 237.5em;
+    position: relative;
+}
+
+.mpa1-fcbprefix,
+.mpa1-fcprefix,
+.mpa1-fsprefix,
+.mpa1-fgprefix,
+.mpa1-fttprefix,
+.mpa1-faprefix {
+    color: #bcbcbc;
+}
+
+.mpa1-fccontent,
+.mpa1-fscontent,
+.mpa1-fgcontent,
+.mpa1-fttcontent,
+.mpa1-facontent,
+.mpa1-facontent2 {
+    color: #fff;
+}
+
+.mpa1-age {
+    font-weight: 500;
+}
+
+.mpa1-modal-title {
+    position: relative;
+    top: 1em !important;
+}
+
+/* ---------------------------------------------
+   ESTILOS PARA MPA2
+---------------------------------------------- */
+.mpa2-modal-createdBy {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 97em;
+}
+
+.mpa2-modal-createdBy,
+.mpa2-fullcast,
+.mpa2-fullscript,
+.mpa2-fullgenres,
+.mpa2-fulltitletype,
+.mpa2-fullage {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 3em;
+    color: #fff;
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.4em;
+    top: 237.5em;
+    position: relative;
+}
+
+.mpa2-fcbprefix,
+.mpa2-fcprefix,
+.mpa2-fsprefix,
+.mpa2-fgprefix,
+.mpa2-fttprefix,
+.mpa2-faprefix {
+    color: #bcbcbc;
+}
+
+.mpa2-fccontent,
+.mpa2-fscontent,
+.mpa2-fgcontent,
+.mpa2-fttcontent,
+.mpa2-facontent,
+.mpa2-facontent2 {
+    color: #fff;
+}
+
+.mpa2-age {
+    font-weight: 500;
+}
+
+.mpa2-modal-title {
+    position: relative;
+    top: 1em !important;
 }
 
 /* ---------------------------------------------
@@ -1032,7 +1152,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 80.5em;
+    top: 237.5em;
     position: relative;
 }
 
