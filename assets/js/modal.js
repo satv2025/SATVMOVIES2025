@@ -245,7 +245,7 @@ const peliculas = {
         fulltitletype: "<div class='fulltitletype reite-fulltitletype'><span class='fttprefix reite-fttprefix'>Este título es:</span> <span class='fttcontent reite-fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
         fullage: "<div class='fullage reite-fullage'><span class='faprefix reite-faprefix'>Clasificación por edad: </span> <span class='facontent reite-facontent'><span class='age reite-age'>16+</span> lenguaje inapropiado</span> <span class='facontent2 reite-facontent2'>Apta para mayores de 16 años</span></div>"
     },
-    nivelX: {
+    nivelx: {
         type: "serie",
         year: "2009",
         duration: "2 temporadas",
