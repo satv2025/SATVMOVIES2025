@@ -412,14 +412,18 @@ function openModal(movieKey) {
     }
 
     // === Agregar clases específicas para MPA1 / MPA2 en el h1.modal-title ===
-    // Agregar o remover clases según movieKey
-    if (movieKey === "mpa1") {
+    // Obtener referencia al H1
+    const modalTitle = modal.querySelector("#modal-title");
+
+    // Agregar clase según el movieKey
+    if (movieKey === "homealone") {
         if (modalTitle) modalTitle.classList.add("mpa1-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
-    } else if (movieKey === "mpa2") {
+    } else if (movieKey === "homealone2") {
         if (modalTitle) modalTitle.classList.add("mpa2-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
     } else {
+        // Si no es ninguna de estas películas, quitar ambas clases
         if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
     }
