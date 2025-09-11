@@ -788,6 +788,11 @@ ul#episode-list {
     font-weight: 500;
 }
 
+.mpa1-mtitle {
+    top: -1.6em;
+    position: relative;
+}
+
 strong.titulo {
     font-weight: 500;
 }
@@ -899,6 +904,11 @@ h1#modal-title {
     margin-bottom: 0.5em;
     z-index: 1000;
     position: absolute;
+}
+
+.mpa2-mtitle {
+    position: relative;
+    top: -2.5em;
 }
 
 .modal-createdBy {
@@ -1018,7 +1028,7 @@ h1#modal-title {
     top: 97em;
 }
 
-.mpa1-modal-createdBy,
+.mpa1-createdBy,
 .mpa1-fullcast,
 .mpa1-fullscript,
 .mpa1-fullgenres,
@@ -1032,7 +1042,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 237.5em;
+    top: 232.8em;
     position: relative;
 }
 
@@ -1078,7 +1088,7 @@ h1#modal-title {
     top: 97em;
 }
 
-.mpa2-modal-createdBy,
+.mpa2-createdBy,
 .mpa2-fullcast,
 .mpa2-fullscript,
 .mpa2-fullgenres,
@@ -1092,7 +1102,7 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 237.5em;
+    top: 231.5em;
     position: relative;
 }
 
