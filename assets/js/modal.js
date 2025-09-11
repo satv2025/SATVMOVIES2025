@@ -396,13 +396,13 @@ function openModal(movieKey) {
 
     // === Agregar clases específicas si es "nivelx" ===
     if (movieKey === "nivelx") {
-        if (video) video.classList.add("reite-bg");
-        if (modalHeader) modalHeader.classList.add("reite-header");
-        if (muteBtn) muteBtn.classList.add("reite-mute");
+        if (video) video.classList.add("nivelx-bg");
+        if (modalHeader) modalHeader.classList.add("nivelx-header");
+        if (muteBtn) muteBtn.classList.add("nivelx-mute");
     } else {
-        if (video) video.classList.remove("reite-bg");
-        if (modalHeader) modalHeader.classList.remove("reite-header");
-        if (muteBtn) muteBtn.classList.remove("reite-mute");
+        if (video) video.classList.remove("nivelx-bg");
+        if (modalHeader) modalHeader.classList.remove("nivelx-header");
+        if (muteBtn) muteBtn.classList.remove("nivelx-mute");
     }
 
     // Datos del modal
