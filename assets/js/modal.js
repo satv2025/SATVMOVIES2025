@@ -244,6 +244,36 @@ const peliculas = {
         fullgenres: "<div class='fullgenres reite-fullgenres'><span class='fgprefix reite-fgprefix'>Géneros:</span><span class='fgcontent reite-fgcontent'> De España, Thriller psicológico, Youtubers Aventura, Paranormal, Suspenso, Misterio, Terror urbano</span></div>",
         fulltitletype: "<div class='fulltitletype reite-fulltitletype'><span class='fttprefix reite-fttprefix'>Este título es:</span> <span class='fttcontent reite-fttcontent'>Misterioso, Perturbador, Inquietante</span></div>",
         fullage: "<div class='fullage reite-fullage'><span class='faprefix reite-faprefix'>Clasificación por edad: </span> <span class='facontent reite-facontent'><span class='age reite-age'>16+</span> lenguaje inapropiado</span> <span class='facontent2 reite-facontent2'>Apta para mayores de 16 años</span></div>"
+    },
+    nivelX: {
+        type: "serie",
+        year: "2009",
+        duration: "2 temporadas (2009-2016)",
+        description: "<span class='curiosity-synopsis'>Lionel Campoy y Natalia Dim viven situaciones absurdas y desopilantes en esta irreverente parodia de un clásico infantil. Nivel X es caótica, inesperada y completamente imposible de ignorar.</span>",
+        cast: "<strong>Elenco:</strong> Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández, <button id='scrollAbout'>más</button>",
+        title: "<span class='about nivelX-modal-title'>Acerca de</span> <strong class='titulo nivelX-modal-title'>Nivel X</strong>",
+        episodelist: "<strong class='eplist'>Episodios</strong>",
+        genres: "<strong>Géneros:</strong> Parodia, Comedia, Infantil, Irreverente",
+        titleType: "<strong>Este título es:</strong> Absurdo, Divertido, Caótico",
+        ageRating: "<span class='age'>13+</span> humor irreverente",
+        curiosity: "<strong class='curiosidad'>Fenómeno cultural: atrapó a miles pese a que muchos nunca vieron el programa original</strong>",
+        background: `
+<video class='nivelX-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
+       oncontextmenu="return false;" 
+       onmousedown="return false;" 
+       onselectstart="return false;" 
+       ondragstart="return false;">
+    <source src='https://ejemplo.com/trailer_nivelX.mp4' type='video/mp4'>
+    Tu navegador no soporta el video.
+</video>
+`,
+        link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/0000000000' target='_self'>Reproducir</a>",
+        createdBy: "<div class='modal-createdBy nivelX-modal-createdBy'><span class='fcbprefix nivelX-fcbprefix'>Creado por:</span> <span class='fcbcontent nivelX-fcbcontent'>SKB</span></div>",
+        fullcast: "<div class='fullcast nivelX-fullcast'><span class='fcprefix nivelX-fcprefix'>Elenco:</span> <span class='fccontent nivelX-fccontent'>Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández, y más</span></div>",
+        fullscript: "<div class='fullscript nivelX-fullscript'><span class='fsprefix nivelX-fsprefix'>Guión:</span> <span class='fscontent nivelX-fscontent'>SKB</span></div>",
+        fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'>Parodia, Comedia, Infantil, Irreverente</span></div>",
+        fulltitletype: "<div class='fulltitletype nivelX-fulltitletype'><span class='fttprefix nivelX-fttprefix'>Este título es:</span> <span class='fttcontent nivelX-fttcontent'>Absurdo, Divertido, Caótico</span></div>",
+        fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>13+</span> humor irreverente</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 13 años</span></div>"
     }
 };
 
