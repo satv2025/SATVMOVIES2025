@@ -366,6 +366,7 @@ function openModal(movieKey) {
     const muteIcon = document.getElementById("muteIcon");
     const modalHeader = modal.querySelector(".modal-header");
     const seasonDropdown = document.querySelector('.season-dropdown');
+    const modalTitle = modal.querySelector("h1.modal-title");
 
     // Configurar video y mute
     if (video && muteBtn) {
