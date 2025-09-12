@@ -252,6 +252,7 @@ nivelx-season-dropdown {
     padding: 1rem 0px;
     zoom: 0.7;
     overflow-x: hidden;
+    width: 13em;
 }
 
 #seasonMenu {
@@ -298,7 +299,6 @@ nivelx-season-dropdown {
 }
 
 .view-all-btn {
-    width: 100% !important;
     text-align: left !important;
     color: #fff !important;
     font-weight: bold !important;
@@ -309,9 +309,9 @@ nivelx-season-dropdown {
     padding-right: 2em !important;
     padding-top: 0.7em !important;
     padding-bottom: 0.7em !important;
-    font-size: 23px !important;
-    width: 120% !important;
-    margin-left: -0.8em !important;
+    font-size: 26px !important;
+    margin-left: -1.6em !important;
+    width: 126em !important;
     margin-top: 0.5em !important;
 }
 
@@ -1246,7 +1246,7 @@ h1#modal-title {
 }
 
 .dropdown-content::-webkit-scrollbar {
-    width: 8px;
+    width: 11px;
 }
 
 .dropdown-content::-webkit-scrollbar-thumb {
