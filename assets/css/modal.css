@@ -223,7 +223,7 @@ nivelx-season-dropdown {
     margin-left: 1.5em;
     transition: transform 0.3s ease;
     font-size: 32px;
-    margin-top: -0.02em;
+    margin-top: -0.01em;
 }
 
 .season-dropdown.show .dropdown-button::after {
@@ -233,12 +233,12 @@ nivelx-season-dropdown {
 .dropdown-content {
     min-width: 4em;
     position: absolute;
-    right: 20.7em;
+    right: 20.69em;
     cursor: pointer;
     color: white;
     list-style-type: none;
     border: 0.1em solid rgb(77, 77, 77);
-    margin-top: 0.3em;
+    margin-top: 0.15em;
     font-size: 1.5em;
     z-index: 1;
     background-color: rgb(36, 36, 36);
@@ -2143,6 +2143,9 @@ button.reite-mute {
         border-top-left-radius: 11.2px;
         border-top-right-radius: 11.2px;
     }
+
+    video.nivelx-bg {}
+
 }
 
 @media (min-width: 1025px) {
