@@ -298,6 +298,7 @@ const peliculas = {
         .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
         .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
         .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
+        .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
     `;
     document.head.appendChild(style);
 })();
@@ -384,7 +385,7 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Agregar clases específicas si es "reite666" ===
+    // === Clases específicas según movieKey ===
     if (movieKey === "reite666") {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
@@ -397,7 +398,6 @@ function openModal(movieKey) {
         if (seasonDropdown) seasonDropdown.classList.remove("reite-season-dropdown");
     }
 
-    // === Agregar clases específicas si es "nivelx" ===
     if (movieKey === "nivelx") {
         if (video) video.classList.add("nivelx-bg");
         if (modalHeader) modalHeader.classList.add("nivelx-header");
@@ -410,7 +410,6 @@ function openModal(movieKey) {
         if (seasonDropdown) seasonDropdown.classList.remove("nivelx-season-dropdown");
     }
 
-    // Agregar clase según el movieKey
     if (movieKey === "homealone") {
         if (modalTitle) modalTitle.classList.add("mpa1-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
@@ -451,14 +450,14 @@ function openModal(movieKey) {
     }
 
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
-        generarDropdownTemporadas(movieKey);
+        generarDropdownTemporadas(movieKey, movie.ageRating);
     }
 
     ajustarModalTop();
 }
 
 // === Generar dropdown dinámico de temporadas ===
-function generarDropdownTemporadas(movieKey) {
+function generarDropdownTemporadas(movieKey, ageRating) {
     const seasonContainer = document.getElementById("modal-seasons");
     if (!seasonContainer) return;
     seasonContainer.innerHTML = "";
@@ -468,7 +467,7 @@ function generarDropdownTemporadas(movieKey) {
 
     const totalTemporadas = Object.keys(temporadas).length;
     if (totalTemporadas < 2) {
-        changeSeason(Object.keys(temporadas)[0], movieKey);
+        changeSeason(Object.keys(temporadas)[0], movieKey, ageRating);
         return;
     }
 
@@ -504,7 +503,7 @@ function generarDropdownTemporadas(movieKey) {
             button.innerText = `Temporada ${seasonKey}`;
             dropdownContent.classList.remove("show");
             dropdownWrapper.classList.remove("show");
-            changeSeason(seasonKey, movieKey);
+            changeSeason(seasonKey, movieKey, ageRating);
         });
 
         option.appendChild(btn);
@@ -522,7 +521,7 @@ function generarDropdownTemporadas(movieKey) {
         button.innerText = "Ver todos los episodios";
         dropdownContent.classList.remove("show");
         dropdownWrapper.classList.remove("show");
-        mostrarTodosLosEpisodios(movieKey);
+        mostrarTodosLosEpisodios(movieKey, ageRating);
     });
 
     divider.appendChild(viewAll);
@@ -545,12 +544,12 @@ function generarDropdownTemporadas(movieKey) {
     dropdownWrapper.appendChild(dropdownContent);
     seasonContainer.appendChild(dropdownWrapper);
 
-    changeSeason(Object.keys(temporadas)[0], movieKey);
+    changeSeason(Object.keys(temporadas)[0], movieKey, ageRating);
     button.style.display = "flex";
 }
 
-// === Mostrar todos los episodios ===
-function mostrarTodosLosEpisodios(movieKey) {
+// === Mostrar todos los episodios con ageRating dinámico ===
+function mostrarTodosLosEpisodios(movieKey, ageRating) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
     episodeList.innerHTML = "";
@@ -559,7 +558,6 @@ function mostrarTodosLosEpisodios(movieKey) {
     if (!temporadas) return;
 
     Object.keys(temporadas).forEach((seasonKey) => {
-        // === Nuevo contenedor para el encabezado de temporada ===
         const seasonContainer = document.createElement("div");
         seasonContainer.classList.add("season-container");
 
@@ -567,12 +565,12 @@ function mostrarTodosLosEpisodios(movieKey) {
         seasonHeader.classList.add("season-header");
         seasonHeader.textContent = `Temporada ${seasonKey}`;
 
-        const ageRating = document.createElement("div");
-        ageRating.classList.add("modal-ageRating");
-        ageRating.innerHTML = `<span class="age">13+</span> humor irreverente`;
+        const ageRatingDiv = document.createElement("div");
+        ageRatingDiv.classList.add("season-ageRating");
+        ageRatingDiv.innerHTML = ageRating;
 
         seasonContainer.appendChild(seasonHeader);
-        seasonContainer.appendChild(ageRating);
+        seasonContainer.appendChild(ageRatingDiv);
         episodeList.appendChild(seasonContainer);
 
         temporadas[seasonKey].forEach((ep, index) => {
@@ -616,14 +614,13 @@ function mostrarTodosLosEpisodios(movieKey) {
     });
 }
 
-// === Cambiar temporada con efecto border-top dinámico ===
-function changeSeason(season, movieKey) {
+// === Cambiar temporada con efecto border-top dinámico y ageRating ===
+function changeSeason(season, movieKey, ageRating) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
     episodeList.innerHTML = "";
 
     if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
-        // === Agregar contenedor de temporada también aquí si querés consistencia ===
         const seasonContainer = document.createElement("div");
         seasonContainer.classList.add("season-container");
 
@@ -631,12 +628,12 @@ function changeSeason(season, movieKey) {
         seasonHeader.classList.add("season-header");
         seasonHeader.textContent = `Temporada ${season}`;
 
-        const ageRating = document.createElement("div");
-        ageRating.classList.add("modal-ageRating");
-        ageRating.innerHTML = `<span class="age">13+</span> humor irreverente`;
+        const ageRatingDiv = document.createElement("div");
+        ageRatingDiv.classList.add("season-ageRating");
+        ageRatingDiv.innerHTML = ageRating;
 
         seasonContainer.appendChild(seasonHeader);
-        seasonContainer.appendChild(ageRating);
+        seasonContainer.appendChild(ageRatingDiv);
         episodeList.appendChild(seasonContainer);
 
         episodiosPorSerie[movieKey][season].forEach((ep, index) => {
