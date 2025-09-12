@@ -31,11 +31,12 @@ a#watch-button:active {
     margin-bottom: -41px !important;
     padding: 1.25em;
     width: 43%;
-    top: -2em;
+    top: -4em;
     border-top-left-radius: 0.7em;
     border-top-right-radius: 0.7em;
     position: relative;
     min-height: 500em;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 }
 
 .nivelx-header::before {
@@ -64,7 +65,7 @@ div#modal-background {
 
 .close-button svg {
     position: absolute;
-    top: -1.3em;
+    top: 0.8em;
     left: 52em;
     z-index: 1000;
     background: #181818;
@@ -87,7 +88,7 @@ div#modal-background {
 .modal-header::before {
     content: "";
     position: absolute;
-    top: 147px;
+    top: 181px;
     /* ajuste fijo */
     left: -20px;
     /* ajuste fijo */
@@ -125,6 +126,7 @@ div#modal-background {
     border-top-right-radius: 0.7em;
     object-fit: cover;
     /* opcional: asegura que el contenido se ajuste al contenedor */
+    margin-top: 2.1em;
 }
 
 video.nivelx-bg {
@@ -613,6 +615,7 @@ a.eplink {
     font-weight: 500;
     width: 100vw;
     display: block;
+    margin-top: -0.6em;
 }
 
 .modal-fullcreatedBy,
@@ -697,11 +700,11 @@ span.fcprefix {
     font-size: 16px;
     left: 1.2em;
     padding-right: 22em;
-    top: 41.3em;
+    top: 31.7em;
 }
 
 .curiosity-synopsis {
-    top: 1.90em !important;
+    top: 1.9em !important;
     position: relative;
 }
 
@@ -720,6 +723,7 @@ span.fcprefix {
     margin: 0.3125em 0;
     color: #fff;
     z-index: 1000;
+    margin-top: 2.8em !important;
 }
 
 .facontent2 {
@@ -822,7 +826,7 @@ span.about {
     text-decoration: none;
     font-weight: 500;
     position: absolute;
-    top: 15.36em;
+    top: 17.36em;
     left: 2.06em;
     z-index: 1000;
     padding-left: 3.3em;
@@ -1230,7 +1234,7 @@ button#muteBtn {}
 
 .modal-mute-btn {
     margin-top: 1em;
-    bottom: -24em !important;
+    bottom: -27.43em !important;
     position: relative;
 }
 
