@@ -193,7 +193,7 @@ video.reite-video.reite-bg {
     font-family: 'Netflix Sans';
     z-index: 1000;
     margin-top: 34em;
-    margin-left: 33em;
+    margin-left: 32.659721em;
 }
 
 .dropdown-button {
@@ -522,7 +522,7 @@ button.text:hover {
     padding-left: 4em !important;
     padding-right: 5em !important;
     padding: 2em;
-    width: 49.4em;
+    width: 49em;
 }
 
 #episode-list li:focus {
@@ -550,7 +550,7 @@ button.text:hover {
 
 .episode-number {
     position: absolute;
-    right: 29.64em;
+    right: 29.66em;
     /* alineado al borde derecho del contenedor */
     top: 50%;
     /* centrado vertical */
@@ -723,6 +723,7 @@ span.fcprefix {
     /* Ajustar según necesidad */
     z-index: 1000;
     font-size: 13px !important;
+    width: 1000%;
 }
 
 .season-ageRating span {
