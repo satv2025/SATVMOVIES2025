@@ -45,7 +45,7 @@ a#watch-button:active {
 
 h3.season-header {
     padding-bottom: 0.5em;
-    margin-top: em;
+    margin-top: 5em;
     margin-left: -49em;
     border-bottom: none;
     border-top: none;
@@ -192,7 +192,7 @@ video.reite-video.reite-bg {
     font-size: 18px;
     font-family: 'Netflix Sans';
     z-index: 1000;
-    margin-top: 31.8em;
+    margin-top: 34em;
     margin-left: 33em;
 }
 
@@ -717,17 +717,18 @@ span.fcprefix {
     padding-left: 2em;
     padding-right: 24em;
     text-align: left;
-    top: 12.1em;
+    top: -0.2em;
     /* Ajustar según necesidad */
-    left: 5.7em;
+    left: 6.7em;
     /* Ajustar según necesidad */
     z-index: 1000;
-    font-size: 14px;
+    font-size: 13px !important;
 }
 
 .season-ageRating .age {
     border: 1px solid hsla(0, 0%, 100%, 0.4);
     padding: 0 0.4em;
+    margin-right: 0.45em;
 }
 
 /* Opcional: contenedor de temporada para separar cada header + lista */
@@ -818,8 +819,8 @@ ul#episode-list {
     color: #fff;
     font-weight: 500;
     position: absolute;
-    top: 28.4em;
-    left: 2em;
+    top: 31em;
+    left: 1.766em;
     font-size: 1.5em;
 }
 
