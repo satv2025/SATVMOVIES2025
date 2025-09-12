@@ -490,7 +490,7 @@ function generarDropdownTemporadas(movieKey, ageRating) {
         btn.classList.add("texto");
 
         const seasonLabel = document.createElement("span");
-        seasonLabel.innerText = `Temporada ${seasonKey}`;
+        seasonLabel.innerText = `Temporada ${seasonKey}: `;
 
         const epCount = document.createElement("span");
         epCount.classList.add("episodios-count");
