@@ -592,6 +592,23 @@ function mostrarTodosLosEpisodios(movieKey) {
                 if (ep.link) window.location.href = ep.link;
             });
 
+            // === Efecto dinámico de border-top ===
+            li.addEventListener("mouseenter", () => {
+                const prev = li.previousElementSibling;
+                if (prev && prev.tagName.toLowerCase() === "li") {
+                    prev.style.borderBottom = "none";
+                }
+                li.style.borderTop = "1px solid #333";
+            });
+
+            li.addEventListener("mouseleave", () => {
+                const prev = li.previousElementSibling;
+                if (prev && prev.tagName.toLowerCase() === "li") {
+                    prev.style.borderBottom = "1px solid #333";
+                }
+                li.style.borderTop = index === 0 ? "1px solid #333" : "none";
+            });
+
             episodeList.appendChild(li);
         });
     });
