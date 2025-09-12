@@ -490,7 +490,7 @@ function generarDropdownTemporadas(movieKey, ageRating) {
         btn.classList.add("texto");
 
         const seasonLabel = document.createElement("span");
-        seasonLabel.innerText = `Temporada ${seasonKey}: `;
+        seasonLabel.innerText = `Temporada ${seasonKey}`;
 
         const epCount = document.createElement("span");
         epCount.classList.add("episodios-count");
@@ -563,7 +563,7 @@ function mostrarTodosLosEpisodios(movieKey, ageRating) {
 
         const seasonHeader = document.createElement("h3");
         seasonHeader.classList.add("season-header");
-        seasonHeader.textContent = `Temporada ${seasonKey}`;
+        seasonHeader.textContent = `Temporada ${seasonKey}: `;
 
         const ageRatingDiv = document.createElement("div");
         ageRatingDiv.classList.add("season-ageRating");
@@ -626,7 +626,7 @@ function changeSeason(season, movieKey, ageRating) {
 
         const seasonHeader = document.createElement("h3");
         seasonHeader.classList.add("season-header");
-        seasonHeader.textContent = `Temporada ${season}`;
+        seasonHeader.textContent = `Temporada ${season}: `;
 
         const ageRatingDiv = document.createElement("div");
         ageRatingDiv.classList.add("season-ageRating");
