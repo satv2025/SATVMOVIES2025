@@ -267,12 +267,12 @@ const peliculas = {
 </video>
 `,
         link: "<a id='watch-button' href='https://movies.solargentinotv.com.ar/watch/title/023934249' target='_self'>Reproducir</a>",
-        createdBy: "<div class='modal-createdBy nivelX-modal-createdBy'><span class='fcbprefix nivelX-fcbprefix'>Creado por:</span> <span class='fcbcontent nivelX-fcbcontent'>SKB</span></div>",
+        createdBy: "<div class='modal-createdBy nivelX-modal-createdBy'><span class='fcbprefix nivelX-fcbprefix'>Creado por:</span> <span class='fcbcontent nivelX-fcbcontent'>Juan Arnone</span></div>",
         fullcast: "<div class='fullcast nivelX-fullcast'><span class='fcprefix nivelX-fcprefix'>Elenco:</span> <span class='fccontent nivelX-fccontent'>Juan Manuel Paradiso, Juan Arnone, Sebastián Paradiso, Gustavo Fernández, Nico Bianchi, Thaiel Calzada Guirao, Julian Crudo, Lucas Nievas, Franco Colombo</span></div>",
-        fullscript: "<div class='fullscript nivelX-fullscript'><span class='fsprefix nivelX-fsprefix'>Guión:</span> <span class='fscontent nivelX-fscontent'>SKB</span></div>",
-        fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'>Parodia, Comedia, Infantil, Irreverente</span></div>",
+        fullscript: "<div class='fullscript nivelX-fullscript'><span class='fsprefix nivelX-fsprefix'>Guión:</span> <span class='fscontent nivelX-fscontent'>Juan Arnone, Juan Manuel Paradiso, Sebastián Paradiso</span></div>",
+        fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'> Parodia, Comedia, Infantil, Irreverente</span></div>",
         fulltitletype: "<div class='fulltitletype nivelX-fulltitletype'><span class='fttprefix nivelX-fttprefix'>Este título es:</span> <span class='fttcontent nivelX-fttcontent'>Absurdo, Divertido, Caótico</span></div>",
-        fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>13+</span> humor irreverente</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 13 años</span></div>"
+        fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>13+</span>  humor irreverente</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 13 años</span></div>"
     }
 };
 
