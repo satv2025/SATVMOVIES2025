@@ -1228,9 +1228,9 @@ reite-mute {
 
 button#muteBtn {}
 
-.modal-mute-btn,
-reite-mute {
+.modal-mute-btn {
     margin-top: 1em;
+    bottom: -24em !important;
     position: relative;
 }
 
