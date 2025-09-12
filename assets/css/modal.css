@@ -717,7 +717,7 @@ span.fcprefix {
     padding-left: 2em;
     padding-right: 24em;
     text-align: left;
-    top: -0.2em;
+    top: -0.29em;
     /* Ajustar según necesidad */
     left: 6.7em;
     /* Ajustar según necesidad */
@@ -725,10 +725,13 @@ span.fcprefix {
     font-size: 13px !important;
 }
 
-.season-ageRating .age {
+.season-ageRating span {
     border: 1px solid hsla(0, 0%, 100%, 0.4);
     padding: 0 0.4em;
     margin-right: 0.45em;
+    font-size: 12px;
+    position: relative;
+    top: 0.02em;
 }
 
 /* Opcional: contenedor de temporada para separar cada header + lista */
