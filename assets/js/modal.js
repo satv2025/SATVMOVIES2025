@@ -526,7 +526,7 @@ function generarDropdownTemporadas(movieKey) {
     viewAll.innerText = "Ver todos los episodios";
 
     viewAll.addEventListener("click", () => {
-        button.innerText = "Todos los episodios";
+        button.innerText = "Ver todos los episodios";
         dropdownContent.classList.remove("show");
         dropdownWrapper.classList.remove("show");
         mostrarTodosLosEpisodios(movieKey);
