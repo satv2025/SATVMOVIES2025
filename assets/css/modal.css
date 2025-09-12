@@ -717,7 +717,7 @@ span.fcprefix {
     padding-left: 2em;
     padding-right: 24em;
     text-align: left;
-    top: -0.29em;
+    top: -0.285em;
     /* Ajustar según necesidad */
     left: 6.7em;
     /* Ajustar según necesidad */
@@ -731,8 +731,9 @@ span.fcprefix {
     margin-right: 0.45em;
     font-size: 12px;
     position: relative;
-    top: 0.02em;
 }
+
+#text {}
 
 /* Opcional: contenedor de temporada para separar cada header + lista */
 .season-container {
