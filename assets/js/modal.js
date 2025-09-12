@@ -313,7 +313,6 @@ async function cargarEpisodiosJSON() {
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
 
-        // Generalizar sin cambiar el estilo original
         for (const key in data) {
             if (key.startsWith("episodios")) {
                 episodiosPorSerie[key.replace("episodios", "").toLowerCase()] = data[key];
@@ -419,7 +418,6 @@ function openModal(movieKey) {
         if (modalTitle) modalTitle.classList.add("mpa2-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
     } else {
-        // Si no es ninguna de estas películas, quitar ambas clases
         if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
     }
@@ -444,18 +442,14 @@ function openModal(movieKey) {
     document.getElementById("modal-fullage").innerHTML = movie.fullage;
     document.getElementById("watch-button").innerHTML = movie.link;
 
-    // === Activar botón "más" para scroll al final ===
     const scrollAboutBtn = document.getElementById('scrollAbout');
     if (scrollAboutBtn) {
         scrollAboutBtn.addEventListener('click', () => {
             const modal = document.getElementById('infoModal');
-            if (modal) {
-                modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
-            }
+            if (modal) modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
         });
     }
 
-    // Cargar episodios y dropdown si es serie
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         generarDropdownTemporadas(movieKey);
     }
@@ -517,7 +511,6 @@ function generarDropdownTemporadas(movieKey) {
         dropdownContent.appendChild(option);
     });
 
-    // === Item especial: Ver todos los episodios ===
     const divider = document.createElement("div");
     divider.classList.add("season-divider");
 
@@ -552,7 +545,6 @@ function generarDropdownTemporadas(movieKey) {
     dropdownWrapper.appendChild(dropdownContent);
     seasonContainer.appendChild(dropdownWrapper);
 
-    // Cargar la primera temporada por defecto
     changeSeason(Object.keys(temporadas)[0], movieKey);
     button.style.display = "flex";
 }
@@ -567,10 +559,21 @@ function mostrarTodosLosEpisodios(movieKey) {
     if (!temporadas) return;
 
     Object.keys(temporadas).forEach((seasonKey) => {
+        // === Nuevo contenedor para el encabezado de temporada ===
+        const seasonContainer = document.createElement("div");
+        seasonContainer.classList.add("season-container");
+
         const seasonHeader = document.createElement("h3");
         seasonHeader.classList.add("season-header");
-        seasonHeader.innerHTML = `Temporada ${seasonKey} <p id="modal-ageRating" class="modal-ageRating"><span class="age">13+</span> humor irreverente</p>`;
-        episodeList.appendChild(seasonHeader);
+        seasonHeader.textContent = `Temporada ${seasonKey}`;
+
+        const ageRating = document.createElement("div");
+        ageRating.classList.add("modal-ageRating");
+        ageRating.innerHTML = `<span class="age">13+</span> humor irreverente`;
+
+        seasonContainer.appendChild(seasonHeader);
+        seasonContainer.appendChild(ageRating);
+        episodeList.appendChild(seasonContainer);
 
         temporadas[seasonKey].forEach((ep, index) => {
             const li = document.createElement("li");
@@ -592,7 +595,6 @@ function mostrarTodosLosEpisodios(movieKey) {
                 if (ep.link) window.location.href = ep.link;
             });
 
-            // === Efecto dinámico de border-top ===
             li.addEventListener("mouseenter", () => {
                 const prev = li.previousElementSibling;
                 if (prev && prev.tagName.toLowerCase() === "li") {
@@ -621,6 +623,22 @@ function changeSeason(season, movieKey) {
     episodeList.innerHTML = "";
 
     if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
+        // === Agregar contenedor de temporada también aquí si querés consistencia ===
+        const seasonContainer = document.createElement("div");
+        seasonContainer.classList.add("season-container");
+
+        const seasonHeader = document.createElement("h3");
+        seasonHeader.classList.add("season-header");
+        seasonHeader.textContent = `Temporada ${season}`;
+
+        const ageRating = document.createElement("div");
+        ageRating.classList.add("modal-ageRating");
+        ageRating.innerHTML = `<span class="age">13+</span> humor irreverente`;
+
+        seasonContainer.appendChild(seasonHeader);
+        seasonContainer.appendChild(ageRating);
+        episodeList.appendChild(seasonContainer);
+
         episodiosPorSerie[movieKey][season].forEach((ep, index) => {
             const li = document.createElement("li");
             li.classList.add("episode-item");
