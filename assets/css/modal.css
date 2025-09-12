@@ -36,11 +36,10 @@ a#watch-button:active {
     border-top-right-radius: 0.7em;
     position: relative;
     min-height: 500em;
-    box-shadow:
-        rgba(0, 0, 0, 0.75) -3px 0px 10px,
-        /* izquierda */
-        rgba(0, 0, 0, 0.75) 3px 0px 10px;
+
     /* derecha */
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
 }
 
 h3.season-header {
@@ -133,11 +132,11 @@ div#modal-background {
     /* tamaño fijo */
     height: 500px !important;
     /* tamaño fijo */
-    border-top-left-radius: 0.7em;
-    border-top-right-radius: 0.7em;
     object-fit: cover;
     /* opcional: asegura que el contenido se ajuste al contenedor */
     margin-top: 2.1em;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 video.nivelx-bg {
@@ -2084,8 +2083,6 @@ button.reite-mute {
 
         #modal-background video {
             width: 54.7em;
-            border-top-left-radius: 11.2px;
-            border-top-right-radius: 11.2px;
         }
     }
 }
@@ -2126,8 +2123,6 @@ button.reite-mute {
 
         #modal-background video {
             width: 54.7em;
-            border-top-left-radius: 11.2px;
-            border-top-right-radius: 11.2px;
         }
     }
 }
@@ -2163,8 +2158,6 @@ button.reite-mute {
 
         #modal-background video {
             width: 54.7em;
-            border-top-left-radius: 11.2px;
-            border-top-right-radius: 11.2px;
         }
     }
 }
@@ -2176,8 +2169,6 @@ button.reite-mute {
 
     #modal-background video {
         width: 54.8em;
-        border-top-left-radius: 11.2px;
-        border-top-right-radius: 11.2px;
     }
 
     video.nivelx-bg {}
@@ -2191,7 +2182,5 @@ button.reite-mute {
 
     #modal-background video {
         width: 54.7em;
-        border-top-left-radius: 11.2px;
-        border-top-right-radius: 11.2px;
     }
 }
