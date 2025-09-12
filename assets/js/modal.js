@@ -569,7 +569,7 @@ function mostrarTodosLosEpisodios(movieKey) {
     Object.keys(temporadas).forEach((seasonKey) => {
         const seasonHeader = document.createElement("h3");
         seasonHeader.classList.add("season-header");
-        seasonHeader.innerText = `Temporada ${seasonKey}`;
+        seasonHeader.innerHTML = `Temporada ${seasonKey} <p id="modal-ageRating" class="modal-ageRating"><span class="age">13+</span> humor irreverente</p>`;
         episodeList.appendChild(seasonHeader);
 
         temporadas[seasonKey].forEach((ep, index) => {
