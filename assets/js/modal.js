@@ -255,7 +255,7 @@ const peliculas = {
         episodelist: "<strong class='eplist'>Episodios</strong>",
         genres: "<strong>Géneros:</strong> Parodia, Comedia, Infantil, Irreverente",
         titleType: "<strong>Este título es:</strong> Absurdo, Divertido, Caótico",
-        ageRating: "<span class='age'>13+</span> humor irreverente",
+        ageRating: "<span class='age'>16+</span> humor irreverente, leguaje vulgar, contenido sexual no gráfico",
         background: `
 <video class='reite-video' autoplay loop playsinline style="width:100%; height:100%; object-fit:cover;" 
        oncontextmenu="return false;" 
@@ -272,7 +272,7 @@ const peliculas = {
         fullscript: "<div class='fullscript nivelX-fullscript'><span class='fsprefix nivelX-fsprefix'>Guión:</span> <span class='fscontent nivelX-fscontent'>Juan Arnone, Juan Manuel Paradiso, Sebastián Paradiso</span></div>",
         fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'> Parodia, Comedia, Infantil, Irreverente</span></div>",
         fulltitletype: "<div class='fulltitletype nivelX-fulltitletype'><span class='fttprefix nivelX-fttprefix'>Este título es:</span> <span class='fttcontent nivelX-fttcontent'>Absurdo, Divertido, Caótico</span></div>",
-        fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>13+</span>  humor irreverente</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 13 años</span></div>"
+        fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>16+</span>  humor irreverente, leguaje vulgar, contenido sexual no gráfico</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 16 años</span></div>"
     }
 };
 
