@@ -1,5 +1,5 @@
 /* Importamos la tipografía 'Netflix Sans' desde Sol Argentino TV Fuentes */
-@import url('https://fuentes.solargentinotv.com.ar/netflixsans.css');
+@import url('https://solargentinotv.com.ar/assets/fonts/NetflixSans/netflixsans.css');
 
 * {
     margin: 0;
@@ -9,7 +9,7 @@
 
 body,
 html {
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     background-image: url('https://movies.solargentinotv.com.ar/—Pngtree—black background texture advertising_1911402.png');
     background-size: cover;
     background-position: center;
@@ -67,7 +67,7 @@ h1 {
     color: #fff;
     font-size: 1em;
     font-weight: 600;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     position: relative;
     /* Necesario para posicionar los íconos dentro de los inputs */
 }
@@ -88,7 +88,7 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
 }
 
 .form-container button:hover {

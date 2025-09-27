@@ -1,5 +1,5 @@
 /* Importamos la tipografía 'Netflix Sans' desde Sol Argentino TV Fuentes */
-@import url('https://fuentes.solargentinotv.com.ar/netflixsans.css');
+@import url('https://solargentinotv.com.ar/assets/fonts/NetflixSans/netflixsans.css');
 
 * {
     margin: 0;
@@ -38,7 +38,7 @@ svg {
 
 body,
 html {
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     background: #141414;
     color: #fff;
     font-size: 1rem;
@@ -202,7 +202,7 @@ nav :hover {
     width: 0;
     opacity: 0;
     visibility: hidden;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     padding: 10px 0.9em 9px;
     font-size: 16px;
     border: 1px solid #fff;
@@ -471,7 +471,7 @@ footer p {
     border-radius: 0 0 0.3em 0.3em;
     /* Border-radius especificado */
     transition: all 0.3s ease;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     justify-content: center;
 }
 
@@ -506,7 +506,7 @@ footer p {
     flex-direction: column;
     gap: 0.5em;
     /* Espacio entre los campos del formulario */
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
 }
 
 .subscription-form input {
@@ -514,7 +514,7 @@ footer p {
     border-radius: 0.3em;
     border: 1px solid #ccc;
     font-size: 1em;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
 }
 
 .subscription-form button {
@@ -525,12 +525,12 @@ footer p {
     font-size: 1em;
     cursor: pointer;
     border-radius: 0.3em;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
 }
 
 #user-nick {
     color: #007BFF;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     border: #007BFF 0.2em solid;
     width: 12%;
     height: 32%;
@@ -545,7 +545,7 @@ footer p {
 
 #logout-btn {
     color: #007BFF;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     border: #007BFF 0.2em solid;
     width: 12%;
     height: 32%;
@@ -574,7 +574,7 @@ footer p {
 
 #login-btn {
     color: #007BFF;
-    font-family: 'Netflix Sans', "Segoe UI";
+    font-family: 'Netflix Sans';
     border: #007BFF 0.2em solid;
     width: 12%;
     height: 32%;
