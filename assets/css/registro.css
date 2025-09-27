@@ -7,21 +7,22 @@
     box-sizing: border-box;
 }
 
-body, html {
-    font-family: 'Netflix Sans', sans-serif;
+body,
+html {
+    font-family: 'Netflix Sans', "Segoe UI";
     background-image: url('https://movies.solargentinotv.com.ar/—Pngtree—black background texture advertising_1911402.png');
     background-size: cover;
     background-position: center;
     color: #fff;
-    font-size: 1rem; 
-    height: 100%; 
+    font-size: 1rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.6); 
-    padding: 1.25em; 
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1.25em;
     text-align: center;
 }
 
@@ -32,7 +33,7 @@ header .logo {
 }
 
 main {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +49,7 @@ h1 {
 }
 
 .form-container {
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 2em;
     border-radius: 0.5em;
     width: 100%;
@@ -66,8 +67,9 @@ h1 {
     color: #fff;
     font-size: 1em;
     font-weight: 600;
-    font-family: 'Netflix Sans';
-    position: relative; /* Necesario para posicionar los íconos dentro de los inputs */
+    font-family: 'Netflix Sans', "Segoe UI";
+    position: relative;
+    /* Necesario para posicionar los íconos dentro de los inputs */
 }
 
 .form-container input:focus {
@@ -86,7 +88,7 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: 'Netflix Sans';
+    font-family: 'Netflix Sans', "Segoe UI";
 }
 
 .form-container button:hover {
@@ -110,7 +112,8 @@ footer {
 .password-container input {
     width: 100%;
     padding: 1em;
-    padding-right: 2.5em; /* Deja espacio para los íconos */
+    padding-right: 2.5em;
+    /* Deja espacio para los íconos */
     border-radius: 0.5em;
     border: 1px solid #0078D4;
     background-color: rgba(0, 0, 0, 0.4);
@@ -136,26 +139,28 @@ footer {
 }
 
 #toggle-password {
-    right: 10px; /* Posición para el ícono de contraseña */
+    right: 10px;
+    /* Posición para el ícono de contraseña */
 }
 
 #ojoconfirmar {
-    right: 10px; /* Posición para el ícono de confirmar contraseña */
+    right: 10px;
+    /* Posición para el ícono de confirmar contraseña */
 }
 
 #registro-message,
 #login-message {
-  margin-top: 1em;
-  font-size: 1em;
-  text-align: center;
+    margin-top: 1em;
+    font-size: 1em;
+    text-align: center;
 }
 
 #registro-message.success,
 #login-message.success {
-  color: green;
+    color: green;
 }
 
 #registro-message.error,
 #login-message.error {
-  color: red;
+    color: red;
 }

@@ -4,26 +4,30 @@
     display: inline-block;
 }
 
-.texto2 {
-}
+.texto2 {}
 
 texto2 {
     position: absolute;
 }
 
 .dropdown-button {
-    font-family: 'Netflix Sans';
+    font-family: 'Netflix Sans', "Segoe UI";
     margin-top: 2.3em;
     background-color: rgb(36, 36, 36);
     color: white;
     border: 0.1em solid rgb(77, 77, 77);
-    padding: 0.625em 0.625em; /* 10px a 0.625em */
+    padding: 0.625em 0.625em;
+    /* 10px a 0.625em */
     padding-left: 1em;
-    font-size: 1em; /* 16px a 1em */
+    font-size: 1em;
+    /* 16px a 1em */
     cursor: pointer;
-    border-radius: 0.1875em; /* 3px a 0.1875em */
-    margin-bottom: -0.3125em; /* -5px a -0.3125em */
-    width: 15em; /* 240px a 15em */
+    border-radius: 0.1875em;
+    /* 3px a 0.1875em */
+    margin-bottom: -0.3125em;
+    /* -5px a -0.3125em */
+    width: 15em;
+    /* 240px a 15em */
     text-align: left;
     font-weight: 700;
     position: relative;
@@ -43,7 +47,8 @@ texto2 {
 
 /* Clase para cuando el dropdown está abierto (flecha hacia arriba) */
 .dropdown-button.open::after {
-    transform: translateY(-50%) rotate(180deg); /* Mantener el centro y girar la flecha */
+    transform: translateY(-50%) rotate(180deg);
+    /* Mantener el centro y girar la flecha */
 }
 
 .dropdown-button:hover {
@@ -51,7 +56,7 @@ texto2 {
 }
 
 .dropdown-content {
-    font-family: 'Netflix Sans';
+    font-family: 'Netflix Sans', "Segoe UI";
     display: none;
     position: absolute;
     background-color: rgb(36, 36, 36);
@@ -63,7 +68,8 @@ texto2 {
     box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.2);
     border-radius: 0 !important;
     margin-top: 0.6em;
-    text-align: left; /* Cambiar de justify a left */
+    text-align: left;
+    /* Cambiar de justify a left */
     height: 6.3em;
 }
 
@@ -103,15 +109,17 @@ button.texto {
 }
 
 .dropdown-content button {
-    font-family: 'Netflix Sans';
+    font-family: 'Netflix Sans', "Segoe UI";
     font-weight: 600;
     color: white;
     background: #ffffff00;
-    padding: 0.625em 0.625em; /* 10px a 0.625em */
+    padding: 0.625em 0.625em;
+    /* 10px a 0.625em */
     text-decoration: none;
     display: block;
     border: none;
-    width: 14.9em; /* 238px a 14.875em */
+    width: 14.9em;
+    /* 238px a 14.875em */
     cursor: pointer;
     text-align: justify;
     position: relative;
@@ -128,11 +136,12 @@ button.texto {
 }
 
 .dropdown-content button:hover {
-    background-color: rgb(66, 66, 66); /* Color de hover en los botones */
+    background-color: rgb(66, 66, 66);
+    /* Color de hover en los botones */
 }
 
 /* Mostrar el contenido del dropdown al pasar el ratón o hacer clic */
-.dropdown-button:focus + .dropdown-content,
+.dropdown-button:focus+.dropdown-content,
 .dropdown-content:hover {
     display: block;
 }
@@ -140,33 +149,45 @@ button.texto {
 /* Media Queries para Responsive Design */
 
 /* Pantallas pequeñas */
-@media (max-width: 48em) { /* 768px a 48em */
+@media (max-width: 48em) {
+
+    /* 768px a 48em */
     .dropdown-button {
-        font-size: 1.2em; /* 19.2px a 1.2em */
-        width: 75%; /* Ajuste en tamaño del botón */
+        font-size: 1.2em;
+        /* 19.2px a 1.2em */
+        width: 75%;
+        /* Ajuste en tamaño del botón */
     }
 
     .dropdown-content {
-        width: 75%; /* Ajuste en el tamaño del dropdown */
+        width: 75%;
+        /* Ajuste en el tamaño del dropdown */
     }
 
     .dropdown-content button {
-        width: 70%; /* Ajuste en tamaño de los botones */
+        width: 70%;
+        /* Ajuste en tamaño de los botones */
     }
 }
 
 /* Pantallas aún más pequeñas (como móviles) */
-@media (max-width: 30em) { /* 480px a 30em */
+@media (max-width: 30em) {
+
+    /* 480px a 30em */
     .dropdown-button {
-        font-size: 1.1em; /* 17.6px a 1.1em */
-        width: 80%; /* Ajuste en tamaño del botón */
+        font-size: 1.1em;
+        /* 17.6px a 1.1em */
+        width: 80%;
+        /* Ajuste en tamaño del botón */
     }
 
     .dropdown-content {
-        width: 80%; /* Ajuste en el tamaño del dropdown */
+        width: 80%;
+        /* Ajuste en el tamaño del dropdown */
     }
 
     .dropdown-content button {
-        width: 75%; /* Ajuste en tamaño de los botones */
+        width: 75%;
+        /* Ajuste en tamaño de los botones */
     }
 }
