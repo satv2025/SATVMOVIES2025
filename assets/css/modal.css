@@ -722,7 +722,8 @@ span.fcprefix {
     /* Ajustar según necesidad */
     z-index: 1000;
     font-size: 13px !important;
-    width: 1000%;
+    width: 80em;
+    pointer-events: none;
 }
 
 .season-ageRating span {
