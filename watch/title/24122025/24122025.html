@@ -7,8 +7,6 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.solargentinotv.com.ar/build/SATVPlayer.js"></script>
-    <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
-        type="image/x-icon">
     <style>
         body,
         html {
@@ -19,7 +17,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
         }
 
         #player video {
@@ -38,6 +35,13 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-top: 39em;
+        }
+
+        .episodesReactButton,
+        #episodesReactButton,
+        .nextEpisodeButton {
+            display: none !important;
         }
     </style>
 </head>
@@ -45,41 +49,135 @@
 <body>
     <div id="player"></div>
 
-    <script id="movie-data" type="application/json">
+    <script id="episodes-data" type="application/json">
 {
-  "titleType": "Movie",
-  "title": "Mi Pobre Angelito",
-  "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8"
+    "episodiosReite666": {
+        "1": [
+            {
+                "titleType": "series",
+                "seriesName": "",
+                "title": "Mi Pobre Angelito",
+                "description": "Kevin McCallister se queda solo en casa y debe defenderla de dos ladrones torpes.",
+                "image": "https://ruta-al-thumbnail.jpg",
+                "duration": "103 min",
+                "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/m3u8/HomeAlone1.m3u8"
+            }
+        ]
+    }
 }
-  </script>
+</script>
 
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const dataScript = document.getElementById("movie-data");
-            if (!dataScript) return console.warn("No se encontró movie-data");
+        window.onload = function () {
+            const episodesDataScript = document.getElementById("episodes-data");
+            if (!episodesDataScript) return;
 
-            let movie;
-            try {
-                movie = JSON.parse(dataScript.textContent);
-            } catch (err) {
-                return console.error("Error parseando movie-data:", err);
+            let parsed;
+            try { parsed = JSON.parse(episodesDataScript.textContent); }
+            catch (err) { console.error("Error parsing episodes JSON:", err); return; }
+
+            // obtener lista de episodios (misma lógica tuya)
+            let episodesList = [];
+            if (Array.isArray(parsed)) {
+                episodesList = parsed;
+            } else if (parsed && typeof parsed === "object") {
+                const firstSeriesKey = Object.keys(parsed)[0];
+                const seasons = parsed[firstSeriesKey] || {};
+                const firstSeasonKey = Object.keys(seasons)[0];
+                episodesList = seasons[firstSeasonKey] || [];
             }
+            if (!episodesList.length) return;
 
-            if (!movie.videoPath) return console.warn("No hay URL de video disponible");
+            // eliminar cualquier título extra creado previamente por nosotros (si lo hay)
+            const existingTitleContainer = document.getElementById("title-container");
+            if (existingTitleContainer) existingTitleContainer.remove();
 
-            // Inicializar el player
+            const firstVideo = episodesList[0];
             SATVPlayerEmbed({
                 elementId: "player",
-                videoUrl: movie.videoPath
+                videoUrl: firstVideo?.videoPath || firstVideo?.link || ""
             });
 
-            // Agregar título
-            const titleContainer = document.createElement("div");
-            titleContainer.id = "title-container";
-            titleContainer.className = "title-styles";
-            titleContainer.innerHTML = `<div class="MovieTitleType">${movie.title || ""}</div>`;
-            document.getElementById("player").appendChild(titleContainer);
-        });
+            // Función que limpia títulos: quita prefijo E{n} y elimina duplicados
+            function cleanPlayerTitles() {
+                // Selecciona los contenedores de título más probables que crea el player
+                const titleContainers = Array.from(document.querySelectorAll(
+                    "#player .SeriesTitleType, #player .MovieTitleType, #player [class*='Title'], #player [id*='title']"
+                ));
+
+                if (!titleContainers.length) return;
+
+                // 1) eliminar duplicados: si hay más de uno, conservar el primero visible y eliminar los demás
+                if (titleContainers.length > 1) {
+                    // intenta conservar el que tiene texto visible (no vacío). si hay varios, conserva el primero con texto.
+                    let keepIndex = titleContainers.findIndex(el => (el.textContent || "").trim().length > 0);
+                    if (keepIndex === -1) keepIndex = 0;
+                    titleContainers.forEach((el, idx) => {
+                        if (idx !== keepIndex) {
+                            // no romper cosas: solo borrar nodos que parecen ser títulos
+                            try { el.remove(); } catch (e) { }
+                        }
+                    });
+                }
+
+                // 2) limpiar el texto del título restante
+                const remaining = document.querySelectorAll("#player .SeriesTitleType p, #player .SeriesTitleType, #player .MovieTitleType");
+                remaining.forEach(node => {
+                    try {
+                        const text = (node.textContent || "").trim();
+                        // quitar prefijo tipo: E1, E12, "E1 " o "E12 -"
+                        const cleaned = text.replace(/^\s*E\s*#?\s*\d+\s*[-:\s]*/i, '')  // variantes "E1", "E 1", "E#1"
+                            .replace(/^\s*E\d+\s*/i, '');               // otra vez por seguridad
+                        if (cleaned !== text) {
+                            // reemplazar sin afectar otros nodos hijos innecesarios
+                            if (node.nodeType === Node.ELEMENT_NODE) {
+                                // si tiene hijos (ej <strong> y <p>) intenta reemplazar el texto del nodo de texto directo
+                                // pero la forma más segura es reasignar textContent
+                                node.textContent = cleaned;
+                            } else {
+                                node.nodeValue = cleaned;
+                            }
+                        }
+                    } catch (e) { /* no bloquear si falla un nodo */ }
+                });
+            }
+
+            // Observer robusto: observa cambios en #player y limpia en cuanto aparezca/sea re-renderizado el título
+            const playerEl = document.getElementById("player");
+            const observer = new MutationObserver(mutations => {
+                // debounce corto para agrupar varios cambios
+                if (observer._timeout) clearTimeout(observer._timeout);
+                observer._timeout = setTimeout(() => {
+                    cleanPlayerTitles();
+                }, 50);
+            });
+
+            observer.observe(playerEl, { childList: true, subtree: true, characterData: true });
+
+            // Exponer playEpisode (mantén la API que usa el resto de tu app)
+            window.playEpisode = function (index) {
+                const ep = episodesList[index];
+                if (!ep) return;
+
+                SATVPlayerEmbed({
+                    elementId: "player",
+                    videoUrl: ep?.videoPath || ep?.link || ""
+                });
+
+                // Al pedir reproducir, ejecutamos limpieza unas veces por si el player re-rendereó luego
+                // llamamos clean varias veces con pequeños retrasos para cubrir re-renderings asíncronos
+                cleanPlayerTitles();
+                setTimeout(cleanPlayerTitles, 80);
+                setTimeout(cleanPlayerTitles, 250);
+            };
+
+            // iniciar
+            window.playEpisode(0);
+
+            // limpieza inicial extra por si el player ya dejó algo
+            setTimeout(cleanPlayerTitles, 120);
+            setTimeout(cleanPlayerTitles, 350);
+        };
     </script>
 </body>
 
