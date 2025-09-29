@@ -36,283 +36,6 @@
             background: black;
         }
 
-        .serie,
-        .epname {
-            font-weight: normal;
-            font-size: 22px;
-            margin: 40.6em 0 -20.6em 0px;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-            opacity: 1;
-            position: relative;
-            margin-top: 20.31em;
-            left: -3em;
-        }
-
-        .epname {
-            margin-left: 21em;
-            margin-top: 20.3em;
-        }
-
-        .serie {
-            font-weight: 500;
-            font-size: 23px;
-            margin-top: 14.992em;
-        }
-
-        .serie:fullscreen,
-        .epname:fullscreen {
-            font-weight: normal;
-            font-size: 20px;
-            margin: 40.6em 0 10px 0;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-            opacity: 1;
-        }
-
-        /* para ocultar */
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* Botón de episodios */
-        #episodesButtonReact img {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        #episodesButtonReact img:hover {
-            transform: scale(1.2);
-        }
-
-        .episodes-button-container {
-            position: relative;
-            cursor: pointer;
-            width: 24px;
-        }
-
-        .episodes-button {
-            width: 40px;
-            height: 40px;
-            margin-left: -17.3em;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .episodes-modal {
-            position: absolute;
-            bottom: 37px !important;
-            right: 0;
-            background-color: #181818;
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 100;
-            user-select: none;
-            width: 480px !important;
-            /* nuevo width */
-            height: 72em !important;
-            /* nuevo height */
-            overflow-y: auto;
-            /* sigue solo vertical */
-            /* no se agrega overflow-x */
-            zoom: 0 !important;
-        }
-
-        .episodes-modal img:hover {
-            transform: none;
-        }
-
-        .episodelist-title {
-            font-weight: 500 !important;
-            font-size: 16px !important;
-        }
-
-        .episode-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: -0.06em !important;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-size: 12px;
-            height: 7em;
-            padding: 0.6em 1.5em !important;
-            width: 400px !important;
-            margin-left: 2em !important;
-            border-bottom: 1px solid #333;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-
-        .episode-item:hover {
-            background-color: #333;
-        }
-
-        .episode-item img {
-            width: 80px !important;
-            height: auto !important;
-            margin-right: 10px;
-            border-radius: 3px;
-            zoom: 1.2;
-        }
-
-        .episode-info {
-            color: white;
-            font-size: 12px !important;
-        }
-
-        .episode-item h4 {
-            margin: 0;
-            font-size: 12px !important;
-            font-weight: 500;
-        }
-
-        .episode-item p {
-            margin: 0;
-            font-size: 10px !important;
-            color: #ccc;
-            font-weight: 300;
-        }
-
-        .epimage img:hover,
-        #epimage img:hover {
-            all: unset;
-        }
-
-        .episodes-modal {
-            zoom: 1.6 !important;
-        }
-
-        .episodesReactButton,
-        #episodesReactButton {
-            width: 0 !important;
-        }
-
-        .episodes-icon {
-            left: -18em !important;
-        }
-
-        .episodesReactButton,
-        #episodesReactButton {
-            display: none !important;
-            width: 0 !important;
-        }
-
-        .next-episode-icon {
-            display: none !important;
-        }
-
-        /* Escala al hover o cuando esté activo */
-        .episodes-icon:hover,
-        .episodes-icon.active {
-            transform: scale(1.2);
-        }
-
-        .div-position-next {
-            margin-left: -44.8em !important;
-            position: absolute !important;
-        }
-
-        .next-episode-overlay {
-            position: absolute !important;
-            bottom: 47px !important;
-            left: -30em !important;
-            width: 54em;
-            background-color: #131313 !important;
-            padding: 10px !important;
-            border-radius: 0 !important;
-            color: white !important;
-            z-index: 200 !important;
-            height: 14.3em;
-            cursor: pointer !important;
-        }
-
-        .next-episode-header {
-            background-color: #262626;
-            color: #fff;
-            font-weight: 500;
-            font-size: 29px;
-            margin-top: -1.9em;
-            width: 26.06em;
-            margin-left: -0.35em;
-            height: 2.3em;
-            padding-left: 1em;
-            padding-top: 0.48em;
-        }
-
-        .next-episode-title {
-            margin-top: -7.5em !important;
-            line-height: 1.2;
-            margin-bottom: 1em !important;
-            padding-left: 10em !important;
-        }
-
-        .next-episode-overlay img {
-            width: 220px !important;
-            height: auto !important;
-            position: relative;
-            margin-left: 1.5em;
-            margin-top: 2em;
-        }
-
-        .next-episode-overlay img:hover {
-            transform: none;
-        }
-
-        .next-episode-title,
-        .next-episode-description {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            margin: 0;
-            /* Eliminamos márgenes que rompan el centrado */
-        }
-
-        .next-episode-description {
-            line-height: 1.4;
-            padding-left: 16.23em !important;
-            width: 45em;
-            font-size: 16px !important;
-        }
-
-        .volume-icon {
-            margin-bottom: -0.359em;
-        }
-
-        .countdown-current-time {
-            margin-bottom: -0.25em;
-        }
-
-        .volume-icon:hover,
-        .volume-icon.active {
-            transform: scale(1.2);
-        }
-
-        .speed-icon:hover,
-        .speed-icon.active {
-            transform: scale(1.2);
-        }
-
-        .speed-modal {
-            top: -13.8em !important;
-        }
-
-        .watch-video--scrubber-volume-container {
-            box-sizing: border-box;
-            height: 2em;
-            max-height: 20rem;
-            min-height: 11.4rem;
-            padding-bottom: 1rem;
-            padding-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 2.4em;
-            margin-left: -0.4em;
-            border-radius: 0.2em !important;
-        }
-
         .title-styles {
             position: absolute !important;
             left: 50% !important;
@@ -326,7 +49,6 @@
             overflow: hidden !important;
             text-overflow: ellipsis !important;
             max-width: 100% !important;
-            /* Ajusta según prefieras */
             display: inline !important;
         }
 
@@ -337,202 +59,60 @@
         .title-styles.windowed {
             top: 39em !important;
         }
-
-        .season-dropdown {
-            position: relative;
-            display: inline-block;
-            font-size: 18px;
-            font-family: 'Netflix Sans';
-            z-index: 1000;
-            zoom: 0.65;
-            margin-left: 26em;
-            margin-top: -15em;
-            top: -2em;
-        }
-
-        .season-dropdown .dropdown-button {
-            display: flex;
-            align-items: center;
-            min-width: 4em;
-            position: relative;
-            font-size: 1.5em;
-            background-color: rgb(36, 36, 36);
-            padding: 0.5em 1em;
-            color: white;
-            cursor: pointer;
-            border: 0.1em solid rgb(77, 77, 77);
-            border-radius: 0.2em;
-            zoom: 0.7;
-        }
-
-        .season-dropdown .dropdown-button::after {
-            content: "▼";
-            margin-left: 1.5em;
-            transition: transform 0.3s ease;
-            font-size: 25px;
-            margin-top: -0.02em;
-        }
-
-        .season-dropdown.show .dropdown-button::after {
-            transform: rotate(180deg);
-        }
-
-        .season-dropdown .dropdown-content {
-            min-width: 14em;
-            position: absolute;
-            right: 0px;
-            cursor: pointer;
-            color: white;
-            list-style-type: none;
-            border: 0.1em solid rgb(77, 77, 77);
-            margin-top: 0.1em;
-            font-size: 1.5em;
-            z-index: 1;
-            background-color: rgb(36, 36, 36);
-            white-space: nowrap;
-            column-gap: 1.8em;
-            max-height: max(10em, 165.415px - 2rem);
-            overflow: auto;
-            padding: 1rem 0px;
-            zoom: 0.7;
-            overflow-x: hidden;
-        }
-
-        .season-dropdown #seasonMenu {
-            display: none;
-            /* Oculto por defecto */
-        }
-
-        .season-dropdown #seasonMenu.show {
-            display: block;
-            /* Se muestra al agregar la clase show */
-        }
-
-        .season-dropdown.show {
-            display: inline-block;
-            /* O flex si prefieres */
-        }
-
-        .season-dropdown .dropdown-content {
-            display: none;
-            /* Oculto por defecto */
-        }
-
-        .season-dropdown.show .dropdown-content {
-            display: block;
-            /* Se muestra al abrir el dropdown */
-        }
-
-        .season-dropdown .season-option {
-            width: 100%;
-            padding-left: 0.4em;
-        }
-
-        .season-dropdown .season-option .texto {
-            background: none;
-            border: none;
-            font-size: 1em;
-            color: white;
-            cursor: pointer;
-            padding: 0.5em 0.7em;
-            width: 102%;
-            text-align: left;
-            font-family: 'Netflix Sans', sans-serif;
-            transition: color 0.2s ease;
-            display: block;
-            font-weight: 500;
-        }
-
-        .season-dropdown .episodios-count {
-            font-size: 0.8em !important;
-            color: #ffffff !important;
-            margin-left: 0.5em !important;
-            font-weight: 400 !important;
-            margin-top: -0.7em !important;
-            position: relative;
-            top: -0.1em
-        }
-
-        .season-dropdown .season-divider {
-            border-top: 1px solid #444 !important;
-            margin-top: 24px !important;
-            padding-top: 5px !important;
-        }
-
-        .season-dropdown .view-all-btn {
-            width: 120% !important;
-            text-align: left !important;
-            color: #fff !important;
-            font-weight: bold !important;
-            background: none !important;
-            border: none !important;
-            cursor: pointer !important;
-            padding-left: 2.7em !important;
-            padding-right: 2em !important;
-            padding-top: 0.7em !important;
-            padding-bottom: 0.7em !important;
-            font-size: 23px !important;
-            margin-left: -0.8em !important;
-            margin-top: 0.5em !important;
-        }
-
-        .season-dropdown .view-all-btn:hover {
-            background-color: #424242 !important;
-        }
-
-        .season-option:hover {
-            background-color: #424242;
-        }
     </style>
 </head>
 
 <body>
     <div id="player"></div>
 
+    <script id="movie-data" type="application/json">
+{
+  "titleType": "Movie",
+  "title": "Mi Pobre Angelito",
+  "videoPath": "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8"
+}
+  </script>
+
     <script>
         window.onload = function () {
-            // 🎯 URL por defecto (si no hay movie-data)
-            let defaultUrl = "https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/cpcl/koshep/100-Lucha-La-Pel%C3%ADcula.m3u8";
-            let videoUrl = defaultUrl;
-            let movieTitle = "";
-
-            // ✅ Buscar datos en <script id="movie-data">
             const dataScript = document.getElementById("movie-data");
-            if (dataScript) {
-                try {
-                    const movie = JSON.parse(dataScript.textContent);
-                    if (movie && movie.videoPath) {
-                        videoUrl = movie.videoPath;
-                        movieTitle = movie.title || "";
-                    }
-                } catch (err) {
-                    console.error("Error parseando JSON de movie-data:", err);
-                }
+            if (!dataScript) {
+                console.warn("No se encontró movie-data");
+                return;
             }
 
-            // 🚀 Inicializar player con videoUrl (ya sea default o del JSON)
+            let movie;
+            try {
+                movie = JSON.parse(dataScript.textContent);
+            } catch (err) {
+                console.error("Error parseando JSON de movie-data:", err);
+                return;
+            }
+
+            const videoUrl = movie.videoPath || "";
+            const movieTitle = movie.title || "";
+
+            // Inicializar player
             SATVPlayerEmbed({
                 elementId: "player",
                 videoUrl: videoUrl
             });
 
-            // 📝 Mostrar título si existe
-            if (movieTitle) {
-                let titleContainer = document.createElement("div");
+            // Crear contenedor de título
+            let titleContainer = document.getElementById("title-container");
+            if (!titleContainer) {
+                titleContainer = document.createElement("div");
                 titleContainer.id = "title-container";
                 titleContainer.className = "title-styles windowed";
-                titleContainer.innerHTML = `<div class="MovieTitleType">${movieTitle}</div>`;
                 document.getElementById("player").appendChild(titleContainer);
+            }
+
+            // Mostrar título de la película
+            if (movieTitle) {
+                titleContainer.innerHTML = `<div class="MovieTitleType">${movieTitle}</div>`;
             }
         };
     </script>
-
-    <script id="movie-data" type="application/json">
-{
-  "titleType": "Movie",
-  "title": "Mi Pobre Angelito",
-}
-</script>
 
 </body>
 
