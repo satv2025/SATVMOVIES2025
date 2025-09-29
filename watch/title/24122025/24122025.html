@@ -10,12 +10,6 @@
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
         type="image/x-icon">
     <style>
-        @import url('https://solargentinotv.com.ar/assets/fonts/NetflixSans/netflixsans.css');
-
-        * {
-            font-family: 'Netflix Sans' !important;
-        }
-
         body,
         html {
             margin: 0;
@@ -23,11 +17,9 @@
             background: black;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            padding: 5px 10px;
         }
 
         #player video {
@@ -37,27 +29,15 @@
         }
 
         .title-styles {
-            position: absolute !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            z-index: 1000 !important;
-            font-size: 22px !important;
-            color: white !important;
-
-            /* Evitar salto de línea y cortar texto largo */
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            max-width: 100% !important;
-            display: inline !important;
-        }
-
-        .title-styles.fullscreen {
-            top: 46.34em !important;
-        }
-
-        .title-styles.windowed {
-            top: 39em !important;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            font-size: 22px;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     </style>
 </head>
@@ -74,46 +54,33 @@
   </script>
 
     <script>
-        window.onload = function () {
+        window.addEventListener("DOMContentLoaded", () => {
             const dataScript = document.getElementById("movie-data");
-            if (!dataScript) {
-                console.warn("No se encontró movie-data");
-                return;
-            }
+            if (!dataScript) return console.warn("No se encontró movie-data");
 
             let movie;
             try {
                 movie = JSON.parse(dataScript.textContent);
             } catch (err) {
-                console.error("Error parseando JSON de movie-data:", err);
-                return;
+                return console.error("Error parseando movie-data:", err);
             }
 
-            const videoUrl = movie.videoPath || "";
-            const movieTitle = movie.title || "";
+            if (!movie.videoPath) return console.warn("No hay URL de video disponible");
 
-            // Inicializar player
+            // Inicializar el player
             SATVPlayerEmbed({
                 elementId: "player",
-                videoUrl: videoUrl
+                videoUrl: movie.videoPath
             });
 
-            // Crear contenedor de título
-            let titleContainer = document.getElementById("title-container");
-            if (!titleContainer) {
-                titleContainer = document.createElement("div");
-                titleContainer.id = "title-container";
-                titleContainer.className = "title-styles windowed";
-                document.getElementById("player").appendChild(titleContainer);
-            }
-
-            // Mostrar título de la película
-            if (movieTitle) {
-                titleContainer.innerHTML = `<div class="MovieTitleType">${movieTitle}</div>`;
-            }
-        };
+            // Agregar título
+            const titleContainer = document.createElement("div");
+            titleContainer.id = "title-container";
+            titleContainer.className = "title-styles";
+            titleContainer.innerHTML = `<div class="MovieTitleType">${movie.title || ""}</div>`;
+            document.getElementById("player").appendChild(titleContainer);
+        });
     </script>
-
 </body>
 
 </html>
