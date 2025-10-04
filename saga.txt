@@ -5,3 +5,19 @@ https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa2/Mi_Pobre_Angelit
 https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa1/trailer/Mi_Pobre_Angelito_1_trailer.mp4
 
 https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/mpa/mpa2/trailer/Mi_Pobre_Angelito_2_trailer.mp4
+
+ .episode-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: -0.06em !important;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 12px;
+            height: 7em;
+            padding: 0.6em 1.5em !important;
+            width: 450px !important;
+            margin-left: 0em !important;
+            border-bottom: 1px solid #333;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
