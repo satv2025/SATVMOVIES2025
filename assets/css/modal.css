@@ -741,7 +741,7 @@ span.fcprefix {
     position: relative;
     margin-bottom: 0em;
     border: none !important;
-    margin-left: -1em;
+    margin-left: -0.53em;
 }
 
 .modal-description {
@@ -825,7 +825,7 @@ ul#episode-list {
     font-weight: 500;
     position: absolute;
     top: 31em;
-    left: 1.766em;
+    left: 1.83em;
     font-size: 1.5em;
 }
 
