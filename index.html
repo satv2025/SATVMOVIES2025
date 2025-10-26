@@ -4,16 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sol Argentino TV MOVIES</title>
-    <link rel="stylesheet" href="assets/css/search.css">
-    <link rel="stylesheet" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/search.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/estilos.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
         type="image/x-icon">
+    <style>
+        /* ===== MODO TV ===== */
+        body.modo-tv {
+            background: #000;
+            color: #fff;
+            transition: background 0.6s ease, color 0.4s ease;
+        }
+
+        body.modo-tv .catalogo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-left: 5em;
+            margin-top: 0em;
+            padding-right: 17em;
+            position: absolute;
+            left: 13em;
+        }
+
+        body.modo-tv .pelicula {
+            cursor: pointer;
+        }
+
+        body.modo-tv .pelicula img {
+            height: 12em;
+        }
+
+        body.modo-tv .pelicula img {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            filter: brightness(0.9);
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.modo-tv .pelicula img:hover {
+            border-color: #e50914;
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+            transform: scale(1);
+        }
+
+        /* ===== BOTÓN MODO TV ===== */
+        #modo-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-family: 'Netflix Sans', Arial, sans-serif;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: 2px solid #e50914;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        #modo-btn:hover {
+            background: #e50914;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+
+        /* ===== Estado activo (modo TV encendido) ===== */
+        body.modo-tv #modo-btn {
+            background: #0f84fa;
+            border-color: #e50914;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(15, 132, 250, 0.6);
+        }
+
+        /* Hover en modo TV (efecto toggle invertido) */
+        body.modo-tv #modo-btn:hover {
+            background: #e50914;
+            border-color: #fff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+        }
+    </style>
 </head>
 
-<body class="">
+<body>
     <header>
         <div class="content" id="scroll-container-header">
             <nav>
@@ -200,7 +283,7 @@
     <footer>
         <p>Sol Argentino TV MOVIES 2025 © - Todos Los Derechos Reservados</p>
     </footer>
-    <script src="assets/js/modal.js"></script>
+    <script src="https://movies.solargentinotv.com.ar/assets/js/modal.js"></script>
     <script>
         const curiosity = document.getElementById("modal-curiosity");
         const description = document.getElementById("modal-description");
@@ -212,6 +295,71 @@
             // Si no existe
             description.style.marginTop = "-9em";
         }
+    </script>
+
+    <button id="modo-btn">Modo TV</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let esTV = false;
+
+            // Detección simple de entorno TV / consola / deco (sin UserAgent)
+            try {
+                const sinMouse = !('onmousemove' in window);
+                const tieneGamepad = 'getGamepads' in navigator;
+                const esPantallaGrande = window.screen.width >= 1280 && window.screen.height >= 720;
+
+                if (esPantallaGrande && (tieneGamepad || sinMouse)) {
+                    esTV = true;
+                }
+            } catch (e) { console.warn("Detección TV falló:", e); }
+
+            if (esTV) {
+                document.body.classList.add("modo-tv");
+                console.log("🎬 Modo TV activado automáticamente");
+
+                // === Navegación con flechas ===
+                const items = Array.from(document.querySelectorAll(".pelicula button, .pelicula img"));
+                let index = 0;
+
+                const enfocar = (i) => {
+                    items.forEach((item, n) => {
+                        item.style.outline = n === i ? "3px solid #e50914" : "none";
+                        item.style.filter = n === i ? "brightness(1.1)" : "brightness(0.9)";
+                        item.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                    });
+                    index = i;
+                };
+
+                enfocar(0);
+
+                document.addEventListener("keydown", (e) => {
+                    switch (e.key) {
+                        case "ArrowRight":
+                            if (index < items.length - 1) enfocar(index + 1);
+                            break;
+                        case "ArrowLeft":
+                            if (index > 0) enfocar(index - 1);
+                            break;
+                        case "ArrowDown":
+                            if (index + 4 < items.length) enfocar(index + 4); // baja una fila
+                            break;
+                        case "ArrowUp":
+                            if (index - 4 >= 0) enfocar(index - 4); // sube una fila
+                            break;
+                        case "Enter":
+                            items[index].click(); // abre modal o acción
+                            break;
+                        default:
+                            break;
+                    }
+                });
+
+                console.log("🎮 Navegación por control remoto activada");
+            } else {
+                console.log("🖥️ Modo normal (mouse y teclado)");
+            }
+        });
     </script>
 </body>
 
