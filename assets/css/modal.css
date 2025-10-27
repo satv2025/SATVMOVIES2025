@@ -866,7 +866,8 @@ span.about {
     cursor: pointer;
 }
 
-.watch-button {
+.watch-button,
+.ver-modal {
     background-color: #fff;
     color: #000;
     padding: 0.625em 2.25em;
@@ -881,6 +882,12 @@ span.about {
     padding-left: 3.3em;
     width: 10.13em;
     height: 2.465em;
+}
+
+.ver-modal {
+    margin-top: -17.348em;
+    background: #ffffff00;
+    margin-left: -2.04em;
 }
 
 .watch-button::after {
