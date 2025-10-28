@@ -277,13 +277,13 @@ const peliculas = {
     f2fnh: {
         type: "pelicula",
         year: "2025",
-        duration: "1 h 38 min",
+        duration: "20 min",
         description: "Una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.",
         cast: "<strong>Elenco:</strong> Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, <button id='scrollAbout'>más</button>",
         title: "<span class='about f2fnh-title'>Acerca de</span> <strong class='titulo f2fnh-title'> Norwood Hitchhike </strong>",
         genres: "<strong>Géneros:</strong> Suspenso, Misterio, Thriller",
         titleType: "<strong>Este título es:</strong> Intenso, Misterioso, Impactante",
-        ageRating: "<span class='age'>13+</span> violencia moderada, temas inquietantes",
+        ageRating: "<span class='age'>17+</span> violencia moderada, temas inquietantes",
         background: `
 <video 
     class="reite-video" 
@@ -297,7 +297,7 @@ const peliculas = {
     onselectstart="return false;" 
     ondragstart="return false;"
 >
-    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/bfcf3283e9a587f23b2ab1d25a87878ed1a5632f/NORWOOD_HITCHHIKE__Official_TRAILER__Fears_To_Fathom_Film_Adaptation_-_KeiBoogie_Productions__1440p__vp9_.webm" type="video/webm">
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/main/F2FNHTrailer.mp4" type="video/mp4">
     Tu navegador no soporta el video.
 </video>
 `,
@@ -308,7 +308,7 @@ const peliculas = {
         fulldirected: "<div class='fulldirected f2fnh-fulldirected'><span class='fdprefix'>Director:</span> <span class='fdcontent'>Kei</span></div>",
         fullgenres: "<div class='fullgenres f2fnh-fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Thriller</span></div>",
         fulltitletype: "<div class='fulltitletype f2fnh-fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'> Intenso, Misterioso, Impactante</span></div>",
-        fullage: "<div class='fullage f2fnh-fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>13+</span> violencia moderada, temas inquietantes</span> <span class='facontent2'>No recomendada para menores de 13 años</span></div>"
+        fullage: "<div class='fullage f2fnh-fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>13+</span> violencia moderada, temas inquietantes</span> <span class='facontent2'>Apta para mayores de 17 años</span></div>"
     }
 };
 
@@ -394,7 +394,7 @@ function openModal(movieKey) {
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
 
-    // 👇 NUEVO: Bloquear scroll del body sin mover el contenido
+    // 👇 Bloquear scroll del body sin mover el contenido
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.setProperty("overflow-y", "hidden", "important");
     document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
@@ -462,6 +462,13 @@ function openModal(movieKey) {
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
     }
 
+    // 👇 NUEVO BLOQUE: Clase especial para f2fhn
+    if (movieKey === "f2fhn") {
+        if (muteBtn) muteBtn.classList.add("mutebtn-f2fhn");
+    } else {
+        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fhn");
+    }
+
     // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
@@ -516,7 +523,7 @@ function closeModal() {
     handleVideo(modal, "pause");
     modal.style.display = "none";
 
-    // 👇 NUEVO: Restaurar scroll y eliminar compensación
+    // 👇 Restaurar scroll y eliminar compensación
     document.body.style.setProperty("overflow-y", "auto", "important");
     document.body.style.removeProperty("padding-right");
 
