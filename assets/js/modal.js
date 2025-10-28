@@ -462,11 +462,11 @@ function openModal(movieKey) {
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
     }
 
-    // 👇 NUEVO BLOQUE: Clase especial para f2fhn
+    // 👇 NUEVO BLOQUE: Clase especial para f2fnh
     if (movieKey === "f2fnh") {
-        if (muteBtn) muteBtn.classList.add("mutebtn-f2fhn");
+        if (muteBtn) muteBtn.classList.add("mutebtn-f2fnh");
     } else {
-        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fhn");
+        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fnh");
     }
 
     // Datos del modal
