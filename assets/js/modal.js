@@ -312,10 +312,32 @@ const peliculas = {
     }
 };
 
-// === Insertar CSS del botón de mute dinámicamente ===
+// === Insertar CSS del botón de mute y scrollbars dinámicamente ===
 (function insertMuteCSS() {
     const style = document.createElement("style");
     style.textContent = `
+        /* Scrollbar del modal visible y sin fade */
+        #infoModal::-webkit-scrollbar {
+            width: 10px;
+        }
+        #infoModal::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.25);
+            border-radius: 10px;
+        }
+        #infoModal::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.45);
+        }
+        #infoModal::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* Mantener el body sin scrollbar visible cuando el modal está activo */
+        body.modal-open {
+            overflow-y: hidden !important;
+            padding-right: var(--scrollbar-compensation, 0);
+        }
+
+        /* --- Botón de mute y estilos base --- */
         .modal-mute-btn {
             position: absolute;
             bottom: 5%;
@@ -330,40 +352,12 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
+
         .episode-item:hover { background: rgba(255,255,255,0.05); }
         .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
         .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
         .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
         .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
-
-        /* === ANIMACIONES MODAL === */
-        #infoModal {
-            display: none;
-            background: rgba(0, 0, 0, 0.75);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        #infoModal.showing {
-            display: flex;
-            opacity: 1;
-        }
-        #infoModal.closing {
-            opacity: 0;
-        }
-
-        #infoModal .modal-content {
-            transform: scale(0.9);
-            opacity: 0;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        #infoModal.showing .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-        #infoModal.closing .modal-content {
-            transform: scale(0.95);
-            opacity: 0;
-        }
     `;
     document.head.appendChild(style);
 })();
@@ -393,7 +387,7 @@ async function cargarEpisodiosJSON() {
 cargarEpisodiosJSON();
 
 // === Detectar clic en botones "Más Información" ===
-document.querySelectorAll(".info, .moreinfobutton").forEach(button => {
+document.querySelectorAll(".moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
         const movieKey = this.getAttribute("data-movie");
         openModal(movieKey);
@@ -418,15 +412,15 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal con animación fade fondo + zoom contenido
-    modal.classList.remove("closing");
-    modal.style.display = "flex";
-    void modal.offsetWidth; // Forzar repaint
-    modal.classList.add("showing");
-
+    modal.style.display = "block";
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
+
+    // 👇 Bloquear scroll del body sin parpadeo
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.classList.add("modal-open");
+    document.body.style.setProperty("--scrollbar-compensation", `${scrollbarWidth}px`);
 
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
@@ -438,7 +432,7 @@ function openModal(movieKey) {
     const seasonDropdown = document.querySelector('.season-dropdown');
     const modalTitle = modal.querySelector("#modal-title");
 
-    // === Configurar video y mute ===
+    // Configurar video y mute
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -493,12 +487,12 @@ function openModal(movieKey) {
 
     // 👇 Clase especial para f2fnh
     if (movieKey === "f2fnh") {
-        if (muteBtn) muteBtn.classList.add("mutebtn-f2fnh");
+        if (muteBtn) muteBtn.classList.add("mutebtn-f2fhn");
     } else {
-        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fnh");
+        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fhn");
     }
 
-    // === Datos del modal ===
+    // Datos del modal
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -550,35 +544,33 @@ function handleVideo(modal, action) {
 function closeModal() {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
+    modal.style.display = "none";
 
-    modal.classList.remove("showing");
-    modal.classList.add("closing");
+    // 👇 Restaurar scroll del body sin fade
+    document.body.classList.remove("modal-open");
+    document.body.style.removeProperty("--scrollbar-compensation");
 
-    setTimeout(() => {
-        modal.style.display = "none";
-        modal.classList.remove("closing");
-    }, 400);
-
-    // 🔸 No tocar el scroll del body (mantener el navegador intacto)
+    document.body.classList.remove("modal-open");
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }
 
-// === Listeners ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-    if (modal.style.display === "flex" &&
+    if (modal.style.display === "block" &&
         !modalContent.contains(event.target) &&
-        !event.target.closest(".info, .moreinfobutton")) {
+        !event.target.closest(".moreinfobutton")) {
         closeModal();
     }
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
+    if (event.key === "Escape") {
+        closeModal();
+    }
 });
 
 // === Ajuste dinámico de top ===
