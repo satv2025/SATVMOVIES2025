@@ -418,17 +418,16 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal con animación fade fondo + zoom contenido
+    // Mostrar modal con animación
     modal.classList.remove("closing");
     modal.style.display = "flex";
-    void modal.offsetWidth; // forzar repaint
+    void modal.offsetWidth;
     modal.classList.add("showing");
 
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
 
-    // 👇 Bloquear scroll del body sin mover el contenido
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.setProperty("overflow-y", "hidden", "important");
     document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
@@ -460,7 +459,7 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Clases específicas según movieKey ===
+    // === Clases especiales ===
     if (movieKey === "reite666") {
         if (video) video.classList.add("reite-bg");
         if (modalHeader) modalHeader.classList.add("reite-header");
@@ -486,21 +485,20 @@ function openModal(movieKey) {
     }
 
     if (movieKey === "homealone") {
-        if (modalTitle) modalTitle.classList.add("mpa1-mtitle");
-        if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
+        modalTitle?.classList.add("mpa1-mtitle");
+        modalTitle?.classList.remove("mpa2-mtitle");
     } else if (movieKey === "homealone2") {
-        if (modalTitle) modalTitle.classList.add("mpa2-mtitle");
-        if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
+        modalTitle?.classList.add("mpa2-mtitle");
+        modalTitle?.classList.remove("mpa1-mtitle");
     } else {
-        if (modalTitle) modalTitle.classList.remove("mpa1-mtitle");
-        if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
+        modalTitle?.classList.remove("mpa1-mtitle");
+        modalTitle?.classList.remove("mpa2-mtitle");
     }
 
-    // 👇 Clase especial para f2fnh
     if (movieKey === "f2fnh") {
-        if (muteBtn) muteBtn.classList.add("mutebtn-f2fnh");
+        muteBtn?.classList.add("mutebtn-f2fnh");
     } else {
-        if (muteBtn) muteBtn.classList.remove("mutebtn-f2fnh");
+        muteBtn?.classList.remove("mutebtn-f2fnh");
     }
 
     // === Datos del modal ===
@@ -531,11 +529,72 @@ function openModal(movieKey) {
         });
     }
 
+    // === Si es serie, generar dropdown ===
     if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
         generarDropdownTemporadas(movieKey, movie.ageRating);
     }
 
     ajustarModalTop();
+}
+
+// === Generar dropdown de temporadas ===
+function generarDropdownTemporadas(movieKey, ageRating) {
+    const seriesData = episodiosPorSerie[movieKey];
+    const seasonMenu = document.getElementById("seasonMenu");
+    const episodeList = document.getElementById("episode-list");
+    const dropdownButton = document.getElementById("seasonToggle");
+
+    if (!seriesData || !seasonMenu || !episodeList) return;
+
+    seasonMenu.innerHTML = "";
+    episodeList.innerHTML = "";
+
+    Object.keys(seriesData).forEach((temporada, index) => {
+        const episodios = seriesData[temporada];
+        const button = document.createElement("button");
+        button.classList.add("texto");
+        button.textContent = `Temporada ${temporada} (${episodios.length} episodios)`;
+        button.addEventListener("click", () => {
+            dropdownButton.textContent = `Temporada ${temporada}`;
+            renderEpisodios(episodios, ageRating);
+        });
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("season-option");
+        wrapper.appendChild(button);
+        seasonMenu.appendChild(wrapper);
+
+        if (index === 0) renderEpisodios(episodios, ageRating);
+    });
+
+    const viewAll = document.createElement("button");
+    viewAll.classList.add("texto", "vtle");
+    viewAll.textContent = "Ver todos los episodios";
+    viewAll.addEventListener("click", () => {
+        episodeList.innerHTML = "";
+        Object.values(seriesData).forEach(episodios => renderEpisodios(episodios, ageRating, false));
+    });
+    const divAll = document.createElement("div");
+    divAll.classList.add("season-option");
+    divAll.appendChild(viewAll);
+    seasonMenu.appendChild(divAll);
+}
+
+// === Renderizar episodios ===
+function renderEpisodios(episodios, ageRating, clear = true) {
+    const episodeList = document.getElementById("episode-list");
+    if (!episodeList) return;
+    if (clear) episodeList.innerHTML = "";
+
+    episodios.forEach(ep => {
+        const li = document.createElement("li");
+        li.classList.add("episode-item");
+        li.innerHTML = `
+            <strong>${ep.titulo}</strong> — ${ep.duracion}
+            <div class="season-ageRating">${ageRating}</div>
+            <p>${ep.descripcion}</p>
+        `;
+        episodeList.appendChild(li);
+    });
 }
 
 // === Cierre de modal y video ===
