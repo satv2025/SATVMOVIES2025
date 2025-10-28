@@ -281,7 +281,7 @@ const peliculas = {
         description: "Una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.",
         cast: "<strong>Elenco:</strong> Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, <button id='scrollAbout'>más</button>",
         title: "<span class='about f2fnh-title'>Acerca de</span> <strong class='titulo f2fnh-title'> Norwood Hitchhike </strong>",
-        genres: "<strong>Géneros:</strong> Suspenso, Misterio, Thriller",
+        genres: "<strong>Géneros:</strong> Thriller psicológico, Hechos reales, Peliculas basadas en videojuegos",
         titleType: "<strong>Este título es:</strong> Intenso, Misterioso, Impactante",
         ageRating: "<span class='age'>17+</span> violencia moderada, temas inquietantes",
         background: `
