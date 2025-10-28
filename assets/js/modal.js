@@ -278,7 +278,7 @@ const peliculas = {
         type: "pelicula",
         year: "2025",
         duration: "20 min",
-        description: "Una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.",
+        description: "En este cortometraje basado en el videojuego Fears To Fathom, una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.",
         cast: "<strong>Elenco:</strong> Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, <button id='scrollAbout'>más</button>",
         title: "<span class='about f2fnh-title'>Acerca de</span> <strong class='titulo f2fnh-title'> Norwood Hitchhike </strong>",
         genres: "<strong>Géneros:</strong> Thriller psicológico, Hechos reales, Peliculas basadas en videojuegos",
