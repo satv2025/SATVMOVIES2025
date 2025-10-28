@@ -491,15 +491,23 @@ function openModal(movieKey) {
 }
 
 // === Dropdown de temporadas ===
-function generarDropdownTemporadas(serieKey, ageRating) {
-    const seriesData = episodiosPorSerie[serieKey];
+function generarDropdownTemporadas(movieKey, ageRating) {
+    const seriesData = episodiosPorSerie[movieKey];
     const seasonMenu = document.getElementById("seasonMenu");
     const episodeList = document.getElementById("episode-list");
     const dropdownButton = document.getElementById("seasonToggle");
 
-    if (!seriesData || !seasonMenu || !episodeList) return;
-    seasonMenu.innerHTML = "";
-    episodeList.innerHTML = "";
+    if (!seriesData || !seasonMenu || !episodeList) {
+        console.warn("🚫 No se encontraron datos o elementos para", movieKey);
+        return;
+    }
+
+    // 👇 Agregado: detectar si seriesData es un array (sin temporadas)
+    if (Array.isArray(seriesData)) {
+        console.log("🎬 Serie sin temporadas:", movieKey);
+        renderEpisodios(seriesData, ageRating);
+        return; // No sigue con el dropdown
+    }
 
     Object.keys(seriesData).forEach((temporada, index) => {
         const episodios = seriesData[temporada];
