@@ -330,41 +330,40 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
+        .episode-item:hover { background: rgba(255,255,255,0.05); }
+        .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
+        .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
+        .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
+        .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
 
-        .episode-item { list-style: none; margin-bottom: 1em; }
-        .episode-link { display: flex; text-decoration: none; color: #fff; gap: 1em; align-items: flex-start; }
-        .episode-thumb { width: 160px; height: 90px; object-fit: cover; border-radius: 0.4em; }
-        .episode-info p { font-size: 0.9em; color: #ccc; }
-
-        .dropdown-button {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid #555;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 0.3em;
-        }
-        .dropdown-content {
-            position: absolute;
-            background: rgba(20,20,20,0.95);
-            border: 1px solid #555;
-            border-radius: 0.3em;
-            padding: 0.5em 0;
+        /* === ANIMACIONES MODAL === */
+        #infoModal {
             display: none;
-            z-index: 999;
+            background: rgba(0, 0, 0, 0.75);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        .dropdown-content.show { display: block; }
-        .dropdown-content button {
-            display: block;
-            width: 100%;
-            padding: 6px 12px;
-            text-align: left;
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
+        #infoModal.showing {
+            display: flex;
+            opacity: 1;
         }
-        .dropdown-content button:hover { background: rgba(255,255,255,0.1); }
+        #infoModal.closing {
+            opacity: 0;
+        }
+
+        #infoModal .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        #infoModal.showing .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        #infoModal.closing .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+        }
     `;
     document.head.appendChild(style);
 })();
@@ -385,7 +384,6 @@ async function cargarEpisodiosJSON() {
                 episodiosPorSerie[key.replace("episodios", "").toLowerCase()] = data[key];
             }
         }
-
     } catch (error) {
         console.error("Error al cargar episodios:", error);
     }
@@ -442,7 +440,6 @@ function openModal(movieKey) {
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
-
         currentMuteListener = () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -476,56 +473,40 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Generar dropdown y lista de episodios ===
+// === Generar dropdown y lista de episodios (sin alterar estilos) ===
 function generarDropdownTemporadas(movieKey, ageRating) {
-    const modalInfo = document.querySelector('.modal-info');
-    if (!modalInfo) return;
+    const modalSeasons = document.getElementById('modal-seasons');
+    if (!modalSeasons) return;
 
     const seriesData = episodiosPorSerie[movieKey];
     if (!seriesData) return;
 
-    // Crear contenedor general
-    const seasonsContainer = document.createElement('div');
-    seasonsContainer.classList.add('season-dropdown');
-    seasonsContainer.style.position = "relative";
-    seasonsContainer.style.marginTop = "2em";
-
-    // Botón principal
-    const toggleButton = document.createElement('button');
-    toggleButton.classList.add('dropdown-button');
-    toggleButton.id = 'seasonToggle';
-    toggleButton.textContent = 'Temporada 1';
-    seasonsContainer.appendChild(toggleButton);
-
-    // Menú de temporadas
-    const menu = document.createElement('div');
-    menu.classList.add('dropdown-content');
-    menu.id = 'seasonMenu';
-    seasonsContainer.appendChild(menu);
-
-    // Contenedor episodios
-    const episodeSection = document.createElement('div');
-    episodeSection.classList.add('episodios');
-    episodeSection.innerHTML = `
-        <h2>Lista de Episodios</h2>
-        <ul id="episode-list"></ul>
+    // Restaurar estructura base si fue limpiada
+    modalSeasons.innerHTML = `
+        <div class="season-dropdown">
+            <button class="dropdown-button" id="seasonToggle">Temporada 1</button>
+            <div class="dropdown-content" id="seasonMenu"></div>
+        </div>
+        <div class="episodios">
+            <h2>Lista de Episodios</h2>
+            <ul id="episode-list"></ul>
+        </div>
     `;
-    seasonsContainer.appendChild(episodeSection);
 
-    modalInfo.appendChild(seasonsContainer);
+    const menu = document.getElementById("seasonMenu");
+    const toggleButton = document.getElementById("seasonToggle");
 
-    // Llenar temporadas
     Object.keys(seriesData).forEach((temporada, index) => {
         const episodios = seriesData[temporada];
-        const button = document.createElement("button");
-        button.classList.add("texto");
-        button.textContent = `Temporada ${temporada} (${episodios.length} episodios)`;
-        button.addEventListener("click", () => {
+        const btn = document.createElement("button");
+        btn.classList.add("texto");
+        btn.textContent = `Temporada ${temporada} (${episodios.length})`;
+        btn.addEventListener("click", () => {
             toggleButton.textContent = `Temporada ${temporada}`;
             renderEpisodios(episodios, ageRating);
             menu.classList.remove("show");
         });
-        menu.appendChild(button);
+        menu.appendChild(btn);
 
         if (index === 0) renderEpisodios(episodios, ageRating);
     });
@@ -541,9 +522,9 @@ function renderEpisodios(episodios, ageRating, clear = true) {
         const li = document.createElement("li");
         li.classList.add("episode-item");
         li.innerHTML = `
-            <a href="${ep.link}" target="_blank" class="episode-link">
-                <img src="${ep.image}" alt="${ep.title}" class="episode-thumb">
-                <div class="episode-info">
+            <a href="${ep.link}" target="_blank">
+                <img src="${ep.image}" alt="${ep.title}">
+                <div>
                     <strong>${ep.number}. ${ep.title}</strong>
                     <p>${ep.description || ""}</p>
                     <span>${ep.duration} — ${ageRating}</span>
@@ -558,7 +539,6 @@ function renderEpisodios(episodios, ageRating, clear = true) {
 document.addEventListener("click", (e) => {
     const dropdown = document.getElementById("seasonMenu");
     const toggle = document.getElementById("seasonToggle");
-
     if (!dropdown || !toggle) return;
 
     if (toggle.contains(e.target)) {
@@ -593,6 +573,15 @@ function closeModal() {
 // === Listeners ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeModal(); });
+document.addEventListener("click", (event) => {
+    const modal = document.getElementById("infoModal");
+    const modalContent = document.querySelector(".modal-content");
+    if (modal.style.display === "flex" &&
+        !modalContent.contains(event.target) &&
+        !event.target.closest(".info, .moreinfobutton")) {
+        closeModal();
+    }
+});
 
 // === Ajuste dinámico de top ===
 function ajustarModalTop() {
