@@ -312,9 +312,6 @@ const peliculas = {
     }
 };
 
-// === Datos de películas y series ===
-const peliculas = { /* todo tu objeto peliculas tal cual */ };
-
 // === Insertar CSS del botón de mute dinámicamente ===
 (function insertMuteCSS() {
     const style = document.createElement("style");
@@ -333,20 +330,39 @@ const peliculas = { /* todo tu objeto peliculas tal cual */ };
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
-
         .episode-item:hover { background: rgba(255,255,255,0.05); }
         .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
         .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
         .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
         .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
 
-        /* === Animaciones del modal === */
-        #infoModal { display: none; background: rgba(0,0,0,0.75); opacity: 0; transition: opacity 0.4s ease; }
-        #infoModal.showing { display: flex; opacity: 1; }
-        #infoModal.closing { opacity: 0; }
-        #infoModal .modal-content { transform: scale(0.9); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; }
-        #infoModal.showing .modal-content { transform: scale(1); opacity: 1; }
-        #infoModal.closing .modal-content { transform: scale(0.95); opacity: 0; }
+        #infoModal {
+            display: none;
+            background: rgba(0, 0, 0, 0.75);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #infoModal.showing {
+            display: flex;
+            opacity: 1;
+        }
+        #infoModal.closing {
+            opacity: 0;
+        }
+
+        #infoModal .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        #infoModal.showing .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        #infoModal.closing .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+        }
     `;
     document.head.appendChild(style);
 })();
@@ -391,11 +407,9 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
-    // Limpiar contenido previo
     modalBackground.innerHTML = "";
     if (episodeList) episodeList.innerHTML = "";
 
-    // Inyectar video y botón mute
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -403,7 +417,6 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal
     modal.classList.remove("closing");
     modal.style.display = "flex";
     void modal.offsetWidth;
@@ -421,7 +434,6 @@ function openModal(movieKey) {
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
 
-    // === Configurar video + mute ===
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -437,7 +449,6 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Rellenar contenido textual ===
     document.getElementById("modal-title").innerHTML = movie.title || "";
     document.getElementById("modal-year").innerHTML = movie.year || "";
     document.getElementById("modal-duration").innerHTML = movie.duration || "";
@@ -448,7 +459,6 @@ function openModal(movieKey) {
     document.getElementById("modal-ageRating").innerHTML = movie.ageRating || "";
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
 
-    // === Acerca de ===
     document.getElementById("modal-createdBy").innerHTML = movie.createdBy || "";
     document.getElementById("modal-fullcast").innerHTML = movie.fullcast || "";
     document.getElementById("modal-fullscript").innerHTML = movie.fullscript || "";
@@ -456,25 +466,14 @@ function openModal(movieKey) {
     document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype || "";
     document.getElementById("modal-fullage").innerHTML = movie.fullage || "";
 
-    // === Episodios de series (espera si aún no cargó el JSON) ===
+    // === Episodios de series ===
     const serieKey = movieKey.toLowerCase();
-    if (movie.type === "serie") {
+    if (movie.type === "serie" && episodiosPorSerie[serieKey]) {
         document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
         document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
-
-        const intentarRenderEpisodios = () => {
-            if (episodiosPorSerie[serieKey]) {
-                console.log("🎬 Renderizando episodios para:", serieKey, episodiosPorSerie[serieKey]);
-                generarDropdownTemporadas(serieKey, movie.ageRating);
-            } else {
-                console.warn(`⏳ Esperando episodios para ${serieKey}...`);
-                setTimeout(intentarRenderEpisodios, 300);
-            }
-        };
-        intentarRenderEpisodios();
+        generarDropdownTemporadas(serieKey, movie.ageRating);
     }
 
-    // === Scroll hacia “Acerca de” ===
     const scrollAboutBtn = document.getElementById("scrollAbout");
     if (scrollAboutBtn) {
         scrollAboutBtn.addEventListener("click", () => {
@@ -483,54 +482,38 @@ function openModal(movieKey) {
     }
 }
 
-// === Dropdown de temporadas ===
+// === Dropdown de temporadas (corregido con IDs reales) ===
 function generarDropdownTemporadas(movieKey, ageRating) {
     const seriesData = episodiosPorSerie[movieKey];
-    const seasonMenu = document.getElementById("seasonMenu");
     const episodeList = document.getElementById("episode-list");
-    const dropdownButton = document.getElementById("seasonToggle");
+    const seasonMenu = document.getElementById("modal-seasons");
 
-    if (!seriesData || !seasonMenu || !episodeList) {
+    if (!seriesData || !episodeList || !seasonMenu) {
         console.warn("🚫 No se encontraron datos o elementos para", movieKey);
+        console.log({ seriesData, episodeList, seasonMenu });
         return;
     }
 
-    // 🔹 Si no tiene temporadas (array simple)
+    seasonMenu.innerHTML = "";
+    episodeList.innerHTML = "";
+
     if (Array.isArray(seriesData)) {
         renderEpisodios(seriesData, ageRating);
         return;
     }
 
-    // 🔹 Si tiene temporadas (objeto con 1, 2, etc.)
     Object.keys(seriesData).forEach((temporada, index) => {
         const episodios = seriesData[temporada];
         const button = document.createElement("button");
         button.classList.add("texto");
         button.textContent = `Temporada ${temporada} (${episodios.length} episodios)`;
-        button.addEventListener("click", () => {
-            dropdownButton.textContent = `Temporada ${temporada}`;
-            renderEpisodios(episodios, ageRating);
-        });
+        button.addEventListener("click", () => renderEpisodios(episodios, ageRating));
         const wrapper = document.createElement("div");
         wrapper.classList.add("season-option");
         wrapper.appendChild(button);
         seasonMenu.appendChild(wrapper);
-
         if (index === 0) renderEpisodios(episodios, ageRating);
     });
-
-    // 🔹 Botón “Ver todos”
-    const viewAll = document.createElement("button");
-    viewAll.classList.add("texto", "vtle");
-    viewAll.textContent = "Ver todos los episodios";
-    viewAll.addEventListener("click", () => {
-        episodeList.innerHTML = "";
-        Object.values(seriesData).forEach(episodios => renderEpisodios(episodios, ageRating, false));
-    });
-    const divAll = document.createElement("div");
-    divAll.classList.add("season-option");
-    divAll.appendChild(viewAll);
-    seasonMenu.appendChild(divAll);
 }
 
 // === Renderizar episodios ===
@@ -540,7 +523,7 @@ function renderEpisodios(episodios, ageRating, clear = true) {
     if (clear) episodeList.innerHTML = "";
 
     if (!Array.isArray(episodios)) {
-        console.warn("🚫 Datos de episodios inválidos:", episodios);
+        console.warn("🚫 Episodios inválidos:", episodios);
         return;
     }
 
@@ -556,7 +539,7 @@ function renderEpisodios(episodios, ageRating, clear = true) {
     });
 }
 
-// === Cierre del modal ===
+// === Cierre de modal ===
 function closeModal() {
     const modal = document.getElementById("infoModal");
     const video = modal.querySelector("#modal-background video");
@@ -580,7 +563,6 @@ function closeModal() {
     if (episodeList) episodeList.innerHTML = "";
 }
 
-// === Eventos globales ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 
 document.addEventListener("click", (event) => {
