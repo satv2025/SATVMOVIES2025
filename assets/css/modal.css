@@ -1646,7 +1646,11 @@ ul#episode-list {
 
 /* Fade del fondo */
 #infoModal.showing::before {
-    opacity: 1;
+    opacity: 0;
+}
+
+#infoModal.showing {
+    z-index: 60000;
 }
 
 /* Fade-out del fondo */
