@@ -335,6 +335,35 @@ const peliculas = {
         .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
         .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
         .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
+
+        /* === ANIMACIONES MODAL === */
+        #infoModal {
+            display: none;
+            background: rgba(0, 0, 0, 0.75);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #infoModal.showing {
+            display: flex;
+            opacity: 1;
+        }
+        #infoModal.closing {
+            opacity: 0;
+        }
+
+        #infoModal .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        #infoModal.showing .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        #infoModal.closing .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+        }
     `;
     document.head.appendChild(style);
 })();
@@ -389,10 +418,10 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal con animación fade/zoom IN
+    // Mostrar modal con animación fade fondo + zoom contenido
     modal.classList.remove("closing");
     modal.style.display = "flex";
-    void modal.offsetWidth; // forzar reflow
+    void modal.offsetWidth; // forzar repaint
     modal.classList.add("showing");
 
     modal.style.overflowY = "auto";
@@ -527,17 +556,14 @@ function closeModal() {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
 
-    // ⚡ Animación fade/zoom OUT
     modal.classList.remove("showing");
     modal.classList.add("closing");
 
-    // Ocultar completamente tras animación
     setTimeout(() => {
         modal.style.display = "none";
         modal.classList.remove("closing");
     }, 400);
 
-    // Restaurar scroll
     document.body.style.setProperty("overflow-y", "auto", "important");
     document.body.style.removeProperty("padding-right");
     document.body.classList.remove("modal-open");

@@ -1609,23 +1609,43 @@ ul#episode-list {
 }
 
 /* ============================================
-   🎬 ANIMACIÓN MODAL: ZOOM + FADE (IN/OUT)
+   🎬 ANIMACIÓN MODAL: FONDO + ZOOM EN CONTENIDO
    ============================================ */
 
+/* Fondo general del modal */
 #infoModal {
     display: none;
+    background: rgba(0, 0, 0, 0.75);
     opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.4s ease;
 }
 
+/* Cuando se muestra (fade-in del fondo) */
 #infoModal.showing {
     display: block;
     opacity: 1;
-    transform: scale(1);
 }
 
+/* Al cerrar (fade-out del fondo) */
 #infoModal.closing {
     opacity: 0;
+}
+
+/* Contenedor interno: zoom + fade */
+#infoModal .modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Aparece con zoom in */
+#infoModal.showing .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Desaparece con zoom out */
+#infoModal.closing .modal-content {
     transform: scale(0.95);
+    opacity: 0;
 }
