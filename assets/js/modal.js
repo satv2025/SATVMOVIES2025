@@ -312,6 +312,9 @@ const peliculas = {
     }
 };
 
+// === Datos de películas y series ===
+const peliculas = { /* todo tu objeto peliculas tal cual */ };
+
 // === Insertar CSS del botón de mute dinámicamente ===
 (function insertMuteCSS() {
     const style = document.createElement("style");
@@ -330,40 +333,20 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
+
         .episode-item:hover { background: rgba(255,255,255,0.05); }
         .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
         .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
         .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
         .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
 
-        /* === ANIMACIONES MODAL === */
-        #infoModal {
-            display: none;
-            background: rgba(0, 0, 0, 0.75);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        #infoModal.showing {
-            display: flex;
-            opacity: 1;
-        }
-        #infoModal.closing {
-            opacity: 0;
-        }
-
-        #infoModal .modal-content {
-            transform: scale(0.9);
-            opacity: 0;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        #infoModal.showing .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-        #infoModal.closing .modal-content {
-            transform: scale(0.95);
-            opacity: 0;
-        }
+        /* === Animaciones del modal === */
+        #infoModal { display: none; background: rgba(0,0,0,0.75); opacity: 0; transition: opacity 0.4s ease; }
+        #infoModal.showing { display: flex; opacity: 1; }
+        #infoModal.closing { opacity: 0; }
+        #infoModal .modal-content { transform: scale(0.9); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; }
+        #infoModal.showing .modal-content { transform: scale(1); opacity: 1; }
+        #infoModal.closing .modal-content { transform: scale(0.95); opacity: 0; }
     `;
     document.head.appendChild(style);
 })();
@@ -420,7 +403,7 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Animar modal
+    // Mostrar modal
     modal.classList.remove("closing");
     modal.style.display = "flex";
     void modal.offsetWidth;
@@ -473,12 +456,22 @@ function openModal(movieKey) {
     document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype || "";
     document.getElementById("modal-fullage").innerHTML = movie.fullage || "";
 
-    // === Episodios de series ===
+    // === Episodios de series (espera si aún no cargó el JSON) ===
     const serieKey = movieKey.toLowerCase();
-    if (movie.type === "serie" && episodiosPorSerie[serieKey]) {
+    if (movie.type === "serie") {
         document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
         document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
-        generarDropdownTemporadas(serieKey, movie.ageRating);
+
+        const intentarRenderEpisodios = () => {
+            if (episodiosPorSerie[serieKey]) {
+                console.log("🎬 Renderizando episodios para:", serieKey, episodiosPorSerie[serieKey]);
+                generarDropdownTemporadas(serieKey, movie.ageRating);
+            } else {
+                console.warn(`⏳ Esperando episodios para ${serieKey}...`);
+                setTimeout(intentarRenderEpisodios, 300);
+            }
+        };
+        intentarRenderEpisodios();
     }
 
     // === Scroll hacia “Acerca de” ===
@@ -502,13 +495,13 @@ function generarDropdownTemporadas(movieKey, ageRating) {
         return;
     }
 
-    // 👇 Agregado: detectar si seriesData es un array (sin temporadas)
+    // 🔹 Si no tiene temporadas (array simple)
     if (Array.isArray(seriesData)) {
-        console.log("🎬 Serie sin temporadas:", movieKey);
         renderEpisodios(seriesData, ageRating);
-        return; // No sigue con el dropdown
+        return;
     }
 
+    // 🔹 Si tiene temporadas (objeto con 1, 2, etc.)
     Object.keys(seriesData).forEach((temporada, index) => {
         const episodios = seriesData[temporada];
         const button = document.createElement("button");
@@ -526,6 +519,7 @@ function generarDropdownTemporadas(movieKey, ageRating) {
         if (index === 0) renderEpisodios(episodios, ageRating);
     });
 
+    // 🔹 Botón “Ver todos”
     const viewAll = document.createElement("button");
     viewAll.classList.add("texto", "vtle");
     viewAll.textContent = "Ver todos los episodios";
@@ -545,6 +539,11 @@ function renderEpisodios(episodios, ageRating, clear = true) {
     if (!episodeList) return;
     if (clear) episodeList.innerHTML = "";
 
+    if (!Array.isArray(episodios)) {
+        console.warn("🚫 Datos de episodios inválidos:", episodios);
+        return;
+    }
+
     episodios.forEach((ep, i) => {
         const li = document.createElement("li");
         li.classList.add("episode-item");
@@ -557,7 +556,7 @@ function renderEpisodios(episodios, ageRating, clear = true) {
     });
 }
 
-// === Cierre de modal ===
+// === Cierre del modal ===
 function closeModal() {
     const modal = document.getElementById("infoModal");
     const video = modal.querySelector("#modal-background video");
@@ -581,7 +580,7 @@ function closeModal() {
     if (episodeList) episodeList.innerHTML = "";
 }
 
-// === Eventos ===
+// === Eventos globales ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 
 document.addEventListener("click", (event) => {
