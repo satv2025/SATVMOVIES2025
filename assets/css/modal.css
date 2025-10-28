@@ -1606,3 +1606,8 @@ ul#episode-list {
 .modal-content {
     overflow-x: hidden;
 }
+
+.mutebtn-f2fnh {
+    position: absolute !important;
+    bottom: -28.76em !important;
+}

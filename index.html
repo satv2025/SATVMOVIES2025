@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sol Argentino TV MOVIES</title>
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/search.css">
-    <link rel="stylesheet" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/estilos.css">
+    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
@@ -336,9 +336,23 @@
             .bmt-buttons .info {
                 background-color: rgba(109, 109, 110, 0.4);
                 color: #fff;
-                width: 12.7em;
-                padding-left: 2em;
+                width: 13.7em;
+                padding-left: 4em;
                 padding-right: 1.7em;
+            }
+
+            .bmt-buttons .info::after {
+                content: '';
+                position: absolute;
+                top: 0.498em;
+                left: 1.3em;
+                width: 34px;
+                height: 34px;
+                background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='none'><path fill='currentColor' fill-rule='evenodd' d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20M0 12a12 12 0 1 1 24 0 12 12 0 0 1-24 0m13-2v8h-2v-8zm-1-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3' clip-rule='evenodd'/></svg>");
+                background-size: contain;
+                background-repeat: no-repeat;
+                z-index: 1000;
+                filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(3%) hue-rotate(139deg) brightness(101%) contrast(100%);
             }
 
             .bmt-synopsis {
@@ -363,15 +377,14 @@
 
         <div class="bmt-buttons">
             <button class="play">Reproducir</button>
-            <button class="info" data-movie="f2fnh">ℹ Más información</button>
+            <button class="info" data-movie="f2fnh">Más información</button>
         </div>
 
         <!-- capa de fade -->
         <div class="film-shadow-fade"></div>
 
         <!-- video HLS -->
-        <video class="bmt-video" muted="" autoplay="" loop="" playsinline=""
-            src="blob:null/3a64b986-d76c-4c9b-a35e-b4a170ac0f2d"></video>
+        <video class="bmt-video" muted="" autoplay="" loop="" playsinline="" src=""></video>
     </div>
 
     <!-- HLS.js -->
@@ -380,6 +393,7 @@
         const video = document.querySelector('.bmt-video');
         const videoSrc = 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/f2f/norwood-hitchhike/m3u8/trailer/trailer.m3u8';
 
+        // 🎬 Inicialización de HLS
         if (Hls.isSupported()) {
             const hls = new Hls();
             hls.loadSource(videoSrc);
@@ -388,9 +402,19 @@
             video.src = videoSrc;
         }
 
-        document.querySelector('.play').addEventListener('click', () => {
+        // 🎥 Botón PLAY: solo este botón controla el video
+        const playBtn = document.querySelector('.bmt-buttons .play');
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // evita interferencias con otros listeners
             video.muted = false;
             video.play();
+        });
+
+        // 🧠 Botón INFO: no hace nada (por ahora)
+        const infoBtn = document.querySelector('.bmt-buttons .info');
+        infoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Botón info presionado (sin acción por ahora)');
         });
     </script>
 
@@ -403,7 +427,7 @@
             <section class="catalogo">
                 <!-- Matías Ponce - La Película -->
                 <div class="pelicula">
-                    <button class="moreinfobutton" data-movie="f2fnh">
+                    <button class="moreinfobutton" data-movie="matiponcepeli">
                         <img src="https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg"
                             alt="Pelicula 1">
                     </button>
