@@ -301,7 +301,7 @@ const peliculas = {
     Tu navegador no soporta el video.
 </video>
 `,
-        link: "<a id='watch-button' class='ver-modal' href='https://movies.solargentinotv.com.ar/watch/title/f2fnh' target='_self'>Reproducir</a>",
+        link: "<a id='watch-button' class='ver-modal' href='https://movies.solargentinotv.com.ar/watch/title/0423359234' target='_self'>Reproducir</a>",
         createdBy: "<div class='modal-createdBy f2fnh-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Rayll</span></div>",
         fullcast: "<div class='fullcast f2fnh-fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, Tochtli Sanchez, Patrick Shen, Michael Anthony Rawlins</span></div>",
         fullscript: "<div class='fullscript f2fnh-fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Kei</span></div>",
@@ -421,17 +421,12 @@ function openModal(movieKey) {
     // Mostrar modal con animación fade fondo + zoom contenido
     modal.classList.remove("closing");
     modal.style.display = "flex";
-    void modal.offsetWidth; // forzar repaint
+    void modal.offsetWidth; // Forzar repaint
     modal.classList.add("showing");
 
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
-
-    // 👇 Bloquear scroll del body sin mover el contenido
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.setProperty("overflow-y", "hidden", "important");
-    document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
 
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
@@ -564,10 +559,7 @@ function closeModal() {
         modal.classList.remove("closing");
     }, 400);
 
-    document.body.style.setProperty("overflow-y", "auto", "important");
-    document.body.style.removeProperty("padding-right");
-    document.body.classList.remove("modal-open");
-
+    // 🔸 No tocar el scroll del body (mantener el navegador intacto)
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }

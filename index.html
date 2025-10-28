@@ -180,6 +180,10 @@
             margin-top: 0.3em;
             color: #fff;
         }
+
+        video {
+            position: absolute;
+        }
     </style>
 </head>
 
@@ -258,12 +262,13 @@
                 text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
                 position: relative;
                 margin-top: -3em;
-                margin-left: -3em;
+                margin-left: -3.23em;
             }
 
             .tline1 {
                 font-size: 6rem;
                 color: #F3205F;
+                margin-left: -3.17em;
             }
 
             .tline2 {
@@ -278,7 +283,7 @@
             .bmt-buttons {
                 position: absolute;
                 top: 40.36em;
-                left: 5.06em;
+                left: 4em;
                 z-index: 1000;
                 display: flex;
                 gap: 1em;
@@ -314,11 +319,6 @@
             }
 
             /* Botón PLAY (con ícono integrado) */
-            .bmt-buttons .play {
-                background-color: #fff;
-                color: #000;
-            }
-
             .bmt-buttons .play::after {
                 content: '';
                 position: absolute;
@@ -355,13 +355,50 @@
                 filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(3%) hue-rotate(139deg) brightness(101%) contrast(100%);
             }
 
+            /* 🎧 Botón MUTE */
+            .bmt-mute-btn {
+                position: absolute;
+                bottom: 2.84em;
+                right: 4.9em;
+                background: rgba(0, 0, 0, 0.6);
+                border: none;
+                border-radius: 50%;
+                padding: 8px;
+                z-index: 2000;
+                cursor: pointer;
+                transition: opacity 0.2s;
+                cursor: pointer !important;
+                transition: opacity 0.2s !important;
+                background-color: rgb(42 42 42 / 60%) !important;
+                border: 2px solid hsla(0, 0%, 100%, .5) !important;
+                border-radius: 50% !important;
+                opacity: 0.4 !important;
+                z-index: 50000;
+            }
+
+            .bmt-mute-btn:hover {
+                opacity: 1 !important;
+                border: 2px solid #fff !important;
+            }
+
+            .bmt-mute-btn img {
+                width: 28px;
+                height: 28px;
+                display: block;
+                filter: brightness(0) invert(1);
+            }
+
+            .bmt-mute-btn:hover {
+                opacity: 1;
+            }
+
             .bmt-synopsis {
                 color: #fff;
                 font-family: 'Netflix Sans' !important;
                 z-index: 2;
                 position: absolute;
                 top: 24.5em;
-                left: 3.5em;
+                left: 2.8em;
                 width: 27em;
                 font-size: 1.2vw;
                 text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
@@ -380,11 +417,16 @@
             <button class="info moreinfobutton" data-movie="f2fnh">Más información</button>
         </div>
 
+        <!-- Botón MUTE -->
+        <button class="bmt-mute-btn" id="bmtMuteBtn">
+            <img id="bmtMuteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
+        </button>
+
         <!-- capa de fade -->
         <div class="film-shadow-fade"></div>
 
         <!-- video HLS -->
-        <video class="bmt-video" muted="" autoplay="" loop="" playsinline="" src=""></video>
+        <video class="bmt-video" muted autoplay loop playsinline></video>
     </div>
 
     <!-- HLS.js -->
@@ -394,27 +436,68 @@
         const videoSrc = 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/f2f/norwood-hitchhike/m3u8/trailer/trailer.m3u8';
 
         // 🎬 Inicialización de HLS
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
+        function initVideo() {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    tryPlayVideo();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoSrc;
+                tryPlayVideo();
+            }
         }
 
-        // 🎥 Botón PLAY: solo este botón controla el video
-        const playBtn = document.querySelector('.bmt-buttons .play');
-        playBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // evita interferencias con otros listeners
-            video.muted = false;
-            video.play();
+        // 🎥 Forzar autoplay
+        function tryPlayVideo() {
+            video.muted = true; // Chrome exige muted para iniciar
+            video.play().then(() => {
+                // Si logra reproducir → desmutea suave
+                setTimeout(() => {
+                    video.muted = false;
+                    video.volume = 1;
+                }, 800);
+            }).catch((err) => {
+                console.warn('Autoplay bloqueado, intentando reintentar...', err);
+                // Reintentar automáticamente cada 2s
+                setTimeout(tryPlayVideo, 2000);
+            });
+        }
+
+        initVideo();
+
+        // 🔁 Loop manual con delay (10s antes de reiniciar)
+        video.addEventListener('ended', () => {
+            setTimeout(() => {
+                video.currentTime = 0;
+                tryPlayVideo();
+            }, 10000);
         });
 
-        // 🧠 Botón INFO: no hace nada (por ahora)
+        // ▶️ Botón PLAY: redirige
+        const playBtn = document.querySelector('.bmt-buttons .play');
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open('https://movies.solargentinotv.com.ar/watch/title/0423359234', '_blank');
+        });
+
+        // 🧠 Botón INFO
         const infoBtn = document.querySelector('.bmt-buttons .info');
         infoBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log('Botón info presionado (sin acción por ahora)');
+        });
+
+        // 🔇 Botón MUTE
+        const muteBtn = document.getElementById('bmtMuteBtn');
+        const muteIcon = document.getElementById('bmtMuteIcon');
+
+        muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            muteIcon.src = video.muted
+                ? 'assets/media/images/modal-vol-mute.svg'
+                : 'assets/media/images/modal-vol-on.svg';
         });
     </script>
 
