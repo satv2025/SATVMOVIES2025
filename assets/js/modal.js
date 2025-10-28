@@ -330,11 +330,16 @@ const peliculas = {
         }
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
-        .episode-item:hover { background: rgba(255,255,255,0.05); }
-        .episodios-count { font-size: 0.9em; color: #aaa; margin-left: 0.3em; font-weight: 400; }
-        .season-divider { border-top: 1px solid #444; margin-top: 5px; padding-top: 5px; }
-        .view-all-btn { width: 100%; text-align: left; color: #ff4444; font-weight: bold; }
-        .season-ageRating { font-size: 0.91em; margin-top: 0.3em; color: #fff; }
+
+        /* Episodios */
+        .episode-item { list-style: none; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin: 10px 0; transition: background 0.2s ease; }
+        .episode-item:hover { background: rgba(255,255,255,0.1); }
+        .episode-link { display: flex; align-items: flex-start; gap: 12px; padding: 10px; text-decoration: none; color: white; }
+        .episode-thumb img { width: 160px; height: 90px; object-fit: cover; border-radius: 6px; }
+        .episode-info { flex: 1; }
+        .episode-title { margin: 0; font-size: 1rem; font-weight: bold; }
+        .episode-description { margin: 6px 0; color: #ccc; font-size: 0.9rem; }
+        .episode-meta { font-size: 0.85rem; color: #aaa; display: flex; gap: 10px; }
 
         #infoModal {
             display: none;
@@ -482,7 +487,7 @@ function openModal(movieKey) {
     }
 }
 
-// === Dropdown de temporadas (corregido con IDs reales) ===
+// === Dropdown de temporadas ===
 function generarDropdownTemporadas(movieKey, ageRating) {
     const seriesData = episodiosPorSerie[movieKey];
     const episodeList = document.getElementById("episode-list");
@@ -490,7 +495,6 @@ function generarDropdownTemporadas(movieKey, ageRating) {
 
     if (!seriesData || !episodeList || !seasonMenu) {
         console.warn("🚫 No se encontraron datos o elementos para", movieKey);
-        console.log({ seriesData, episodeList, seasonMenu });
         return;
     }
 
@@ -508,32 +512,40 @@ function generarDropdownTemporadas(movieKey, ageRating) {
         button.classList.add("texto");
         button.textContent = `Temporada ${temporada} (${episodios.length} episodios)`;
         button.addEventListener("click", () => renderEpisodios(episodios, ageRating));
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("season-option");
-        wrapper.appendChild(button);
-        seasonMenu.appendChild(wrapper);
+        seasonMenu.appendChild(button);
         if (index === 0) renderEpisodios(episodios, ageRating);
     });
 }
 
-// === Renderizar episodios ===
-function renderEpisodios(episodios, ageRating, clear = true) {
+// === Renderizar episodios (nuevo) ===
+function renderEpisodios(episodios, ageRating) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
-    if (clear) episodeList.innerHTML = "";
+    episodeList.innerHTML = "";
 
     if (!Array.isArray(episodios)) {
         console.warn("🚫 Episodios inválidos:", episodios);
         return;
     }
 
-    episodios.forEach((ep, i) => {
+    episodios.forEach((ep) => {
         const li = document.createElement("li");
         li.classList.add("episode-item");
+
         li.innerHTML = `
-            <strong>${ep.titulo || "Episodio " + (i + 1)}</strong> — ${ep.duracion || ""}
-            <div class="season-ageRating">${ageRating || ""}</div>
-            <p>${ep.descripcion || ""}</p>
+            <a href="${ep.link}" target="_blank" class="episode-link">
+                <div class="episode-thumb">
+                    <img src="${ep.image}" alt="${ep.title}" loading="lazy">
+                </div>
+                <div class="episode-info">
+                    <h4 class="episode-title">E${ep.number}: ${ep.title}</h4>
+                    <p class="episode-description">${ep.description || ""}</p>
+                    <div class="episode-meta">
+                        <span class="duration">${ep.duration || ""}</span>
+                        <span class="age">${ageRating || ""}</span>
+                    </div>
+                </div>
+            </a>
         `;
         episodeList.appendChild(li);
     });

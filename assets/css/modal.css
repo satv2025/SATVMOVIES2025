@@ -532,7 +532,7 @@ button.text:hover {
     border-radius: .25em;
     padding-left: 4em !important;
     padding-right: 5em !important;
-    padding: 2em;
+    padding: 3em;
     width: 49em;
 }
 
@@ -1582,7 +1582,7 @@ ul#episode-list {
     /* ✅ ya no absolute */
     top: auto !important;
     /* ✅ evita el salto fuera de pantalla */
-    margin-top: 2em !important;
+    margin-top: 22em !important;
     /* pequeño margen visual */
     padding-left: 2em !important;
 }
