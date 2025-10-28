@@ -452,23 +452,21 @@
 
         // 🎥 Forzar autoplay
         function tryPlayVideo() {
-            video.muted = true; // Chrome exige muted para iniciar
+            video.muted = true;
             video.play().then(() => {
-                // Si logra reproducir → desmutea suave
                 setTimeout(() => {
                     video.muted = false;
                     video.volume = 1;
                 }, 800);
             }).catch((err) => {
                 console.warn('Autoplay bloqueado, intentando reintentar...', err);
-                // Reintentar automáticamente cada 2s
                 setTimeout(tryPlayVideo, 2000);
             });
         }
 
         initVideo();
 
-        // 🔁 Loop manual con delay (10s antes de reiniciar)
+        // 🔁 Loop manual con delay
         video.addEventListener('ended', () => {
             setTimeout(() => {
                 video.currentTime = 0;
@@ -476,7 +474,7 @@
             }, 10000);
         });
 
-        // ▶️ Botón PLAY: redirige
+        // ▶️ Botón PLAY
         const playBtn = document.querySelector('.bmt-buttons .play');
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -485,9 +483,7 @@
 
         // 🧠 Botón INFO
         const infoBtn = document.querySelector('.bmt-buttons .info');
-        infoBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        infoBtn.addEventListener('click', (e) => e.stopPropagation());
 
         // 🔇 Botón MUTE
         const muteBtn = document.getElementById('bmtMuteBtn');
@@ -499,6 +495,31 @@
                 ? 'assets/media/images/modal-vol-mute.svg'
                 : 'assets/media/images/modal-vol-on.svg';
         });
+
+        // 🎬 Pausar video SOLO cuando un modal tiene display:block
+        const modalSelectors = ['.modal', '.modal-content', '#infoModal'];
+        let modalVisible = false;
+
+        function isAnyModalVisible() {
+            return modalSelectors.some(sel => {
+                const el = document.querySelector(sel);
+                if (!el) return false;
+                const display = window.getComputedStyle(el).display;
+                return display === 'block';
+            });
+        }
+
+        // ⏸️ Revisa cada medio segundo si aparece el modal
+        setInterval(() => {
+            const visible = isAnyModalVisible();
+            if (visible && !modalVisible) {
+                if (!video.paused) {
+                    video.pause();
+                    console.log('🎞 Video pausado: modal visible');
+                }
+            }
+            modalVisible = visible;
+        }, 500);
     </script>
 
     <a class="logo" href="index" style="color: #007BFF; text-decoration: none;"

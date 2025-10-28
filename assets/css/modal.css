@@ -72,6 +72,7 @@ div#modal-background {
     justify-content: center;
     align-items: flex-start;
     /* o center si querés más centrado */
+    z-index: 40000;
 }
 
 .modal-open body {
@@ -1612,17 +1613,22 @@ ul#episode-list {
    🎬 ANIMACIÓN MODAL: FONDO + ZOOM EN CONTENIDO
    ============================================ */
 
-/* Fondo general del modal (sin transición de opacidad para el scroll) */
+/* Contenedor general del modal: sin animación en opacidad */
 #infoModal {
     display: none;
-    background: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    inset: 0;
     overflow-y: auto;
-    /* ← Mantiene la barra visible */
+    overflow-x: hidden;
+    height: 100vh;
+    background: transparent;
+    /* el fondo se maneja con ::before */
     opacity: 1;
-    /* ← Siempre visible */
+    /* mantiene visible la scrollbar */
+    z-index: 999;
 }
 
-/* Capa visual interna que sí se anima */
+/* Capa visual de fondo (fade-in / fade-out) */
 #infoModal::before {
     content: "";
     position: fixed;
@@ -1633,7 +1639,12 @@ ul#episode-list {
     z-index: 0;
 }
 
-/* Activar fade del fondo */
+/* Mostrar modal */
+#infoModal.showing {
+    display: flex;
+}
+
+/* Fade del fondo */
 #infoModal.showing::before {
     opacity: 1;
 }
@@ -1643,29 +1654,28 @@ ul#episode-list {
     opacity: 0;
 }
 
-/* Contenedor interno: zoom + fade */
+/* Contenido interno (zoom + fade) */
 #infoModal .modal-content {
     position: relative;
     z-index: 1;
-    /* sobre la capa ::before */
     transform: scale(0.9);
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Aparece con zoom in */
+/* Zoom in + fade in */
 #infoModal.showing .modal-content {
     transform: scale(1);
     opacity: 1;
 }
 
-/* Desaparece con zoom out */
+/* Zoom out + fade out */
 #infoModal.closing .modal-content {
     transform: scale(0.95);
     opacity: 0;
 }
 
-/* Mantener scrollbars normales, sin ocultarlas */
+/* Scrollbar normal (sin animar, sin ocultar) */
 #infoModal {
     scrollbar-color: auto;
     scrollbar-width: auto;
