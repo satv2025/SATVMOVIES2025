@@ -463,7 +463,7 @@ function openModal(movieKey) {
     }
 
     // 👇 NUEVO BLOQUE: Clase especial para f2fhn
-    if (movieKey === "f2fhn") {
+    if (movieKey === "f2fnh") {
         if (muteBtn) muteBtn.classList.add("mutebtn-f2fhn");
     } else {
         if (muteBtn) muteBtn.classList.remove("mutebtn-f2fhn");
