@@ -458,8 +458,9 @@
                     video.muted = false;
                     video.volume = 1;
                 }, 800);
+                setupModalObserver(); // 👈 inicia la detección solo una vez que el video está corriendo
             }).catch((err) => {
-                console.warn('Autoplay bloqueado, intentando reintentar...', err);
+                console.warn('Autoplay bloqueado, reintentando...', err);
                 setTimeout(tryPlayVideo, 2000);
             });
         }
@@ -475,20 +476,17 @@
         });
 
         // ▶️ Botón PLAY
-        const playBtn = document.querySelector('.bmt-buttons .play');
-        playBtn.addEventListener('click', (e) => {
+        document.querySelector('.bmt-buttons .play').addEventListener('click', (e) => {
             e.stopPropagation();
             window.open('https://movies.solargentinotv.com.ar/watch/title/0423359234', '_blank');
         });
 
         // 🧠 Botón INFO
-        const infoBtn = document.querySelector('.bmt-buttons .info');
-        infoBtn.addEventListener('click', (e) => e.stopPropagation());
+        document.querySelector('.bmt-buttons .info').addEventListener('click', (e) => e.stopPropagation());
 
         // 🔇 Botón MUTE
         const muteBtn = document.getElementById('bmtMuteBtn');
         const muteIcon = document.getElementById('bmtMuteIcon');
-
         muteBtn.addEventListener('click', () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -496,30 +494,45 @@
                 : 'assets/media/images/modal-vol-on.svg';
         });
 
-        // 🎬 Pausar video SOLO cuando un modal tiene display:block
-        const modalSelectors = ['.modal', '.modal-content', '#infoModal'];
-        let modalVisible = false;
+        // 🎬 Detección en vivo de modales con MutationObserver
+        function setupModalObserver() {
+            const modalSelectors = ['.modal', '.modal-content', '#infoModal'];
+            let modalOpen = false;
 
-        function isAnyModalVisible() {
-            return modalSelectors.some(sel => {
-                const el = document.querySelector(sel);
-                if (!el) return false;
-                const display = window.getComputedStyle(el).display;
-                return display === 'block';
+            const checkModals = () => {
+                const visible = modalSelectors.some(sel => {
+                    const el = document.querySelector(sel);
+                    return el && window.getComputedStyle(el).display === 'block';
+                });
+
+                // Si se abrió un modal
+                if (visible && !modalOpen) {
+                    modalOpen = true;
+                    if (!video.paused) {
+                        video.pause();
+                        console.log('🎞 Video pausado: modal abierto');
+                    }
+                }
+                // Si se cerró el modal
+                else if (!visible && modalOpen) {
+                    modalOpen = false;
+                    if (video.paused) {
+                        tryPlayVideo();
+                        console.log('▶️ Video reanudado: modal cerrado');
+                    }
+                }
+            };
+
+            // Inicialización (sin afectar el estado inicial)
+            modalOpen = false;
+
+            const observer = new MutationObserver(checkModals);
+            observer.observe(document.body, {
+                attributes: true,
+                subtree: true,
+                attributeFilter: ['style', 'class']
             });
         }
-
-        // ⏸️ Revisa cada medio segundo si aparece el modal
-        setInterval(() => {
-            const visible = isAnyModalVisible();
-            if (visible && !modalVisible) {
-                if (!video.paused) {
-                    video.pause();
-                    console.log('🎞 Video pausado: modal visible');
-                }
-            }
-            modalVisible = visible;
-        }, 500);
     </script>
 
     <a class="logo" href="index" style="color: #007BFF; text-decoration: none;"

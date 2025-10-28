@@ -1684,3 +1684,16 @@ ul#episode-list {
     scrollbar-color: auto;
     scrollbar-width: auto;
 }
+
+.mutebtn-f2fnh {
+    position: absolute;
+    bottom: -27.34em !important;
+    right: 2em !important;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    z-index: 20;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
