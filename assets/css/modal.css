@@ -155,7 +155,7 @@ video.nivelx-bg {
 }
 
 video.reite-video.reite-bg {
-    top: -7.5em !important;
+    top: -7.6em !important;
 }
 
 #modal-cast #scrollAbout {
@@ -204,6 +204,7 @@ video.reite-video.reite-bg {
     z-index: 1000;
     margin-top: 34em;
     margin-left: 32.659721em;
+    z-index: 600000;
 }
 
 .dropdown-button {
@@ -829,6 +830,7 @@ ul#episode-list {
     padding-right: 3em;
     position: absolute;
     top: 45em;
+    z-index: 200000;
 }
 
 .modal strong.eplist {
