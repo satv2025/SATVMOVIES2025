@@ -5,17 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sol Argentino TV MOVIES</title>
     <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/search.css">
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/estilos.css">
-    <link rel="stylesheet" href="https://movies.solargentinotv.com.ar/assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
     <link rel="icon" href="https://movies.solargentinotv.com.ar/assets/media/images/SolArgentinoTVMOVIES.ico"
         type="image/x-icon">
+    <style>
+        header {
+            z-index: 3000;
+        }
+    </style>
+    <style>
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        .episode-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .episodios-count {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-left: 0.3em;
+            font-weight: 400;
+        }
+
+        .season-divider {
+            border-top: 1px solid #444;
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .view-all-btn {
+            width: 100%;
+            text-align: left;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .season-ageRating {
+            font-size: 0.91em;
+            margin-top: 0.3em;
+            color: #fff;
+        }
+    </style>
+    <style>
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        .episode-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .episodios-count {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-left: 0.3em;
+            font-weight: 400;
+        }
+
+        .season-divider {
+            border-top: 1px solid #444;
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .view-all-btn {
+            width: 100%;
+            text-align: left;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .season-ageRating {
+            font-size: 0.91em;
+            margin-top: 0.3em;
+            color: #fff;
+        }
+    </style>
+    <style>
+        .modal-mute-btn {
+            position: absolute;
+            bottom: 5%;
+            right: 2em;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            z-index: 20;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .modal-mute-btn:hover {
+            opacity: 1;
+        }
+
+        .modal-mute-btn img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        .episode-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .episodios-count {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-left: 0.3em;
+            font-weight: 400;
+        }
+
+        .season-divider {
+            border-top: 1px solid #444;
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .view-all-btn {
+            width: 100%;
+            text-align: left;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .season-ageRating {
+            font-size: 0.91em;
+            margin-top: 0.3em;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <div class="content" id="scroll-container-header">
+        <div class="content" id="scroll-container-header" style="background: #ffffff00 !important;">
             <nav>
                 <ul>
                     <li><a href="index" class="active">Inicio</a></li>
@@ -36,6 +206,193 @@
             </nav>
         </div>
     </header>
+    <div class="big-movie-trailer" id="big-movie-trailer">
+        <style>
+            @import url('https://fonts.cdnfonts.com/css/the-bold-font');
+
+            .big-movie-trailer {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 23rem;
+                box-sizing: border-box;
+                color: white;
+                font-family: 'The Bold Font', sans-serif;
+                background-color: black;
+                z-index: 1000;
+                margin-top: -4.2em;
+            }
+
+            .bmt-video {
+                position: absolute;
+                top: 1em;
+                left: 0;
+                width: 100%;
+                height: 65em;
+                object-fit: cover;
+                z-index: 0;
+                opacity: 0.9;
+            }
+
+            /* 🎬 capa de degradado oscuro */
+            .film-shadow-fade {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 46em;
+                background: linear-gradient(0deg, #141414 0%, transparent 50%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .film-title {
+                z-index: 2;
+                margin: 0;
+                text-transform: uppercase;
+                line-height: 0.9;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+                position: relative;
+                margin-top: -3em;
+                margin-left: -3em;
+            }
+
+            .tline1 {
+                font-size: 6rem;
+                color: #F3205F;
+            }
+
+            .tline2 {
+                font-size: 4rem;
+                margin-bottom: 1rem;
+                color: #F4E631;
+                position: relative;
+                top: 3em;
+                left: -1.5em;
+            }
+
+            .bmt-buttons {
+                position: absolute;
+                top: 40.36em;
+                left: 5.06em;
+                z-index: 1000;
+                display: flex;
+                gap: 1em;
+            }
+
+            .bmt-buttons button {
+                position: relative;
+                font-family: 'Netflix Sans' !important;
+                font-size: 23px;
+                font-weight: 500;
+                border-radius: 4px;
+                padding: 0.625em 2.25em;
+                width: 11.13em;
+                height: 2.465em;
+                cursor: pointer;
+                text-decoration: none;
+                border: none;
+                transition: background-color 0.2s ease, color 0.2s ease;
+                padding-left: 2.9em;
+            }
+
+            .bmt-buttons button:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .bmt-buttons .play {
+                background-color: white;
+                color: black;
+            }
+
+            .bmt-buttons .play:hover {
+                background-color: #ddd;
+            }
+
+            /* Botón PLAY (con ícono integrado) */
+            .bmt-buttons .play {
+                background-color: #fff;
+                color: #000;
+            }
+
+            .bmt-buttons .play::after {
+                content: '';
+                position: absolute;
+                top: 0.5em;
+                left: 1.3em;
+                width: 32px;
+                height: 32px;
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z' fill='currentColor'/></svg>");
+                background-size: contain;
+                background-repeat: no-repeat;
+                z-index: 1000;
+            }
+
+            /* Botón INFO */
+            .bmt-buttons .info {
+                background-color: rgba(109, 109, 110, 0.4);
+                color: #fff;
+                width: 12.7em;
+                padding-left: 2em;
+                padding-right: 1.7em;
+            }
+
+            .bmt-synopsis {
+                color: #fff;
+                font-family: 'Netflix Sans' !important;
+                z-index: 2;
+                position: absolute;
+                top: 24.5em;
+                left: 3.5em;
+                width: 27em;
+                font-size: 1.2vw;
+                text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+                font-weight: 300;
+            }
+        </style>
+
+        <p class="film-title tline1">Fears To Fathom</p>
+        <p class="film-title tline2">Norwood Hitchhike</p>
+        <p class="bmt-synopsis">
+            Una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.
+        </p>
+
+        <div class="bmt-buttons">
+            <button class="play">Reproducir</button>
+            <button class="info" data-movie="f2fnh">ℹ Más información</button>
+        </div>
+
+        <!-- capa de fade -->
+        <div class="film-shadow-fade"></div>
+
+        <!-- video HLS -->
+        <video class="bmt-video" muted="" autoplay="" loop="" playsinline=""
+            src="blob:null/3a64b986-d76c-4c9b-a35e-b4a170ac0f2d"></video>
+    </div>
+
+    <!-- HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.querySelector('.bmt-video');
+        const videoSrc = 'https://cdn.jsdelivr.net/gh/satv2025/media@main/videos/f2f/norwood-hitchhike/m3u8/trailer/trailer.m3u8';
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+
+        document.querySelector('.play').addEventListener('click', () => {
+            video.muted = false;
+            video.play();
+        });
+    </script>
 
     <a class="logo" href="index" style="color: #007BFF; text-decoration: none;"
         onmouseover="this.style.color='#007BFF';" onmouseout="this.style.color='#007BFF';">SATVMOVIES</a>
@@ -46,7 +403,7 @@
             <section class="catalogo">
                 <!-- Matías Ponce - La Película -->
                 <div class="pelicula">
-                    <button class="moreinfobutton" data-movie="matiponcepeli">
+                    <button class="moreinfobutton" data-movie="f2fnh">
                         <img src="https://movies.solargentinotv.com.ar/assets/media/images/mpthumb.jpg"
                             alt="Pelicula 1">
                     </button>
@@ -88,7 +445,7 @@
                 <div class="pelicula">
                     <button class="moreinfobutton" data-movie="homealone">
                         <img
-                            src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/a3242080-601c-488b-afd2-1f9bed5f5d99/compose?format=webp&label=standard_regular_prompt_178&width=800">
+                            src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/a3242080-601c-488b-afd2-1f9bed5f5d99/compose?format=webp&amp;label=standard_regular_prompt_178&amp;width=800">
                     </button>
                 </div>
 
@@ -96,7 +453,7 @@
                 <div class="pelicula">
                     <button class="moreinfobutton" data-movie="homealone2">
                         <img
-                            src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/5046911a-aaf2-4d52-8127-438643a35b24/compose?format=webp&label=standard_regular_prompt_178&width=800">
+                            src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/5046911a-aaf2-4d52-8127-438643a35b24/compose?format=webp&amp;label=standard_regular_prompt_178&amp;width=800">
                     </button>
                 </div>
 
@@ -104,14 +461,16 @@
                 <div class="pelicula">
                     <button class="moreinfobutton" data-movie="nivelx">
                         <img class="gladiadorimg"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1zZywXvdxB1f0L7CVvNzN4Z3Yfiy4IZU6TQ&s"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1zZywXvdxB1f0L7CVvNzN4Z3Yfiy4IZU6TQ&amp;s"
                             alt="Gladiador">
                     </button>
                 </div>
 
                 <!-- Contenedor del Modal -->
                 <div id="infoModal" class="modal" style="display: none;" role="dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="position: relative; padding-top: 112px;">
+
+                        <!-- Botón de cierre -->
                         <div class="close-button">
                             <span class="close-icon" data-uia="previewModal-closebtn" role="button" aria-label="close"
                                 tabindex="0" title="close">
@@ -124,12 +483,18 @@
                             </span>
                         </div>
 
-                        <!-- Imagen de fondo -->
+                        <!-- Imagen o video de fondo -->
                         <div class="modal-header">
                             <div id="modal-background" class="img"></div>
+                            <button class="modal-mute-btn" id="muteBtn" style="display:none;">
+                                <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
+                            </button>
+
                             <div class="overlay">
-                                <h1 id="modal-title"><span class="about">Acerca de</span> <strong
-                                        class="titulo"></strong></h1>
+                                <h1 id="modal-title">
+                                    <span class="about">Acerca de</span>
+                                    <strong class="titulo"></strong>
+                                </h1>
                                 <p id="modal-tagline"></p>
                             </div>
                         </div>
@@ -139,8 +504,9 @@
                             <a id="watch-button" class="watch-button"></a>
                         </div>
 
-                        <!-- Información adicional -->
+                        <!-- Información general -->
                         <div class="modal-info">
+
                             <p id="modal-year" class="modal-year"></p>
                             <p id="modal-duration" class="modal-duration"></p>
                             <p id="modal-cast" class="modal-cast"></p>
@@ -149,8 +515,8 @@
                             <p id="modal-ageRating" class="modal-ageRating"></p>
                             <p id="modal-description" class="modal-description"></p>
                             <p id="modal-curiosity" class="modal-curiosity"></p>
-                            <p id="modal-episodelist" class="modal-episodelist"></p>
-                            <p id="modal-seasons" class="modal-seasons"></p>
+
+                            <!-- Sección de “Acerca de” (rellenada dinámicamente) -->
                             <div id="about">
                                 <p id="modal-createdBy" class="modal-createdBy"></p>
                                 <p id="modal-fullcast" class="fullcast"></p>
@@ -159,9 +525,11 @@
                                 <p id="modal-fulltitletype" class="fulltitletype"></p>
                                 <p id="modal-fullage" class="fullage"></p>
                             </div>
-                            <!-- Episodios y temporadas -->
-                            <div class="season-dropdown" id="modal-seasons">
-                            </div>
+
+                            <!-- Lista de episodios -->
+                            <p id="modal-episodelist" class="modal-episodelist"></p>
+                            <div class="season-dropdown" id="modal-seasons"></div>
+
                             <div class="episodios">
                                 <ul id="episode-list"></ul>
                             </div>
@@ -196,10 +564,6 @@
             </section>
         </main>
     </div>
-
-    <footer>
-        <p>Sol Argentino TV MOVIES 2025 © - Todos Los Derechos Reservados</p>
-    </footer>
     <script src="https://movies.solargentinotv.com.ar/assets/js/modal.js"></script>
     <script>
         const curiosity = document.getElementById("modal-curiosity");

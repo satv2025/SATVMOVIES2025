@@ -51,22 +51,31 @@ h3.season-header {
     font-size: 14px;
 }
 
-.nivelx-header::before {}
-
 div#modal-background {
     margin-top: -1.5em;
 }
 
 .modal {
     display: none;
-    position: absolute;
-    z-index: 1000;
-    left: 0;
+    position: fixed;
+    /* ✅ antes era absolute */
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    /* ✅ para que scrollee dentro del modal */
     background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    /* ✅ centramos verticalmente */
+    justify-content: center;
+    align-items: flex-start;
+    /* o center si querés más centrado */
+}
+
+.modal-open body {
+    overflow-y: hidden !important;
 }
 
 #infoModal {
@@ -103,7 +112,7 @@ div#modal-background {
     /* ajuste fijo */
     left: -20px;
     /* ajuste fijo */
-    width: 877px;
+    width: 55.36em;
     /* ancho fijo ligeramente mayor que el video */
     height: 231px;
     /* mismo alto que el video */
@@ -129,7 +138,7 @@ div#modal-background {
     /* posición desde el borde superior */
     left: -20px;
     /* posición desde el borde izquierdo */
-    width: 877px !important;
+    width: 55.36em !important;
     /* tamaño fijo */
     height: 500px !important;
     /* tamaño fijo */
@@ -866,8 +875,7 @@ span.about {
     cursor: pointer;
 }
 
-.watch-button,
-.ver-modal {
+.watch-button {
     background-color: #fff;
     color: #000;
     padding: 0.625em 2.25em;
@@ -882,12 +890,6 @@ span.about {
     padding-left: 3.3em;
     width: 10.13em;
     height: 2.465em;
-}
-
-.ver-modal {
-    margin-top: -17.348em;
-    background: #ffffff00;
-    margin-left: -2.04em;
 }
 
 .watch-button::after {
@@ -983,6 +985,8 @@ h1#modal-title {
     top: 97em;
 }
 
+.modal-createdBy.nivelX-modal-createdBy .fullcast.nivelX-fullcast .fullscript.nivelX-fullscript .fullgenres.nivelX-fullgenres .fulltitletype.nivelX-fulltitletype .fullage.nivelX-fullage {}
+
 .modal-createdBy,
 .fullcast,
 .fullscript,
@@ -994,11 +998,83 @@ h1#modal-title {
     padding-right: 1em;
     color: #fff;
     text-align: left;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: -0.5em;
+    margin-bottom: -2.5em;
     line-height: 1.4em;
-    top: 235.8em;
+    top: 273.4em;
     position: relative;
+}
+
+.fullage {
+    margin-top: 2.8em;
+}
+
+.fullage.f2fnh-fullage .facontent2 {
+    width: 24.1em;
+}
+
+.fullscript {
+    margin-bottom: -3em;
+    margin-top: 3.6em;
+}
+
+.nivelX-modal-createdBy,
+.nivelX-fullcast,
+.nivelX-fullscript,
+.nivelX-fullgenres,
+.nivelX-fulltitletype,
+.nivelX-fullage {
+    font-size: 14px;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: #fff;
+    text-align: left;
+    margin-top: -0.5em;
+    margin-bottom: -2.5em;
+    line-height: 1.4em;
+    top: 273.2em;
+    position: relative;
+}
+
+.modal-createdBy.nivelX-modal-createdBy {
+    margin-bottom: 3.4em;
+}
+
+.fulltitletype {
+    margin-top: 2.8em;
+}
+
+.fullgenres {
+    margin-top: 3.4em;
+}
+
+.fullgenres.nivelX-fullgenres {
+    margin-top: 3.3em;
+}
+
+.fullcast {
+    margin-bottom: -3.3em;
+    margin-top: 2.7em;
+}
+
+.fullage.nivelX-fullage {
+    margin-top: 2.9em;
+}
+
+.fulltitletype.nivelX-fulltitletype {
+    margin-top: 2.7em;
+}
+
+.fullscript.nivelX-fullscript {
+    margin-bottom: 0.8em;
+}
+
+.fullscript.nivelX-fullscript {
+    margin-top: 3.6em;
+}
+
+.fullcast.nivelX-fullcast {
+    margin-top: -3.1em;
 }
 
 .fcbprefix,
@@ -1046,9 +1122,33 @@ h1#modal-title {
     color: #fff;
     text-align: left;
     margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: 1.5em;
     line-height: 1.4em;
-    top: 236.8em !important;
+    top: 272.8em !important;
+}
+
+.fullage.app-fullage {
+    margin-top: -1.5em;
+}
+
+.fulltitletype.app-fulltitletype {
+    margin-top: -1.4em;
+}
+
+.fullgenres.app-fullgenres {
+    margin-top: -1.6em;
+}
+
+.modal-createdBy.app-createdBy {}
+
+.modal-createdBy.app-createdBy {}
+
+.fullcast.app-fullcast {
+    margin-top: 1em;
+}
+
+.fullscript.app-fullscript {
+    margin-top: -2em;
 }
 
 .app-fcbprefix,
@@ -1102,8 +1202,29 @@ h1#modal-title {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     line-height: 1.4em;
-    top: 232.8em;
+    top: 268.8em;
     position: relative;
+}
+
+.fullage.mpa1-fullage {
+    margin-top: -0.5em;
+}
+
+.fulltitletype.mpa1-fulltitletype {
+    margin-top: -0.56em;
+}
+
+.fullgenres.mpa1-fullgenres {
+    margin-top: -1.5em;
+}
+
+.fullcast.mpa1-fullcast {
+    margin-top: -1.4em;
+}
+
+.fullscript.mpa1-fullscript {
+    margin-top: -1em;
+    margin-bottom: 1.4em;
 }
 
 .mpa1-fcbprefix,
@@ -1160,10 +1281,31 @@ h1#modal-title {
     color: #fff;
     text-align: left;
     margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: 2.8em;
     line-height: 1.4em;
-    top: 231.5em;
+    top: 268.5em;
     position: relative;
+}
+
+.fullage.mpa2-fullage {
+    margin-top: -0.5em;
+}
+
+.fulltitletype.mpa2-fulltitletype {
+    margin-top: -0.5em;
+}
+
+.fullgenres.mpa2-fullgenres {
+    margin-top: 3.5em;
+}
+
+.fullscript.mpa2-fullscript {
+    margin-top: 3.9em;
+    margin-bottom: 1em;
+}
+
+.fullcast.mpa2-fullcast {
+    margin-top: -1.5em;
 }
 
 .mpa2-fcbprefix,
@@ -1219,11 +1361,16 @@ h1#modal-title {
     padding-right: 3em;
     color: #fff;
     text-align: left;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: -1.5em;
+    margin-bottom: 1.5em;
     line-height: 1.4em;
-    top: 237.5em;
+    top: 274.7em;
     position: relative;
+}
+
+.fullscript.reite-fullscript {
+    margin-top: -2.3em;
+    margin-bottom: 1.5em;
 }
 
 .reite-fcbprefix,
@@ -1411,10 +1558,51 @@ button.reite-mute {
 
 @media (min-width: 1025px) {
     .modal-content {
-        width: 46%;
+        width: 46.5%;
     }
 
     #modal-background video {
         width: 54.7em;
     }
+}
+
+/* === FIX: visibilidad y flujo interno del modal === */
+
+/* Permitir que todo el contenido interno del modal fluya correctamente */
+.modal-content {
+    overflow-y: auto !important;
+    /* ✅ permite scrollear internamente */
+    max-height: 90vh;
+    /* ✅ evita que se esconda fuera de pantalla */
+}
+
+/* Hacer que la lista de episodios siga el flujo normal */
+ul#episode-list {
+    position: relative !important;
+    /* ✅ ya no absolute */
+    top: auto !important;
+    /* ✅ evita el salto fuera de pantalla */
+    margin-top: 2em !important;
+    /* pequeño margen visual */
+    padding-left: 2em !important;
+}
+
+/* Hacer que el encabezado de “Episodios” se vea en su posición */
+.modal strong.eplist {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-top: 2em !important;
+    display: block;
+}
+
+/* Ajustar spacing general del bloque #about */
+#about {
+    margin-top: 2em !important;
+    /* ✅ antes 118vh: lo empujaba fuera */
+    height: auto !important;
+}
+
+.modal-content {
+    overflow-x: hidden;
 }

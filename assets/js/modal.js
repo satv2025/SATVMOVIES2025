@@ -273,6 +273,42 @@ const peliculas = {
         fullgenres: "<div class='fullgenres nivelX-fullgenres'><span class='fgprefix nivelX-fgprefix'>Géneros:</span><span class='fgcontent nivelX-fgcontent'> Parodia, Comedia, Infantil, Irreverente</span></div>",
         fulltitletype: "<div class='fulltitletype nivelX-fulltitletype'><span class='fttprefix nivelX-fttprefix'>Este título es:</span> <span class='fttcontent nivelX-fttcontent'>Absurdo, Divertido, Caótico</span></div>",
         fullage: "<div class='fullage nivelX-fullage'><span class='faprefix nivelX-faprefix'>Clasificación por edad: </span> <span class='facontent nivelX-facontent'><span class='age nivelX-age'>16+</span>  humor irreverente, leguaje vulgar, contenido sexual no gráfico</span> <span class='facontent2 nivelX-facontent2'>Apta para mayores de 16 años</span></div>"
+    },
+    f2fnh: {
+        type: "pelicula",
+        year: "2025",
+        duration: "1 h 38 min",
+        description: "Una adolescente es acechada en la noche mientras conduce de regreso a casa tras una convención de juegos.",
+        cast: "<strong>Elenco:</strong> Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, <button id='scrollAbout'>más</button>",
+        title: "<span class='about f2fnh-title'>Acerca de</span> <strong class='titulo f2fnh-title'> Norwood Hitchhike </strong>",
+        genres: "<strong>Géneros:</strong> Suspenso, Misterio, Thriller",
+        titleType: "<strong>Este título es:</strong> Intenso, Misterioso, Impactante",
+        ageRating: "<span class='age'>13+</span> violencia moderada, temas inquietantes",
+        background: `
+<video 
+    class="reite-video" 
+    autoplay 
+    loop 
+    muted 
+    playsinline 
+    style="width:100%; height:100%; object-fit:cover;" 
+    oncontextmenu="return false;" 
+    onmousedown="return false;" 
+    onselectstart="return false;" 
+    ondragstart="return false;"
+>
+    <source src="https://gitlab.com/solargentinotv/satvmoviesvideos/-/raw/bfcf3283e9a587f23b2ab1d25a87878ed1a5632f/NORWOOD_HITCHHIKE__Official_TRAILER__Fears_To_Fathom_Film_Adaptation_-_KeiBoogie_Productions__1440p__vp9_.webm" type="video/webm">
+    Tu navegador no soporta el video.
+</video>
+`,
+        link: "<a id='watch-button' class='ver-modal' href='https://movies.solargentinotv.com.ar/watch/title/f2fnh' target='_self'>Reproducir</a>",
+        createdBy: "<div class='modal-createdBy f2fnh-createdBy'><span class='fcbprefix'>Creado por:</span> <span class='fcbcontent'>Rayll</span></div>",
+        fullcast: "<div class='fullcast f2fnh-fullcast'><span class='fcprefix'>Elenco:</span> <span class='fccontent'>Aryanna Ontiveros, Ben Eisenbise, Augie Fojtik, Tochtli Sanchez, Patrick Shen, Michael Anthony Rawlins</span></div>",
+        fullscript: "<div class='fullscript f2fnh-fullscript'><span class='fsprefix'>Guión:</span> <span class='fscontent'>Kei</span></div>",
+        fulldirected: "<div class='fulldirected f2fnh-fulldirected'><span class='fdprefix'>Director:</span> <span class='fdcontent'>Kei</span></div>",
+        fullgenres: "<div class='fullgenres f2fnh-fullgenres'><span class='fgprefix'>Géneros:</span><span class='fgcontent'> Suspenso, Misterio, Thriller</span></div>",
+        fulltitletype: "<div class='fulltitletype f2fnh-fulltitletype'><span class='fttprefix'>Este título es:</span> <span class='fttcontent'> Intenso, Misterioso, Impactante</span></div>",
+        fullage: "<div class='fullage f2fnh-fullage'><span class='faprefix'>Clasificación por edad: </span> <span class='facontent'><span class='age'>13+</span> violencia moderada, temas inquietantes</span> <span class='facontent2'>No recomendada para menores de 13 años</span></div>"
     }
 };
 
@@ -357,6 +393,11 @@ function openModal(movieKey) {
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
+
+    // 👇 NUEVO: Bloquear scroll del body sin mover el contenido
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.setProperty("overflow-y", "hidden", "important");
+    document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
 
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
@@ -456,227 +497,6 @@ function openModal(movieKey) {
     ajustarModalTop();
 }
 
-// === Generar dropdown dinámico de temporadas ===
-function generarDropdownTemporadas(movieKey, ageRating) {
-    const seasonContainer = document.getElementById("modal-seasons");
-    if (!seasonContainer) return;
-    seasonContainer.innerHTML = "";
-
-    const temporadas = episodiosPorSerie[movieKey];
-    if (!temporadas) return;
-
-    const totalTemporadas = Object.keys(temporadas).length;
-    if (totalTemporadas < 2) {
-        changeSeason(Object.keys(temporadas)[0], movieKey, ageRating);
-        return;
-    }
-
-    const dropdownWrapper = document.createElement("div");
-    dropdownWrapper.classList.add("season-dropdown");
-
-    const button = document.createElement("button");
-    button.classList.add("dropdown-button");
-    button.innerText = `Temporada 1`;
-
-    const dropdownContent = document.createElement("div");
-    dropdownContent.classList.add("dropdown-content");
-    dropdownContent.id = "seasonMenu";
-
-    Object.keys(temporadas).forEach((seasonKey) => {
-        const option = document.createElement("div");
-        option.classList.add("season-option");
-
-        const btn = document.createElement("button");
-        btn.classList.add("texto");
-
-        const seasonLabel = document.createElement("span");
-        seasonLabel.innerText = `Temporada ${seasonKey}`;
-
-        const epCount = document.createElement("span");
-        epCount.classList.add("episodios-count");
-        epCount.innerText = ` (${temporadas[seasonKey].length} episodios)`;
-
-        btn.appendChild(seasonLabel);
-        btn.appendChild(epCount);
-
-        btn.addEventListener("click", () => {
-            button.innerText = `Temporada ${seasonKey}`;
-            dropdownContent.classList.remove("show");
-            dropdownWrapper.classList.remove("show");
-            changeSeason(seasonKey, movieKey, ageRating);
-        });
-
-        option.appendChild(btn);
-        dropdownContent.appendChild(option);
-    });
-
-    const divider = document.createElement("div");
-    divider.classList.add("season-divider");
-
-    const viewAll = document.createElement("button");
-    viewAll.classList.add("texto", "view-all-btn");
-    viewAll.innerText = "Ver todos los episodios";
-
-    viewAll.addEventListener("click", () => {
-        button.innerText = "Ver todos los episodios";
-        dropdownContent.classList.remove("show");
-        dropdownWrapper.classList.remove("show");
-        mostrarTodosLosEpisodios(movieKey, ageRating);
-    });
-
-    divider.appendChild(viewAll);
-    dropdownContent.appendChild(divider);
-
-    button.addEventListener("click", (e) => {
-        e.stopPropagation();
-        dropdownContent.classList.toggle("show");
-        dropdownWrapper.classList.toggle("show");
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!dropdownWrapper.contains(e.target)) {
-            dropdownContent.classList.remove("show");
-            dropdownWrapper.classList.remove("show");
-        }
-    });
-
-    dropdownWrapper.appendChild(button);
-    dropdownWrapper.appendChild(dropdownContent);
-    seasonContainer.appendChild(dropdownWrapper);
-
-    changeSeason(Object.keys(temporadas)[0], movieKey, ageRating);
-    button.style.display = "flex";
-}
-
-// === Mostrar todos los episodios con ageRating dinámico ===
-function mostrarTodosLosEpisodios(movieKey, ageRating) {
-    const episodeList = document.getElementById("episode-list");
-    if (!episodeList) return;
-    episodeList.innerHTML = "";
-
-    const temporadas = episodiosPorSerie[movieKey];
-    if (!temporadas) return;
-
-    Object.keys(temporadas).forEach((seasonKey) => {
-        const seasonContainer = document.createElement("div");
-        seasonContainer.classList.add("season-container");
-
-        const seasonHeader = document.createElement("h3");
-        seasonHeader.classList.add("season-header");
-        seasonHeader.textContent = `Temporada ${seasonKey}: `;
-
-        const ageRatingDiv = document.createElement("div");
-        ageRatingDiv.classList.add("season-ageRating");
-        ageRatingDiv.innerHTML = ageRating;
-
-        seasonContainer.appendChild(seasonHeader);
-        seasonContainer.appendChild(ageRatingDiv);
-        episodeList.appendChild(seasonContainer);
-
-        temporadas[seasonKey].forEach((ep, index) => {
-            const li = document.createElement("li");
-            li.classList.add("episode-item");
-            li.style.cursor = "pointer";
-            li.style.borderBottom = "1px solid #333";
-            li.style.borderTop = index === 0 ? "1px solid #333" : "none";
-
-            li.innerHTML = `
-                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-                <div class="episode-info">
-                    <h3>${ep.title}</h3>
-                    <p>${ep.description}</p>
-                    <span>${ep.duration}</span>
-                    <div class="episode-number">${ep.number || ""}</div>
-                </div>`;
-
-            li.addEventListener("click", () => {
-                if (ep.link) window.location.href = ep.link;
-            });
-
-            li.addEventListener("mouseenter", () => {
-                const prev = li.previousElementSibling;
-                if (prev && prev.tagName.toLowerCase() === "li") {
-                    prev.style.borderBottom = "none";
-                }
-                li.style.borderTop = "1px solid #333";
-            });
-
-            li.addEventListener("mouseleave", () => {
-                const prev = li.previousElementSibling;
-                if (prev && prev.tagName.toLowerCase() === "li") {
-                    prev.style.borderBottom = "1px solid #333";
-                }
-                li.style.borderTop = index === 0 ? "1px solid #333" : "none";
-            });
-
-            episodeList.appendChild(li);
-        });
-    });
-}
-
-// === Cambiar temporada con efecto border-top dinámico y ageRating ===
-function changeSeason(season, movieKey, ageRating) {
-    const episodeList = document.getElementById("episode-list");
-    if (!episodeList) return;
-    episodeList.innerHTML = "";
-
-    if (episodiosPorSerie[movieKey] && episodiosPorSerie[movieKey][season]) {
-        const seasonContainer = document.createElement("div");
-        seasonContainer.classList.add("season-container");
-
-        const seasonHeader = document.createElement("h3");
-        seasonHeader.classList.add("season-header");
-        seasonHeader.textContent = `Temporada ${season}: `;
-
-        const ageRatingDiv = document.createElement("div");
-        ageRatingDiv.classList.add("season-ageRating");
-        ageRatingDiv.innerHTML = ageRating;
-
-        seasonContainer.appendChild(seasonHeader);
-        seasonContainer.appendChild(ageRatingDiv);
-        episodeList.appendChild(seasonContainer);
-
-        episodiosPorSerie[movieKey][season].forEach((ep, index) => {
-            const li = document.createElement("li");
-            li.classList.add("episode-item");
-            li.style.cursor = "pointer";
-            li.style.borderBottom = "1px solid #333";
-            li.style.borderTop = index === 0 ? "1px solid #333" : "none";
-
-            li.innerHTML = `
-                <img src="${ep.image}" alt="${ep.title}" class="episode-img">
-                <div class="episode-info">
-                    <h3>${ep.title}</h3>
-                    <p>${ep.description}</p>
-                    <span>${ep.duration}</span>
-                    <div class="episode-number">${ep.number || ""}</div>
-                </div>`;
-
-            li.addEventListener("click", () => {
-                if (ep.link) window.location.href = ep.link;
-            });
-
-            li.addEventListener("mouseenter", () => {
-                const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "none";
-                li.style.borderTop = "1px solid #333";
-            });
-
-            li.addEventListener("mouseleave", () => {
-                const prev = li.previousElementSibling;
-                if (prev) prev.style.borderBottom = "1px solid #333";
-                li.style.borderTop = index === 0 ? "1px solid #333" : "none";
-            });
-
-            episodeList.appendChild(li);
-        });
-    } else {
-        const li = document.createElement("li");
-        li.innerText = "No hay episodios disponibles para esta temporada.";
-        episodeList.appendChild(li);
-    }
-}
-
 // === Cierre de modal y video ===
 function handleVideo(modal, action) {
     const video = modal.querySelector("#modal-background video");
@@ -695,6 +515,11 @@ function closeModal() {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
     modal.style.display = "none";
+
+    // 👇 NUEVO: Restaurar scroll y eliminar compensación
+    document.body.style.setProperty("overflow-y", "auto", "important");
+    document.body.style.removeProperty("padding-right");
+
     document.body.classList.remove("modal-open");
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
