@@ -389,8 +389,11 @@ function openModal(movieKey) {
         </button>
     `;
 
-    modal.style.display = "flex"; // usa flex por animación
-    setTimeout(() => modal.classList.add("active"), 10); // activa animación zoom-fade
+    // Mostrar modal con animación fade/zoom IN
+    modal.classList.remove("closing");
+    modal.style.display = "flex";
+    void modal.offsetWidth; // forzar reflow
+    modal.classList.add("showing");
 
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
@@ -524,14 +527,17 @@ function closeModal() {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
 
-    // ⚡ Animación de salida (zoom-fade-out)
-    modal.classList.add("fade-out");
+    // ⚡ Animación fade/zoom OUT
+    modal.classList.remove("showing");
+    modal.classList.add("closing");
+
+    // Ocultar completamente tras animación
     setTimeout(() => {
-        modal.classList.remove("active", "fade-out");
         modal.style.display = "none";
+        modal.classList.remove("closing");
     }, 400);
 
-    // Restaurar scroll del body
+    // Restaurar scroll
     document.body.style.setProperty("overflow-y", "auto", "important");
     document.body.style.removeProperty("padding-right");
     document.body.classList.remove("modal-open");
