@@ -364,7 +364,7 @@ async function cargarEpisodiosJSON() {
 cargarEpisodiosJSON();
 
 // === Detectar clic en botones "Más Información" ===
-document.querySelectorAll(".moreinfobutton").forEach(button => {
+document.querySelectorAll(".info, .moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
         const movieKey = this.getAttribute("data-movie");
         openModal(movieKey);
@@ -389,7 +389,9 @@ function openModal(movieKey) {
         </button>
     `;
 
-    modal.style.display = "block";
+    modal.style.display = "flex"; // usa flex por animación
+    setTimeout(() => modal.classList.add("active"), 10); // activa animación zoom-fade
+
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
@@ -409,7 +411,7 @@ function openModal(movieKey) {
     const seasonDropdown = document.querySelector('.season-dropdown');
     const modalTitle = modal.querySelector("#modal-title");
 
-    // Configurar video y mute
+    // === Configurar video y mute ===
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
@@ -462,14 +464,14 @@ function openModal(movieKey) {
         if (modalTitle) modalTitle.classList.remove("mpa2-mtitle");
     }
 
-    // 👇 NUEVO BLOQUE: Clase especial para f2fnh
+    // 👇 Clase especial para f2fnh
     if (movieKey === "f2fnh") {
         if (muteBtn) muteBtn.classList.add("mutebtn-f2fnh");
     } else {
         if (muteBtn) muteBtn.classList.remove("mutebtn-f2fnh");
     }
 
-    // Datos del modal
+    // === Datos del modal ===
     document.getElementById("modal-title").innerHTML = movie.title;
     document.getElementById("modal-year").innerHTML = movie.year;
     document.getElementById("modal-description").innerHTML = movie.description;
@@ -521,36 +523,41 @@ function handleVideo(modal, action) {
 function closeModal() {
     const modal = document.getElementById("infoModal");
     handleVideo(modal, "pause");
-    modal.style.display = "none";
 
-    // 👇 Restaurar scroll y eliminar compensación
+    // ⚡ Animación de salida (zoom-fade-out)
+    modal.classList.add("fade-out");
+    setTimeout(() => {
+        modal.classList.remove("active", "fade-out");
+        modal.style.display = "none";
+    }, 400);
+
+    // Restaurar scroll del body
     document.body.style.setProperty("overflow-y", "auto", "important");
     document.body.style.removeProperty("padding-right");
-
     document.body.classList.remove("modal-open");
+
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }
 
+// === Listeners ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 
 document.addEventListener("click", (event) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
-    if (modal.style.display === "block" &&
+    if (modal.style.display === "flex" &&
         !modalContent.contains(event.target) &&
-        !event.target.closest(".moreinfobutton")) {
+        !event.target.closest(".info, .moreinfobutton")) {
         closeModal();
     }
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeModal();
-    }
+    if (event.key === "Escape") closeModal();
 });
 
-// Ajuste dinámico de top
+// === Ajuste dinámico de top ===
 function ajustarModalTop() {
     const cast = document.querySelector('.modal-cast');
     const genres = document.querySelector('.modal-genres');

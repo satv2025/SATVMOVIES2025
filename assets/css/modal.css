@@ -1441,10 +1441,6 @@ button#muteBtn {}
     position: relative;
 }
 
-nivelx-mute img {
-    margin-top: !important;
-}
-
 button.reite-mute {
     position: absolute !important;
     bottom: -27.4em !important;
@@ -1610,4 +1606,58 @@ ul#episode-list {
 .mutebtn-f2fnh {
     position: absolute !important;
     bottom: -28.76em !important;
+}
+
+/* ============================================
+   🎬 ANIMACIÓN MODAL: ZOOM + FADE IN / OUT
+   ============================================ */
+
+/* Estado inicial (oculto) */
+#infoModal {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+/* Cuando el modal se activa (aparece) */
+#infoModal.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+/* Fondo (oscurecimiento suave) */
+#infoModal::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+#infoModal.active::before {
+    opacity: 1;
+}
+
+/* Contenido interno del modal */
+#infoModal .modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animación de entrada (zoom + fade in) */
+#infoModal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Animación de salida (zoom + fade out) */
+#infoModal.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
 }
