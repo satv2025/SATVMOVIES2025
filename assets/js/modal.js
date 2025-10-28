@@ -375,7 +375,7 @@ let currentMuteListener = null;
 // === Cargar JSON de episodios dinámicamente ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch('assets/json/data.json');
+        const response = await fetch('https://movies.solargentinotv.com.ar/assets/json/data.json');
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
 
@@ -421,12 +421,17 @@ function openModal(movieKey) {
     // Mostrar modal con animación fade fondo + zoom contenido
     modal.classList.remove("closing");
     modal.style.display = "flex";
-    void modal.offsetWidth; // Forzar repaint
+    void modal.offsetWidth; // forzar repaint
     modal.classList.add("showing");
 
     modal.style.overflowY = "auto";
     modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
+
+    // 👇 Bloquear scroll del body sin mover el contenido
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.setProperty("overflow-y", "hidden", "important");
+    document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
 
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) modalContent.style.position = "relative";
@@ -559,7 +564,10 @@ function closeModal() {
         modal.classList.remove("closing");
     }, 400);
 
-    // 🔸 No tocar el scroll del body (mantener el navegador intacto)
+    document.body.style.setProperty("overflow-y", "auto", "important");
+    document.body.style.removeProperty("padding-right");
+    document.body.classList.remove("modal-open");
+
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }

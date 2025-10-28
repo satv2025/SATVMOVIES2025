@@ -1649,3 +1649,22 @@ ul#episode-list {
     transform: scale(0.95);
     opacity: 0;
 }
+
+/* Evitar que el scrollbar se vea afectado por las transiciones */
+#infoModal::-webkit-scrollbar,
+#infoModal::-webkit-scrollbar-thumb,
+#infoModal::-webkit-scrollbar-track {
+    transition: none !important;
+}
+
+#infoModal {
+    scrollbar-color: auto !important;
+    scrollbar-width: auto !important;
+}
+
+/* Firefox */
+#infoModal::-moz-scrollbar,
+#infoModal::-moz-scrollbar-thumb,
+#infoModal::-moz-scrollbar-track {
+    transition: none !important;
+}
