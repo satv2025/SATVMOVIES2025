@@ -1006,6 +1006,7 @@ h1#modal-title {
     line-height: 1.4em;
     top: 273.4em;
     position: relative;
+    z-index: 60000;
 }
 
 .fullage {
@@ -1652,7 +1653,7 @@ ul#episode-list {
 }
 
 #infoModal.showing {
-    z-index: 60000;
+    z-index: 1001;
 }
 
 /* Fade-out del fondo */

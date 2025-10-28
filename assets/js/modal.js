@@ -372,10 +372,10 @@ const peliculas = {
 let episodiosPorSerie = {};
 let currentMuteListener = null;
 
-// === Cargar JSON de episodios dinámicamente ===
+// === Cargar JSON de episodios ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch('https://movies.solargentinotv.com.ar/assets/json/data.json');
+        const response = await fetch("https://movies.solargentinotv.com.ar/assets/json/data.json");
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
 
@@ -385,14 +385,14 @@ async function cargarEpisodiosJSON() {
             }
         }
 
+        console.log("✅ Episodios cargados:", episodiosPorSerie);
     } catch (error) {
-        console.error("Error al cargar episodios:", error);
+        console.error("❌ Error al cargar episodios:", error);
     }
 }
-
 cargarEpisodiosJSON();
 
-// === Detectar clic en botones "Más Información" ===
+// === Detectar clic en botones "Más información" ===
 document.querySelectorAll(".info, .moreinfobutton").forEach(button => {
     button.addEventListener("click", function () {
         const movieKey = this.getAttribute("data-movie");
@@ -408,9 +408,11 @@ function openModal(movieKey) {
     const movie = peliculas[movieKey];
     if (!movie) return;
 
+    // Limpiar contenido previo
     modalBackground.innerHTML = "";
     if (episodeList) episodeList.innerHTML = "";
 
+    // Inyectar video y botón mute
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
@@ -418,7 +420,7 @@ function openModal(movieKey) {
         </button>
     `;
 
-    // Mostrar modal con animación
+    // Animar modal
     modal.classList.remove("closing");
     modal.style.display = "flex";
     void modal.offsetWidth;
@@ -429,27 +431,20 @@ function openModal(movieKey) {
     modal.style.height = "100vh";
 
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.setProperty("overflow-y", "hidden", "important");
-    document.body.style.setProperty("padding-right", `${scrollbarWidth}px`);
-
-    const modalContent = modal.querySelector('.modal-content');
-    if (modalContent) modalContent.style.position = "relative";
+    document.body.style.overflowY = "hidden";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
 
     const video = modal.querySelector("#modal-background video");
     const muteBtn = document.getElementById("muteBtn");
     const muteIcon = document.getElementById("muteIcon");
-    const modalHeader = modal.querySelector(".modal-header");
-    const seasonDropdown = document.querySelector('.season-dropdown');
-    const modalTitle = modal.querySelector("#modal-title");
 
-    // === Configurar video y mute ===
+    // === Configurar video + mute ===
     if (video && muteBtn) {
         video.currentTime = 0;
         video.muted = false;
         video.play().catch(() => console.warn("Autoplay bloqueado"));
 
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
-
         currentMuteListener = () => {
             video.muted = !video.muted;
             muteIcon.src = video.muted
@@ -459,93 +454,50 @@ function openModal(movieKey) {
         muteBtn.addEventListener("click", currentMuteListener);
     }
 
-    // === Clases especiales ===
-    if (movieKey === "reite666") {
-        if (video) video.classList.add("reite-bg");
-        if (modalHeader) modalHeader.classList.add("reite-header");
-        if (muteBtn) muteBtn.classList.add("reite-mute");
-        if (seasonDropdown) seasonDropdown.classList.add("reite-season-dropdown");
-    } else {
-        if (video) video.classList.remove("reite-bg");
-        if (modalHeader) modalHeader.classList.remove("reite-header");
-        if (muteBtn) muteBtn.classList.remove("reite-mute");
-        if (seasonDropdown) seasonDropdown.classList.remove("reite-season-dropdown");
-    }
-
-    if (movieKey === "nivelx") {
-        if (video) video.classList.add("nivelx-bg");
-        if (modalHeader) modalHeader.classList.add("nivelx-header");
-        if (muteBtn) muteBtn.classList.add("nivelx-mute");
-        if (seasonDropdown) seasonDropdown.classList.add("nivelx-season-dropdown");
-    } else {
-        if (video) video.classList.remove("nivelx-bg");
-        if (modalHeader) modalHeader.classList.remove("nivelx-header");
-        if (muteBtn) muteBtn.classList.remove("nivelx-mute");
-        if (seasonDropdown) seasonDropdown.classList.remove("nivelx-season-dropdown");
-    }
-
-    if (movieKey === "homealone") {
-        modalTitle?.classList.add("mpa1-mtitle");
-        modalTitle?.classList.remove("mpa2-mtitle");
-    } else if (movieKey === "homealone2") {
-        modalTitle?.classList.add("mpa2-mtitle");
-        modalTitle?.classList.remove("mpa1-mtitle");
-    } else {
-        modalTitle?.classList.remove("mpa1-mtitle");
-        modalTitle?.classList.remove("mpa2-mtitle");
-    }
-
-    if (movieKey === "f2fnh") {
-        muteBtn?.classList.add("mutebtn-f2fnh");
-    } else {
-        muteBtn?.classList.remove("mutebtn-f2fnh");
-    }
-
-    // === Datos del modal ===
-    document.getElementById("modal-title").innerHTML = movie.title;
-    document.getElementById("modal-year").innerHTML = movie.year;
-    document.getElementById("modal-description").innerHTML = movie.description;
-    document.getElementById("modal-cast").innerHTML = movie.cast;
-    document.getElementById("modal-genres").innerHTML = movie.genres;
-    document.getElementById("modal-titleType").innerHTML = movie.titleType;
-    document.getElementById("modal-ageRating").innerHTML = movie.ageRating;
+    // === Rellenar contenido textual ===
+    document.getElementById("modal-title").innerHTML = movie.title || "";
+    document.getElementById("modal-year").innerHTML = movie.year || "";
+    document.getElementById("modal-duration").innerHTML = movie.duration || "";
+    document.getElementById("modal-description").innerHTML = movie.description || "";
+    document.getElementById("modal-cast").innerHTML = movie.cast || "";
+    document.getElementById("modal-genres").innerHTML = movie.genres || "";
+    document.getElementById("modal-titleType").innerHTML = movie.titleType || "";
+    document.getElementById("modal-ageRating").innerHTML = movie.ageRating || "";
     document.getElementById("modal-curiosity").innerHTML = movie.curiosity || "";
-    document.getElementById("modal-duration").innerHTML = movie.duration;
-    document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
-    document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
-    document.getElementById("modal-createdBy").innerHTML = movie.createdBy;
-    document.getElementById("modal-fullcast").innerHTML = movie.fullcast;
-    document.getElementById("modal-fullscript").innerHTML = movie.fullscript;
-    document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres;
-    document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype;
-    document.getElementById("modal-fullage").innerHTML = movie.fullage;
-    document.getElementById("watch-button").innerHTML = movie.link;
 
-    const scrollAboutBtn = document.getElementById('scrollAbout');
+    // === Acerca de ===
+    document.getElementById("modal-createdBy").innerHTML = movie.createdBy || "";
+    document.getElementById("modal-fullcast").innerHTML = movie.fullcast || "";
+    document.getElementById("modal-fullscript").innerHTML = movie.fullscript || "";
+    document.getElementById("modal-fullgenres").innerHTML = movie.fullgenres || "";
+    document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype || "";
+    document.getElementById("modal-fullage").innerHTML = movie.fullage || "";
+
+    // === Episodios de series ===
+    const serieKey = movieKey.toLowerCase();
+    if (movie.type === "serie" && episodiosPorSerie[serieKey]) {
+        document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
+        document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
+        generarDropdownTemporadas(serieKey, movie.ageRating);
+    }
+
+    // === Scroll hacia “Acerca de” ===
+    const scrollAboutBtn = document.getElementById("scrollAbout");
     if (scrollAboutBtn) {
-        scrollAboutBtn.addEventListener('click', () => {
-            const modal = document.getElementById('infoModal');
-            if (modal) modal.scrollTo({ top: modal.scrollHeight, behavior: 'smooth' });
+        scrollAboutBtn.addEventListener("click", () => {
+            modal.scrollTo({ top: modal.scrollHeight, behavior: "smooth" });
         });
     }
-
-    // === Si es serie, generar dropdown ===
-    if (movie.type === "serie" && episodiosPorSerie[movieKey]) {
-        generarDropdownTemporadas(movieKey, movie.ageRating);
-    }
-
-    ajustarModalTop();
 }
 
-// === Generar dropdown de temporadas ===
-function generarDropdownTemporadas(movieKey, ageRating) {
-    const seriesData = episodiosPorSerie[movieKey];
+// === Dropdown de temporadas ===
+function generarDropdownTemporadas(serieKey, ageRating) {
+    const seriesData = episodiosPorSerie[serieKey];
     const seasonMenu = document.getElementById("seasonMenu");
     const episodeList = document.getElementById("episode-list");
     const dropdownButton = document.getElementById("seasonToggle");
 
     if (!seriesData || !seasonMenu || !episodeList) return;
-
     seasonMenu.innerHTML = "";
     episodeList.innerHTML = "";
 
@@ -585,35 +537,26 @@ function renderEpisodios(episodios, ageRating, clear = true) {
     if (!episodeList) return;
     if (clear) episodeList.innerHTML = "";
 
-    episodios.forEach(ep => {
+    episodios.forEach((ep, i) => {
         const li = document.createElement("li");
         li.classList.add("episode-item");
         li.innerHTML = `
-            <strong>${ep.titulo}</strong> — ${ep.duracion}
-            <div class="season-ageRating">${ageRating}</div>
-            <p>${ep.descripcion}</p>
+            <strong>${ep.titulo || "Episodio " + (i + 1)}</strong> — ${ep.duracion || ""}
+            <div class="season-ageRating">${ageRating || ""}</div>
+            <p>${ep.descripcion || ""}</p>
         `;
         episodeList.appendChild(li);
     });
 }
 
-// === Cierre de modal y video ===
-function handleVideo(modal, action) {
+// === Cierre de modal ===
+function closeModal() {
+    const modal = document.getElementById("infoModal");
     const video = modal.querySelector("#modal-background video");
-    if (!video) return;
-    if (action === "play") {
-        video.currentTime = 0;
-        video.muted = false;
-        video.play().catch(() => console.warn("Autoplay bloqueado"));
-    } else if (action === "pause") {
+    if (video) {
         video.pause();
         video.currentTime = 0;
     }
-}
-
-function closeModal() {
-    const modal = document.getElementById("infoModal");
-    handleVideo(modal, "pause");
 
     modal.classList.remove("showing");
     modal.classList.add("closing");
@@ -623,15 +566,14 @@ function closeModal() {
         modal.classList.remove("closing");
     }, 400);
 
-    document.body.style.setProperty("overflow-y", "auto", "important");
+    document.body.style.overflowY = "auto";
     document.body.style.removeProperty("padding-right");
-    document.body.classList.remove("modal-open");
 
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }
 
-// === Listeners ===
+// === Eventos ===
 document.querySelector(".close-button").addEventListener("click", closeModal);
 
 document.addEventListener("click", (event) => {
@@ -647,14 +589,3 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
 });
-
-// === Ajuste dinámico de top ===
-function ajustarModalTop() {
-    const cast = document.querySelector('.modal-cast');
-    const genres = document.querySelector('.modal-genres');
-    if (cast && genres) {
-        const topOffset = cast.offsetHeight + genres.offsetHeight + 40;
-        const modalContent = document.querySelector('.modal-content');
-        if (modalContent) modalContent.style.paddingTop = topOffset + 'px';
-    }
-}
