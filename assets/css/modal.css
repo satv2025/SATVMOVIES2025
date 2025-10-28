@@ -1612,27 +1612,42 @@ ul#episode-list {
    🎬 ANIMACIÓN MODAL: FONDO + ZOOM EN CONTENIDO
    ============================================ */
 
-/* Fondo general del modal */
+/* Fondo general del modal (sin transición de opacidad para el scroll) */
 #infoModal {
     display: none;
     background: rgba(0, 0, 0, 0.75);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    overflow-y: auto;
+    /* ← Mantiene la barra visible */
+    opacity: 1;
+    /* ← Siempre visible */
 }
 
-/* Cuando se muestra (fade-in del fondo) */
-#infoModal.showing {
-    display: block;
+/* Capa visual interna que sí se anima */
+#infoModal::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+/* Activar fade del fondo */
+#infoModal.showing::before {
     opacity: 1;
 }
 
-/* Al cerrar (fade-out del fondo) */
-#infoModal.closing {
+/* Fade-out del fondo */
+#infoModal.closing::before {
     opacity: 0;
 }
 
 /* Contenedor interno: zoom + fade */
 #infoModal .modal-content {
+    position: relative;
+    z-index: 1;
+    /* sobre la capa ::before */
     transform: scale(0.9);
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -1650,21 +1665,8 @@ ul#episode-list {
     opacity: 0;
 }
 
-/* Evitar que el scrollbar se vea afectado por las transiciones */
-#infoModal::-webkit-scrollbar,
-#infoModal::-webkit-scrollbar-thumb,
-#infoModal::-webkit-scrollbar-track {
-    transition: none !important;
-}
-
+/* Mantener scrollbars normales, sin ocultarlas */
 #infoModal {
-    scrollbar-color: auto !important;
-    scrollbar-width: auto !important;
-}
-
-/* Firefox */
-#infoModal::-moz-scrollbar,
-#infoModal::-moz-scrollbar-thumb,
-#infoModal::-moz-scrollbar-track {
-    transition: none !important;
+    scrollbar-color: auto;
+    scrollbar-width: auto;
 }
