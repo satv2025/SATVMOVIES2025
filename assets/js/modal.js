@@ -336,39 +336,14 @@ const peliculas = {
         .episode-link { display: flex; align-items: center; gap: 12px; padding: 10px; text-decoration: none; color: white; width: 100%; }
         .episode-thumb img { width: 160px; height: 90px; object-fit: cover; border-radius: 6px; }
         .episode-info { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .35em; }
-
         .episode-title { margin: 0; font-size: 1rem; font-weight: bold; }
         .episode-description { margin: 6px 0; color: #ccc; font-size: 0.9rem; }
         .episode-meta { font-size: 0.85rem; color: #aaa; display: flex; gap: 10px; }
+        #episode-list li { display: flex; align-items: center; text-align: left; width: 49em; padding: 2em 3em; border-bottom: 0.1em solid #333; border-radius: .25em; background: transparent; position: relative; }
+        #episode-list li:first-child { border-top: 0.1em solid #333; }
+        .epnumber { font-weight: bold; margin-bottom: .2em; opacity: .7; }
 
-        #episode-list li { 
-            display: flex;
-            align-items: center;
-            text-align: left;
-            width: 49em;
-            padding: 2em 3em;
-            border-bottom: 0.1em solid #333;
-            border-radius: .25em;
-            background: transparent;
-            position: relative;
-        }
-
-        #episode-list li:first-child {
-            border-top: 0.1em solid #333;
-        }
-
-        .epnumber {
-            font-weight: bold;
-            margin-bottom: .2em;
-            opacity: .7;
-        }
-
-        #infoModal {
-            display: none;
-            background: rgba(0, 0, 0, 0.75);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
+        #infoModal { display: none; background: rgba(0, 0, 0, 0.75); opacity: 0; transition: opacity 0.4s ease; }
         #infoModal.showing { display: flex; opacity: 1; }
         #infoModal.closing { opacity: 0; }
         #infoModal .modal-content { transform: scale(0.9); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; }
@@ -382,6 +357,10 @@ const peliculas = {
 let episodiosPorSerie = {};
 let currentMuteListener = null;
 
+// Guardar HTML original del modal
+const infoModal = document.getElementById("infoModal");
+const modalOriginalHTML = infoModal.innerHTML;
+
 // === Cargar JSON de episodios ===
 async function cargarEpisodiosJSON() {
     try {
@@ -393,10 +372,7 @@ async function cargarEpisodiosJSON() {
                 episodiosPorSerie[key.replace("episodios", "").toLowerCase()] = data[key];
             }
         }
-        console.log("✅ Episodios cargados:", episodiosPorSerie);
-    } catch (error) {
-        console.error("❌ Error al cargar episodios:", error);
-    }
+    } catch (error) { console.error(error); }
 }
 cargarEpisodiosJSON();
 
@@ -422,7 +398,7 @@ function openModal(movieKey) {
     modalBackground.innerHTML = `
         ${movie.background}
         <button class="modal-mute-btn" id="muteBtn">
-            <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
+            <img id="muteIcon" src="assets/media/images/modal-vol-on.svg">
         </button>
     `;
 
@@ -431,7 +407,6 @@ function openModal(movieKey) {
     void modal.offsetWidth;
     modal.classList.add("showing");
     modal.style.overflowY = "auto";
-    modal.style.overflowX = "hidden";
     modal.style.height = "100vh";
 
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -449,9 +424,7 @@ function openModal(movieKey) {
         if (currentMuteListener) muteBtn.removeEventListener("click", currentMuteListener);
         currentMuteListener = () => {
             video.muted = !video.muted;
-            muteIcon.src = video.muted
-                ? "assets/media/images/modal-vol-mute.svg"
-                : "assets/media/images/modal-vol-on.svg";
+            muteIcon.src = video.muted ? "assets/media/images/modal-vol-mute.svg" : "assets/media/images/modal-vol-on.svg";
         };
         muteBtn.addEventListener("click", currentMuteListener);
     }
@@ -487,6 +460,8 @@ function openModal(movieKey) {
         document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
         generarDropdownTemporadas(categoria, movie.ageRating);
     }
+
+    modal.querySelector(".close-button").addEventListener("click", closeModal);
 }
 
 // === Dropdown temporadas ===
@@ -583,20 +558,23 @@ function closeModal() {
         video.pause();
         video.currentTime = 0;
     }
+
     modal.classList.remove("showing");
     modal.classList.add("closing");
+
     setTimeout(() => {
+        modal.innerHTML = modalOriginalHTML; // Reset
         modal.style.display = "none";
         modal.classList.remove("closing");
+
+        modal.querySelector(".close-button").addEventListener("click", closeModal);
     }, 400);
+
     document.body.style.overflowY = "auto";
     document.body.style.removeProperty("padding-right");
-
-    const episodeList = document.getElementById("episode-list");
-    if (episodeList) episodeList.innerHTML = "";
 }
 
-document.querySelector(".close-button").addEventListener("click", closeModal);
+// === Eventos globales ===
 document.addEventListener("click", (e) => {
     const modal = document.getElementById("infoModal");
     const modalContent = document.querySelector(".modal-content");
@@ -606,4 +584,12 @@ document.addEventListener("click", (e) => {
 });
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
+});
+document.addEventListener("mouseover", e => {
+    if (!e.target.closest("#episode-list li")) return;
+    const li = e.target.closest("li");
+    const prev = li.previousElementSibling;
+    document.querySelectorAll("#episode-list li").forEach(el => el.style.borderTop = "");
+    if (prev) prev.style.borderBottom = "none";
+    li.style.borderTop = ".1em solid #333";
 });
