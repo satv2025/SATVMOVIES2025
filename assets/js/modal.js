@@ -532,7 +532,8 @@ function renderEpisodios(episodios, age) {
                 </div>
                 <div class="episode-info">
                     <span class="epnumber">${ep.number}</span>
-                    <h4 class="episode-title">${ep.title}</h4>
+                    <strong class="epnumber">${ep.number}</strong>
+<h4 class="episode-title">${ep.title}</h4>
                     <p class="episode-description">${ep.description || ""}</p>
                     <div class="episode-meta">
                         <span class="duration">${ep.duration || ""}</span>
