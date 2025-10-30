@@ -612,12 +612,12 @@
                 <div id="infoModal" class="modal" style="display: none;" role="dialog">
                     <div class="modal-content" style="position: relative; padding-top: 112px;">
 
-                        <!-- Botón de cierre -->
+                        <!-- Cerrar -->
                         <div class="close-button">
                             <span class="close-icon" data-uia="previewModal-closebtn" role="button" aria-label="close"
-                                tabindex="0" title="close">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" role="img" viewBox="0 0 24 24"
-                                    width="24" height="24" aria-hidden="true">
+                                tabindex="0">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24"
+                                    height="24">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M10.5858 12L2.29291 3.70706L3.70712 2.29285L12 10.5857L20.2929 2.29285L21.7071 3.70706L13.4142 12L21.7071 20.2928L20.2929 21.7071L12 13.4142L3.70712 21.7071L2.29291 20.2928L10.5858 12Z"
                                         fill="currentColor"></path>
@@ -625,7 +625,7 @@
                             </span>
                         </div>
 
-                        <!-- Imagen o video de fondo -->
+                        <!-- Header -->
                         <div class="modal-header">
                             <div id="modal-background" class="img"></div>
                             <button class="modal-mute-btn" id="muteBtn" style="display:none;">
@@ -633,20 +633,17 @@
                             </button>
 
                             <div class="overlay">
-                                <h1 id="modal-title">
-                                    <span class="about">Acerca de</span>
-                                    <strong class="titulo"></strong>
-                                </h1>
+                                <h1 id="modal-title"></h1>
                                 <p id="modal-tagline"></p>
                             </div>
                         </div>
 
-                        <!-- Botones de acción -->
+                        <!-- Botón reproducir -->
                         <div class="modal-actions">
                             <a id="watch-button" class="watch-button"></a>
                         </div>
 
-                        <!-- Información general -->
+                        <!-- Info -->
                         <div class="modal-info">
 
                             <p id="modal-year" class="modal-year"></p>
@@ -658,7 +655,7 @@
                             <p id="modal-description" class="modal-description"></p>
                             <p id="modal-curiosity" class="modal-curiosity"></p>
 
-                            <!-- Sección de “Acerca de” (rellenada dinámicamente) -->
+                            <!-- Acerca de -->
                             <div id="about">
                                 <div id="modal-createdBy" class="modal-createdBy"></div>
                                 <div id="modal-fullcast" class="fullcast"></div>
@@ -668,14 +665,17 @@
                                 <div id="modal-fullage" class="fullage"></div>
                             </div>
 
-                            <!-- Lista de episodios -->
-                            <!-- Lista de episodios -->
+                            <!-- Episodios -->
                             <p id="modal-episodelist" class="modal-episodelist"></p>
-                            <div class="season-dropdown" id="modal-seasons"></div>
+
+                            <div class="season-dropdown">
+                                <div id="modal-seasons"></div> <!-- aquí JS genera botones -->
+                            </div>
 
                             <div class="episodios">
                                 <ul id="episode-list"></ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
