@@ -333,12 +333,35 @@ const peliculas = {
 
         .episode-item { list-style: none; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin: 10px 0; transition: background 0.2s ease; }
         .episode-item:hover { background: rgba(255,255,255,0.1); }
-        .episode-link { display: flex; align-items: flex-start; gap: 12px; padding: 10px; text-decoration: none; color: white; }
+        .episode-link { display: flex; align-items: center; gap: 12px; padding: 10px; text-decoration: none; color: white; width: 100%; }
         .episode-thumb img { width: 160px; height: 90px; object-fit: cover; border-radius: 6px; }
-        .episode-info { flex: 1; }
+        .episode-info { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .35em; }
+
         .episode-title { margin: 0; font-size: 1rem; font-weight: bold; }
         .episode-description { margin: 6px 0; color: #ccc; font-size: 0.9rem; }
         .episode-meta { font-size: 0.85rem; color: #aaa; display: flex; gap: 10px; }
+
+        #episode-list li { 
+            display: flex;
+            align-items: center;
+            text-align: left;
+            width: 49em;
+            padding: 2em 3em;
+            border-bottom: 0.1em solid #333;
+            border-radius: .25em;
+            background: transparent;
+            position: relative;
+        }
+
+        #episode-list li:first-child {
+            border-top: 0.1em solid #333;
+        }
+
+        .epnumber {
+            font-weight: bold;
+            margin-bottom: .2em;
+            opacity: .7;
+        }
 
         #infoModal {
             display: none;
@@ -449,7 +472,6 @@ function openModal(movieKey) {
     document.getElementById("modal-fulltitletype").innerHTML = movie.fulltitletype || "";
     document.getElementById("modal-fullage").innerHTML = movie.fullage || "";
 
-    // === Botón Reproducir ===
     const watchButton = document.getElementById("watch-button");
     if (watchButton && movie.link) {
         const temp = document.createElement("div");
@@ -465,13 +487,6 @@ function openModal(movieKey) {
         document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
         generarDropdownTemporadas(categoria, movie.ageRating);
     }
-
-    const scrollAboutBtn = document.getElementById("scrollAbout");
-    if (scrollAboutBtn) {
-        scrollAboutBtn.addEventListener("click", () => {
-            modal.scrollTo({ top: modal.scrollHeight, behavior: "smooth" });
-        });
-    }
 }
 
 // === Dropdown temporadas ===
@@ -480,6 +495,7 @@ function generarDropdownTemporadas(key, age) {
     const episodeList = document.getElementById("episode-list");
     const seasonMenu = document.getElementById("modal-seasons");
     if (!seriesData || !episodeList || !seasonMenu) return;
+
     seasonMenu.innerHTML = "";
     episodeList.innerHTML = "";
 
@@ -504,18 +520,19 @@ function renderEpisodios(episodios, age) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
     episodeList.innerHTML = "";
-    if (!Array.isArray(episodios)) return;
 
     episodios.forEach((ep) => {
         const li = document.createElement("li");
         li.classList.add("episode-item");
+
         li.innerHTML = `
             <a href="${ep.link}" target="_blank" class="episode-link">
                 <div class="episode-thumb">
                     <img src="${ep.image}" alt="${ep.title}" loading="lazy">
                 </div>
                 <div class="episode-info">
-                    <h4 class="episode-title">E${ep.number}: ${ep.title}</h4>
+                    <span class="epnumber">${ep.number}</span>
+                    <h4 class="episode-title">${ep.title}</h4>
                     <p class="episode-description">${ep.description || ""}</p>
                     <div class="episode-meta">
                         <span class="duration">${ep.duration || ""}</span>
@@ -524,7 +541,37 @@ function renderEpisodios(episodios, age) {
                 </div>
             </a>
         `;
+
         episodeList.appendChild(li);
+    });
+
+    aplicarHoverBordesEpisodios();
+}
+
+// === Hover border effect ===
+function aplicarHoverBordesEpisodios() {
+    const items = document.querySelectorAll("#episode-list li");
+
+    items.forEach((li, i) => {
+        if (i === 0) {
+            li.style.borderTop = "0.1em solid #333";
+        }
+
+        li.addEventListener("mouseenter", () => {
+            li.style.borderTop = "0.1em solid #333";
+            if (i > 0) {
+                items[i - 1].style.borderBottomColor = "transparent";
+            }
+        });
+
+        li.addEventListener("mouseleave", () => {
+            if (i !== 0) {
+                li.style.borderTop = "none";
+            }
+            if (i > 0) {
+                items[i - 1].style.borderBottomColor = "#333";
+            }
+        });
     });
 }
 
@@ -544,6 +591,7 @@ function closeModal() {
     }, 400);
     document.body.style.overflowY = "auto";
     document.body.style.removeProperty("padding-right");
+
     const episodeList = document.getElementById("episode-list");
     if (episodeList) episodeList.innerHTML = "";
 }

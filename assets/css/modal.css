@@ -525,15 +525,21 @@ button.text:hover {
 
 #episode-list li {
     display: flex;
-    text-align: left;
     align-items: center;
-    padding: 0.5em 2em;
+    /* centra verticalmente al contenido */
+    padding: 2em 3em;
+    /* espacio respirable pero no rígido */
+    width: 49em;
     border-bottom: 0.1em solid #333;
     border-radius: .25em;
-    padding-left: 4em !important;
-    padding-right: 5em !important;
-    padding: 3em;
-    width: 49em;
+    background: transparent;
+    position: relative;
+    margin-top: -0.6em;
+    top: 4em;
+}
+
+#episode-list li:hover {
+    background: #333;
 }
 
 #episode-list li:focus {
@@ -586,9 +592,10 @@ a.eplink {
     text-decoration: none;
 }
 
-#episode-list li span {
+.duration {
     position: absolute;
-    left: 42.5em;
+    left: 50.5em;
+    top: 3em;
 }
 
 #episode-list li:hover span {
@@ -596,18 +603,20 @@ a.eplink {
 }
 
 #episode-list li img {
-    width: 133px !important;
+    width: 133px;
     height: auto;
-    border-radius: 0.4em;
     object-fit: cover;
     margin-right: 1em;
-    margin-top: 0.43em;
-    margin-bottom: 0.43em;
 }
 
 .episode-info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    /* centra vertical */
+    flex: 1;
+    text-align: left;
+    width: 35em;
 }
 
 .episode-title {
@@ -1103,6 +1112,10 @@ h1#modal-title {
     font-weight: 500;
 }
 
+.episode-meta .age {
+    display: none;
+}
+
 .app-createdBy {
     font-size: 14px;
     padding-left: 1em;
@@ -1466,6 +1479,7 @@ button.reite-mute {
     color: #fff;
     font-size: 0.875em;
     margin-right: 4em;
+    text-align: left;
 }
 
 @media (max-width: 600px) {
@@ -1699,4 +1713,17 @@ ul#episode-list {
     z-index: 20;
     cursor: pointer;
     transition: opacity 0.2s;
+}
+
+#episode-list li:first-child {
+    border-top: 0.1em solid #333;
+}
+
+/* clase que activaremos con JS */
+.hover-top-border {
+    border-top: 0.1em solid #333 !important;
+}
+
+.no-bottom-border {
+    border-bottom-color: transparent !important;
 }
