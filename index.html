@@ -608,14 +608,14 @@
                     </button>
                 </div>
 
-                <!-- Contenedor del Modal -->
-                <div id="infoModal" class="modal" style="display: none;" role="dialog">
-                    <div class="modal-content" style="position: relative; padding-top: 112px;">
+                <!-- MODAL -->
+                <div id="infoModal" class="modal" style="display:none;" role="dialog">
 
-                        <!-- Cerrar -->
+                    <div class="modal-content" style="position:relative; padding-top:112px;">
+
+                        <!-- Close button -->
                         <div class="close-button">
-                            <span class="close-icon" data-uia="previewModal-closebtn" role="button" aria-label="close"
-                                tabindex="0">
+                            <span class="close-icon" role="button" tabindex="0" aria-label="close">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24"
                                     height="24">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -628,6 +628,7 @@
                         <!-- Header -->
                         <div class="modal-header">
                             <div id="modal-background" class="img"></div>
+
                             <button class="modal-mute-btn" id="muteBtn" style="display:none;">
                                 <img id="muteIcon" src="assets/media/images/modal-vol-on.svg" alt="Mute/Unmute">
                             </button>
@@ -638,7 +639,7 @@
                             </div>
                         </div>
 
-                        <!-- Botón reproducir -->
+                        <!-- Watch button -->
                         <div class="modal-actions">
                             <a id="watch-button" class="watch-button"></a>
                         </div>
@@ -655,7 +656,7 @@
                             <p id="modal-description" class="modal-description"></p>
                             <p id="modal-curiosity" class="modal-curiosity"></p>
 
-                            <!-- Acerca de -->
+                            <!-- "Acerca de" -->
                             <div id="about">
                                 <div id="modal-createdBy" class="modal-createdBy"></div>
                                 <div id="modal-fullcast" class="fullcast"></div>
@@ -665,13 +666,15 @@
                                 <div id="modal-fullage" class="fullage"></div>
                             </div>
 
-                            <!-- Episodios -->
+                            <!-- Episodios title -->
                             <p id="modal-episodelist" class="modal-episodelist"></p>
 
+                            <!-- Dropdown temporadas -->
                             <div class="season-dropdown">
-                                <div id="modal-seasons"></div> <!-- aquí JS genera botones -->
+                                <div id="modal-seasons"></div>
                             </div>
 
+                            <!-- Lista episodios -->
                             <div class="episodios">
                                 <ul id="episode-list"></ul>
                             </div>
