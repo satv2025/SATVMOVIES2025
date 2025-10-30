@@ -484,34 +484,55 @@ function openModal(movieKey) {
     const categoria = movieKey.toLowerCase();
     if (movie.type === "serie" && episodiosPorSerie[categoria]) {
         document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
-        document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
         generarDropdownTemporadas(categoria, movie.ageRating);
     }
 }
 
-// === Dropdown temporadas ===
+// === Dropdown temporadas con DIV (NO botones) ===
 function generarDropdownTemporadas(key, age) {
     const seriesData = episodiosPorSerie[key];
     const episodeList = document.getElementById("episode-list");
-    const seasonMenu = document.getElementById("modal-seasons");
-    if (!seriesData || !episodeList || !seasonMenu) return;
+    const seasonContainer = document.getElementById("modal-seasons");
+    if (!seriesData || !episodeList || !seasonContainer) return;
 
-    seasonMenu.innerHTML = "";
     episodeList.innerHTML = "";
 
-    if (Array.isArray(seriesData)) {
-        renderEpisodios(seriesData, age);
-        return;
-    }
+    seasonContainer.innerHTML = `
+        <div class="dropdown-button">Temporadas</div>
+        <ul id="seasonMenu" class="dropdown-content"></ul>
+    `;
+
+    const dropdownButton = seasonContainer.querySelector(".dropdown-button");
+    const seasonMenu = seasonContainer.querySelector("#seasonMenu");
+
+    dropdownButton.addEventListener("click", () => {
+        seasonMenu.classList.toggle("show");
+        seasonContainer.classList.toggle("show");
+    });
 
     Object.keys(seriesData).forEach((t, i) => {
         const episodios = seriesData[t];
-        const button = document.createElement("button");
-        button.classList.add("texto");
-        button.textContent = `Temporada ${t} (${episodios.length} episodios)`;
-        button.addEventListener("click", () => renderEpisodios(episodios, age));
-        seasonMenu.appendChild(button);
-        if (i === 0) renderEpisodios(episodios, age);
+
+        const li = document.createElement("li");
+        li.classList.add("season-option");
+        li.innerHTML = `
+            <span class="texto">Temporada ${t}</span>
+            <span class="episodios-count">${episodios.length}</span>
+        `;
+
+        li.addEventListener("click", () => {
+            dropdownButton.textContent = `Temporada ${t}`;
+            renderEpisodios(episodios, age);
+            seasonMenu.classList.remove("show");
+            seasonContainer.classList.remove("show");
+        });
+
+        seasonMenu.appendChild(li);
+
+        if (i === 0) {
+            dropdownButton.textContent = `Temporada ${t}`;
+            renderEpisodios(episodios, age);
+        }
     });
 }
 
@@ -542,33 +563,7 @@ function renderEpisodios(episodios, age) {
                 </div>
             </a>
         `;
-
         episodeList.appendChild(li);
-    });
-
-    aplicarHoverBordesEpisodios();
-}
-
-// === Hover border effect correcto ===
-function aplicarHoverBordesEpisodios() {
-    const items = document.querySelectorAll("#episode-list li");
-
-    items.forEach((li, i) => {
-        li.addEventListener("mouseenter", () => {
-            items.forEach(el => {
-                el.style.borderTop = "";
-                el.style.borderBottom = ".1em solid #333";
-            });
-
-            li.style.borderTop = ".1em solid #333";
-
-            if (i > 0) items[i - 1].style.borderBottom = "none";
-        });
-
-        li.addEventListener("mouseleave", () => {
-            if (i > 0) li.style.borderTop = "";
-            if (i > 0) items[i - 1].style.borderBottom = ".1em solid #333";
-        });
     });
 }
 
@@ -596,4 +591,12 @@ function closeModal() {
 document.querySelector(".close-button").addEventListener("click", closeModal);
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
+});
+
+// === Cerrar modal clickeando afuera ===
+document.addEventListener("click", (e) => {
+    const modal = document.getElementById("infoModal");
+    const content = modal?.querySelector(".modal-content");
+    if (!modal || modal.style.display === "none") return;
+    if (content && !content.contains(e.target)) closeModal();
 });
