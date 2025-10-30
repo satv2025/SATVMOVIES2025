@@ -468,33 +468,54 @@ strong.epnumber20 {
     font-size: 16px;
 }
 
+/* ===== EPISODE LIST FIX ===== */
+
 ul#episode-list {
-    position: relative;
+    padding-left: 1.6em;
+    padding-right: 3em;
+    position: absolute;
+    top: 45em;
+    z-index: 200000;
+    width: 49em;
 }
 
 ul#episode-list li {
-    padding-left: 2em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1.7em 2.5em;
+    width: 100%;
+    background: transparent;
+    border-bottom: .1em solid #333;
+    border-top: none;
+    border-radius: .25em;
     position: relative;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+ul#episode-list li:first-child {
+    border-top: .1em solid #333;
 }
 
 ul#episode-list li:hover {
-    cursor: pointer;
+    background: #333;
 }
 
+/* Circle play background */
 #episode-list li::before {
     content: '';
-    width: 0.7em;
-    height: 0.7em;
-    font-size: 3.3em;
-    display: flex;
+    width: .7em;
+    height: .7em;
     border-radius: 50%;
-    border: 0.02em solid white;
+    border: .02em solid white;
     position: absolute;
-    left: 16.6%;
+    left: 2.6em;
     top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(30, 30, 20, 0.5);
+    transform: translateY(-50%);
+    background: rgba(30, 30, 20, .5);
     opacity: 0;
+    transition: opacity .15s;
     pointer-events: none;
 }
 
@@ -502,16 +523,18 @@ ul#episode-list li:hover {
     opacity: 1;
 }
 
+/* Play icon */
 #episode-list li::after {
     content: '▶';
-    font-size: 1.7em;
+    font-size: 1.2em;
     font-family: FONTAWESOME;
     color: white;
     position: absolute;
-    left: 16.5%;
-    top: 49.8%;
-    transform: translate(-50%, -50%);
+    left: 2.55em;
+    top: 50%;
+    transform: translateY(-50%);
     opacity: 0;
+    transition: opacity .15s;
     pointer-events: none;
 }
 
@@ -519,23 +542,37 @@ ul#episode-list li:hover {
     opacity: 1;
 }
 
-button.text:hover {
-    background-color: #f0f0f0;
+/* Episode thumbnail */
+#episode-list li img {
+    width: 130px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: .25em;
 }
 
-#episode-list li {
+/* Episode content */
+.episode-info {
     display: flex;
-    align-items: center;
-    /* centra verticalmente al contenido */
-    padding: 2em 3em;
-    /* espacio respirable pero no rígido */
-    width: 49em;
-    border-bottom: 0.1em solid #333;
-    border-radius: .25em;
-    background: transparent;
-    position: relative;
-    margin-top: -0.6em;
-    top: 4em;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: left;
+    font-family: "Netflix Sans";
+}
+
+/* Episode title */
+.episode-title {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: .3em;
+    color: #fff;
+}
+
+/* Description */
+.episode-description {
+    font-size: .9em;
+    color: #aaa;
+    line-height: 1.2em;
 }
 
 #episode-list li:hover {
@@ -577,14 +614,7 @@ button.text:hover {
 }
 
 .epnumber {
-    color: bcbcbc;
-    font-weight: 300;
-    margin-bottom: .2em;
-    opacity: .7;
-    margin-left: -6.4em;
-    position: relative;
-    top: 2em;
-    font-size: 30px;
+    color: #f00;
 }
 
 a.eplink:hover {
@@ -609,44 +639,21 @@ a.eplink {
     opacity: 1;
 }
 
-#episode-list li {
-    display: flex;
-    align-items: center;
-    gap: 1.2em;
-    padding: 1.5em 2em;
-}
-
 #episode-list li img {
-    width: 150px;
-    height: 90px;
+    width: 133px;
+    height: auto;
     object-fit: cover;
-    border-radius: 6px;
+    margin-right: 1em;
 }
 
 .episode-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: .35em;
+    /* centra vertical */
     flex: 1;
-}
-
-.episode-title {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.episode-description {
-    font-size: .9rem;
-    color: #ccc;
-}
-
-.episode-meta {
-    font-size: .85rem;
-    color: #999;
-    display: flex;
-    gap: .7em;
+    text-align: left;
+    width: 35em;
 }
 
 .episode-title {
@@ -1628,7 +1635,7 @@ ul#episode-list {
     /* ✅ evita el salto fuera de pantalla */
     margin-top: 22em !important;
     /* pequeño margen visual */
-    padding-left: 2em !important;
+    padding-left: 1.99em !important;
 }
 
 /* Hacer que el encabezado de “Episodios” se vea en su posición */
@@ -1757,3 +1764,5 @@ ul#episode-list {
 .no-bottom-border {
     border-bottom-color: transparent !important;
 }
+
+<<
