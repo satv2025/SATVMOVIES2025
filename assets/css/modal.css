@@ -371,101 +371,20 @@ button.texto.vtle {
 strong[class^="epnumber"] {
     color: #bcbcbc !important;
     position: absolute;
-    left: 0.6em;
+    right: 28em;
+    /* mueve el número a la derecha */
+    top: 50%;
+    /* centro vertical */
+    transform: translateY(-50%);
     font-size: 27px;
     font-weight: 300;
     z-index: 1000;
-    text-align: center;
+    text-align: right !important;
 }
 
 /* Hover para todos */
 strong[class^="epnumber"]:hover {
     left: 0.1em;
-}
-
-/* Ajuste de top según número usando nth-of-type relativo a su contenedor */
-strong.epnumber1 {
-    top: 1em;
-}
-
-strong.epnumber2 {
-    top: 1em;
-}
-
-strong.epnumber3 {
-    top: 1em;
-}
-
-strong.epnumber4 {
-    top: 1em;
-}
-
-strong.epnumber5 {
-    top: 1.034em;
-}
-
-strong.epnumber6 {
-    top: 1.1em;
-}
-
-/* Del 7 al 8: incremento uniforme 0.066em */
-strong.epnumber7 {
-    top: 1.166em;
-}
-
-strong.epnumber8 {
-    top: 1.232em;
-}
-
-/* Del 9 al 19: incremento “un pelín más” 0.07em */
-strong.epnumber9 {
-    top: 1.302em;
-}
-
-strong.epnumber10 {
-    top: 1.372em;
-}
-
-strong.epnumber11 {
-    top: 1.442em;
-}
-
-strong.epnumber12 {
-    top: 1.512em;
-}
-
-strong.epnumber13 {
-    top: 1.582em;
-}
-
-strong.epnumber14 {
-    top: 1.652em;
-}
-
-strong.epnumber15 {
-    top: 1.722em;
-}
-
-strong.epnumber16 {
-    top: 1.792em;
-}
-
-strong.epnumber17 {
-    top: 1.862em;
-}
-
-strong.epnumber18 {
-    top: 1.932em;
-}
-
-strong.epnumber19 {
-    top: 2.002em;
-}
-
-/* Epnumber 20 con font-size menor */
-strong.epnumber20 {
-    top: 2.072em;
-    font-size: 16px;
 }
 
 /* ===== EPISODE LIST FIX ===== */
@@ -484,7 +403,7 @@ ul#episode-list li {
     align-items: center;
     gap: 1em;
     padding: 1.7em 2.5em;
-    width: 100%;
+    width: 111.8%;
     background: transparent;
     border-bottom: .1em solid #333;
     border-top: none;
@@ -492,6 +411,7 @@ ul#episode-list li {
     position: relative;
     cursor: pointer;
     transition: background .2s ease;
+    margin-top: -0.63em;
 }
 
 ul#episode-list li:first-child {
@@ -530,7 +450,7 @@ ul#episode-list li:hover {
     font-family: FONTAWESOME;
     color: white;
     position: absolute;
-    left: 2.55em;
+    left: 2.55em !important;
     top: 50%;
     transform: translateY(-50%);
     opacity: 0;
@@ -613,8 +533,9 @@ ul#episode-list li:hover {
     color: #bcbcbc;
 }
 
-.epnumber {
+span.epnumber {
     color: #f00;
+    display: none;
 }
 
 a.eplink:hover {
@@ -1765,4 +1686,134 @@ ul#episode-list {
     border-bottom-color: transparent !important;
 }
 
-<<
+.season-dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    font-family: 'Netflix Sans';
+    z-index: 1000;
+    margin-top: 34em;
+    margin-left: 32.659721em;
+    z-index: 600000;
+}
+
+.dropdown-button {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 11em;
+    position: relative;
+    font-size: 1.4em;
+    background-color: rgb(36, 36, 36);
+    padding: 0.3em 1em;
+    color: white;
+    cursor: pointer;
+    border: 0.1em solid rgb(77, 77, 77);
+    border-radius: 0.2em;
+    zoom: 0.7;
+    left: -22.16em;
+    font-weight: 600;
+    font-family: 'Netflix Sans';
+}
+
+.season-dropdown,
+nivelx-season-dropdown {
+    position: absolute;
+    top: 7.2em;
+}
+
+.dropdown-button::after {
+    content: "▼";
+    margin-left: 1.5em;
+    transition: transform 0.3s ease;
+    font-size: 32px;
+    margin-top: -0.01em;
+}
+
+.season-dropdown.show .dropdown-button::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    min-width: 4em;
+    position: absolute;
+    right: 20.68em;
+    cursor: pointer;
+    color: white;
+    list-style-type: none;
+    border: 0.1em solid rgb(77, 77, 77);
+    margin-top: 0.15em;
+    font-size: 1.5em;
+    z-index: 1;
+    background-color: rgb(36, 36, 36);
+    white-space: nowrap;
+    column-gap: 1.8em;
+    max-height: max(10em, 165.415px - 2rem);
+    overflow: auto;
+    padding: 1rem 0px;
+    zoom: 0.7;
+    overflow-x: hidden;
+    width: 13em;
+}
+
+#seasonMenu {
+    display: none;
+}
+
+#seasonMenu.show {
+    display: block;
+}
+
+.season-option {
+    width: 100%;
+}
+
+.season-option .texto {
+    background: none;
+    border: none;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em;
+    width: 102%;
+    text-align: left;
+    font-family: 'Netflix Sans';
+    transition: color 0.2s ease;
+    padding-left: 0.7em;
+    display: block;
+    font-weight: 500;
+}
+
+#episode-list li::before {
+    content: '';
+    width: 0.7em;
+    height: 0.7em;
+    font-size: 3.3em;
+    display: flex;
+    border-radius: 50%;
+    border: 0.02em solid white;
+    position: absolute;
+    left: 14.7%;
+    top: 50.4%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 30, 20, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#episode-list li:hover::before {
+    opacity: 1;
+}
+
+#episode-list li::after {
+    content: '▶';
+    font-size: 1.7em;
+    font-family: FONTAWESOME;
+    color: white;
+    position: absolute;
+    left: 14.6% !important;
+    top: 49.8%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}

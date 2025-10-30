@@ -533,7 +533,7 @@ function renderEpisodios(episodios, age) {
                 <div class="episode-info">
                     <span class="epnumber">${ep.number}</span>
                     <strong class="epnumber">${ep.number}</strong>
-<h4 class="episode-title">${ep.title}</h4>
+                    <h4 class="episode-title">${ep.title}</h4>
                     <p class="episode-description">${ep.description || ""}</p>
                     <div class="episode-meta">
                         <span class="duration">${ep.duration || ""}</span>
@@ -549,29 +549,25 @@ function renderEpisodios(episodios, age) {
     aplicarHoverBordesEpisodios();
 }
 
-// === Hover border effect ===
+// === Hover border effect correcto ===
 function aplicarHoverBordesEpisodios() {
     const items = document.querySelectorAll("#episode-list li");
 
     items.forEach((li, i) => {
-        if (i === 0) {
-            li.style.borderTop = "0.1em solid #333";
-        }
-
         li.addEventListener("mouseenter", () => {
-            li.style.borderTop = "0.1em solid #333";
-            if (i > 0) {
-                items[i - 1].style.borderBottomColor = "transparent";
-            }
+            items.forEach(el => {
+                el.style.borderTop = "";
+                el.style.borderBottom = ".1em solid #333";
+            });
+
+            li.style.borderTop = ".1em solid #333";
+
+            if (i > 0) items[i - 1].style.borderBottom = "none";
         });
 
         li.addEventListener("mouseleave", () => {
-            if (i !== 0) {
-                li.style.borderTop = "none";
-            }
-            if (i > 0) {
-                items[i - 1].style.borderBottomColor = "#333";
-            }
+            if (i > 0) li.style.borderTop = "";
+            if (i > 0) items[i - 1].style.borderBottom = ".1em solid #333";
         });
     });
 }
@@ -598,27 +594,6 @@ function closeModal() {
 }
 
 document.querySelector(".close-button").addEventListener("click", closeModal);
-document.addEventListener("click", (e) => {
-    const modal = document.getElementById("infoModal");
-    const modalContent = document.querySelector(".modal-content");
-    if (modal.style.display === "flex" && !modalContent.contains(e.target) && !e.target.closest(".info, .moreinfobutton")) {
-        closeModal();
-    }
-});
-
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
-});
-
-document.addEventListener("mouseover", e => {
-    if (!e.target.closest("#episode-list li")) return;
-
-    const li = e.target.closest("li");
-    const prev = li.previousElementSibling;
-
-    document.querySelectorAll("#episode-list li")
-        .forEach(el => el.style.borderTop = "");
-
-    if (prev) prev.style.borderBottom = "none";
-    li.style.borderTop = ".1em solid #333";
 });
