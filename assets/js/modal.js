@@ -607,16 +607,3 @@ document.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
 });
-
-document.addEventListener("mouseover", e => {
-    if (!e.target.closest("#episode-list li")) return;
-
-    const li = e.target.closest("li");
-    const prev = li.previousElementSibling;
-
-    document.querySelectorAll("#episode-list li")
-        .forEach(el => el.style.borderTop = "");
-
-    if (prev) prev.style.borderBottom = "none";
-    li.style.borderTop = ".1em solid #333";
-});
