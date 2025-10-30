@@ -331,6 +331,38 @@ const peliculas = {
         .modal-mute-btn:hover { opacity: 1; }
         .modal-mute-btn img { width: 28px; height: 28px; display: block; filter: brightness(0) invert(1); }
 
+        .episode-item { list-style: none; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin: 10px 0; transition: background 0.2s ease; }
+        .episode-item:hover { background: rgba(255,255,255,0.1); }
+        .episode-link { display: flex; align-items: center; gap: 12px; padding: 10px; text-decoration: none; color: white; width: 100%; }
+        .episode-thumb img { width: 160px; height: 90px; object-fit: cover; border-radius: 6px; }
+        .episode-info { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: .35em; }
+
+        .episode-title { margin: 0; font-size: 1rem; font-weight: bold; }
+        .episode-description { margin: 6px 0; color: #ccc; font-size: 0.9rem; }
+        .episode-meta { font-size: 0.85rem; color: #aaa; display: flex; gap: 10px; }
+
+        #episode-list li { 
+            display: flex;
+            align-items: center;
+            text-align: left;
+            width: 49em;
+            padding: 2em 3em;
+            border-bottom: 0.1em solid #333;
+            border-radius: .25em;
+            background: transparent;
+            position: relative;
+        }
+
+        #episode-list li:first-child {
+            border-top: 0.1em solid #333;
+        }
+
+        .epnumber {
+            font-weight: bold;
+            margin-bottom: .2em;
+            opacity: .7;
+        }
+
         #infoModal {
             display: none;
             background: rgba(0, 0, 0, 0.75);
@@ -452,55 +484,34 @@ function openModal(movieKey) {
     const categoria = movieKey.toLowerCase();
     if (movie.type === "serie" && episodiosPorSerie[categoria]) {
         document.getElementById("modal-episodelist").innerHTML = movie.episodelist || "";
+        document.getElementById("modal-seasons").innerHTML = movie.seasons || "";
         generarDropdownTemporadas(categoria, movie.ageRating);
     }
 }
 
-// === Dropdown temporadas con DIV, NO BUTTON ===
+// === Dropdown temporadas ===
 function generarDropdownTemporadas(key, age) {
     const seriesData = episodiosPorSerie[key];
     const episodeList = document.getElementById("episode-list");
-    const seasonContainer = document.getElementById("modal-seasons");
-    if (!seriesData || !episodeList || !seasonContainer) return;
+    const seasonMenu = document.getElementById("modal-seasons");
+    if (!seriesData || !episodeList || !seasonMenu) return;
 
+    seasonMenu.innerHTML = "";
     episodeList.innerHTML = "";
 
-    seasonContainer.innerHTML = `
-        <div class="dropdown-button">Temporadas</div>
-        <ul id="seasonMenu" class="dropdown-content"></ul>
-    `;
-
-    const dropdownButton = seasonContainer.querySelector(".dropdown-button");
-    const seasonMenu = seasonContainer.querySelector("#seasonMenu");
-
-    dropdownButton.addEventListener("click", () => {
-        seasonMenu.classList.toggle("show");
-        seasonContainer.classList.toggle("show");
-    });
+    if (Array.isArray(seriesData)) {
+        renderEpisodios(seriesData, age);
+        return;
+    }
 
     Object.keys(seriesData).forEach((t, i) => {
         const episodios = seriesData[t];
-
-        const li = document.createElement("li");
-        li.classList.add("season-option");
-        li.innerHTML = `
-            <span class="texto">Temporada ${t}</span>
-            <span class="episodios-count">${episodios.length}</span>
-        `;
-
-        li.addEventListener("click", () => {
-            dropdownButton.textContent = `Temporada ${t}`;
-            renderEpisodios(episodios, age);
-            seasonMenu.classList.remove("show");
-            seasonContainer.classList.remove("show");
-        });
-
-        seasonMenu.appendChild(li);
-
-        if (i === 0) {
-            dropdownButton.textContent = `Temporada ${t}`;
-            renderEpisodios(episodios, age);
-        }
+        const button = document.createElement("button");
+        button.classList.add("texto");
+        button.textContent = `Temporada ${t} (${episodios.length} episodios)`;
+        button.addEventListener("click", () => renderEpisodios(episodios, age));
+        seasonMenu.appendChild(button);
+        if (i === 0) renderEpisodios(episodios, age);
     });
 }
 
@@ -533,6 +544,31 @@ function renderEpisodios(episodios, age) {
         `;
 
         episodeList.appendChild(li);
+    });
+
+    aplicarHoverBordesEpisodios();
+}
+
+// === Hover border effect correcto ===
+function aplicarHoverBordesEpisodios() {
+    const items = document.querySelectorAll("#episode-list li");
+
+    items.forEach((li, i) => {
+        li.addEventListener("mouseenter", () => {
+            items.forEach(el => {
+                el.style.borderTop = "";
+                el.style.borderBottom = ".1em solid #333";
+            });
+
+            li.style.borderTop = ".1em solid #333";
+
+            if (i > 0) items[i - 1].style.borderBottom = "none";
+        });
+
+        li.addEventListener("mouseleave", () => {
+            if (i > 0) li.style.borderTop = "";
+            if (i > 0) items[i - 1].style.borderBottom = ".1em solid #333";
+        });
     });
 }
 
