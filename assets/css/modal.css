@@ -577,7 +577,14 @@ button.text:hover {
 }
 
 .epnumber {
-    color: #f00;
+    color: bcbcbc;
+    font-weight: 300;
+    margin-bottom: .2em;
+    opacity: .7;
+    margin-left: -6.4em;
+    position: relative;
+    top: 2em;
+    font-size: 30px;
 }
 
 a.eplink:hover {
@@ -602,21 +609,44 @@ a.eplink {
     opacity: 1;
 }
 
+#episode-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.2em;
+    padding: 1.5em 2em;
+}
+
 #episode-list li img {
-    width: 133px;
-    height: auto;
+    width: 150px;
+    height: 90px;
     object-fit: cover;
-    margin-right: 1em;
+    border-radius: 6px;
 }
 
 .episode-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* centra vertical */
+    gap: .35em;
     flex: 1;
-    text-align: left;
-    width: 35em;
+}
+
+.episode-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.episode-description {
+    font-size: .9rem;
+    color: #ccc;
+}
+
+.episode-meta {
+    font-size: .85rem;
+    color: #999;
+    display: flex;
+    gap: .7em;
 }
 
 .episode-title {
