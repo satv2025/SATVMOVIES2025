@@ -462,6 +462,20 @@ function openModal(movieKey) {
     }
 
     modal.querySelector(".close-button").addEventListener("click", closeModal);
+
+    // === SCROLL DIRECTO NATIVO Y SUAVE SIN HASH ===
+    document.querySelectorAll(".scrollAbout").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const modal = document.getElementById("infoModal");
+            const target = document.querySelector("#about");
+            if (!target || !modal) return;
+
+            modal.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth"
+            });
+        });
+    });
 }
 
 // === Dropdown temporadas ===
@@ -563,10 +577,9 @@ function closeModal() {
     modal.classList.add("closing");
 
     setTimeout(() => {
-        modal.innerHTML = modalOriginalHTML; // Reset
+        modal.innerHTML = modalOriginalHTML;
         modal.style.display = "none";
         modal.classList.remove("closing");
-
         modal.querySelector(".close-button").addEventListener("click", closeModal);
     }, 400);
 
