@@ -339,6 +339,7 @@ const peliculas = {
         .episode-title { margin: 0; font-size: 1rem; font-weight: bold; }
         .episode-description { margin: 6px 0; color: #ccc; font-size: 0.9rem; }
         .episode-meta { font-size: 0.85rem; color: #aaa; display: flex; gap: 10px; }
+
         #episode-list li { display: flex; align-items: center; text-align: left; width: 49em; padding: 2em 3em; border-bottom: 0.1em solid #333; border-radius: .25em; background: transparent; position: relative; }
         #episode-list li:first-child { border-top: 0.1em solid #333; }
         .epnumber { font-weight: bold; margin-bottom: .2em; opacity: .7; }
@@ -464,26 +465,27 @@ function openModal(movieKey) {
 
     modal.querySelector(".close-button").addEventListener("click", closeModal);
 
-    // === SCROLL NATIVO SUAVE A #about ===
+    // === SCROLL NATIVO HASTA #about ===
     (() => {
         const container = modal;
-        const targets = container.querySelectorAll("#scrollAbout, .scrollAbout");
+        const triggers = container.querySelectorAll("#scrollAbout, .scrollAbout");
         const about = container.querySelector("#about");
-        if (!targets.length || !about) return;
+        if (!triggers.length || !about) return;
 
-        const scrollToInside = (c, el, offset = 80) => {
-            const crect = c.getBoundingClientRect();
-            const erect = el.getBoundingClientRect();
-            const delta = erect.top - crect.top;
-            c.scrollTo({ top: c.scrollTop + delta - offset, behavior: "smooth" });
+        const scrollToInside = (c, el, offset = 100) => {
+            const top =
+                el.offsetTop -
+                c.querySelector(".modal-content").offsetTop -
+                offset;
+            c.scrollTo({ top, behavior: "smooth" });
         };
 
-        targets.forEach(btn =>
+        triggers.forEach(btn => {
             btn.addEventListener("click", e => {
                 e.preventDefault();
-                scrollToInside(container, about, 80);
-            })
-        );
+                scrollToInside(container, about, 120);
+            });
+        });
     })();
 }
 
@@ -513,7 +515,7 @@ function generarDropdownTemporadas(key, age) {
     });
 }
 
-// === Render episodios ===
+// === Render episodios + hover inteligente ===
 function renderEpisodios(episodios, age) {
     const episodeList = document.getElementById("episode-list");
     if (!episodeList) return;
@@ -541,6 +543,37 @@ function renderEpisodios(episodios, age) {
         `;
 
         episodeList.appendChild(li);
+    });
+
+    aplicarHoverBordesEpisodios();
+}
+
+// === Hover Netflix ===
+function aplicarHoverBordesEpisodios() {
+    const items = document.querySelectorAll("#episode-list li");
+
+    const resetBorders = () => {
+        items.forEach(li => {
+            li.style.borderTop = "";
+            li.style.borderBottom = "0.1em solid #333";
+        });
+        if (items[0]) items[0].style.borderTop = "0.1em solid #333";
+    };
+
+    resetBorders();
+
+    items.forEach((li, i) => {
+        li.addEventListener("mouseenter", () => {
+            resetBorders();
+            li.style.borderTop = "0.1em solid #333";
+            if (i > 0) items[i - 1].style.borderBottom = "none";
+        });
+
+        li.addEventListener("mouseleave", () => {
+            if (![...items].some(el => el.matches(":hover"))) {
+                resetBorders();
+            }
+        });
     });
 }
 
