@@ -1,5 +1,14 @@
 @import url('https://solargentinotv.com.ar/assets/fonts/Acto/Acto.css');
 
+* {
+    font-family: 'Acto', sans-serif;
+
+    /* activa alternativas tipográficas */
+    font-feature-settings: "ss01";
+    font-variant-alternates: stylistic(ss01);
+}
+
+
 @keyframes plyr-progress {
     to {
         background-position: 25px 0;
