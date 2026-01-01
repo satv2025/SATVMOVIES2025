@@ -363,7 +363,7 @@ const modalOriginalHTML = infoModal.innerHTML;
 // === Cargar JSON episodios ===
 async function cargarEpisodiosJSON() {
     try {
-        const response = await fetch("https://movies.solargentinotv.com.ar/assets/json/data.json");
+        const response = await fetch("https://old.movies.solargentinotv.com.ar/assets/json/data.json");
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         const data = await response.json();
         for (const key in data) {
